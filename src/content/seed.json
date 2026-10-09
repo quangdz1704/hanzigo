@@ -1,0 +1,4584 @@
+{
+  "version": 1,
+  "stories": [
+    {
+      "id": "rainy-cafe",
+      "titleZh": "雨天的小咖啡馆",
+      "titleVi": "Quán cà phê ngày mưa",
+      "subtitle": "Một cơn mưa, một chỗ ngồi bên cửa sổ, một niềm vui nhỏ.",
+      "difficulty": "HSK 4",
+      "topic": "Đời thường",
+      "estimatedMinutes": 5,
+      "art": "cafe",
+      "tags": ["Đời thường", "Truyện ngắn"],
+      "paragraphs": [
+        [
+          {
+            "id": "rainy-cafe-s0",
+            "hanzi": "星期六下午，林晓打算去公园散步。",
+            "pinyin": "Xīngqīliù xiàwǔ, Lín Xiǎo dǎsuàn qù gōngyuán sànbù.",
+            "vi": "Chiều thứ Bảy, Lâm Hiểu định đi dạo ở công viên.",
+            "glossaryIds": ["rainy-cafe-v0", "rainy-cafe-v1"]
+          },
+          {
+            "id": "rainy-cafe-s1",
+            "hanzi": "可是，她刚出门，天空就下起了雨。",
+            "pinyin": "Kěshì, tā gāng chūmén, tiānkōng jiù xià qǐ le yǔ.",
+            "vi": "Nhưng vừa ra khỏi nhà, trời đã bắt đầu mưa.",
+            "glossaryIds": []
+          }
+        ],
+        [
+          {
+            "id": "rainy-cafe-s2",
+            "hanzi": "她跑进街角的一家小咖啡馆，衣服有一点湿。",
+            "pinyin": "Tā pǎo jìn jiējiǎo de yì jiā xiǎo kāfēiguǎn, yīfu yǒu yìdiǎn shī.",
+            "vi": "Cô chạy vào một quán cà phê nhỏ ở góc phố, quần áo hơi ướt.",
+            "glossaryIds": ["rainy-cafe-v2"]
+          },
+          {
+            "id": "rainy-cafe-s3",
+            "hanzi": "老板递给她一条毛巾，笑着说：“别着急，先坐下吧。”",
+            "pinyin": "Lǎobǎn dì gěi tā yì tiáo máojīn, xiào zhe shuō: “Bié zháojí, xiān zuò xià ba.”",
+            "vi": "Chủ quán đưa cô một chiếc khăn, mỉm cười nói: “Đừng vội, ngồi xuống đã nhé.”",
+            "glossaryIds": ["rainy-cafe-v3", "rainy-cafe-v4"]
+          }
+        ],
+        [
+          {
+            "id": "rainy-cafe-s4",
+            "hanzi": "林晓选了一个靠窗的位置，点了一杯热咖啡。",
+            "pinyin": "Lín Xiǎo xuǎn le yí ge kào chuāng de wèizhi, diǎn le yì bēi rè kāfēi.",
+            "vi": "Lâm Hiểu chọn chỗ ngồi cạnh cửa sổ và gọi một cốc cà phê nóng.",
+            "glossaryIds": ["rainy-cafe-v5"]
+          },
+          {
+            "id": "rainy-cafe-s5",
+            "hanzi": "书架上有一本旧书，封面画着一只猫。",
+            "pinyin": "Shūjià shàng yǒu yì běn jiù shū, fēngmiàn huà zhe yì zhī māo.",
+            "vi": "Trên kệ có một cuốn sách cũ, bìa vẽ một chú mèo.",
+            "glossaryIds": ["rainy-cafe-v6"]
+          }
+        ],
+        [
+          {
+            "id": "rainy-cafe-s6",
+            "hanzi": "她一边读书，一边听窗外的雨声，心情渐渐平静下来。",
+            "pinyin": "Tā yìbiān dú shū, yìbiān tīng chuāng wài de yǔshēng, xīnqíng jiànjiàn píngjìng xià lái.",
+            "vi": "Cô vừa đọc sách vừa nghe tiếng mưa ngoài cửa sổ; tâm trạng dần bình yên.",
+            "glossaryIds": ["rainy-cafe-v7", "rainy-cafe-v8"]
+          },
+          {
+            "id": "rainy-cafe-s7",
+            "hanzi": "一个小时以后，雨停了，她却不想马上离开。",
+            "pinyin": "Yí ge xiǎoshí yǐhòu, yǔ tíng le, tā què bù xiǎng mǎshàng líkāi.",
+            "vi": "Một giờ sau, mưa tạnh, nhưng cô chưa muốn rời đi ngay.",
+            "glossaryIds": []
+          }
+        ],
+        [
+          {
+            "id": "rainy-cafe-s8",
+            "hanzi": "老板问她：“今天的散步怎么样？”她笑了：“我没有去公园，但是发现了一个好地方。”",
+            "pinyin": "Lǎobǎn wèn tā: “Jīntiān de sànbù zěnmeyàng?” Tā xiào le: “Wǒ méiyǒu qù gōngyuán, dànshì fāxiàn le yí ge hǎo dìfang.”",
+            "vi": "Chủ quán hỏi: “Buổi đi dạo hôm nay thế nào?” Cô cười: “Tôi không đến công viên, nhưng đã tìm thấy một nơi thật hay.”",
+            "glossaryIds": ["rainy-cafe-v1"]
+          },
+          {
+            "id": "rainy-cafe-s9",
+            "hanzi": "有时候，计划改变了，也会带来意外的快乐。",
+            "pinyin": "Yǒu shíhou, jìhuà gǎibiàn le, yě huì dài lái yìwài de kuàilè.",
+            "vi": "Đôi khi, kế hoạch thay đổi cũng mang lại niềm vui bất ngờ.",
+            "glossaryIds": ["rainy-cafe-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "rainy-cafe-v0",
+          "hanzi": "打算",
+          "pinyin": "dǎsuàn",
+          "meaning": "dự định",
+          "example": "星期六下午，林晓打算去公园散步。",
+          "examplePinyin": "Xīngqīliù xiàwǔ, Lín Xiǎo dǎsuàn qù gōngyuán sànbù.",
+          "exampleVi": "Chiều thứ Bảy, Lâm Hiểu định đi dạo ở công viên.",
+          "storyId": "rainy-cafe"
+        },
+        {
+          "id": "rainy-cafe-v1",
+          "hanzi": "散步",
+          "pinyin": "sànbù",
+          "meaning": "đi dạo",
+          "example": "星期六下午，林晓打算去公园散步。",
+          "examplePinyin": "Xīngqīliù xiàwǔ, Lín Xiǎo dǎsuàn qù gōngyuán sànbù.",
+          "exampleVi": "Chiều thứ Bảy, Lâm Hiểu định đi dạo ở công viên.",
+          "storyId": "rainy-cafe"
+        },
+        {
+          "id": "rainy-cafe-v2",
+          "hanzi": "街角",
+          "pinyin": "jiējiǎo",
+          "meaning": "góc phố",
+          "example": "她跑进街角的一家小咖啡馆，衣服有一点湿。",
+          "examplePinyin": "Tā pǎo jìn jiējiǎo de yì jiā xiǎo kāfēiguǎn, yīfu yǒu yìdiǎn shī.",
+          "exampleVi": "Cô chạy vào một quán cà phê nhỏ ở góc phố, quần áo hơi ướt.",
+          "storyId": "rainy-cafe"
+        },
+        {
+          "id": "rainy-cafe-v3",
+          "hanzi": "毛巾",
+          "pinyin": "máojīn",
+          "meaning": "khăn",
+          "example": "老板递给她一条毛巾，笑着说：“别着急，先坐下吧。”",
+          "examplePinyin": "Lǎobǎn dì gěi tā yì tiáo máojīn, xiào zhe shuō: “Bié zháojí, xiān zuò xià ba.”",
+          "exampleVi": "Chủ quán đưa cô một chiếc khăn, mỉm cười nói: “Đừng vội, ngồi xuống đã nhé.”",
+          "storyId": "rainy-cafe"
+        },
+        {
+          "id": "rainy-cafe-v4",
+          "hanzi": "着急",
+          "pinyin": "zháojí",
+          "meaning": "sốt ruột, vội",
+          "example": "老板递给她一条毛巾，笑着说：“别着急，先坐下吧。”",
+          "examplePinyin": "Lǎobǎn dì gěi tā yì tiáo máojīn, xiào zhe shuō: “Bié zháojí, xiān zuò xià ba.”",
+          "exampleVi": "Chủ quán đưa cô một chiếc khăn, mỉm cười nói: “Đừng vội, ngồi xuống đã nhé.”",
+          "storyId": "rainy-cafe"
+        },
+        {
+          "id": "rainy-cafe-v5",
+          "hanzi": "位置",
+          "pinyin": "wèizhi",
+          "meaning": "vị trí, chỗ ngồi",
+          "example": "林晓选了一个靠窗的位置，点了一杯热咖啡。",
+          "examplePinyin": "Lín Xiǎo xuǎn le yí ge kào chuāng de wèizhi, diǎn le yì bēi rè kāfēi.",
+          "exampleVi": "Lâm Hiểu chọn chỗ ngồi cạnh cửa sổ và gọi một cốc cà phê nóng.",
+          "storyId": "rainy-cafe"
+        },
+        {
+          "id": "rainy-cafe-v6",
+          "hanzi": "封面",
+          "pinyin": "fēngmiàn",
+          "meaning": "bìa sách",
+          "example": "书架上有一本旧书，封面画着一只猫。",
+          "examplePinyin": "Shūjià shàng yǒu yì běn jiù shū, fēngmiàn huà zhe yì zhī māo.",
+          "exampleVi": "Trên kệ có một cuốn sách cũ, bìa vẽ một chú mèo.",
+          "storyId": "rainy-cafe"
+        },
+        {
+          "id": "rainy-cafe-v7",
+          "hanzi": "渐渐",
+          "pinyin": "jiànjiàn",
+          "meaning": "dần dần",
+          "example": "她一边读书，一边听窗外的雨声，心情渐渐平静下来。",
+          "examplePinyin": "Tā yìbiān dú shū, yìbiān tīng chuāng wài de yǔshēng, xīnqíng jiànjiàn píngjìng xià lái.",
+          "exampleVi": "Cô vừa đọc sách vừa nghe tiếng mưa ngoài cửa sổ; tâm trạng dần bình yên.",
+          "storyId": "rainy-cafe"
+        },
+        {
+          "id": "rainy-cafe-v8",
+          "hanzi": "平静",
+          "pinyin": "píngjìng",
+          "meaning": "bình yên, yên tĩnh",
+          "example": "她一边读书，一边听窗外的雨声，心情渐渐平静下来。",
+          "examplePinyin": "Tā yìbiān dú shū, yìbiān tīng chuāng wài de yǔshēng, xīnqíng jiànjiàn píngjìng xià lái.",
+          "exampleVi": "Cô vừa đọc sách vừa nghe tiếng mưa ngoài cửa sổ; tâm trạng dần bình yên.",
+          "storyId": "rainy-cafe"
+        },
+        {
+          "id": "rainy-cafe-v9",
+          "hanzi": "意外",
+          "pinyin": "yìwài",
+          "meaning": "bất ngờ, ngoài dự tính",
+          "example": "有时候，计划改变了，也会带来意外的快乐。",
+          "examplePinyin": "Yǒu shíhou, jìhuà gǎibiàn le, yě huì dài lái yìwài de kuàilè.",
+          "exampleVi": "Đôi khi, kế hoạch thay đổi cũng mang lại niềm vui bất ngờ.",
+          "storyId": "rainy-cafe"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "rainy-cafe-q0",
+          "prompt": "Vì sao Lâm Hiểu vào quán cà phê?",
+          "options": [
+            "Cô muốn gặp bạn.",
+            "Trời bắt đầu mưa.",
+            "Cô đi mua sách."
+          ],
+          "answer": 1,
+          "explanation": "Cô vừa ra khỏi nhà thì trời mưa, nên chạy vào quán."
+        },
+        {
+          "id": "rainy-cafe-q1",
+          "prompt": "Bìa cuốn sách có hình gì?",
+          "options": ["Một chú mèo.", "Một bông hoa.", "Một ngôi nhà."],
+          "answer": 0,
+          "explanation": "封面画着一只猫: trên bìa có vẽ một chú mèo."
+        },
+        {
+          "id": "rainy-cafe-q2",
+          "prompt": "Lâm Hiểu cảm thấy thế nào ở cuối truyện?",
+          "options": [
+            "Buồn vì không đi dạo.",
+            "Vội về nhà.",
+            "Vui vì tìm được một nơi hay."
+          ],
+          "answer": 2,
+          "explanation": "Dù kế hoạch thay đổi, cô tìm được một nơi mang lại niềm vui."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她", "点了", "一杯", "热咖啡"],
+        "pinyin": "Tā diǎn le yì bēi rè kāfēi.",
+        "vi": "Cô ấy gọi một cốc cà phê nóng."
+      },
+      "attribution": {
+        "author": "HanziGo · Nội dung tự biên soạn với AI",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "bookshop",
+      "titleZh": "书店里的明信片",
+      "titleVi": "Tấm bưu thiếp trong tiệm sách",
+      "subtitle": "Có những điều đẹp đẽ đang chờ giữa những trang sách.",
+      "difficulty": "HSK 4",
+      "topic": "Sách & văn hóa",
+      "estimatedMinutes": 5,
+      "art": "books",
+      "tags": ["Sách & văn hóa", "Truyện ngắn"],
+      "paragraphs": [
+        [
+          {
+            "id": "bookshop-s0",
+            "hanzi": "周末，小雨去一家书店买旅行书。",
+            "pinyin": "Zhōumò, Xiǎo Yǔ qù yì jiā shūdiàn mǎi lǚxíng shū.",
+            "vi": "Cuối tuần, Tiểu Vũ đến tiệm sách mua sách du lịch.",
+            "glossaryIds": []
+          },
+          {
+            "id": "bookshop-s1",
+            "hanzi": "她想了解云南，因为她准备下个月去那里。",
+            "pinyin": "Tā xiǎng liǎojiě Yúnnán, yīnwèi tā zhǔnbèi xià ge yuè qù nàli.",
+            "vi": "Cô muốn tìm hiểu Vân Nam vì dự định đến đó vào tháng sau.",
+            "glossaryIds": ["bookshop-v0", "bookshop-v1"]
+          }
+        ],
+        [
+          {
+            "id": "bookshop-s2",
+            "hanzi": "店员推荐了两本书，一本介绍风景，另一本讲当地的生活。",
+            "pinyin": "Diànyuán tuījiàn le liǎng běn shū, yì běn jièshào fēngjǐng, lìng yì běn jiǎng dāngdì de shēnghuó.",
+            "vi": "Nhân viên giới thiệu hai cuốn sách: một cuốn về phong cảnh, cuốn kia về cuộc sống địa phương.",
+            "glossaryIds": ["bookshop-v2", "bookshop-v3", "bookshop-v4"]
+          },
+          {
+            "id": "bookshop-s3",
+            "hanzi": "小雨比较了一下，选择了第二本。",
+            "pinyin": "Xiǎo Yǔ bǐjiào le yíxià, xuǎnzé le dì èr běn.",
+            "vi": "Tiểu Vũ so sánh một chút rồi chọn cuốn thứ hai.",
+            "glossaryIds": ["bookshop-v5", "bookshop-v6"]
+          }
+        ],
+        [
+          {
+            "id": "bookshop-s4",
+            "hanzi": "付钱的时候，店员送给她一张明信片。",
+            "pinyin": "Fù qián de shíhou, diànyuán sòng gěi tā yì zhāng míngxìnpiàn.",
+            "vi": "Khi thanh toán, nhân viên tặng cô một tấm bưu thiếp.",
+            "glossaryIds": ["bookshop-v7"]
+          },
+          {
+            "id": "bookshop-s5",
+            "hanzi": "明信片上写着：“旅行不只是看风景，也是认识新的自己。”",
+            "pinyin": "Míngxìnpiàn shàng xiě zhe: “Lǚxíng bù zhǐ shì kàn fēngjǐng, yě shì rènshi xīn de zìjǐ.”",
+            "vi": "Trên bưu thiếp viết: “Du lịch không chỉ là ngắm cảnh mà còn là tìm hiểu một bản thân mới.”",
+            "glossaryIds": ["bookshop-v3", "bookshop-v7"]
+          }
+        ],
+        [
+          {
+            "id": "bookshop-s6",
+            "hanzi": "她把明信片夹在书里，坐在门口的长椅上读了几页。",
+            "pinyin": "Tā bǎ míngxìnpiàn jiā zài shū lǐ, zuò zài ménkǒu de chángyǐ shàng dú le jǐ yè.",
+            "vi": "Cô kẹp bưu thiếp vào sách, ngồi trên ghế dài trước cửa và đọc vài trang.",
+            "glossaryIds": ["bookshop-v7", "bookshop-v8"]
+          },
+          {
+            "id": "bookshop-s7",
+            "hanzi": "书里的小故事让她对旅行更加期待。",
+            "pinyin": "Shū lǐ de xiǎo gùshi ràng tā duì lǚxíng gèngjiā qīdài.",
+            "vi": "Những câu chuyện nhỏ trong sách khiến cô càng mong chờ chuyến đi.",
+            "glossaryIds": ["bookshop-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "bookshop-v0",
+          "hanzi": "了解",
+          "pinyin": "liǎojiě",
+          "meaning": "tìm hiểu, hiểu biết",
+          "example": "她想了解云南，因为她准备下个月去那里。",
+          "examplePinyin": "Tā xiǎng liǎojiě Yúnnán, yīnwèi tā zhǔnbèi xià ge yuè qù nàli.",
+          "exampleVi": "Cô muốn tìm hiểu Vân Nam vì dự định đến đó vào tháng sau.",
+          "storyId": "bookshop"
+        },
+        {
+          "id": "bookshop-v1",
+          "hanzi": "准备",
+          "pinyin": "zhǔnbèi",
+          "meaning": "chuẩn bị, dự định",
+          "example": "她想了解云南，因为她准备下个月去那里。",
+          "examplePinyin": "Tā xiǎng liǎojiě Yúnnán, yīnwèi tā zhǔnbèi xià ge yuè qù nàli.",
+          "exampleVi": "Cô muốn tìm hiểu Vân Nam vì dự định đến đó vào tháng sau.",
+          "storyId": "bookshop"
+        },
+        {
+          "id": "bookshop-v2",
+          "hanzi": "推荐",
+          "pinyin": "tuījiàn",
+          "meaning": "giới thiệu, đề xuất",
+          "example": "店员推荐了两本书，一本介绍风景，另一本讲当地的生活。",
+          "examplePinyin": "Diànyuán tuījiàn le liǎng běn shū, yì běn jièshào fēngjǐng, lìng yì běn jiǎng dāngdì de shēnghuó.",
+          "exampleVi": "Nhân viên giới thiệu hai cuốn sách: một cuốn về phong cảnh, cuốn kia về cuộc sống địa phương.",
+          "storyId": "bookshop"
+        },
+        {
+          "id": "bookshop-v3",
+          "hanzi": "风景",
+          "pinyin": "fēngjǐng",
+          "meaning": "phong cảnh",
+          "example": "店员推荐了两本书，一本介绍风景，另一本讲当地的生活。",
+          "examplePinyin": "Diànyuán tuījiàn le liǎng běn shū, yì běn jièshào fēngjǐng, lìng yì běn jiǎng dāngdì de shēnghuó.",
+          "exampleVi": "Nhân viên giới thiệu hai cuốn sách: một cuốn về phong cảnh, cuốn kia về cuộc sống địa phương.",
+          "storyId": "bookshop"
+        },
+        {
+          "id": "bookshop-v4",
+          "hanzi": "当地",
+          "pinyin": "dāngdì",
+          "meaning": "địa phương",
+          "example": "店员推荐了两本书，一本介绍风景，另一本讲当地的生活。",
+          "examplePinyin": "Diànyuán tuījiàn le liǎng běn shū, yì běn jièshào fēngjǐng, lìng yì běn jiǎng dāngdì de shēnghuó.",
+          "exampleVi": "Nhân viên giới thiệu hai cuốn sách: một cuốn về phong cảnh, cuốn kia về cuộc sống địa phương.",
+          "storyId": "bookshop"
+        },
+        {
+          "id": "bookshop-v5",
+          "hanzi": "比较",
+          "pinyin": "bǐjiào",
+          "meaning": "so sánh",
+          "example": "小雨比较了一下，选择了第二本。",
+          "examplePinyin": "Xiǎo Yǔ bǐjiào le yíxià, xuǎnzé le dì èr běn.",
+          "exampleVi": "Tiểu Vũ so sánh một chút rồi chọn cuốn thứ hai.",
+          "storyId": "bookshop"
+        },
+        {
+          "id": "bookshop-v6",
+          "hanzi": "选择",
+          "pinyin": "xuǎnzé",
+          "meaning": "lựa chọn",
+          "example": "小雨比较了一下，选择了第二本。",
+          "examplePinyin": "Xiǎo Yǔ bǐjiào le yíxià, xuǎnzé le dì èr běn.",
+          "exampleVi": "Tiểu Vũ so sánh một chút rồi chọn cuốn thứ hai.",
+          "storyId": "bookshop"
+        },
+        {
+          "id": "bookshop-v7",
+          "hanzi": "明信片",
+          "pinyin": "míngxìnpiàn",
+          "meaning": "bưu thiếp",
+          "example": "付钱的时候，店员送给她一张明信片。",
+          "examplePinyin": "Fù qián de shíhou, diànyuán sòng gěi tā yì zhāng míngxìnpiàn.",
+          "exampleVi": "Khi thanh toán, nhân viên tặng cô một tấm bưu thiếp.",
+          "storyId": "bookshop"
+        },
+        {
+          "id": "bookshop-v8",
+          "hanzi": "长椅",
+          "pinyin": "chángyǐ",
+          "meaning": "ghế dài",
+          "example": "她把明信片夹在书里，坐在门口的长椅上读了几页。",
+          "examplePinyin": "Tā bǎ míngxìnpiàn jiā zài shū lǐ, zuò zài ménkǒu de chángyǐ shàng dú le jǐ yè.",
+          "exampleVi": "Cô kẹp bưu thiếp vào sách, ngồi trên ghế dài trước cửa và đọc vài trang.",
+          "storyId": "bookshop"
+        },
+        {
+          "id": "bookshop-v9",
+          "hanzi": "期待",
+          "pinyin": "qīdài",
+          "meaning": "mong chờ",
+          "example": "书里的小故事让她对旅行更加期待。",
+          "examplePinyin": "Shū lǐ de xiǎo gùshi ràng tā duì lǚxíng gèngjiā qīdài.",
+          "exampleVi": "Những câu chuyện nhỏ trong sách khiến cô càng mong chờ chuyến đi.",
+          "storyId": "bookshop"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "bookshop-q0",
+          "prompt": "Tiểu Vũ định đến đâu?",
+          "options": ["Bắc Kinh.", "Vân Nam.", "Thượng Hải."],
+          "answer": 1,
+          "explanation": "Cô chuẩn bị đi Vân Nam vào tháng sau."
+        },
+        {
+          "id": "bookshop-q1",
+          "prompt": "Cô chọn cuốn sách nào?",
+          "options": [
+            "Cuốn về cuộc sống địa phương.",
+            "Cuốn từ điển.",
+            "Cuốn về phong cảnh."
+          ],
+          "answer": 0,
+          "explanation": "第二本 là cuốn thứ hai, kể về cuộc sống địa phương."
+        },
+        {
+          "id": "bookshop-q2",
+          "prompt": "Ai tặng cô tấm bưu thiếp?",
+          "options": [
+            "Bạn của cô.",
+            "Khách trong tiệm.",
+            "Nhân viên tiệm sách."
+          ],
+          "answer": 2,
+          "explanation": "店员送给她一张明信片: nhân viên tặng cô một bưu thiếp."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她", "把", "明信片", "夹在", "书里"],
+        "pinyin": "Tā bǎ míngxìnpiàn jiā zài shū lǐ.",
+        "vi": "Cô ấy kẹp bưu thiếp vào sách."
+      },
+      "attribution": {
+        "author": "HanziGo · Nội dung tự biên soạn với AI",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "slow-travel",
+      "titleZh": "慢一点的旅行",
+      "titleVi": "Chuyến đi thật chậm",
+      "subtitle": "Không cần đi thật xa để nhìn thấy điều mới.",
+      "difficulty": "HSK 4",
+      "topic": "Du lịch",
+      "estimatedMinutes": 5,
+      "art": "travel",
+      "tags": ["Du lịch", "Truyện ngắn"],
+      "paragraphs": [
+        [
+          {
+            "id": "slow-travel-s0",
+            "hanzi": "阿宁第一次一个人去旅行，心里有些紧张。",
+            "pinyin": "Ā Níng dì yī cì yí ge rén qù lǚxíng, xīn lǐ yǒuxiē jǐnzhāng.",
+            "vi": "Lần đầu A Ninh đi du lịch một mình, trong lòng hơi lo lắng.",
+            "glossaryIds": ["slow-travel-v0"]
+          },
+          {
+            "id": "slow-travel-s1",
+            "hanzi": "她提前订好了火车票，还安排了每天的活动。",
+            "pinyin": "Tā tíqián dìng hǎo le huǒchēpiào, hái ānpái le měi tiān de huódòng.",
+            "vi": "Cô đặt vé tàu trước và lên lịch hoạt động cho từng ngày.",
+            "glossaryIds": [
+              "slow-travel-v1",
+              "slow-travel-v2",
+              "slow-travel-v3"
+            ]
+          }
+        ],
+        [
+          {
+            "id": "slow-travel-s2",
+            "hanzi": "到了小城以后，她发现自己的手机快没电了。",
+            "pinyin": "Dào le xiǎochéng yǐhòu, tā fāxiàn zìjǐ de shǒujī kuài méi diàn le.",
+            "vi": "Đến thị trấn nhỏ, cô phát hiện điện thoại sắp hết pin.",
+            "glossaryIds": ["slow-travel-v4"]
+          },
+          {
+            "id": "slow-travel-s3",
+            "hanzi": "她向一位卖水果的阿姨问路，阿姨耐心地告诉她怎么走。",
+            "pinyin": "Tā xiàng yí wèi mài shuǐguǒ de āyí wèn lù, āyí nàixīn de gàosu tā zěnme zǒu.",
+            "vi": "Cô hỏi đường một người cô bán trái cây; cô ấy kiên nhẫn chỉ đường.",
+            "glossaryIds": ["slow-travel-v5"]
+          }
+        ],
+        [
+          {
+            "id": "slow-travel-s4",
+            "hanzi": "沿着河边走了十分钟，她看见了一座小桥。",
+            "pinyin": "Yán zhe hébiān zǒu le shí fēnzhōng, tā kànjiàn le yí zuò xiǎoqiáo.",
+            "vi": "Đi dọc bờ sông mười phút, cô nhìn thấy một cây cầu nhỏ.",
+            "glossaryIds": ["slow-travel-v6"]
+          },
+          {
+            "id": "slow-travel-s5",
+            "hanzi": "桥旁边有一家面馆，香味让她停下了脚步。",
+            "pinyin": "Qiáo pángbiān yǒu yì jiā miànguǎn, xiāngwèi ràng tā tíng xià le jiǎobù.",
+            "vi": "Bên cạnh cầu có một quán mì; hương thơm khiến cô dừng bước.",
+            "glossaryIds": ["slow-travel-v7"]
+          }
+        ],
+        [
+          {
+            "id": "slow-travel-s6",
+            "hanzi": "她决定先吃午饭，不再急着赶去下一个地方。",
+            "pinyin": "Tā juédìng xiān chī wǔfàn, bú zài jí zhe gǎn qù xià yí ge dìfang.",
+            "vi": "Cô quyết định ăn trưa trước, không còn vội đến địa điểm tiếp theo.",
+            "glossaryIds": ["slow-travel-v8"]
+          },
+          {
+            "id": "slow-travel-s7",
+            "hanzi": "那天，她只去了两个地方，却记住了很多温暖的笑容。",
+            "pinyin": "Nà tiān, tā zhǐ qù le liǎng ge dìfang, què jì zhù le hěn duō wēnnuǎn de xiàoróng.",
+            "vi": "Hôm đó cô chỉ đến hai nơi, nhưng nhớ được rất nhiều nụ cười ấm áp.",
+            "glossaryIds": ["slow-travel-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "slow-travel-v0",
+          "hanzi": "紧张",
+          "pinyin": "jǐnzhāng",
+          "meaning": "lo lắng, căng thẳng",
+          "example": "阿宁第一次一个人去旅行，心里有些紧张。",
+          "examplePinyin": "Ā Níng dì yī cì yí ge rén qù lǚxíng, xīn lǐ yǒuxiē jǐnzhāng.",
+          "exampleVi": "Lần đầu A Ninh đi du lịch một mình, trong lòng hơi lo lắng.",
+          "storyId": "slow-travel"
+        },
+        {
+          "id": "slow-travel-v1",
+          "hanzi": "提前",
+          "pinyin": "tíqián",
+          "meaning": "trước, sớm hơn",
+          "example": "她提前订好了火车票，还安排了每天的活动。",
+          "examplePinyin": "Tā tíqián dìng hǎo le huǒchēpiào, hái ānpái le měi tiān de huódòng.",
+          "exampleVi": "Cô đặt vé tàu trước và lên lịch hoạt động cho từng ngày.",
+          "storyId": "slow-travel"
+        },
+        {
+          "id": "slow-travel-v2",
+          "hanzi": "安排",
+          "pinyin": "ānpái",
+          "meaning": "sắp xếp, lên lịch",
+          "example": "她提前订好了火车票，还安排了每天的活动。",
+          "examplePinyin": "Tā tíqián dìng hǎo le huǒchēpiào, hái ānpái le měi tiān de huódòng.",
+          "exampleVi": "Cô đặt vé tàu trước và lên lịch hoạt động cho từng ngày.",
+          "storyId": "slow-travel"
+        },
+        {
+          "id": "slow-travel-v3",
+          "hanzi": "活动",
+          "pinyin": "huódòng",
+          "meaning": "hoạt động",
+          "example": "她提前订好了火车票，还安排了每天的活动。",
+          "examplePinyin": "Tā tíqián dìng hǎo le huǒchēpiào, hái ānpái le měi tiān de huódòng.",
+          "exampleVi": "Cô đặt vé tàu trước và lên lịch hoạt động cho từng ngày.",
+          "storyId": "slow-travel"
+        },
+        {
+          "id": "slow-travel-v4",
+          "hanzi": "发现",
+          "pinyin": "fāxiàn",
+          "meaning": "phát hiện",
+          "example": "到了小城以后，她发现自己的手机快没电了。",
+          "examplePinyin": "Dào le xiǎochéng yǐhòu, tā fāxiàn zìjǐ de shǒujī kuài méi diàn le.",
+          "exampleVi": "Đến thị trấn nhỏ, cô phát hiện điện thoại sắp hết pin.",
+          "storyId": "slow-travel"
+        },
+        {
+          "id": "slow-travel-v5",
+          "hanzi": "耐心",
+          "pinyin": "nàixīn",
+          "meaning": "kiên nhẫn",
+          "example": "她向一位卖水果的阿姨问路，阿姨耐心地告诉她怎么走。",
+          "examplePinyin": "Tā xiàng yí wèi mài shuǐguǒ de āyí wèn lù, āyí nàixīn de gàosu tā zěnme zǒu.",
+          "exampleVi": "Cô hỏi đường một người cô bán trái cây; cô ấy kiên nhẫn chỉ đường.",
+          "storyId": "slow-travel"
+        },
+        {
+          "id": "slow-travel-v6",
+          "hanzi": "沿着",
+          "pinyin": "yán zhe",
+          "meaning": "dọc theo",
+          "example": "沿着河边走了十分钟，她看见了一座小桥。",
+          "examplePinyin": "Yán zhe hébiān zǒu le shí fēnzhōng, tā kànjiàn le yí zuò xiǎoqiáo.",
+          "exampleVi": "Đi dọc bờ sông mười phút, cô nhìn thấy một cây cầu nhỏ.",
+          "storyId": "slow-travel"
+        },
+        {
+          "id": "slow-travel-v7",
+          "hanzi": "香味",
+          "pinyin": "xiāngwèi",
+          "meaning": "hương thơm",
+          "example": "桥旁边有一家面馆，香味让她停下了脚步。",
+          "examplePinyin": "Qiáo pángbiān yǒu yì jiā miànguǎn, xiāngwèi ràng tā tíng xià le jiǎobù.",
+          "exampleVi": "Bên cạnh cầu có một quán mì; hương thơm khiến cô dừng bước.",
+          "storyId": "slow-travel"
+        },
+        {
+          "id": "slow-travel-v8",
+          "hanzi": "决定",
+          "pinyin": "juédìng",
+          "meaning": "quyết định",
+          "example": "她决定先吃午饭，不再急着赶去下一个地方。",
+          "examplePinyin": "Tā juédìng xiān chī wǔfàn, bú zài jí zhe gǎn qù xià yí ge dìfang.",
+          "exampleVi": "Cô quyết định ăn trưa trước, không còn vội đến địa điểm tiếp theo.",
+          "storyId": "slow-travel"
+        },
+        {
+          "id": "slow-travel-v9",
+          "hanzi": "笑容",
+          "pinyin": "xiàoróng",
+          "meaning": "nụ cười",
+          "example": "那天，她只去了两个地方，却记住了很多温暖的笑容。",
+          "examplePinyin": "Nà tiān, tā zhǐ qù le liǎng ge dìfang, què jì zhù le hěn duō wēnnuǎn de xiàoróng.",
+          "exampleVi": "Hôm đó cô chỉ đến hai nơi, nhưng nhớ được rất nhiều nụ cười ấm áp.",
+          "storyId": "slow-travel"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "slow-travel-q0",
+          "prompt": "Vì sao A Ninh hơi căng thẳng?",
+          "options": [
+            "Lần đầu đi du lịch một mình.",
+            "Cô bị lạc hành lý.",
+            "Cô lỡ tàu."
+          ],
+          "answer": 0,
+          "explanation": "Đây là lần đầu cô đi du lịch một mình."
+        },
+        {
+          "id": "slow-travel-q1",
+          "prompt": "Ai chỉ đường cho cô?",
+          "options": ["Tài xế.", "Cô bán trái cây.", "Một em nhỏ."],
+          "answer": 1,
+          "explanation": "一位卖水果的阿姨 là một người cô bán trái cây."
+        },
+        {
+          "id": "slow-travel-q2",
+          "prompt": "Cô rút ra điều gì từ chuyến đi?",
+          "options": [
+            "Phải đến thật nhiều nơi.",
+            "Không nên ăn trưa.",
+            "Đi chậm cũng có nhiều kỷ niệm đẹp."
+          ],
+          "answer": 2,
+          "explanation": "Cô chỉ đến hai nơi nhưng nhớ nhiều nụ cười ấm áp."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她", "决定", "先", "吃午饭"],
+        "pinyin": "Tā juédìng xiān chī wǔfàn.",
+        "vi": "Cô ấy quyết định ăn trưa trước."
+      },
+      "attribution": {
+        "author": "HanziGo · Nội dung tự biên soạn với AI",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "friendship",
+      "titleZh": "一碗热汤",
+      "titleVi": "Một bát canh nóng",
+      "subtitle": "Tình bạn đôi khi giản dị như một bữa cơm.",
+      "difficulty": "HSK 3",
+      "topic": "Tình bạn",
+      "estimatedMinutes": 5,
+      "art": "friends",
+      "tags": ["Tình bạn", "Truyện ngắn"],
+      "paragraphs": [
+        [
+          {
+            "id": "friendship-s0",
+            "hanzi": "小美搬到新城市以后，常常想念以前的朋友。",
+            "pinyin": "Xiǎo Měi bān dào xīn chéngshì yǐhòu, chángcháng xiǎngniàn yǐqián de péngyou.",
+            "vi": "Sau khi chuyển đến thành phố mới, Tiểu Mỹ thường nhớ những người bạn cũ.",
+            "glossaryIds": ["friendship-v0"]
+          },
+          {
+            "id": "friendship-s1",
+            "hanzi": "一天晚上，她工作到很晚，回家时觉得特别累。",
+            "pinyin": "Yì tiān wǎnshang, tā gōngzuò dào hěn wǎn, huí jiā shí juéde tèbié lèi.",
+            "vi": "Một tối cô làm việc đến muộn, khi về nhà cảm thấy rất mệt.",
+            "glossaryIds": ["friendship-v1"]
+          }
+        ],
+        [
+          {
+            "id": "friendship-s2",
+            "hanzi": "邻居小兰看见她，主动邀请她一起吃晚饭。",
+            "pinyin": "Línjū Xiǎo Lán kànjiàn tā, zhǔdòng yāoqǐng tā yìqǐ chī wǎnfàn.",
+            "vi": "Người hàng xóm Tiểu Lan thấy cô và chủ động mời cô ăn tối cùng.",
+            "glossaryIds": ["friendship-v2", "friendship-v3", "friendship-v4"]
+          },
+          {
+            "id": "friendship-s3",
+            "hanzi": "桌上只有简单的菜和一碗热汤，小美却觉得很幸福。",
+            "pinyin": "Zhuō shàng zhǐ yǒu jiǎndān de cài hé yì wǎn rè tāng, Xiǎo Měi què juéde hěn xìngfú.",
+            "vi": "Trên bàn chỉ có món ăn đơn giản và một bát canh nóng, nhưng Tiểu Mỹ cảm thấy rất hạnh phúc.",
+            "glossaryIds": ["friendship-v5", "friendship-v6"]
+          }
+        ],
+        [
+          {
+            "id": "friendship-s4",
+            "hanzi": "她们聊了家乡的食物，也分享了工作中的烦恼。",
+            "pinyin": "Tāmen liáo le jiāxiāng de shíwù, yě fēnxiǎng le gōngzuò zhōng de fánnǎo.",
+            "vi": "Họ trò chuyện về món ăn quê nhà và chia sẻ những phiền muộn trong công việc.",
+            "glossaryIds": ["friendship-v7"]
+          },
+          {
+            "id": "friendship-s5",
+            "hanzi": "小兰说：“我刚来这里的时候，也觉得很孤单。”",
+            "pinyin": "Xiǎo Lán shuō: “Wǒ gāng lái zhèlǐ de shíhou, yě juéde hěn gūdān.”",
+            "vi": "Tiểu Lan nói: “Khi mới đến đây, mình cũng thấy rất cô đơn.”",
+            "glossaryIds": ["friendship-v8"]
+          }
+        ],
+        [
+          {
+            "id": "friendship-s6",
+            "hanzi": "小美听了，心里轻松了许多。",
+            "pinyin": "Xiǎo Měi tīng le, xīn lǐ qīngsōng le xǔduō.",
+            "vi": "Nghe vậy, Tiểu Mỹ cảm thấy nhẹ lòng hơn nhiều.",
+            "glossaryIds": ["friendship-v9"]
+          },
+          {
+            "id": "friendship-s7",
+            "hanzi": "从那以后，每个星期五，她们都会一起做饭。",
+            "pinyin": "Cóng nà yǐhòu, měi ge xīngqīwǔ, tāmen dōu huì yìqǐ zuò fàn.",
+            "vi": "Từ đó, thứ Sáu hằng tuần họ đều nấu ăn cùng nhau.",
+            "glossaryIds": []
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "friendship-v0",
+          "hanzi": "想念",
+          "pinyin": "xiǎngniàn",
+          "meaning": "nhớ nhung",
+          "example": "小美搬到新城市以后，常常想念以前的朋友。",
+          "examplePinyin": "Xiǎo Měi bān dào xīn chéngshì yǐhòu, chángcháng xiǎngniàn yǐqián de péngyou.",
+          "exampleVi": "Sau khi chuyển đến thành phố mới, Tiểu Mỹ thường nhớ những người bạn cũ.",
+          "storyId": "friendship"
+        },
+        {
+          "id": "friendship-v1",
+          "hanzi": "特别",
+          "pinyin": "tèbié",
+          "meaning": "đặc biệt, rất",
+          "example": "一天晚上，她工作到很晚，回家时觉得特别累。",
+          "examplePinyin": "Yì tiān wǎnshang, tā gōngzuò dào hěn wǎn, huí jiā shí juéde tèbié lèi.",
+          "exampleVi": "Một tối cô làm việc đến muộn, khi về nhà cảm thấy rất mệt.",
+          "storyId": "friendship"
+        },
+        {
+          "id": "friendship-v2",
+          "hanzi": "邻居",
+          "pinyin": "línjū",
+          "meaning": "hàng xóm",
+          "example": "邻居小兰看见她，主动邀请她一起吃晚饭。",
+          "examplePinyin": "Línjū Xiǎo Lán kànjiàn tā, zhǔdòng yāoqǐng tā yìqǐ chī wǎnfàn.",
+          "exampleVi": "Người hàng xóm Tiểu Lan thấy cô và chủ động mời cô ăn tối cùng.",
+          "storyId": "friendship"
+        },
+        {
+          "id": "friendship-v3",
+          "hanzi": "主动",
+          "pinyin": "zhǔdòng",
+          "meaning": "chủ động",
+          "example": "邻居小兰看见她，主动邀请她一起吃晚饭。",
+          "examplePinyin": "Línjū Xiǎo Lán kànjiàn tā, zhǔdòng yāoqǐng tā yìqǐ chī wǎnfàn.",
+          "exampleVi": "Người hàng xóm Tiểu Lan thấy cô và chủ động mời cô ăn tối cùng.",
+          "storyId": "friendship"
+        },
+        {
+          "id": "friendship-v4",
+          "hanzi": "邀请",
+          "pinyin": "yāoqǐng",
+          "meaning": "mời",
+          "example": "邻居小兰看见她，主动邀请她一起吃晚饭。",
+          "examplePinyin": "Línjū Xiǎo Lán kànjiàn tā, zhǔdòng yāoqǐng tā yìqǐ chī wǎnfàn.",
+          "exampleVi": "Người hàng xóm Tiểu Lan thấy cô và chủ động mời cô ăn tối cùng.",
+          "storyId": "friendship"
+        },
+        {
+          "id": "friendship-v5",
+          "hanzi": "简单",
+          "pinyin": "jiǎndān",
+          "meaning": "đơn giản",
+          "example": "桌上只有简单的菜和一碗热汤，小美却觉得很幸福。",
+          "examplePinyin": "Zhuō shàng zhǐ yǒu jiǎndān de cài hé yì wǎn rè tāng, Xiǎo Měi què juéde hěn xìngfú.",
+          "exampleVi": "Trên bàn chỉ có món ăn đơn giản và một bát canh nóng, nhưng Tiểu Mỹ cảm thấy rất hạnh phúc.",
+          "storyId": "friendship"
+        },
+        {
+          "id": "friendship-v6",
+          "hanzi": "幸福",
+          "pinyin": "xìngfú",
+          "meaning": "hạnh phúc",
+          "example": "桌上只有简单的菜和一碗热汤，小美却觉得很幸福。",
+          "examplePinyin": "Zhuō shàng zhǐ yǒu jiǎndān de cài hé yì wǎn rè tāng, Xiǎo Měi què juéde hěn xìngfú.",
+          "exampleVi": "Trên bàn chỉ có món ăn đơn giản và một bát canh nóng, nhưng Tiểu Mỹ cảm thấy rất hạnh phúc.",
+          "storyId": "friendship"
+        },
+        {
+          "id": "friendship-v7",
+          "hanzi": "分享",
+          "pinyin": "fēnxiǎng",
+          "meaning": "chia sẻ",
+          "example": "她们聊了家乡的食物，也分享了工作中的烦恼。",
+          "examplePinyin": "Tāmen liáo le jiāxiāng de shíwù, yě fēnxiǎng le gōngzuò zhōng de fánnǎo.",
+          "exampleVi": "Họ trò chuyện về món ăn quê nhà và chia sẻ những phiền muộn trong công việc.",
+          "storyId": "friendship"
+        },
+        {
+          "id": "friendship-v8",
+          "hanzi": "孤单",
+          "pinyin": "gūdān",
+          "meaning": "cô đơn",
+          "example": "小兰说：“我刚来这里的时候，也觉得很孤单。”",
+          "examplePinyin": "Xiǎo Lán shuō: “Wǒ gāng lái zhèlǐ de shíhou, yě juéde hěn gūdān.”",
+          "exampleVi": "Tiểu Lan nói: “Khi mới đến đây, mình cũng thấy rất cô đơn.”",
+          "storyId": "friendship"
+        },
+        {
+          "id": "friendship-v9",
+          "hanzi": "轻松",
+          "pinyin": "qīngsōng",
+          "meaning": "nhẹ nhõm, thoải mái",
+          "example": "小美听了，心里轻松了许多。",
+          "examplePinyin": "Xiǎo Měi tīng le, xīn lǐ qīngsōng le xǔduō.",
+          "exampleVi": "Nghe vậy, Tiểu Mỹ cảm thấy nhẹ lòng hơn nhiều.",
+          "storyId": "friendship"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "friendship-q0",
+          "prompt": "Tiểu Lan là ai?",
+          "options": ["Bạn cùng lớp.", "Người hàng xóm.", "Chị gái."],
+          "answer": 1,
+          "explanation": "邻居 nghĩa là hàng xóm."
+        },
+        {
+          "id": "friendship-q1",
+          "prompt": "Điều gì giúp Tiểu Mỹ nhẹ lòng?",
+          "options": [
+            "Mua một món đồ mới.",
+            "Đi du lịch.",
+            "Trò chuyện và được Tiểu Lan thấu hiểu."
+          ],
+          "answer": 2,
+          "explanation": "Tiểu Lan từng cảm thấy cô đơn tương tự, khiến Tiểu Mỹ thấy nhẹ lòng."
+        },
+        {
+          "id": "friendship-q2",
+          "prompt": "Họ cùng nấu ăn vào ngày nào?",
+          "options": ["Thứ Sáu.", "Thứ Hai.", "Chủ nhật."],
+          "answer": 0,
+          "explanation": "每个星期五: thứ Sáu hằng tuần."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她们", "一起", "做饭"],
+        "pinyin": "Tāmen yìqǐ zuò fàn.",
+        "vi": "Họ cùng nhau nấu ăn."
+      },
+      "attribution": {
+        "author": "HanziGo · Nội dung tự biên soạn với AI",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "balcony",
+      "titleZh": "阳台上的小花",
+      "titleVi": "Bông hoa ngoài ban công",
+      "subtitle": "Một chút kiên nhẫn làm nên những điều dịu dàng.",
+      "difficulty": "HSK 5",
+      "topic": "Thiên nhiên",
+      "estimatedMinutes": 5,
+      "art": "home",
+      "tags": ["Thiên nhiên", "Truyện ngắn"],
+      "paragraphs": [
+        [
+          {
+            "id": "balcony-s0",
+            "hanzi": "春天到了，苏苏在阳台上种了一盆花。",
+            "pinyin": "Chūntiān dào le, Sū Sū zài yángtái shàng zhòng le yì pén huā.",
+            "vi": "Mùa xuân đến, Tô Tô trồng một chậu hoa ngoài ban công.",
+            "glossaryIds": ["balcony-v0"]
+          },
+          {
+            "id": "balcony-s1",
+            "hanzi": "她每天早上给花浇水，还认真观察叶子的变化。",
+            "pinyin": "Tā měi tiān zǎoshang gěi huā jiāo shuǐ, hái rènzhēn guānchá yèzi de biànhuà.",
+            "vi": "Mỗi sáng cô tưới hoa và chăm chú quan sát sự thay đổi của lá.",
+            "glossaryIds": ["balcony-v1", "balcony-v2", "balcony-v3"]
+          }
+        ],
+        [
+          {
+            "id": "balcony-s2",
+            "hanzi": "过了两个星期，花还没有开，她开始怀疑自己是不是做错了什么。",
+            "pinyin": "Guò le liǎng ge xīngqī, huā hái méiyǒu kāi, tā kāishǐ huáiyí zìjǐ shì bú shì zuò cuò le shénme.",
+            "vi": "Hai tuần trôi qua, hoa vẫn chưa nở; cô bắt đầu nghi ngờ mình đã làm sai điều gì.",
+            "glossaryIds": ["balcony-v4"]
+          },
+          {
+            "id": "balcony-s3",
+            "hanzi": "妈妈告诉她：“每种花都有自己的节奏，不用和别人的比较。”",
+            "pinyin": "Māma gàosu tā: “Měi zhǒng huā dōu yǒu zìjǐ de jiézòu, bú yòng hé biéren de bǐjiào.”",
+            "vi": "Mẹ nói: “Mỗi loài hoa có nhịp điệu riêng, không cần so sánh với hoa của người khác.”",
+            "glossaryIds": ["balcony-v5"]
+          }
+        ],
+        [
+          {
+            "id": "balcony-s4",
+            "hanzi": "苏苏于是把花盆移到了阳光更充足的地方。",
+            "pinyin": "Sū Sū yúshì bǎ huāpén yí dào le yángguāng gèng chōngzú de dìfang.",
+            "vi": "Thế là Tô Tô chuyển chậu hoa đến chỗ có nhiều nắng hơn.",
+            "glossaryIds": ["balcony-v6"]
+          },
+          {
+            "id": "balcony-s5",
+            "hanzi": "她不再每天问花什么时候开，只是继续照顾它。",
+            "pinyin": "Tā bú zài měi tiān wèn huā shénme shíhou kāi, zhǐ shì jìxù zhàogù tā.",
+            "vi": "Cô không còn hỏi mỗi ngày bao giờ hoa nở, chỉ tiếp tục chăm sóc nó.",
+            "glossaryIds": ["balcony-v7"]
+          }
+        ],
+        [
+          {
+            "id": "balcony-s6",
+            "hanzi": "一个普通的早晨，她发现叶子中间出现了一个小小的花苞。",
+            "pinyin": "Yí ge pǔtōng de zǎochén, tā fāxiàn yèzi zhōngjiān chūxiàn le yí ge xiǎoxiǎo de huābāo.",
+            "vi": "Một sáng bình thường, cô thấy giữa những chiếc lá xuất hiện một nụ hoa nhỏ.",
+            "glossaryIds": ["balcony-v8"]
+          },
+          {
+            "id": "balcony-s7",
+            "hanzi": "她开心地拍了照片，发给妈妈：“原来，等待也可以这么美。”",
+            "pinyin": "Tā kāixīn de pāi le zhàopiàn, fā gěi māma: “Yuánlái, děngdài yě kěyǐ zhème měi.”",
+            "vi": "Cô vui vẻ chụp ảnh gửi mẹ: “Hóa ra, chờ đợi cũng có thể đẹp thế này.”",
+            "glossaryIds": ["balcony-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "balcony-v0",
+          "hanzi": "阳台",
+          "pinyin": "yángtái",
+          "meaning": "ban công",
+          "example": "春天到了，苏苏在阳台上种了一盆花。",
+          "examplePinyin": "Chūntiān dào le, Sū Sū zài yángtái shàng zhòng le yì pén huā.",
+          "exampleVi": "Mùa xuân đến, Tô Tô trồng một chậu hoa ngoài ban công.",
+          "storyId": "balcony"
+        },
+        {
+          "id": "balcony-v1",
+          "hanzi": "浇水",
+          "pinyin": "jiāo shuǐ",
+          "meaning": "tưới nước",
+          "example": "她每天早上给花浇水，还认真观察叶子的变化。",
+          "examplePinyin": "Tā měi tiān zǎoshang gěi huā jiāo shuǐ, hái rènzhēn guānchá yèzi de biànhuà.",
+          "exampleVi": "Mỗi sáng cô tưới hoa và chăm chú quan sát sự thay đổi của lá.",
+          "storyId": "balcony"
+        },
+        {
+          "id": "balcony-v2",
+          "hanzi": "观察",
+          "pinyin": "guānchá",
+          "meaning": "quan sát",
+          "example": "她每天早上给花浇水，还认真观察叶子的变化。",
+          "examplePinyin": "Tā měi tiān zǎoshang gěi huā jiāo shuǐ, hái rènzhēn guānchá yèzi de biànhuà.",
+          "exampleVi": "Mỗi sáng cô tưới hoa và chăm chú quan sát sự thay đổi của lá.",
+          "storyId": "balcony"
+        },
+        {
+          "id": "balcony-v3",
+          "hanzi": "变化",
+          "pinyin": "biànhuà",
+          "meaning": "sự thay đổi",
+          "example": "她每天早上给花浇水，还认真观察叶子的变化。",
+          "examplePinyin": "Tā měi tiān zǎoshang gěi huā jiāo shuǐ, hái rènzhēn guānchá yèzi de biànhuà.",
+          "exampleVi": "Mỗi sáng cô tưới hoa và chăm chú quan sát sự thay đổi của lá.",
+          "storyId": "balcony"
+        },
+        {
+          "id": "balcony-v4",
+          "hanzi": "怀疑",
+          "pinyin": "huáiyí",
+          "meaning": "nghi ngờ",
+          "example": "过了两个星期，花还没有开，她开始怀疑自己是不是做错了什么。",
+          "examplePinyin": "Guò le liǎng ge xīngqī, huā hái méiyǒu kāi, tā kāishǐ huáiyí zìjǐ shì bú shì zuò cuò le shénme.",
+          "exampleVi": "Hai tuần trôi qua, hoa vẫn chưa nở; cô bắt đầu nghi ngờ mình đã làm sai điều gì.",
+          "storyId": "balcony"
+        },
+        {
+          "id": "balcony-v5",
+          "hanzi": "节奏",
+          "pinyin": "jiézòu",
+          "meaning": "nhịp điệu",
+          "example": "妈妈告诉她：“每种花都有自己的节奏，不用和别人的比较。”",
+          "examplePinyin": "Māma gàosu tā: “Měi zhǒng huā dōu yǒu zìjǐ de jiézòu, bú yòng hé biéren de bǐjiào.”",
+          "exampleVi": "Mẹ nói: “Mỗi loài hoa có nhịp điệu riêng, không cần so sánh với hoa của người khác.”",
+          "storyId": "balcony"
+        },
+        {
+          "id": "balcony-v6",
+          "hanzi": "充足",
+          "pinyin": "chōngzú",
+          "meaning": "đầy đủ, dồi dào",
+          "example": "苏苏于是把花盆移到了阳光更充足的地方。",
+          "examplePinyin": "Sū Sū yúshì bǎ huāpén yí dào le yángguāng gèng chōngzú de dìfang.",
+          "exampleVi": "Thế là Tô Tô chuyển chậu hoa đến chỗ có nhiều nắng hơn.",
+          "storyId": "balcony"
+        },
+        {
+          "id": "balcony-v7",
+          "hanzi": "照顾",
+          "pinyin": "zhàogù",
+          "meaning": "chăm sóc",
+          "example": "她不再每天问花什么时候开，只是继续照顾它。",
+          "examplePinyin": "Tā bú zài měi tiān wèn huā shénme shíhou kāi, zhǐ shì jìxù zhàogù tā.",
+          "exampleVi": "Cô không còn hỏi mỗi ngày bao giờ hoa nở, chỉ tiếp tục chăm sóc nó.",
+          "storyId": "balcony"
+        },
+        {
+          "id": "balcony-v8",
+          "hanzi": "花苞",
+          "pinyin": "huābāo",
+          "meaning": "nụ hoa",
+          "example": "一个普通的早晨，她发现叶子中间出现了一个小小的花苞。",
+          "examplePinyin": "Yí ge pǔtōng de zǎochén, tā fāxiàn yèzi zhōngjiān chūxiàn le yí ge xiǎoxiǎo de huābāo.",
+          "exampleVi": "Một sáng bình thường, cô thấy giữa những chiếc lá xuất hiện một nụ hoa nhỏ.",
+          "storyId": "balcony"
+        },
+        {
+          "id": "balcony-v9",
+          "hanzi": "等待",
+          "pinyin": "děngdài",
+          "meaning": "chờ đợi",
+          "example": "她开心地拍了照片，发给妈妈：“原来，等待也可以这么美。”",
+          "examplePinyin": "Tā kāixīn de pāi le zhàopiàn, fā gěi māma: “Yuánlái, děngdài yě kěyǐ zhème měi.”",
+          "exampleVi": "Cô vui vẻ chụp ảnh gửi mẹ: “Hóa ra, chờ đợi cũng có thể đẹp thế này.”",
+          "storyId": "balcony"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "balcony-q0",
+          "prompt": "Vì sao Tô Tô lo lắng?",
+          "options": [
+            "Hoa vẫn chưa nở sau hai tuần.",
+            "Cô làm vỡ chậu.",
+            "Hoa đã héo."
+          ],
+          "answer": 0,
+          "explanation": "Hoa chưa nở sau hai tuần nên cô nghi ngờ mình chăm sai."
+        },
+        {
+          "id": "balcony-q1",
+          "prompt": "Cô chuyển chậu đến nơi thế nào?",
+          "options": [
+            "Nơi tối hơn.",
+            "Nơi có nhiều nắng hơn.",
+            "Nơi nhiều gió hơn."
+          ],
+          "answer": 1,
+          "explanation": "阳光更充足 nghĩa là ánh nắng dồi dào hơn."
+        },
+        {
+          "id": "balcony-q2",
+          "prompt": "Cô tìm thấy gì vào một buổi sáng?",
+          "options": ["Một chiếc lá khô.", "Một con bướm.", "Một nụ hoa nhỏ."],
+          "answer": 2,
+          "explanation": "一个小小的花苞: một nụ hoa bé nhỏ."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她", "每天", "给花", "浇水"],
+        "pinyin": "Tā měi tiān gěi huā jiāo shuǐ.",
+        "vi": "Cô ấy tưới hoa mỗi ngày."
+      },
+      "attribution": {
+        "author": "HanziGo · Nội dung tự biên soạn với AI",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "morning-market",
+      "titleZh": "早市的最后一个橘子",
+      "titleVi": "Quả quýt cuối cùng ở chợ sớm",
+      "subtitle": "Một món quà nhỏ bên giỏ trái cây.",
+      "difficulty": "HSK 3",
+      "topic": "Đời thường",
+      "estimatedMinutes": 4,
+      "art": "home",
+      "tags": ["Đời thường", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "morning-market-s0",
+            "hanzi": "星期天早上，小雨提着篮子去早市。",
+            "pinyin": "Xīngqītiān zǎoshang, Xiǎo Yǔ tí zhe lánzi qù zǎoshì.",
+            "vi": "Sáng Chủ nhật, Tiểu Vũ xách giỏ đến chợ sớm.",
+            "glossaryIds": ["morning-market-v0", "morning-market-v1"]
+          },
+          {
+            "id": "morning-market-s1",
+            "hanzi": "她想买橘子，可是摊位上只剩下一个。",
+            "pinyin": "Tā xiǎng mǎi júzi, kěshì tānwèi shàng zhǐ shèng xià yí ge.",
+            "vi": "Cô muốn mua quýt, nhưng trên sạp chỉ còn một quả.",
+            "glossaryIds": [
+              "morning-market-v2",
+              "morning-market-v3",
+              "morning-market-v4"
+            ]
+          }
+        ],
+        [
+          {
+            "id": "morning-market-s2",
+            "hanzi": "卖水果的奶奶说：“这个很甜，送给你吧。”",
+            "pinyin": "Mài shuǐguǒ de nǎinai shuō: “Zhège hěn tián, sòng gěi nǐ ba.”",
+            "vi": "Bà bán trái cây nói: “Quả này ngọt lắm, bà tặng cháu nhé.”",
+            "glossaryIds": []
+          },
+          {
+            "id": "morning-market-s3",
+            "hanzi": "小雨不好意思，拿出钱放在桌上。",
+            "pinyin": "Xiǎo Yǔ bù hǎoyìsi, ná chū qián fàng zài zhuō shàng.",
+            "vi": "Tiểu Vũ ngại ngùng, lấy tiền đặt lên bàn.",
+            "glossaryIds": ["morning-market-v5"]
+          }
+        ],
+        [
+          {
+            "id": "morning-market-s4",
+            "hanzi": "奶奶摇摇头，指了指旁边的空椅子。",
+            "pinyin": "Nǎinai yáo yao tóu, zhǐ le zhǐ pángbiān de kōng yǐzi.",
+            "vi": "Bà lắc đầu và chỉ chiếc ghế trống bên cạnh.",
+            "glossaryIds": ["morning-market-v6"]
+          },
+          {
+            "id": "morning-market-s5",
+            "hanzi": "小雨坐下来，陪奶奶聊了十分钟。",
+            "pinyin": "Xiǎo Yǔ zuò xià lái, péi nǎinai liáo le shí fēnzhōng.",
+            "vi": "Tiểu Vũ ngồi xuống, trò chuyện cùng bà mười phút.",
+            "glossaryIds": ["morning-market-v7"]
+          }
+        ],
+        [
+          {
+            "id": "morning-market-s6",
+            "hanzi": "回家的路上，她把橘子分成两半，留一半给妈妈。",
+            "pinyin": "Huí jiā de lù shàng, tā bǎ júzi fēn chéng liǎng bàn, liú yí bàn gěi māma.",
+            "vi": "Trên đường về, cô chia quả quýt làm đôi, để dành một nửa cho mẹ.",
+            "glossaryIds": ["morning-market-v2", "morning-market-v8"]
+          },
+          {
+            "id": "morning-market-s7",
+            "hanzi": "她觉得，这个早上的味道比橘子还甜。",
+            "pinyin": "Tā juéde, zhège zǎoshang de wèidào bǐ júzi hái tián.",
+            "vi": "Cô thấy hương vị của buổi sáng này còn ngọt hơn quả quýt.",
+            "glossaryIds": ["morning-market-v2", "morning-market-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "morning-market-v0",
+          "hanzi": "篮子",
+          "pinyin": "lánzi",
+          "meaning": "cái giỏ",
+          "example": "星期天早上，小雨提着篮子去早市。",
+          "examplePinyin": "Xīngqītiān zǎoshang, Xiǎo Yǔ tí zhe lánzi qù zǎoshì.",
+          "exampleVi": "Sáng Chủ nhật, Tiểu Vũ xách giỏ đến chợ sớm.",
+          "storyId": "morning-market"
+        },
+        {
+          "id": "morning-market-v1",
+          "hanzi": "早市",
+          "pinyin": "zǎoshì",
+          "meaning": "chợ sớm",
+          "example": "星期天早上，小雨提着篮子去早市。",
+          "examplePinyin": "Xīngqītiān zǎoshang, Xiǎo Yǔ tí zhe lánzi qù zǎoshì.",
+          "exampleVi": "Sáng Chủ nhật, Tiểu Vũ xách giỏ đến chợ sớm.",
+          "storyId": "morning-market"
+        },
+        {
+          "id": "morning-market-v2",
+          "hanzi": "橘子",
+          "pinyin": "júzi",
+          "meaning": "quả quýt",
+          "example": "她想买橘子，可是摊位上只剩下一个。",
+          "examplePinyin": "Tā xiǎng mǎi júzi, kěshì tānwèi shàng zhǐ shèng xià yí ge.",
+          "exampleVi": "Cô muốn mua quýt, nhưng trên sạp chỉ còn một quả.",
+          "storyId": "morning-market"
+        },
+        {
+          "id": "morning-market-v3",
+          "hanzi": "摊位",
+          "pinyin": "tānwèi",
+          "meaning": "sạp bán hàng",
+          "example": "她想买橘子，可是摊位上只剩下一个。",
+          "examplePinyin": "Tā xiǎng mǎi júzi, kěshì tānwèi shàng zhǐ shèng xià yí ge.",
+          "exampleVi": "Cô muốn mua quýt, nhưng trên sạp chỉ còn một quả.",
+          "storyId": "morning-market"
+        },
+        {
+          "id": "morning-market-v4",
+          "hanzi": "剩下",
+          "pinyin": "shèng xià",
+          "meaning": "còn lại",
+          "example": "她想买橘子，可是摊位上只剩下一个。",
+          "examplePinyin": "Tā xiǎng mǎi júzi, kěshì tānwèi shàng zhǐ shèng xià yí ge.",
+          "exampleVi": "Cô muốn mua quýt, nhưng trên sạp chỉ còn một quả.",
+          "storyId": "morning-market"
+        },
+        {
+          "id": "morning-market-v5",
+          "hanzi": "不好意思",
+          "pinyin": "bù hǎoyìsi",
+          "meaning": "ngại ngùng",
+          "example": "小雨不好意思，拿出钱放在桌上。",
+          "examplePinyin": "Xiǎo Yǔ bù hǎoyìsi, ná chū qián fàng zài zhuō shàng.",
+          "exampleVi": "Tiểu Vũ ngại ngùng, lấy tiền đặt lên bàn.",
+          "storyId": "morning-market"
+        },
+        {
+          "id": "morning-market-v6",
+          "hanzi": "摇摇头",
+          "pinyin": "yáo yao tóu",
+          "meaning": "lắc đầu",
+          "example": "奶奶摇摇头，指了指旁边的空椅子。",
+          "examplePinyin": "Nǎinai yáo yao tóu, zhǐ le zhǐ pángbiān de kōng yǐzi.",
+          "exampleVi": "Bà lắc đầu và chỉ chiếc ghế trống bên cạnh.",
+          "storyId": "morning-market"
+        },
+        {
+          "id": "morning-market-v7",
+          "hanzi": "陪",
+          "pinyin": "péi",
+          "meaning": "ở cùng, bầu bạn",
+          "example": "小雨坐下来，陪奶奶聊了十分钟。",
+          "examplePinyin": "Xiǎo Yǔ zuò xià lái, péi nǎinai liáo le shí fēnzhōng.",
+          "exampleVi": "Tiểu Vũ ngồi xuống, trò chuyện cùng bà mười phút.",
+          "storyId": "morning-market"
+        },
+        {
+          "id": "morning-market-v8",
+          "hanzi": "分成",
+          "pinyin": "fēn chéng",
+          "meaning": "chia thành",
+          "example": "回家的路上，她把橘子分成两半，留一半给妈妈。",
+          "examplePinyin": "Huí jiā de lù shàng, tā bǎ júzi fēn chéng liǎng bàn, liú yí bàn gěi māma.",
+          "exampleVi": "Trên đường về, cô chia quả quýt làm đôi, để dành một nửa cho mẹ.",
+          "storyId": "morning-market"
+        },
+        {
+          "id": "morning-market-v9",
+          "hanzi": "味道",
+          "pinyin": "wèidào",
+          "meaning": "hương vị",
+          "example": "她觉得，这个早上的味道比橘子还甜。",
+          "examplePinyin": "Tā juéde, zhège zǎoshang de wèidào bǐ júzi hái tián.",
+          "exampleVi": "Cô thấy hương vị của buổi sáng này còn ngọt hơn quả quýt.",
+          "storyId": "morning-market"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "morning-market-q0",
+          "prompt": "Tiểu Vũ đến chợ khi nào?",
+          "options": ["Sáng Chủ nhật", "Tối thứ Sáu", "Chiều thứ Hai"],
+          "answer": 0,
+          "explanation": "Câu đầu nêu rõ sáng Chủ nhật."
+        },
+        {
+          "id": "morning-market-q1",
+          "prompt": "Bà muốn Tiểu Vũ làm gì?",
+          "options": [
+            "Mua hết trái cây",
+            "Ngồi trò chuyện cùng bà",
+            "Mang ghế về nhà"
+          ],
+          "answer": 1,
+          "explanation": "Bà chỉ ghế; Tiểu Vũ ngồi trò chuyện mười phút."
+        },
+        {
+          "id": "morning-market-q2",
+          "prompt": "Cô để dành nửa quả quýt cho ai?",
+          "options": ["Bà bán hàng", "Bạn cùng lớp", "Mẹ"],
+          "answer": 2,
+          "explanation": "Cô để dành một nửa cho mẹ trên đường về."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她", "陪奶奶", "聊了", "十分钟。"],
+        "pinyin": "Tā péi nǎinai liáo le shí fēnzhōng.",
+        "vi": "Cô trò chuyện cùng bà mười phút."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "missed-bus",
+      "titleZh": "错过的一班车",
+      "titleVi": "Chuyến xe buýt lỡ mất",
+      "subtitle": "Chậm một chuyến, gặp một điều tốt.",
+      "difficulty": "HSK 4",
+      "topic": "Đời thường",
+      "estimatedMinutes": 4,
+      "art": "travel",
+      "tags": ["Đời thường", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "missed-bus-s0",
+            "hanzi": "陈安今天起晚了，急忙跑到车站。",
+            "pinyin": "Chén Ān jīntiān qǐ wǎn le, jímáng pǎo dào chēzhàn.",
+            "vi": "Hôm nay Trần An dậy muộn, vội chạy đến trạm xe.",
+            "glossaryIds": ["missed-bus-v0", "missed-bus-v1"]
+          },
+          {
+            "id": "missed-bus-s1",
+            "hanzi": "公交车刚刚离开，他只好等下一班。",
+            "pinyin": "Gōngjiāochē gānggāng líkāi, tā zhǐhǎo děng xià yì bān.",
+            "vi": "Xe buýt vừa rời đi, anh đành đợi chuyến tiếp theo.",
+            "glossaryIds": ["missed-bus-v2", "missed-bus-v3"]
+          }
+        ],
+        [
+          {
+            "id": "missed-bus-s2",
+            "hanzi": "旁边有一位老人，正在地图上找医院。",
+            "pinyin": "Pángbiān yǒu yí wèi lǎorén, zhèngzài dìtú shàng zhǎo yīyuàn.",
+            "vi": "Bên cạnh có một cụ già đang tìm bệnh viện trên bản đồ.",
+            "glossaryIds": ["missed-bus-v4"]
+          },
+          {
+            "id": "missed-bus-s3",
+            "hanzi": "陈安主动问：“您需要帮忙吗？”",
+            "pinyin": "Chén Ān zhǔdòng wèn: “Nín xūyào bāngmáng ma?”",
+            "vi": "Trần An chủ động hỏi: “Bác cần giúp gì không ạ?”",
+            "glossaryIds": ["missed-bus-v5"]
+          }
+        ],
+        [
+          {
+            "id": "missed-bus-s4",
+            "hanzi": "老人听不清车站的广播，担心坐错车。",
+            "pinyin": "Lǎorén tīng bù qīng chēzhàn de guǎngbō, dānxīn zuò cuò chē.",
+            "vi": "Cụ nghe không rõ loa ở trạm và lo lên nhầm xe.",
+            "glossaryIds": ["missed-bus-v1", "missed-bus-v6"]
+          },
+          {
+            "id": "missed-bus-s5",
+            "hanzi": "陈安查了路线，告诉他应该坐十二路。",
+            "pinyin": "Chén Ān chá le lùxiàn, gàosu tā yīnggāi zuò shí'èr lù.",
+            "vi": "Trần An tra tuyến đường rồi bảo cụ nên đi xe số mười hai.",
+            "glossaryIds": ["missed-bus-v7"]
+          }
+        ],
+        [
+          {
+            "id": "missed-bus-s6",
+            "hanzi": "车来了，他扶老人上车，才发现自己也坐这班车。",
+            "pinyin": "Chē lái le, tā fú lǎorén shàng chē, cái fāxiàn zìjǐ yě zuò zhè bān chē.",
+            "vi": "Xe đến, anh đỡ cụ lên xe rồi mới nhận ra mình cũng đi chuyến này.",
+            "glossaryIds": ["missed-bus-v8"]
+          },
+          {
+            "id": "missed-bus-s7",
+            "hanzi": "他虽然迟到了，却觉得等待并没有白费。",
+            "pinyin": "Tā suīrán chídào le, què juéde děngdài bìng méiyǒu báifèi.",
+            "vi": "Dù đến muộn, anh cảm thấy thời gian chờ không hề uổng phí.",
+            "glossaryIds": ["missed-bus-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "missed-bus-v0",
+          "hanzi": "急忙",
+          "pinyin": "jímáng",
+          "meaning": "vội vàng",
+          "example": "陈安今天起晚了，急忙跑到车站。",
+          "examplePinyin": "Chén Ān jīntiān qǐ wǎn le, jímáng pǎo dào chēzhàn.",
+          "exampleVi": "Hôm nay Trần An dậy muộn, vội chạy đến trạm xe.",
+          "storyId": "missed-bus"
+        },
+        {
+          "id": "missed-bus-v1",
+          "hanzi": "车站",
+          "pinyin": "chēzhàn",
+          "meaning": "trạm xe",
+          "example": "陈安今天起晚了，急忙跑到车站。",
+          "examplePinyin": "Chén Ān jīntiān qǐ wǎn le, jímáng pǎo dào chēzhàn.",
+          "exampleVi": "Hôm nay Trần An dậy muộn, vội chạy đến trạm xe.",
+          "storyId": "missed-bus"
+        },
+        {
+          "id": "missed-bus-v2",
+          "hanzi": "公交车",
+          "pinyin": "gōngjiāochē",
+          "meaning": "xe buýt",
+          "example": "公交车刚刚离开，他只好等下一班。",
+          "examplePinyin": "Gōngjiāochē gānggāng líkāi, tā zhǐhǎo děng xià yì bān.",
+          "exampleVi": "Xe buýt vừa rời đi, anh đành đợi chuyến tiếp theo.",
+          "storyId": "missed-bus"
+        },
+        {
+          "id": "missed-bus-v3",
+          "hanzi": "只好",
+          "pinyin": "zhǐhǎo",
+          "meaning": "đành phải",
+          "example": "公交车刚刚离开，他只好等下一班。",
+          "examplePinyin": "Gōngjiāochē gānggāng líkāi, tā zhǐhǎo děng xià yì bān.",
+          "exampleVi": "Xe buýt vừa rời đi, anh đành đợi chuyến tiếp theo.",
+          "storyId": "missed-bus"
+        },
+        {
+          "id": "missed-bus-v4",
+          "hanzi": "地图",
+          "pinyin": "dìtú",
+          "meaning": "bản đồ",
+          "example": "旁边有一位老人，正在地图上找医院。",
+          "examplePinyin": "Pángbiān yǒu yí wèi lǎorén, zhèngzài dìtú shàng zhǎo yīyuàn.",
+          "exampleVi": "Bên cạnh có một cụ già đang tìm bệnh viện trên bản đồ.",
+          "storyId": "missed-bus"
+        },
+        {
+          "id": "missed-bus-v5",
+          "hanzi": "主动",
+          "pinyin": "zhǔdòng",
+          "meaning": "chủ động",
+          "example": "陈安主动问：“您需要帮忙吗？”",
+          "examplePinyin": "Chén Ān zhǔdòng wèn: “Nín xūyào bāngmáng ma?”",
+          "exampleVi": "Trần An chủ động hỏi: “Bác cần giúp gì không ạ?”",
+          "storyId": "missed-bus"
+        },
+        {
+          "id": "missed-bus-v6",
+          "hanzi": "广播",
+          "pinyin": "guǎngbō",
+          "meaning": "phát thanh, loa thông báo",
+          "example": "老人听不清车站的广播，担心坐错车。",
+          "examplePinyin": "Lǎorén tīng bù qīng chēzhàn de guǎngbō, dānxīn zuò cuò chē.",
+          "exampleVi": "Cụ nghe không rõ loa ở trạm và lo lên nhầm xe.",
+          "storyId": "missed-bus"
+        },
+        {
+          "id": "missed-bus-v7",
+          "hanzi": "路线",
+          "pinyin": "lùxiàn",
+          "meaning": "tuyến đường",
+          "example": "陈安查了路线，告诉他应该坐十二路。",
+          "examplePinyin": "Chén Ān chá le lùxiàn, gàosu tā yīnggāi zuò shí'èr lù.",
+          "exampleVi": "Trần An tra tuyến đường rồi bảo cụ nên đi xe số mười hai.",
+          "storyId": "missed-bus"
+        },
+        {
+          "id": "missed-bus-v8",
+          "hanzi": "扶",
+          "pinyin": "fú",
+          "meaning": "đỡ, dìu",
+          "example": "车来了，他扶老人上车，才发现自己也坐这班车。",
+          "examplePinyin": "Chē lái le, tā fú lǎorén shàng chē, cái fāxiàn zìjǐ yě zuò zhè bān chē.",
+          "exampleVi": "Xe đến, anh đỡ cụ lên xe rồi mới nhận ra mình cũng đi chuyến này.",
+          "storyId": "missed-bus"
+        },
+        {
+          "id": "missed-bus-v9",
+          "hanzi": "白费",
+          "pinyin": "báifèi",
+          "meaning": "uổng phí",
+          "example": "他虽然迟到了，却觉得等待并没有白费。",
+          "examplePinyin": "Tā suīrán chídào le, què juéde děngdài bìng méiyǒu báifèi.",
+          "exampleVi": "Dù đến muộn, anh cảm thấy thời gian chờ không hề uổng phí.",
+          "storyId": "missed-bus"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "missed-bus-q0",
+          "prompt": "Tại sao Trần An lỡ xe?",
+          "options": ["Anh đến nhầm trạm", "Anh dậy muộn", "Anh quên tiền"],
+          "answer": 1,
+          "explanation": "Anh dậy muộn và xe vừa rời trạm."
+        },
+        {
+          "id": "missed-bus-q1",
+          "prompt": "Cụ già muốn đến đâu?",
+          "options": ["Bệnh viện", "Công viên", "Thư viện"],
+          "answer": 0,
+          "explanation": "Cụ đang tìm bệnh viện trên bản đồ."
+        },
+        {
+          "id": "missed-bus-q2",
+          "prompt": "Trần An giúp cụ thế nào?",
+          "options": [
+            "Cho cụ mượn xe",
+            "Mua bản đồ mới",
+            "Tra tuyến và đỡ cụ lên xe"
+          ],
+          "answer": 2,
+          "explanation": "Anh tra tuyến số mười hai rồi dìu cụ lên xe."
+        }
+      ],
+      "wordOrder": {
+        "words": ["他", "只好", "等", "下一班。"],
+        "pinyin": "Tā zhǐhǎo děng xià yì bān.",
+        "vi": "Anh đành đợi chuyến tiếp theo."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "recipe-notebook",
+      "titleZh": "奶奶的菜谱",
+      "titleVi": "Cuốn sổ món ăn của bà",
+      "subtitle": "Một món ăn không chỉ cần đúng công thức.",
+      "difficulty": "HSK 4",
+      "topic": "Gia đình",
+      "estimatedMinutes": 4,
+      "art": "home",
+      "tags": ["Gia đình", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "recipe-notebook-s0",
+            "hanzi": "搬家以后，许宁在旧箱子里找到一本菜谱。",
+            "pinyin": "Bān jiā yǐhòu, Xǔ Níng zài jiù xiāngzi lǐ zhǎo dào yì běn càipǔ.",
+            "vi": "Sau khi chuyển nhà, Hứa Ninh tìm thấy một cuốn sổ công thức trong thùng cũ.",
+            "glossaryIds": ["recipe-notebook-v0", "recipe-notebook-v1"]
+          },
+          {
+            "id": "recipe-notebook-s1",
+            "hanzi": "每一页都有奶奶的字，旁边还画着小花。",
+            "pinyin": "Měi yí yè dōu yǒu nǎinai de zì, pángbiān hái huà zhe xiǎo huā.",
+            "vi": "Trang nào cũng có chữ của bà, bên cạnh còn vẽ hoa nhỏ.",
+            "glossaryIds": []
+          }
+        ],
+        [
+          {
+            "id": "recipe-notebook-s2",
+            "hanzi": "她决定照着菜谱做一道番茄炒鸡蛋。",
+            "pinyin": "Tā juédìng zhào zhe càipǔ zuò yí dào fānqié chǎo jīdàn.",
+            "vi": "Cô quyết định làm món trứng xào cà chua theo công thức.",
+            "glossaryIds": [
+              "recipe-notebook-v1",
+              "recipe-notebook-v2",
+              "recipe-notebook-v3"
+            ]
+          },
+          {
+            "id": "recipe-notebook-s3",
+            "hanzi": "可是，她把盐放多了，味道太咸。",
+            "pinyin": "Kěshì, tā bǎ yán fàng duō le, wèidào tài xián.",
+            "vi": "Nhưng cô cho quá nhiều muối, món ăn mặn quá.",
+            "glossaryIds": ["recipe-notebook-v4", "recipe-notebook-v5"]
+          }
+        ],
+        [
+          {
+            "id": "recipe-notebook-s4",
+            "hanzi": "她给奶奶打电话，抱怨自己不适合做饭。",
+            "pinyin": "Tā gěi nǎinai dǎ diànhuà, bàoyuàn zìjǐ bú shìhé zuò fàn.",
+            "vi": "Cô gọi cho bà, than rằng mình không hợp nấu ăn.",
+            "glossaryIds": ["recipe-notebook-v6", "recipe-notebook-v7"]
+          },
+          {
+            "id": "recipe-notebook-s5",
+            "hanzi": "奶奶笑着说：“菜谱只是一条路，不是考试的答案。”",
+            "pinyin": "Nǎinai xiào zhe shuō: “Càipǔ zhǐ shì yì tiáo lù, bú shì kǎoshì de dá'àn.”",
+            "vi": "Bà cười nói: “Công thức chỉ là một con đường, không phải đáp án thi.”",
+            "glossaryIds": ["recipe-notebook-v1"]
+          }
+        ],
+        [
+          {
+            "id": "recipe-notebook-s6",
+            "hanzi": "许宁又加了一个番茄，认真尝了尝，终于觉得不错。",
+            "pinyin": "Xǔ Níng yòu jiā le yí ge fānqié, rènzhēn cháng le cháng, zhōngyú juéde búcuò.",
+            "vi": "Hứa Ninh thêm một quả cà chua, nếm kỹ và cuối cùng thấy khá ngon.",
+            "glossaryIds": [
+              "recipe-notebook-v3",
+              "recipe-notebook-v8",
+              "recipe-notebook-v9"
+            ]
+          },
+          {
+            "id": "recipe-notebook-s7",
+            "hanzi": "她在那一页写下：“第一次做错了，但我还想再试。”",
+            "pinyin": "Tā zài nà yí yè xiě xià: “Dì yī cì zuò cuò le, dàn wǒ hái xiǎng zài shì.”",
+            "vi": "Cô viết vào trang ấy: “Lần đầu làm sai, nhưng mình vẫn muốn thử nữa.”",
+            "glossaryIds": []
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "recipe-notebook-v0",
+          "hanzi": "搬家",
+          "pinyin": "bān jiā",
+          "meaning": "chuyển nhà",
+          "example": "搬家以后，许宁在旧箱子里找到一本菜谱。",
+          "examplePinyin": "Bān jiā yǐhòu, Xǔ Níng zài jiù xiāngzi lǐ zhǎo dào yì běn càipǔ.",
+          "exampleVi": "Sau khi chuyển nhà, Hứa Ninh tìm thấy một cuốn sổ công thức trong thùng cũ.",
+          "storyId": "recipe-notebook"
+        },
+        {
+          "id": "recipe-notebook-v1",
+          "hanzi": "菜谱",
+          "pinyin": "càipǔ",
+          "meaning": "công thức, sổ món ăn",
+          "example": "搬家以后，许宁在旧箱子里找到一本菜谱。",
+          "examplePinyin": "Bān jiā yǐhòu, Xǔ Níng zài jiù xiāngzi lǐ zhǎo dào yì běn càipǔ.",
+          "exampleVi": "Sau khi chuyển nhà, Hứa Ninh tìm thấy một cuốn sổ công thức trong thùng cũ.",
+          "storyId": "recipe-notebook"
+        },
+        {
+          "id": "recipe-notebook-v2",
+          "hanzi": "决定",
+          "pinyin": "juédìng",
+          "meaning": "quyết định",
+          "example": "她决定照着菜谱做一道番茄炒鸡蛋。",
+          "examplePinyin": "Tā juédìng zhào zhe càipǔ zuò yí dào fānqié chǎo jīdàn.",
+          "exampleVi": "Cô quyết định làm món trứng xào cà chua theo công thức.",
+          "storyId": "recipe-notebook"
+        },
+        {
+          "id": "recipe-notebook-v3",
+          "hanzi": "番茄",
+          "pinyin": "fānqié",
+          "meaning": "cà chua",
+          "example": "她决定照着菜谱做一道番茄炒鸡蛋。",
+          "examplePinyin": "Tā juédìng zhào zhe càipǔ zuò yí dào fānqié chǎo jīdàn.",
+          "exampleVi": "Cô quyết định làm món trứng xào cà chua theo công thức.",
+          "storyId": "recipe-notebook"
+        },
+        {
+          "id": "recipe-notebook-v4",
+          "hanzi": "盐",
+          "pinyin": "yán",
+          "meaning": "muối",
+          "example": "可是，她把盐放多了，味道太咸。",
+          "examplePinyin": "Kěshì, tā bǎ yán fàng duō le, wèidào tài xián.",
+          "exampleVi": "Nhưng cô cho quá nhiều muối, món ăn mặn quá.",
+          "storyId": "recipe-notebook"
+        },
+        {
+          "id": "recipe-notebook-v5",
+          "hanzi": "咸",
+          "pinyin": "xián",
+          "meaning": "mặn",
+          "example": "可是，她把盐放多了，味道太咸。",
+          "examplePinyin": "Kěshì, tā bǎ yán fàng duō le, wèidào tài xián.",
+          "exampleVi": "Nhưng cô cho quá nhiều muối, món ăn mặn quá.",
+          "storyId": "recipe-notebook"
+        },
+        {
+          "id": "recipe-notebook-v6",
+          "hanzi": "抱怨",
+          "pinyin": "bàoyuàn",
+          "meaning": "than phiền",
+          "example": "她给奶奶打电话，抱怨自己不适合做饭。",
+          "examplePinyin": "Tā gěi nǎinai dǎ diànhuà, bàoyuàn zìjǐ bú shìhé zuò fàn.",
+          "exampleVi": "Cô gọi cho bà, than rằng mình không hợp nấu ăn.",
+          "storyId": "recipe-notebook"
+        },
+        {
+          "id": "recipe-notebook-v7",
+          "hanzi": "适合",
+          "pinyin": "shìhé",
+          "meaning": "phù hợp",
+          "example": "她给奶奶打电话，抱怨自己不适合做饭。",
+          "examplePinyin": "Tā gěi nǎinai dǎ diànhuà, bàoyuàn zìjǐ bú shìhé zuò fàn.",
+          "exampleVi": "Cô gọi cho bà, than rằng mình không hợp nấu ăn.",
+          "storyId": "recipe-notebook"
+        },
+        {
+          "id": "recipe-notebook-v8",
+          "hanzi": "认真",
+          "pinyin": "rènzhēn",
+          "meaning": "nghiêm túc, cẩn thận",
+          "example": "许宁又加了一个番茄，认真尝了尝，终于觉得不错。",
+          "examplePinyin": "Xǔ Níng yòu jiā le yí ge fānqié, rènzhēn cháng le cháng, zhōngyú juéde búcuò.",
+          "exampleVi": "Hứa Ninh thêm một quả cà chua, nếm kỹ và cuối cùng thấy khá ngon.",
+          "storyId": "recipe-notebook"
+        },
+        {
+          "id": "recipe-notebook-v9",
+          "hanzi": "尝",
+          "pinyin": "cháng",
+          "meaning": "nếm",
+          "example": "许宁又加了一个番茄，认真尝了尝，终于觉得不错。",
+          "examplePinyin": "Xǔ Níng yòu jiā le yí ge fānqié, rènzhēn cháng le cháng, zhōngyú juéde búcuò.",
+          "exampleVi": "Hứa Ninh thêm một quả cà chua, nếm kỹ và cuối cùng thấy khá ngon.",
+          "storyId": "recipe-notebook"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "recipe-notebook-q0",
+          "prompt": "Cuốn sổ thuộc về ai?",
+          "options": ["Mẹ", "Bà", "Một đầu bếp"],
+          "answer": 1,
+          "explanation": "Trong sổ là nét chữ của bà."
+        },
+        {
+          "id": "recipe-notebook-q1",
+          "prompt": "Món ăn đầu tiên bị lỗi gì?",
+          "options": ["Quá mặn", "Chưa chín", "Quá ngọt"],
+          "answer": 0,
+          "explanation": "Cô cho nhiều muối khiến món ăn quá mặn."
+        },
+        {
+          "id": "recipe-notebook-q2",
+          "prompt": "Cô sửa món ăn bằng cách nào?",
+          "options": ["Bỏ hết đi", "Thêm đường", "Thêm một quả cà chua"],
+          "answer": 2,
+          "explanation": "Câu bảy nói cô thêm một quả cà chua rồi nếm lại."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她", "又加了", "一个", "番茄。"],
+        "pinyin": "Tā yòu jiā le yí ge fānqié.",
+        "vi": "Cô lại thêm một quả cà chua."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "library-seat",
+      "titleZh": "图书馆里的空位",
+      "titleVi": "Chỗ trống trong thư viện",
+      "subtitle": "Một chỗ ngồi được nhường, một tình bạn bắt đầu.",
+      "difficulty": "HSK 3",
+      "topic": "Học tập",
+      "estimatedMinutes": 4,
+      "art": "books",
+      "tags": ["Học tập", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "library-seat-s0",
+            "hanzi": "考试前的下午，图书馆里几乎没有空位。",
+            "pinyin": "Kǎoshì qián de xiàwǔ, túshūguǎn lǐ jīhū méiyǒu kòngwèi.",
+            "vi": "Chiều trước kỳ thi, thư viện gần như không có chỗ trống.",
+            "glossaryIds": ["library-seat-v0", "library-seat-v1"]
+          },
+          {
+            "id": "library-seat-s1",
+            "hanzi": "小林抱着书，来回走了两次。",
+            "pinyin": "Xiǎo Lín bào zhe shū, láihuí zǒu le liǎng cì.",
+            "vi": "Tiểu Lâm ôm sách, đi qua đi lại hai lượt.",
+            "glossaryIds": ["library-seat-v2"]
+          }
+        ],
+        [
+          {
+            "id": "library-seat-s2",
+            "hanzi": "一个女孩收起自己的书包，给她让出一个位置。",
+            "pinyin": "Yí ge nǚhái shōu qǐ zìjǐ de shūbāo, gěi tā ràng chū yí ge wèizhi.",
+            "vi": "Một cô gái cất cặp của mình, nhường cô một chỗ.",
+            "glossaryIds": ["library-seat-v3", "library-seat-v4"]
+          },
+          {
+            "id": "library-seat-s3",
+            "hanzi": "小林轻声道谢，坐下开始复习。",
+            "pinyin": "Xiǎo Lín qīngshēng dàoxiè, zuò xià kāishǐ fùxí.",
+            "vi": "Tiểu Lâm khẽ cảm ơn, ngồi xuống bắt đầu ôn bài.",
+            "glossaryIds": ["library-seat-v5", "library-seat-v6"]
+          }
+        ],
+        [
+          {
+            "id": "library-seat-s4",
+            "hanzi": "过了一会儿，女孩发现自己忘了带笔。",
+            "pinyin": "Guò le yíhuìr, nǚhái fāxiàn zìjǐ wàng le dài bǐ.",
+            "vi": "Một lát sau, cô gái nhận ra mình quên mang bút.",
+            "glossaryIds": []
+          },
+          {
+            "id": "library-seat-s5",
+            "hanzi": "小林把备用的笔递过去，两个人相视一笑。",
+            "pinyin": "Xiǎo Lín bǎ bèiyòng de bǐ dì guò qù, liǎng ge rén xiāngshì yí xiào.",
+            "vi": "Tiểu Lâm đưa cây bút dự phòng sang; hai người nhìn nhau mỉm cười.",
+            "glossaryIds": ["library-seat-v7"]
+          }
+        ],
+        [
+          {
+            "id": "library-seat-s6",
+            "hanzi": "离开的时候，她们约好明天一起复习。",
+            "pinyin": "Líkāi de shíhou, tāmen yuē hǎo míngtiān yìqǐ fùxí.",
+            "vi": "Lúc ra về, họ hẹn ngày mai cùng ôn bài.",
+            "glossaryIds": ["library-seat-v6", "library-seat-v8"]
+          },
+          {
+            "id": "library-seat-s7",
+            "hanzi": "原来，安静的地方也能让友谊开始。",
+            "pinyin": "Yuánlái, ānjìng de dìfang yě néng ràng yǒuyì kāishǐ.",
+            "vi": "Hóa ra, một nơi yên tĩnh cũng có thể mở đầu tình bạn.",
+            "glossaryIds": ["library-seat-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "library-seat-v0",
+          "hanzi": "几乎",
+          "pinyin": "jīhū",
+          "meaning": "gần như",
+          "example": "考试前的下午，图书馆里几乎没有空位。",
+          "examplePinyin": "Kǎoshì qián de xiàwǔ, túshūguǎn lǐ jīhū méiyǒu kòngwèi.",
+          "exampleVi": "Chiều trước kỳ thi, thư viện gần như không có chỗ trống.",
+          "storyId": "library-seat"
+        },
+        {
+          "id": "library-seat-v1",
+          "hanzi": "空位",
+          "pinyin": "kòngwèi",
+          "meaning": "chỗ trống",
+          "example": "考试前的下午，图书馆里几乎没有空位。",
+          "examplePinyin": "Kǎoshì qián de xiàwǔ, túshūguǎn lǐ jīhū méiyǒu kòngwèi.",
+          "exampleVi": "Chiều trước kỳ thi, thư viện gần như không có chỗ trống.",
+          "storyId": "library-seat"
+        },
+        {
+          "id": "library-seat-v2",
+          "hanzi": "来回",
+          "pinyin": "láihuí",
+          "meaning": "qua lại",
+          "example": "小林抱着书，来回走了两次。",
+          "examplePinyin": "Xiǎo Lín bào zhe shū, láihuí zǒu le liǎng cì.",
+          "exampleVi": "Tiểu Lâm ôm sách, đi qua đi lại hai lượt.",
+          "storyId": "library-seat"
+        },
+        {
+          "id": "library-seat-v3",
+          "hanzi": "收起",
+          "pinyin": "shōu qǐ",
+          "meaning": "cất đi",
+          "example": "一个女孩收起自己的书包，给她让出一个位置。",
+          "examplePinyin": "Yí ge nǚhái shōu qǐ zìjǐ de shūbāo, gěi tā ràng chū yí ge wèizhi.",
+          "exampleVi": "Một cô gái cất cặp của mình, nhường cô một chỗ.",
+          "storyId": "library-seat"
+        },
+        {
+          "id": "library-seat-v4",
+          "hanzi": "让出",
+          "pinyin": "ràng chū",
+          "meaning": "nhường ra",
+          "example": "一个女孩收起自己的书包，给她让出一个位置。",
+          "examplePinyin": "Yí ge nǚhái shōu qǐ zìjǐ de shūbāo, gěi tā ràng chū yí ge wèizhi.",
+          "exampleVi": "Một cô gái cất cặp của mình, nhường cô một chỗ.",
+          "storyId": "library-seat"
+        },
+        {
+          "id": "library-seat-v5",
+          "hanzi": "轻声",
+          "pinyin": "qīngshēng",
+          "meaning": "nhỏ giọng",
+          "example": "小林轻声道谢，坐下开始复习。",
+          "examplePinyin": "Xiǎo Lín qīngshēng dàoxiè, zuò xià kāishǐ fùxí.",
+          "exampleVi": "Tiểu Lâm khẽ cảm ơn, ngồi xuống bắt đầu ôn bài.",
+          "storyId": "library-seat"
+        },
+        {
+          "id": "library-seat-v6",
+          "hanzi": "复习",
+          "pinyin": "fùxí",
+          "meaning": "ôn tập",
+          "example": "小林轻声道谢，坐下开始复习。",
+          "examplePinyin": "Xiǎo Lín qīngshēng dàoxiè, zuò xià kāishǐ fùxí.",
+          "exampleVi": "Tiểu Lâm khẽ cảm ơn, ngồi xuống bắt đầu ôn bài.",
+          "storyId": "library-seat"
+        },
+        {
+          "id": "library-seat-v7",
+          "hanzi": "备用",
+          "pinyin": "bèiyòng",
+          "meaning": "dự phòng",
+          "example": "小林把备用的笔递过去，两个人相视一笑。",
+          "examplePinyin": "Xiǎo Lín bǎ bèiyòng de bǐ dì guò qù, liǎng ge rén xiāngshì yí xiào.",
+          "exampleVi": "Tiểu Lâm đưa cây bút dự phòng sang; hai người nhìn nhau mỉm cười.",
+          "storyId": "library-seat"
+        },
+        {
+          "id": "library-seat-v8",
+          "hanzi": "约好",
+          "pinyin": "yuē hǎo",
+          "meaning": "hẹn, thống nhất thời gian",
+          "example": "离开的时候，她们约好明天一起复习。",
+          "examplePinyin": "Líkāi de shíhou, tāmen yuē hǎo míngtiān yìqǐ fùxí.",
+          "exampleVi": "Lúc ra về, họ hẹn ngày mai cùng ôn bài.",
+          "storyId": "library-seat"
+        },
+        {
+          "id": "library-seat-v9",
+          "hanzi": "友谊",
+          "pinyin": "yǒuyì",
+          "meaning": "tình bạn",
+          "example": "原来，安静的地方也能让友谊开始。",
+          "examplePinyin": "Yuánlái, ānjìng de dìfang yě néng ràng yǒuyì kāishǐ.",
+          "exampleVi": "Hóa ra, một nơi yên tĩnh cũng có thể mở đầu tình bạn.",
+          "storyId": "library-seat"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "library-seat-q0",
+          "prompt": "Tiểu Lâm khó tìm gì?",
+          "options": ["Sách", "Chỗ ngồi", "Thẻ thư viện"],
+          "answer": 1,
+          "explanation": "Thư viện gần như không còn chỗ trống."
+        },
+        {
+          "id": "library-seat-q1",
+          "prompt": "Cô gái quên mang gì?",
+          "options": ["Bút", "Cặp", "Điện thoại"],
+          "answer": 0,
+          "explanation": "Cô gái quên mang bút nên được cho mượn cây dự phòng."
+        },
+        {
+          "id": "library-seat-q2",
+          "prompt": "Họ hẹn làm gì hôm sau?",
+          "options": ["Đi xem phim", "Mua sách", "Cùng ôn bài"],
+          "answer": 2,
+          "explanation": "Họ hẹn ngày mai ôn tập cùng nhau."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她们", "约好", "明天", "一起复习。"],
+        "pinyin": "Tāmen yuē hǎo míngtiān yìqǐ fùxí.",
+        "vi": "Họ hẹn ngày mai cùng ôn bài."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "seaside-letter",
+      "titleZh": "写给海的一封信",
+      "titleVi": "Lá thư gửi biển",
+      "subtitle": "Có những lời chỉ cần được viết ra.",
+      "difficulty": "HSK 5",
+      "topic": "Du lịch",
+      "estimatedMinutes": 4,
+      "art": "travel",
+      "tags": ["Du lịch", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "seaside-letter-s0",
+            "hanzi": "毕业后的夏天，周晴一个人来到海边。",
+            "pinyin": "Bìyè hòu de xiàtiān, Zhōu Qíng yí ge rén lái dào hǎibiān.",
+            "vi": "Mùa hè sau khi tốt nghiệp, Châu Tình một mình đến bên biển.",
+            "glossaryIds": ["seaside-letter-v0"]
+          },
+          {
+            "id": "seaside-letter-s1",
+            "hanzi": "她带着一本笔记本，却一直不知道写什么。",
+            "pinyin": "Tā dài zhe yì běn bǐjìběn, què yìzhí bù zhīdào xiě shénme.",
+            "vi": "Cô mang theo một cuốn sổ nhưng mãi không biết viết gì.",
+            "glossaryIds": ["seaside-letter-v1"]
+          }
+        ],
+        [
+          {
+            "id": "seaside-letter-s2",
+            "hanzi": "海浪一次次冲上沙滩，又慢慢退回去。",
+            "pinyin": "Hǎilàng yí cì cì chōng shàng shātān, yòu mànmàn tuì huí qù.",
+            "vi": "Sóng biển hết lần này đến lần khác tràn lên bãi cát rồi chậm rãi rút xuống.",
+            "glossaryIds": ["seaside-letter-v2", "seaside-letter-v3"]
+          },
+          {
+            "id": "seaside-letter-s3",
+            "hanzi": "她忽然想起，自己总是害怕选择错误的方向。",
+            "pinyin": "Tā hūrán xiǎng qǐ, zìjǐ zǒng shì hàipà xuǎnzé cuòwù de fāngxiàng.",
+            "vi": "Cô chợt nhớ mình luôn sợ chọn sai hướng.",
+            "glossaryIds": ["seaside-letter-v4", "seaside-letter-v5"]
+          }
+        ],
+        [
+          {
+            "id": "seaside-letter-s4",
+            "hanzi": "于是，她写下所有的担心，像写信一样认真。",
+            "pinyin": "Yúshì, tā xiě xià suǒyǒu de dānxīn, xiàng xiě xìn yíyàng rènzhēn.",
+            "vi": "Vì thế, cô ghi lại mọi điều lo lắng, cẩn thận như đang viết thư.",
+            "glossaryIds": []
+          },
+          {
+            "id": "seaside-letter-s5",
+            "hanzi": "写完以后，她没有把纸扔进海里，而是夹在书中。",
+            "pinyin": "Xiě wán yǐhòu, tā méiyǒu bǎ zhǐ rēng jìn hǎi lǐ, ér shì jiā zài shū zhōng.",
+            "vi": "Viết xong, cô không ném giấy xuống biển mà kẹp vào sách.",
+            "glossaryIds": ["seaside-letter-v6"]
+          }
+        ],
+        [
+          {
+            "id": "seaside-letter-s6",
+            "hanzi": "风吹过来，她第一次觉得未来不需要立刻有答案。",
+            "pinyin": "Fēng chuī guò lái, tā dì yī cì juéde wèilái bù xūyào lìkè yǒu dá'àn.",
+            "vi": "Gió thổi qua, lần đầu cô thấy tương lai không cần có đáp án ngay lập tức.",
+            "glossaryIds": ["seaside-letter-v7", "seaside-letter-v8"]
+          },
+          {
+            "id": "seaside-letter-s7",
+            "hanzi": "回去的路上，她决定先申请一份自己感兴趣的工作。",
+            "pinyin": "Huí qù de lù shàng, tā juédìng xiān shēnqǐng yí fèn zìjǐ gǎn xìngqù de gōngzuò.",
+            "vi": "Trên đường về, cô quyết định trước tiên ứng tuyển công việc mình hứng thú.",
+            "glossaryIds": ["seaside-letter-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "seaside-letter-v0",
+          "hanzi": "毕业",
+          "pinyin": "bìyè",
+          "meaning": "tốt nghiệp",
+          "example": "毕业后的夏天，周晴一个人来到海边。",
+          "examplePinyin": "Bìyè hòu de xiàtiān, Zhōu Qíng yí ge rén lái dào hǎibiān.",
+          "exampleVi": "Mùa hè sau khi tốt nghiệp, Châu Tình một mình đến bên biển.",
+          "storyId": "seaside-letter"
+        },
+        {
+          "id": "seaside-letter-v1",
+          "hanzi": "笔记本",
+          "pinyin": "bǐjìběn",
+          "meaning": "sổ tay",
+          "example": "她带着一本笔记本，却一直不知道写什么。",
+          "examplePinyin": "Tā dài zhe yì běn bǐjìběn, què yìzhí bù zhīdào xiě shénme.",
+          "exampleVi": "Cô mang theo một cuốn sổ nhưng mãi không biết viết gì.",
+          "storyId": "seaside-letter"
+        },
+        {
+          "id": "seaside-letter-v2",
+          "hanzi": "海浪",
+          "pinyin": "hǎilàng",
+          "meaning": "sóng biển",
+          "example": "海浪一次次冲上沙滩，又慢慢退回去。",
+          "examplePinyin": "Hǎilàng yí cì cì chōng shàng shātān, yòu mànmàn tuì huí qù.",
+          "exampleVi": "Sóng biển hết lần này đến lần khác tràn lên bãi cát rồi chậm rãi rút xuống.",
+          "storyId": "seaside-letter"
+        },
+        {
+          "id": "seaside-letter-v3",
+          "hanzi": "沙滩",
+          "pinyin": "shātān",
+          "meaning": "bãi cát",
+          "example": "海浪一次次冲上沙滩，又慢慢退回去。",
+          "examplePinyin": "Hǎilàng yí cì cì chōng shàng shātān, yòu mànmàn tuì huí qù.",
+          "exampleVi": "Sóng biển hết lần này đến lần khác tràn lên bãi cát rồi chậm rãi rút xuống.",
+          "storyId": "seaside-letter"
+        },
+        {
+          "id": "seaside-letter-v4",
+          "hanzi": "选择",
+          "pinyin": "xuǎnzé",
+          "meaning": "lựa chọn",
+          "example": "她忽然想起，自己总是害怕选择错误的方向。",
+          "examplePinyin": "Tā hūrán xiǎng qǐ, zìjǐ zǒng shì hàipà xuǎnzé cuòwù de fāngxiàng.",
+          "exampleVi": "Cô chợt nhớ mình luôn sợ chọn sai hướng.",
+          "storyId": "seaside-letter"
+        },
+        {
+          "id": "seaside-letter-v5",
+          "hanzi": "方向",
+          "pinyin": "fāngxiàng",
+          "meaning": "phương hướng",
+          "example": "她忽然想起，自己总是害怕选择错误的方向。",
+          "examplePinyin": "Tā hūrán xiǎng qǐ, zìjǐ zǒng shì hàipà xuǎnzé cuòwù de fāngxiàng.",
+          "exampleVi": "Cô chợt nhớ mình luôn sợ chọn sai hướng.",
+          "storyId": "seaside-letter"
+        },
+        {
+          "id": "seaside-letter-v6",
+          "hanzi": "夹",
+          "pinyin": "jiā",
+          "meaning": "kẹp",
+          "example": "写完以后，她没有把纸扔进海里，而是夹在书中。",
+          "examplePinyin": "Xiě wán yǐhòu, tā méiyǒu bǎ zhǐ rēng jìn hǎi lǐ, ér shì jiā zài shū zhōng.",
+          "exampleVi": "Viết xong, cô không ném giấy xuống biển mà kẹp vào sách.",
+          "storyId": "seaside-letter"
+        },
+        {
+          "id": "seaside-letter-v7",
+          "hanzi": "未来",
+          "pinyin": "wèilái",
+          "meaning": "tương lai",
+          "example": "风吹过来，她第一次觉得未来不需要立刻有答案。",
+          "examplePinyin": "Fēng chuī guò lái, tā dì yī cì juéde wèilái bù xūyào lìkè yǒu dá'àn.",
+          "exampleVi": "Gió thổi qua, lần đầu cô thấy tương lai không cần có đáp án ngay lập tức.",
+          "storyId": "seaside-letter"
+        },
+        {
+          "id": "seaside-letter-v8",
+          "hanzi": "立刻",
+          "pinyin": "lìkè",
+          "meaning": "ngay lập tức",
+          "example": "风吹过来，她第一次觉得未来不需要立刻有答案。",
+          "examplePinyin": "Fēng chuī guò lái, tā dì yī cì juéde wèilái bù xūyào lìkè yǒu dá'àn.",
+          "exampleVi": "Gió thổi qua, lần đầu cô thấy tương lai không cần có đáp án ngay lập tức.",
+          "storyId": "seaside-letter"
+        },
+        {
+          "id": "seaside-letter-v9",
+          "hanzi": "申请",
+          "pinyin": "shēnqǐng",
+          "meaning": "ứng tuyển, nộp đơn",
+          "example": "回去的路上，她决定先申请一份自己感兴趣的工作。",
+          "examplePinyin": "Huí qù de lù shàng, tā juédìng xiān shēnqǐng yí fèn zìjǐ gǎn xìngqù de gōngzuò.",
+          "exampleVi": "Trên đường về, cô quyết định trước tiên ứng tuyển công việc mình hứng thú.",
+          "storyId": "seaside-letter"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "seaside-letter-q0",
+          "prompt": "Cô đi biển vào thời điểm nào?",
+          "options": [
+            "Mùa hè sau tốt nghiệp",
+            "Mùa đông trước kỳ thi",
+            "Ngày đầu đi làm"
+          ],
+          "answer": 0,
+          "explanation": "Câu đầu nêu mùa hè sau khi tốt nghiệp."
+        },
+        {
+          "id": "seaside-letter-q1",
+          "prompt": "Sau khi viết, cô làm gì với giấy?",
+          "options": ["Ném xuống biển", "Kẹp trong sách", "Đốt đi"],
+          "answer": 1,
+          "explanation": "Cô giữ giấy trong sách, không ném xuống biển."
+        },
+        {
+          "id": "seaside-letter-q2",
+          "prompt": "Bước tiếp theo cô chọn là gì?",
+          "options": [
+            "Mua vé đi xa",
+            "Học lái tàu",
+            "Ứng tuyển việc mình thích"
+          ],
+          "answer": 2,
+          "explanation": "Cô quyết định ứng tuyển công việc khiến mình hứng thú."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她", "把纸", "夹在", "书中。"],
+        "pinyin": "Tā bǎ zhǐ jiā zài shū zhōng.",
+        "vi": "Cô kẹp tờ giấy trong sách."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "lost-cat",
+      "titleZh": "楼下的小猫",
+      "titleVi": "Chú mèo dưới sân",
+      "subtitle": "Một chiếc vòng cổ và những người hàng xóm.",
+      "difficulty": "HSK 3",
+      "topic": "Đời thường",
+      "estimatedMinutes": 4,
+      "art": "friends",
+      "tags": ["Đời thường", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "lost-cat-s0",
+            "hanzi": "傍晚，阿文在楼下听见一只小猫叫。",
+            "pinyin": "Bàngwǎn, Ā Wén zài lóu xià tīng jiàn yì zhī xiǎo māo jiào.",
+            "vi": "Chiều tối, A Văn nghe một chú mèo kêu dưới sân.",
+            "glossaryIds": ["lost-cat-v0"]
+          },
+          {
+            "id": "lost-cat-s1",
+            "hanzi": "小猫躲在自行车后面，脖子上有一个蓝色的项圈。",
+            "pinyin": "Xiǎo māo duǒ zài zìxíngchē hòumian, bózi shàng yǒu yí ge lánsè de xiàngquān.",
+            "vi": "Mèo trốn sau chiếc xe đạp, trên cổ đeo một chiếc vòng màu xanh.",
+            "glossaryIds": ["lost-cat-v1", "lost-cat-v2", "lost-cat-v3"]
+          }
+        ],
+        [
+          {
+            "id": "lost-cat-s2",
+            "hanzi": "阿文猜它迷路了，就拍了一张照片。",
+            "pinyin": "Ā Wén cāi tā mí lù le, jiù pāi le yì zhāng zhàopiàn.",
+            "vi": "A Văn đoán mèo bị lạc nên chụp một tấm ảnh.",
+            "glossaryIds": ["lost-cat-v4"]
+          },
+          {
+            "id": "lost-cat-s3",
+            "hanzi": "他把照片发给邻居，问谁认识这只猫。",
+            "pinyin": "Tā bǎ zhàopiàn fā gěi línjū, wèn shéi rènshi zhè zhī māo.",
+            "vi": "Anh gửi ảnh cho hàng xóm, hỏi ai biết chú mèo này.",
+            "glossaryIds": ["lost-cat-v5"]
+          }
+        ],
+        [
+          {
+            "id": "lost-cat-s4",
+            "hanzi": "小猫不肯靠近，只是看着他手里的水。",
+            "pinyin": "Xiǎo māo bù kěn kàojìn, zhǐ shì kàn zhe tā shǒu lǐ de shuǐ.",
+            "vi": "Mèo không chịu đến gần, chỉ nhìn nước trong tay anh.",
+            "glossaryIds": ["lost-cat-v6"]
+          },
+          {
+            "id": "lost-cat-s5",
+            "hanzi": "他把水放下，退后几步，耐心地等着。",
+            "pinyin": "Tā bǎ shuǐ fàng xià, tuì hòu jǐ bù, nàixīn de děng zhe.",
+            "vi": "Anh đặt nước xuống, lùi vài bước rồi kiên nhẫn đợi.",
+            "glossaryIds": ["lost-cat-v7", "lost-cat-v8"]
+          }
+        ],
+        [
+          {
+            "id": "lost-cat-s6",
+            "hanzi": "不久，三楼的姐姐跑下来，惊喜地抱起小猫。",
+            "pinyin": "Bùjiǔ, sān lóu de jiějie pǎo xià lái, jīngxǐ de bào qǐ xiǎo māo.",
+            "vi": "Không lâu sau, chị ở tầng ba chạy xuống, vui mừng ôm mèo lên.",
+            "glossaryIds": ["lost-cat-v9"]
+          },
+          {
+            "id": "lost-cat-s7",
+            "hanzi": "阿文这才知道，小猫叫蓝蓝，昨天刚搬到这里。",
+            "pinyin": "Ā Wén zhè cái zhīdào, xiǎo māo jiào Lánlan, zuótiān gāng bān dào zhèlǐ.",
+            "vi": "Lúc này A Văn mới biết mèo tên Lam Lam, hôm qua vừa chuyển đến đây.",
+            "glossaryIds": []
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "lost-cat-v0",
+          "hanzi": "傍晚",
+          "pinyin": "bàngwǎn",
+          "meaning": "chiều tối",
+          "example": "傍晚，阿文在楼下听见一只小猫叫。",
+          "examplePinyin": "Bàngwǎn, Ā Wén zài lóu xià tīng jiàn yì zhī xiǎo māo jiào.",
+          "exampleVi": "Chiều tối, A Văn nghe một chú mèo kêu dưới sân.",
+          "storyId": "lost-cat"
+        },
+        {
+          "id": "lost-cat-v1",
+          "hanzi": "躲",
+          "pinyin": "duǒ",
+          "meaning": "trốn",
+          "example": "小猫躲在自行车后面，脖子上有一个蓝色的项圈。",
+          "examplePinyin": "Xiǎo māo duǒ zài zìxíngchē hòumian, bózi shàng yǒu yí ge lánsè de xiàngquān.",
+          "exampleVi": "Mèo trốn sau chiếc xe đạp, trên cổ đeo một chiếc vòng màu xanh.",
+          "storyId": "lost-cat"
+        },
+        {
+          "id": "lost-cat-v2",
+          "hanzi": "脖子",
+          "pinyin": "bózi",
+          "meaning": "cổ",
+          "example": "小猫躲在自行车后面，脖子上有一个蓝色的项圈。",
+          "examplePinyin": "Xiǎo māo duǒ zài zìxíngchē hòumian, bózi shàng yǒu yí ge lánsè de xiàngquān.",
+          "exampleVi": "Mèo trốn sau chiếc xe đạp, trên cổ đeo một chiếc vòng màu xanh.",
+          "storyId": "lost-cat"
+        },
+        {
+          "id": "lost-cat-v3",
+          "hanzi": "项圈",
+          "pinyin": "xiàngquān",
+          "meaning": "vòng cổ của vật nuôi",
+          "example": "小猫躲在自行车后面，脖子上有一个蓝色的项圈。",
+          "examplePinyin": "Xiǎo māo duǒ zài zìxíngchē hòumian, bózi shàng yǒu yí ge lánsè de xiàngquān.",
+          "exampleVi": "Mèo trốn sau chiếc xe đạp, trên cổ đeo một chiếc vòng màu xanh.",
+          "storyId": "lost-cat"
+        },
+        {
+          "id": "lost-cat-v4",
+          "hanzi": "迷路",
+          "pinyin": "mí lù",
+          "meaning": "lạc đường",
+          "example": "阿文猜它迷路了，就拍了一张照片。",
+          "examplePinyin": "Ā Wén cāi tā mí lù le, jiù pāi le yì zhāng zhàopiàn.",
+          "exampleVi": "A Văn đoán mèo bị lạc nên chụp một tấm ảnh.",
+          "storyId": "lost-cat"
+        },
+        {
+          "id": "lost-cat-v5",
+          "hanzi": "邻居",
+          "pinyin": "línjū",
+          "meaning": "hàng xóm",
+          "example": "他把照片发给邻居，问谁认识这只猫。",
+          "examplePinyin": "Tā bǎ zhàopiàn fā gěi línjū, wèn shéi rènshi zhè zhī māo.",
+          "exampleVi": "Anh gửi ảnh cho hàng xóm, hỏi ai biết chú mèo này.",
+          "storyId": "lost-cat"
+        },
+        {
+          "id": "lost-cat-v6",
+          "hanzi": "靠近",
+          "pinyin": "kàojìn",
+          "meaning": "đến gần",
+          "example": "小猫不肯靠近，只是看着他手里的水。",
+          "examplePinyin": "Xiǎo māo bù kěn kàojìn, zhǐ shì kàn zhe tā shǒu lǐ de shuǐ.",
+          "exampleVi": "Mèo không chịu đến gần, chỉ nhìn nước trong tay anh.",
+          "storyId": "lost-cat"
+        },
+        {
+          "id": "lost-cat-v7",
+          "hanzi": "退后",
+          "pinyin": "tuì hòu",
+          "meaning": "lùi lại",
+          "example": "他把水放下，退后几步，耐心地等着。",
+          "examplePinyin": "Tā bǎ shuǐ fàng xià, tuì hòu jǐ bù, nàixīn de děng zhe.",
+          "exampleVi": "Anh đặt nước xuống, lùi vài bước rồi kiên nhẫn đợi.",
+          "storyId": "lost-cat"
+        },
+        {
+          "id": "lost-cat-v8",
+          "hanzi": "耐心",
+          "pinyin": "nàixīn",
+          "meaning": "kiên nhẫn",
+          "example": "他把水放下，退后几步，耐心地等着。",
+          "examplePinyin": "Tā bǎ shuǐ fàng xià, tuì hòu jǐ bù, nàixīn de děng zhe.",
+          "exampleVi": "Anh đặt nước xuống, lùi vài bước rồi kiên nhẫn đợi.",
+          "storyId": "lost-cat"
+        },
+        {
+          "id": "lost-cat-v9",
+          "hanzi": "惊喜",
+          "pinyin": "jīngxǐ",
+          "meaning": "bất ngờ vui mừng",
+          "example": "不久，三楼的姐姐跑下来，惊喜地抱起小猫。",
+          "examplePinyin": "Bùjiǔ, sān lóu de jiějie pǎo xià lái, jīngxǐ de bào qǐ xiǎo māo.",
+          "exampleVi": "Không lâu sau, chị ở tầng ba chạy xuống, vui mừng ôm mèo lên.",
+          "storyId": "lost-cat"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "lost-cat-q0",
+          "prompt": "Mèo trốn ở đâu?",
+          "options": ["Trong thư viện", "Sau xe đạp", "Trên mái nhà"],
+          "answer": 1,
+          "explanation": "Mèo trốn sau một chiếc xe đạp."
+        },
+        {
+          "id": "lost-cat-q1",
+          "prompt": "Anh tìm chủ mèo bằng cách nào?",
+          "options": ["Gửi ảnh cho hàng xóm", "Chở mèo đến chợ", "Hỏi tài xế"],
+          "answer": 0,
+          "explanation": "Anh chụp ảnh rồi gửi cho hàng xóm."
+        },
+        {
+          "id": "lost-cat-q2",
+          "prompt": "Chủ mèo ở tầng mấy?",
+          "options": ["Tầng một", "Tầng hai", "Tầng ba"],
+          "answer": 2,
+          "explanation": "Chị ở tầng ba chạy xuống đón mèo."
+        }
+      ],
+      "wordOrder": {
+        "words": ["他", "把水", "放下", "了。"],
+        "pinyin": "Tā bǎ shuǐ fàng xià le.",
+        "vi": "Anh đặt nước xuống rồi."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "tea-with-mother",
+      "titleZh": "妈妈的一杯茶",
+      "titleVi": "Một tách trà của mẹ",
+      "subtitle": "Lắng nghe cũng là một cách quan tâm.",
+      "difficulty": "HSK 4",
+      "topic": "Gia đình",
+      "estimatedMinutes": 4,
+      "art": "cafe",
+      "tags": ["Gia đình", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "tea-with-mother-s0",
+            "hanzi": "晚上，晓月回到家，看见妈妈还在厨房忙。",
+            "pinyin": "Wǎnshang, Xiǎo Yuè huí dào jiā, kàn jiàn māma hái zài chúfáng máng.",
+            "vi": "Buổi tối, Hiểu Nguyệt về nhà và thấy mẹ vẫn bận trong bếp.",
+            "glossaryIds": ["tea-with-mother-v0"]
+          },
+          {
+            "id": "tea-with-mother-s1",
+            "hanzi": "她放下手机，替妈妈洗完了碗。",
+            "pinyin": "Tā fàng xià shǒujī, tì māma xǐ wán le wǎn.",
+            "vi": "Cô đặt điện thoại xuống, rửa bát thay mẹ.",
+            "glossaryIds": ["tea-with-mother-v1"]
+          }
+        ],
+        [
+          {
+            "id": "tea-with-mother-s2",
+            "hanzi": "妈妈泡了两杯茶，叫她坐在身边。",
+            "pinyin": "Māma pào le liǎng bēi chá, jiào tā zuò zài shēnbiān.",
+            "vi": "Mẹ pha hai tách trà và gọi cô ngồi cạnh.",
+            "glossaryIds": ["tea-with-mother-v2", "tea-with-mother-v3"]
+          },
+          {
+            "id": "tea-with-mother-s3",
+            "hanzi": "晓月本来想说工作的烦恼，却先问妈妈今天过得怎么样。",
+            "pinyin": "Xiǎo Yuè běnlái xiǎng shuō gōngzuò de fánnǎo, què xiān wèn māma jīntiān guò de zěnmeyàng.",
+            "vi": "Hiểu Nguyệt vốn muốn kể nỗi phiền muộn ở công việc, nhưng trước tiên hỏi hôm nay mẹ thế nào.",
+            "glossaryIds": ["tea-with-mother-v4", "tea-with-mother-v5"]
+          }
+        ],
+        [
+          {
+            "id": "tea-with-mother-s4",
+            "hanzi": "妈妈说，阳台上的花终于开了，可惜没人看见。",
+            "pinyin": "Māma shuō, yángtái shàng de huā zhōngyú kāi le, kěxī méi rén kàn jiàn.",
+            "vi": "Mẹ nói hoa ngoài ban công cuối cùng đã nở, tiếc là không ai nhìn thấy.",
+            "glossaryIds": ["tea-with-mother-v6"]
+          },
+          {
+            "id": "tea-with-mother-s5",
+            "hanzi": "她们一起走到阳台，闻着淡淡的花香。",
+            "pinyin": "Tāmen yìqǐ zǒu dào yángtái, wén zhe dàndàn de huāxiāng.",
+            "vi": "Hai mẹ con cùng ra ban công, ngửi hương hoa nhẹ.",
+            "glossaryIds": ["tea-with-mother-v7"]
+          }
+        ],
+        [
+          {
+            "id": "tea-with-mother-s6",
+            "hanzi": "晓月发现，妈妈也有许多想分享的小事。",
+            "pinyin": "Xiǎo Yuè fāxiàn, māma yě yǒu xǔduō xiǎng fēnxiǎng de xiǎoshì.",
+            "vi": "Hiểu Nguyệt nhận ra mẹ cũng có nhiều chuyện nhỏ muốn chia sẻ.",
+            "glossaryIds": ["tea-with-mother-v8"]
+          },
+          {
+            "id": "tea-with-mother-s7",
+            "hanzi": "那天的茶凉了，她们却聊得很温暖。",
+            "pinyin": "Nà tiān de chá liáng le, tāmen què liáo de hěn wēnnuǎn.",
+            "vi": "Trà hôm ấy đã nguội, nhưng cuộc trò chuyện của họ thật ấm áp.",
+            "glossaryIds": ["tea-with-mother-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "tea-with-mother-v0",
+          "hanzi": "厨房",
+          "pinyin": "chúfáng",
+          "meaning": "nhà bếp",
+          "example": "晚上，晓月回到家，看见妈妈还在厨房忙。",
+          "examplePinyin": "Wǎnshang, Xiǎo Yuè huí dào jiā, kàn jiàn māma hái zài chúfáng máng.",
+          "exampleVi": "Buổi tối, Hiểu Nguyệt về nhà và thấy mẹ vẫn bận trong bếp.",
+          "storyId": "tea-with-mother"
+        },
+        {
+          "id": "tea-with-mother-v1",
+          "hanzi": "替",
+          "pinyin": "tì",
+          "meaning": "thay cho",
+          "example": "她放下手机，替妈妈洗完了碗。",
+          "examplePinyin": "Tā fàng xià shǒujī, tì māma xǐ wán le wǎn.",
+          "exampleVi": "Cô đặt điện thoại xuống, rửa bát thay mẹ.",
+          "storyId": "tea-with-mother"
+        },
+        {
+          "id": "tea-with-mother-v2",
+          "hanzi": "泡",
+          "pinyin": "pào",
+          "meaning": "pha, ngâm",
+          "example": "妈妈泡了两杯茶，叫她坐在身边。",
+          "examplePinyin": "Māma pào le liǎng bēi chá, jiào tā zuò zài shēnbiān.",
+          "exampleVi": "Mẹ pha hai tách trà và gọi cô ngồi cạnh.",
+          "storyId": "tea-with-mother"
+        },
+        {
+          "id": "tea-with-mother-v3",
+          "hanzi": "身边",
+          "pinyin": "shēnbiān",
+          "meaning": "bên cạnh",
+          "example": "妈妈泡了两杯茶，叫她坐在身边。",
+          "examplePinyin": "Māma pào le liǎng bēi chá, jiào tā zuò zài shēnbiān.",
+          "exampleVi": "Mẹ pha hai tách trà và gọi cô ngồi cạnh.",
+          "storyId": "tea-with-mother"
+        },
+        {
+          "id": "tea-with-mother-v4",
+          "hanzi": "本来",
+          "pinyin": "běnlái",
+          "meaning": "vốn dĩ",
+          "example": "晓月本来想说工作的烦恼，却先问妈妈今天过得怎么样。",
+          "examplePinyin": "Xiǎo Yuè běnlái xiǎng shuō gōngzuò de fánnǎo, què xiān wèn māma jīntiān guò de zěnmeyàng.",
+          "exampleVi": "Hiểu Nguyệt vốn muốn kể nỗi phiền muộn ở công việc, nhưng trước tiên hỏi hôm nay mẹ thế nào.",
+          "storyId": "tea-with-mother"
+        },
+        {
+          "id": "tea-with-mother-v5",
+          "hanzi": "烦恼",
+          "pinyin": "fánnǎo",
+          "meaning": "phiền muộn",
+          "example": "晓月本来想说工作的烦恼，却先问妈妈今天过得怎么样。",
+          "examplePinyin": "Xiǎo Yuè běnlái xiǎng shuō gōngzuò de fánnǎo, què xiān wèn māma jīntiān guò de zěnmeyàng.",
+          "exampleVi": "Hiểu Nguyệt vốn muốn kể nỗi phiền muộn ở công việc, nhưng trước tiên hỏi hôm nay mẹ thế nào.",
+          "storyId": "tea-with-mother"
+        },
+        {
+          "id": "tea-with-mother-v6",
+          "hanzi": "可惜",
+          "pinyin": "kěxī",
+          "meaning": "đáng tiếc",
+          "example": "妈妈说，阳台上的花终于开了，可惜没人看见。",
+          "examplePinyin": "Māma shuō, yángtái shàng de huā zhōngyú kāi le, kěxī méi rén kàn jiàn.",
+          "exampleVi": "Mẹ nói hoa ngoài ban công cuối cùng đã nở, tiếc là không ai nhìn thấy.",
+          "storyId": "tea-with-mother"
+        },
+        {
+          "id": "tea-with-mother-v7",
+          "hanzi": "花香",
+          "pinyin": "huāxiāng",
+          "meaning": "hương hoa",
+          "example": "她们一起走到阳台，闻着淡淡的花香。",
+          "examplePinyin": "Tāmen yìqǐ zǒu dào yángtái, wén zhe dàndàn de huāxiāng.",
+          "exampleVi": "Hai mẹ con cùng ra ban công, ngửi hương hoa nhẹ.",
+          "storyId": "tea-with-mother"
+        },
+        {
+          "id": "tea-with-mother-v8",
+          "hanzi": "分享",
+          "pinyin": "fēnxiǎng",
+          "meaning": "chia sẻ",
+          "example": "晓月发现，妈妈也有许多想分享的小事。",
+          "examplePinyin": "Xiǎo Yuè fāxiàn, māma yě yǒu xǔduō xiǎng fēnxiǎng de xiǎoshì.",
+          "exampleVi": "Hiểu Nguyệt nhận ra mẹ cũng có nhiều chuyện nhỏ muốn chia sẻ.",
+          "storyId": "tea-with-mother"
+        },
+        {
+          "id": "tea-with-mother-v9",
+          "hanzi": "温暖",
+          "pinyin": "wēnnuǎn",
+          "meaning": "ấm áp",
+          "example": "那天的茶凉了，她们却聊得很温暖。",
+          "examplePinyin": "Nà tiān de chá liáng le, tāmen què liáo de hěn wēnnuǎn.",
+          "exampleVi": "Trà hôm ấy đã nguội, nhưng cuộc trò chuyện của họ thật ấm áp.",
+          "storyId": "tea-with-mother"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "tea-with-mother-q0",
+          "prompt": "Hiểu Nguyệt giúp mẹ việc gì?",
+          "options": ["Mua trà", "Rửa bát", "Trồng hoa"],
+          "answer": 1,
+          "explanation": "Cô đặt điện thoại xuống và rửa bát thay mẹ."
+        },
+        {
+          "id": "tea-with-mother-q1",
+          "prompt": "Mẹ muốn kể điều gì?",
+          "options": [
+            "Hoa ban công đã nở",
+            "Bị mất chìa khóa",
+            "Đi du lịch xa"
+          ],
+          "answer": 0,
+          "explanation": "Mẹ kể hoa đã nở nhưng chưa ai thấy."
+        },
+        {
+          "id": "tea-with-mother-q2",
+          "prompt": "Trà nguội biểu thị điều gì trong câu chuyện?",
+          "options": [
+            "Họ không thích trà",
+            "Mẹ quên pha trà",
+            "Họ mải trò chuyện"
+          ],
+          "answer": 2,
+          "explanation": "Hai mẹ con trò chuyện ấm áp đến khi trà nguội."
+        }
+      ],
+      "wordOrder": {
+        "words": ["妈妈", "泡了", "两杯", "茶。"],
+        "pinyin": "Māma pào le liǎng bēi chá.",
+        "vi": "Mẹ pha hai tách trà."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "first-class",
+      "titleZh": "第一堂画画课",
+      "titleVi": "Buổi học vẽ đầu tiên",
+      "subtitle": "Một đường nét vụng về cũng có chỗ của mình.",
+      "difficulty": "HSK 4",
+      "topic": "Học tập",
+      "estimatedMinutes": 4,
+      "art": "books",
+      "tags": ["Học tập", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "first-class-s0",
+            "hanzi": "李可一直想学画画，却觉得自己没有天赋。",
+            "pinyin": "Lǐ Kě yìzhí xiǎng xué huà huà, què juéde zìjǐ méiyǒu tiānfù.",
+            "vi": "Lý Khả luôn muốn học vẽ nhưng cho rằng mình không có năng khiếu.",
+            "glossaryIds": ["first-class-v0"]
+          },
+          {
+            "id": "first-class-s1",
+            "hanzi": "朋友替她报名，她才走进周末的课堂。",
+            "pinyin": "Péngyou tì tā bàomíng, tā cái zǒu jìn zhōumò de kètáng.",
+            "vi": "Bạn đăng ký giúp nên cô mới bước vào lớp cuối tuần.",
+            "glossaryIds": ["first-class-v1", "first-class-v2"]
+          }
+        ],
+        [
+          {
+            "id": "first-class-s2",
+            "hanzi": "老师把一个苹果放在桌上，请大家慢慢观察。",
+            "pinyin": "Lǎoshī bǎ yí ge píngguǒ fàng zài zhuō shàng, qǐng dàjiā mànmàn guānchá.",
+            "vi": "Thầy đặt một quả táo lên bàn, mời mọi người quan sát từ từ.",
+            "glossaryIds": ["first-class-v3"]
+          },
+          {
+            "id": "first-class-s3",
+            "hanzi": "李可的线条总是歪的，她忍不住想擦掉。",
+            "pinyin": "Lǐ Kě de xiàntiáo zǒng shì wāi de, tā rěn bu zhù xiǎng cā diào.",
+            "vi": "Nét vẽ của Lý Khả cứ lệch; cô không kìm được ý muốn xóa đi.",
+            "glossaryIds": [
+              "first-class-v4",
+              "first-class-v5",
+              "first-class-v6"
+            ]
+          }
+        ],
+        [
+          {
+            "id": "first-class-s4",
+            "hanzi": "老师说：“先别擦，你已经注意到它不一样的地方了。”",
+            "pinyin": "Lǎoshī shuō: “Xiān bié cā, nǐ yǐjīng zhùyì dào tā bù yíyàng de dìfang le.”",
+            "vi": "Thầy nói: “Khoan xóa, em đã nhận thấy điểm khác biệt của nó rồi.”",
+            "glossaryIds": []
+          },
+          {
+            "id": "first-class-s5",
+            "hanzi": "她换了一支铅笔，试着把影子画得浅一点。",
+            "pinyin": "Tā huàn le yì zhī qiānbǐ, shì zhe bǎ yǐngzi huà de qiǎn yìdiǎn.",
+            "vi": "Cô đổi bút chì và thử vẽ bóng nhạt hơn một chút.",
+            "glossaryIds": ["first-class-v7", "first-class-v8"]
+          }
+        ],
+        [
+          {
+            "id": "first-class-s6",
+            "hanzi": "下课时，她的苹果仍然不圆，但看起来有了自己的样子。",
+            "pinyin": "Xià kè shí, tā de píngguǒ réngrán bù yuán, dàn kàn qǐ lái yǒu le zìjǐ de yàngzi.",
+            "vi": "Tan lớp, quả táo vẫn không tròn nhưng đã mang dáng vẻ riêng.",
+            "glossaryIds": []
+          },
+          {
+            "id": "first-class-s7",
+            "hanzi": "她把画带回家，期待着下一堂课。",
+            "pinyin": "Tā bǎ huà dài huí jiā, qīdài zhe xià yì táng kè.",
+            "vi": "Cô mang tranh về nhà, mong chờ buổi học tiếp theo.",
+            "glossaryIds": ["first-class-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "first-class-v0",
+          "hanzi": "天赋",
+          "pinyin": "tiānfù",
+          "meaning": "năng khiếu",
+          "example": "李可一直想学画画，却觉得自己没有天赋。",
+          "examplePinyin": "Lǐ Kě yìzhí xiǎng xué huà huà, què juéde zìjǐ méiyǒu tiānfù.",
+          "exampleVi": "Lý Khả luôn muốn học vẽ nhưng cho rằng mình không có năng khiếu.",
+          "storyId": "first-class"
+        },
+        {
+          "id": "first-class-v1",
+          "hanzi": "报名",
+          "pinyin": "bàomíng",
+          "meaning": "đăng ký",
+          "example": "朋友替她报名，她才走进周末的课堂。",
+          "examplePinyin": "Péngyou tì tā bàomíng, tā cái zǒu jìn zhōumò de kètáng.",
+          "exampleVi": "Bạn đăng ký giúp nên cô mới bước vào lớp cuối tuần.",
+          "storyId": "first-class"
+        },
+        {
+          "id": "first-class-v2",
+          "hanzi": "课堂",
+          "pinyin": "kètáng",
+          "meaning": "lớp học, giờ học",
+          "example": "朋友替她报名，她才走进周末的课堂。",
+          "examplePinyin": "Péngyou tì tā bàomíng, tā cái zǒu jìn zhōumò de kètáng.",
+          "exampleVi": "Bạn đăng ký giúp nên cô mới bước vào lớp cuối tuần.",
+          "storyId": "first-class"
+        },
+        {
+          "id": "first-class-v3",
+          "hanzi": "观察",
+          "pinyin": "guānchá",
+          "meaning": "quan sát",
+          "example": "老师把一个苹果放在桌上，请大家慢慢观察。",
+          "examplePinyin": "Lǎoshī bǎ yí ge píngguǒ fàng zài zhuō shàng, qǐng dàjiā mànmàn guānchá.",
+          "exampleVi": "Thầy đặt một quả táo lên bàn, mời mọi người quan sát từ từ.",
+          "storyId": "first-class"
+        },
+        {
+          "id": "first-class-v4",
+          "hanzi": "线条",
+          "pinyin": "xiàntiáo",
+          "meaning": "đường nét",
+          "example": "李可的线条总是歪的，她忍不住想擦掉。",
+          "examplePinyin": "Lǐ Kě de xiàntiáo zǒng shì wāi de, tā rěn bu zhù xiǎng cā diào.",
+          "exampleVi": "Nét vẽ của Lý Khả cứ lệch; cô không kìm được ý muốn xóa đi.",
+          "storyId": "first-class"
+        },
+        {
+          "id": "first-class-v5",
+          "hanzi": "忍不住",
+          "pinyin": "rěn bu zhù",
+          "meaning": "không kìm được",
+          "example": "李可的线条总是歪的，她忍不住想擦掉。",
+          "examplePinyin": "Lǐ Kě de xiàntiáo zǒng shì wāi de, tā rěn bu zhù xiǎng cā diào.",
+          "exampleVi": "Nét vẽ của Lý Khả cứ lệch; cô không kìm được ý muốn xóa đi.",
+          "storyId": "first-class"
+        },
+        {
+          "id": "first-class-v6",
+          "hanzi": "擦掉",
+          "pinyin": "cā diào",
+          "meaning": "xóa đi",
+          "example": "李可的线条总是歪的，她忍不住想擦掉。",
+          "examplePinyin": "Lǐ Kě de xiàntiáo zǒng shì wāi de, tā rěn bu zhù xiǎng cā diào.",
+          "exampleVi": "Nét vẽ của Lý Khả cứ lệch; cô không kìm được ý muốn xóa đi.",
+          "storyId": "first-class"
+        },
+        {
+          "id": "first-class-v7",
+          "hanzi": "铅笔",
+          "pinyin": "qiānbǐ",
+          "meaning": "bút chì",
+          "example": "她换了一支铅笔，试着把影子画得浅一点。",
+          "examplePinyin": "Tā huàn le yì zhī qiānbǐ, shì zhe bǎ yǐngzi huà de qiǎn yìdiǎn.",
+          "exampleVi": "Cô đổi bút chì và thử vẽ bóng nhạt hơn một chút.",
+          "storyId": "first-class"
+        },
+        {
+          "id": "first-class-v8",
+          "hanzi": "影子",
+          "pinyin": "yǐngzi",
+          "meaning": "bóng",
+          "example": "她换了一支铅笔，试着把影子画得浅一点。",
+          "examplePinyin": "Tā huàn le yì zhī qiānbǐ, shì zhe bǎ yǐngzi huà de qiǎn yìdiǎn.",
+          "exampleVi": "Cô đổi bút chì và thử vẽ bóng nhạt hơn một chút.",
+          "storyId": "first-class"
+        },
+        {
+          "id": "first-class-v9",
+          "hanzi": "期待",
+          "pinyin": "qīdài",
+          "meaning": "mong chờ",
+          "example": "她把画带回家，期待着下一堂课。",
+          "examplePinyin": "Tā bǎ huà dài huí jiā, qīdài zhe xià yì táng kè.",
+          "exampleVi": "Cô mang tranh về nhà, mong chờ buổi học tiếp theo.",
+          "storyId": "first-class"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "first-class-q0",
+          "prompt": "Tại sao cô ngần ngại học vẽ?",
+          "options": [
+            "Lớp quá xa",
+            "Cho rằng không có năng khiếu",
+            "Không thích táo"
+          ],
+          "answer": 1,
+          "explanation": "Cô luôn nghĩ mình không có năng khiếu."
+        },
+        {
+          "id": "first-class-q1",
+          "prompt": "Thầy dùng vật gì làm mẫu?",
+          "options": ["Quả táo", "Bình trà", "Bông hoa"],
+          "answer": 0,
+          "explanation": "Thầy đặt một quả táo trên bàn để quan sát."
+        },
+        {
+          "id": "first-class-q2",
+          "prompt": "Cuối buổi cô cảm thấy thế nào?",
+          "options": [
+            "Không muốn vẽ nữa",
+            "Xấu hổ bỏ tranh",
+            "Mong chờ buổi sau"
+          ],
+          "answer": 2,
+          "explanation": "Cô đem tranh về và mong chờ buổi học tiếp theo."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她", "把画", "带回", "家。"],
+        "pinyin": "Tā bǎ huà dài huí jiā.",
+        "vi": "Cô mang bức tranh về nhà."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "old-camera",
+      "titleZh": "旧相机里的周末",
+      "titleVi": "Cuối tuần trong chiếc máy ảnh cũ",
+      "subtitle": "Thử nhìn kỹ hơn, chụp ít hơn.",
+      "difficulty": "HSK 5",
+      "topic": "Sách & văn hóa",
+      "estimatedMinutes": 4,
+      "art": "travel",
+      "tags": ["Sách & văn hóa", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "old-camera-s0",
+            "hanzi": "整理房间时，沈乐发现了爸爸的旧相机。",
+            "pinyin": "Zhěnglǐ fángjiān shí, Shěn Lè fāxiàn le bàba de jiù xiàngjī.",
+            "vi": "Khi dọn phòng, Thẩm Lạc tìm thấy chiếc máy ảnh cũ của bố.",
+            "glossaryIds": ["old-camera-v0", "old-camera-v1"]
+          },
+          {
+            "id": "old-camera-s1",
+            "hanzi": "爸爸告诉她，这卷胶卷只能拍二十四张照片。",
+            "pinyin": "Bàba gàosu tā, zhè juǎn jiāojuǎn zhǐ néng pāi èrshísì zhāng zhàopiàn.",
+            "vi": "Bố bảo cuộn phim này chỉ chụp được hai mươi bốn tấm.",
+            "glossaryIds": ["old-camera-v2"]
+          }
+        ],
+        [
+          {
+            "id": "old-camera-s2",
+            "hanzi": "她习惯了用手机随便拍，觉得这个限制有些麻烦。",
+            "pinyin": "Tā xíguàn le yòng shǒujī suíbiàn pāi, juéde zhège xiànzhì yǒuxiē máfan.",
+            "vi": "Quen chụp tùy ý bằng điện thoại, cô thấy giới hạn này hơi phiền.",
+            "glossaryIds": ["old-camera-v3"]
+          },
+          {
+            "id": "old-camera-s3",
+            "hanzi": "可是，走到街上以后，她开始认真寻找值得记录的画面。",
+            "pinyin": "Kěshì, zǒu dào jiē shàng yǐhòu, tā kāishǐ rènzhēn xúnzhǎo zhíde jìlù de huàmiàn.",
+            "vi": "Nhưng ra phố, cô bắt đầu tìm kỹ những khung cảnh đáng ghi lại.",
+            "glossaryIds": ["old-camera-v4"]
+          }
+        ],
+        [
+          {
+            "id": "old-camera-s4",
+            "hanzi": "修鞋的叔叔、窗台上的盆栽，都让她停下脚步。",
+            "pinyin": "Xiū xié de shūshu, chuāngtái shàng de pénzāi, dōu ràng tā tíng xià jiǎobù.",
+            "vi": "Chú sửa giày và chậu cây trên bậu cửa đều khiến cô dừng bước.",
+            "glossaryIds": ["old-camera-v5"]
+          },
+          {
+            "id": "old-camera-s5",
+            "hanzi": "她没有立刻按快门，而是等光线柔和一点。",
+            "pinyin": "Tā méiyǒu lìkè àn kuàimén, ér shì děng guāngxiàn róuhé yìdiǎn.",
+            "vi": "Cô không bấm máy ngay mà chờ ánh sáng dịu hơn.",
+            "glossaryIds": ["old-camera-v6", "old-camera-v7", "old-camera-v8"]
+          }
+        ],
+        [
+          {
+            "id": "old-camera-s6",
+            "hanzi": "周末结束时，她只拍了十张照片。",
+            "pinyin": "Zhōumò jiéshù shí, tā zhǐ pāi le shí zhāng zhàopiàn.",
+            "vi": "Cuối tuần kết thúc, cô chỉ chụp mười tấm ảnh.",
+            "glossaryIds": []
+          },
+          {
+            "id": "old-camera-s7",
+            "hanzi": "虽然还没看到照片，她已经记住了那些细节。",
+            "pinyin": "Suīrán hái méi kàn dào zhàopiàn, tā yǐjīng jì zhù le nàxiē xìjié.",
+            "vi": "Dù chưa xem ảnh, cô đã nhớ những chi tiết ấy.",
+            "glossaryIds": ["old-camera-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "old-camera-v0",
+          "hanzi": "整理",
+          "pinyin": "zhěnglǐ",
+          "meaning": "sắp xếp, dọn dẹp",
+          "example": "整理房间时，沈乐发现了爸爸的旧相机。",
+          "examplePinyin": "Zhěnglǐ fángjiān shí, Shěn Lè fāxiàn le bàba de jiù xiàngjī.",
+          "exampleVi": "Khi dọn phòng, Thẩm Lạc tìm thấy chiếc máy ảnh cũ của bố.",
+          "storyId": "old-camera"
+        },
+        {
+          "id": "old-camera-v1",
+          "hanzi": "相机",
+          "pinyin": "xiàngjī",
+          "meaning": "máy ảnh",
+          "example": "整理房间时，沈乐发现了爸爸的旧相机。",
+          "examplePinyin": "Zhěnglǐ fángjiān shí, Shěn Lè fāxiàn le bàba de jiù xiàngjī.",
+          "exampleVi": "Khi dọn phòng, Thẩm Lạc tìm thấy chiếc máy ảnh cũ của bố.",
+          "storyId": "old-camera"
+        },
+        {
+          "id": "old-camera-v2",
+          "hanzi": "胶卷",
+          "pinyin": "jiāojuǎn",
+          "meaning": "cuộn phim",
+          "example": "爸爸告诉她，这卷胶卷只能拍二十四张照片。",
+          "examplePinyin": "Bàba gàosu tā, zhè juǎn jiāojuǎn zhǐ néng pāi èrshísì zhāng zhàopiàn.",
+          "exampleVi": "Bố bảo cuộn phim này chỉ chụp được hai mươi bốn tấm.",
+          "storyId": "old-camera"
+        },
+        {
+          "id": "old-camera-v3",
+          "hanzi": "限制",
+          "pinyin": "xiànzhì",
+          "meaning": "giới hạn",
+          "example": "她习惯了用手机随便拍，觉得这个限制有些麻烦。",
+          "examplePinyin": "Tā xíguàn le yòng shǒujī suíbiàn pāi, juéde zhège xiànzhì yǒuxiē máfan.",
+          "exampleVi": "Quen chụp tùy ý bằng điện thoại, cô thấy giới hạn này hơi phiền.",
+          "storyId": "old-camera"
+        },
+        {
+          "id": "old-camera-v4",
+          "hanzi": "记录",
+          "pinyin": "jìlù",
+          "meaning": "ghi lại",
+          "example": "可是，走到街上以后，她开始认真寻找值得记录的画面。",
+          "examplePinyin": "Kěshì, zǒu dào jiē shàng yǐhòu, tā kāishǐ rènzhēn xúnzhǎo zhíde jìlù de huàmiàn.",
+          "exampleVi": "Nhưng ra phố, cô bắt đầu tìm kỹ những khung cảnh đáng ghi lại.",
+          "storyId": "old-camera"
+        },
+        {
+          "id": "old-camera-v5",
+          "hanzi": "窗台",
+          "pinyin": "chuāngtái",
+          "meaning": "bậu cửa sổ",
+          "example": "修鞋的叔叔、窗台上的盆栽，都让她停下脚步。",
+          "examplePinyin": "Xiū xié de shūshu, chuāngtái shàng de pénzāi, dōu ràng tā tíng xià jiǎobù.",
+          "exampleVi": "Chú sửa giày và chậu cây trên bậu cửa đều khiến cô dừng bước.",
+          "storyId": "old-camera"
+        },
+        {
+          "id": "old-camera-v6",
+          "hanzi": "快门",
+          "pinyin": "kuàimén",
+          "meaning": "màn trập",
+          "example": "她没有立刻按快门，而是等光线柔和一点。",
+          "examplePinyin": "Tā méiyǒu lìkè àn kuàimén, ér shì děng guāngxiàn róuhé yìdiǎn.",
+          "exampleVi": "Cô không bấm máy ngay mà chờ ánh sáng dịu hơn.",
+          "storyId": "old-camera"
+        },
+        {
+          "id": "old-camera-v7",
+          "hanzi": "光线",
+          "pinyin": "guāngxiàn",
+          "meaning": "ánh sáng",
+          "example": "她没有立刻按快门，而是等光线柔和一点。",
+          "examplePinyin": "Tā méiyǒu lìkè àn kuàimén, ér shì děng guāngxiàn róuhé yìdiǎn.",
+          "exampleVi": "Cô không bấm máy ngay mà chờ ánh sáng dịu hơn.",
+          "storyId": "old-camera"
+        },
+        {
+          "id": "old-camera-v8",
+          "hanzi": "柔和",
+          "pinyin": "róuhé",
+          "meaning": "dịu, mềm",
+          "example": "她没有立刻按快门，而是等光线柔和一点。",
+          "examplePinyin": "Tā méiyǒu lìkè àn kuàimén, ér shì děng guāngxiàn róuhé yìdiǎn.",
+          "exampleVi": "Cô không bấm máy ngay mà chờ ánh sáng dịu hơn.",
+          "storyId": "old-camera"
+        },
+        {
+          "id": "old-camera-v9",
+          "hanzi": "细节",
+          "pinyin": "xìjié",
+          "meaning": "chi tiết",
+          "example": "虽然还没看到照片，她已经记住了那些细节。",
+          "examplePinyin": "Suīrán hái méi kàn dào zhàopiàn, tā yǐjīng jì zhù le nàxiē xìjié.",
+          "exampleVi": "Dù chưa xem ảnh, cô đã nhớ những chi tiết ấy.",
+          "storyId": "old-camera"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "old-camera-q0",
+          "prompt": "Cuộn phim có thể chụp tối đa bao nhiêu tấm?",
+          "options": ["Mười", "Hai mươi bốn", "Một trăm"],
+          "answer": 1,
+          "explanation": "Bố nói cuộn phim chỉ chụp được hai mươi bốn tấm."
+        },
+        {
+          "id": "old-camera-q1",
+          "prompt": "Cô chờ điều gì trước khi bấm máy?",
+          "options": ["Ánh sáng dịu hơn", "Điện thoại sạc đầy", "Trời mưa"],
+          "answer": 0,
+          "explanation": "Cô chờ ánh sáng trở nên dịu hơn."
+        },
+        {
+          "id": "old-camera-q2",
+          "prompt": "Cuối tuần cô đã chụp bao nhiêu tấm?",
+          "options": ["Hai mươi bốn", "Hai mươi", "Mười"],
+          "answer": 2,
+          "explanation": "Cô chỉ chụp mười tấm nhưng nhớ nhiều chi tiết."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她", "只拍了", "十张", "照片。"],
+        "pinyin": "Tā zhǐ pāi le shí zhāng zhàopiàn.",
+        "vi": "Cô chỉ chụp mười tấm ảnh."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "rainy-umbrella",
+      "titleZh": "一把黄色的伞",
+      "titleVi": "Chiếc ô màu vàng",
+      "subtitle": "Một việc nhỏ nối hai ngày mưa.",
+      "difficulty": "HSK 3",
+      "topic": "Tình bạn",
+      "estimatedMinutes": 4,
+      "art": "friends",
+      "tags": ["Tình bạn", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "rainy-umbrella-s0",
+            "hanzi": "下班的时候，天空突然下起大雨。",
+            "pinyin": "Xià bān de shíhou, tiānkōng tūrán xià qǐ dà yǔ.",
+            "vi": "Lúc tan làm, trời bất chợt đổ mưa to.",
+            "glossaryIds": ["rainy-umbrella-v0"]
+          },
+          {
+            "id": "rainy-umbrella-s1",
+            "hanzi": "吴桐站在门口，才发现自己没带伞。",
+            "pinyin": "Wú Tóng zhàn zài ménkǒu, cái fāxiàn zìjǐ méi dài sǎn.",
+            "vi": "Ngô Đồng đứng ở cửa mới nhận ra mình không mang ô.",
+            "glossaryIds": ["rainy-umbrella-v1"]
+          }
+        ],
+        [
+          {
+            "id": "rainy-umbrella-s2",
+            "hanzi": "同事阿明把一把黄色的伞借给她。",
+            "pinyin": "Tóngshì Ā Míng bǎ yì bǎ huángsè de sǎn jiè gěi tā.",
+            "vi": "Đồng nghiệp A Minh cho cô mượn chiếc ô màu vàng.",
+            "glossaryIds": ["rainy-umbrella-v2", "rainy-umbrella-v3"]
+          },
+          {
+            "id": "rainy-umbrella-s3",
+            "hanzi": "她问：“那你怎么办？”阿明指着楼下的地铁入口。",
+            "pinyin": "Tā wèn: “Nà nǐ zěnme bàn?” Ā Míng zhǐ zhe lóu xià de dìtiě rùkǒu.",
+            "vi": "Cô hỏi: “Vậy anh làm sao?” A Minh chỉ lối vào tàu điện dưới lầu.",
+            "glossaryIds": ["rainy-umbrella-v4", "rainy-umbrella-v5"]
+          }
+        ],
+        [
+          {
+            "id": "rainy-umbrella-s4",
+            "hanzi": "第二天，她把伞晾干，还在袋子里放了一张感谢卡。",
+            "pinyin": "Dì èr tiān, tā bǎ sǎn liàng gān, hái zài dàizi lǐ fàng le yì zhāng gǎnxiè kǎ.",
+            "vi": "Ngày hôm sau, cô phơi khô ô và đặt thêm thiệp cảm ơn vào túi.",
+            "glossaryIds": ["rainy-umbrella-v6", "rainy-umbrella-v7"]
+          },
+          {
+            "id": "rainy-umbrella-s5",
+            "hanzi": "阿明收到卡片，有些意外，也很开心。",
+            "pinyin": "Ā Míng shōu dào kǎpiàn, yǒuxiē yìwài, yě hěn kāixīn.",
+            "vi": "A Minh nhận thiệp, hơi bất ngờ và rất vui.",
+            "glossaryIds": ["rainy-umbrella-v8"]
+          }
+        ],
+        [
+          {
+            "id": "rainy-umbrella-s6",
+            "hanzi": "后来又下雨了，这次吴桐带了两把伞。",
+            "pinyin": "Hòulái yòu xià yǔ le, zhè cì Wú Tóng dài le liǎng bǎ sǎn.",
+            "vi": "Sau đó lại có ngày mưa, lần này Ngô Đồng mang hai chiếc ô.",
+            "glossaryIds": []
+          },
+          {
+            "id": "rainy-umbrella-s7",
+            "hanzi": "她把多的一把递给新同事，说：“明天还我就好。”",
+            "pinyin": "Tā bǎ duō de yì bǎ dì gěi xīn tóngshì, shuō: “Míngtiān huán wǒ jiù hǎo.”",
+            "vi": "Cô đưa chiếc dư cho đồng nghiệp mới: “Mai trả tôi là được nhé.”",
+            "glossaryIds": ["rainy-umbrella-v2", "rainy-umbrella-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "rainy-umbrella-v0",
+          "hanzi": "突然",
+          "pinyin": "tūrán",
+          "meaning": "đột nhiên",
+          "example": "下班的时候，天空突然下起大雨。",
+          "examplePinyin": "Xià bān de shíhou, tiānkōng tūrán xià qǐ dà yǔ.",
+          "exampleVi": "Lúc tan làm, trời bất chợt đổ mưa to.",
+          "storyId": "rainy-umbrella"
+        },
+        {
+          "id": "rainy-umbrella-v1",
+          "hanzi": "门口",
+          "pinyin": "ménkǒu",
+          "meaning": "cửa ra vào",
+          "example": "吴桐站在门口，才发现自己没带伞。",
+          "examplePinyin": "Wú Tóng zhàn zài ménkǒu, cái fāxiàn zìjǐ méi dài sǎn.",
+          "exampleVi": "Ngô Đồng đứng ở cửa mới nhận ra mình không mang ô.",
+          "storyId": "rainy-umbrella"
+        },
+        {
+          "id": "rainy-umbrella-v2",
+          "hanzi": "同事",
+          "pinyin": "tóngshì",
+          "meaning": "đồng nghiệp",
+          "example": "同事阿明把一把黄色的伞借给她。",
+          "examplePinyin": "Tóngshì Ā Míng bǎ yì bǎ huángsè de sǎn jiè gěi tā.",
+          "exampleVi": "Đồng nghiệp A Minh cho cô mượn chiếc ô màu vàng.",
+          "storyId": "rainy-umbrella"
+        },
+        {
+          "id": "rainy-umbrella-v3",
+          "hanzi": "借给",
+          "pinyin": "jiè gěi",
+          "meaning": "cho mượn",
+          "example": "同事阿明把一把黄色的伞借给她。",
+          "examplePinyin": "Tóngshì Ā Míng bǎ yì bǎ huángsè de sǎn jiè gěi tā.",
+          "exampleVi": "Đồng nghiệp A Minh cho cô mượn chiếc ô màu vàng.",
+          "storyId": "rainy-umbrella"
+        },
+        {
+          "id": "rainy-umbrella-v4",
+          "hanzi": "地铁",
+          "pinyin": "dìtiě",
+          "meaning": "tàu điện ngầm",
+          "example": "她问：“那你怎么办？”阿明指着楼下的地铁入口。",
+          "examplePinyin": "Tā wèn: “Nà nǐ zěnme bàn?” Ā Míng zhǐ zhe lóu xià de dìtiě rùkǒu.",
+          "exampleVi": "Cô hỏi: “Vậy anh làm sao?” A Minh chỉ lối vào tàu điện dưới lầu.",
+          "storyId": "rainy-umbrella"
+        },
+        {
+          "id": "rainy-umbrella-v5",
+          "hanzi": "入口",
+          "pinyin": "rùkǒu",
+          "meaning": "lối vào",
+          "example": "她问：“那你怎么办？”阿明指着楼下的地铁入口。",
+          "examplePinyin": "Tā wèn: “Nà nǐ zěnme bàn?” Ā Míng zhǐ zhe lóu xià de dìtiě rùkǒu.",
+          "exampleVi": "Cô hỏi: “Vậy anh làm sao?” A Minh chỉ lối vào tàu điện dưới lầu.",
+          "storyId": "rainy-umbrella"
+        },
+        {
+          "id": "rainy-umbrella-v6",
+          "hanzi": "晾干",
+          "pinyin": "liàng gān",
+          "meaning": "phơi khô",
+          "example": "第二天，她把伞晾干，还在袋子里放了一张感谢卡。",
+          "examplePinyin": "Dì èr tiān, tā bǎ sǎn liàng gān, hái zài dàizi lǐ fàng le yì zhāng gǎnxiè kǎ.",
+          "exampleVi": "Ngày hôm sau, cô phơi khô ô và đặt thêm thiệp cảm ơn vào túi.",
+          "storyId": "rainy-umbrella"
+        },
+        {
+          "id": "rainy-umbrella-v7",
+          "hanzi": "感谢",
+          "pinyin": "gǎnxiè",
+          "meaning": "cảm ơn",
+          "example": "第二天，她把伞晾干，还在袋子里放了一张感谢卡。",
+          "examplePinyin": "Dì èr tiān, tā bǎ sǎn liàng gān, hái zài dàizi lǐ fàng le yì zhāng gǎnxiè kǎ.",
+          "exampleVi": "Ngày hôm sau, cô phơi khô ô và đặt thêm thiệp cảm ơn vào túi.",
+          "storyId": "rainy-umbrella"
+        },
+        {
+          "id": "rainy-umbrella-v8",
+          "hanzi": "卡片",
+          "pinyin": "kǎpiàn",
+          "meaning": "tấm thiệp",
+          "example": "阿明收到卡片，有些意外，也很开心。",
+          "examplePinyin": "Ā Míng shōu dào kǎpiàn, yǒuxiē yìwài, yě hěn kāixīn.",
+          "exampleVi": "A Minh nhận thiệp, hơi bất ngờ và rất vui.",
+          "storyId": "rainy-umbrella"
+        },
+        {
+          "id": "rainy-umbrella-v9",
+          "hanzi": "还",
+          "pinyin": "huán",
+          "meaning": "trả lại",
+          "example": "她把多的一把递给新同事，说：“明天还我就好。”",
+          "examplePinyin": "Tā bǎ duō de yì bǎ dì gěi xīn tóngshì, shuō: “Míngtiān huán wǒ jiù hǎo.”",
+          "exampleVi": "Cô đưa chiếc dư cho đồng nghiệp mới: “Mai trả tôi là được nhé.”",
+          "storyId": "rainy-umbrella"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "rainy-umbrella-q0",
+          "prompt": "Ai cho Ngô Đồng mượn ô?",
+          "options": ["Đồng nghiệp mới", "A Minh", "Mẹ cô"],
+          "answer": 1,
+          "explanation": "A Minh cho cô mượn chiếc ô vàng."
+        },
+        {
+          "id": "rainy-umbrella-q1",
+          "prompt": "Cô trả ô kèm theo gì?",
+          "options": ["Thiệp cảm ơn", "Một cuốn sách", "Một vé tàu"],
+          "answer": 0,
+          "explanation": "Cô đặt thiệp cảm ơn trong túi."
+        },
+        {
+          "id": "rainy-umbrella-q2",
+          "prompt": "Lần mưa sau cô làm gì?",
+          "options": ["Đợi A Minh", "Về nhà sớm", "Cho đồng nghiệp mới mượn ô"],
+          "answer": 2,
+          "explanation": "Cô mang hai ô và đưa chiếc dư cho đồng nghiệp mới."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她", "带了", "两把", "伞。"],
+        "pinyin": "Tā dài le liǎng bǎ sǎn.",
+        "vi": "Cô mang hai chiếc ô."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "bread-at-dawn",
+      "titleZh": "清晨的面包店",
+      "titleVi": "Tiệm bánh lúc bình minh",
+      "subtitle": "Một món bánh được giữ lại cho ngày mới.",
+      "difficulty": "HSK 4",
+      "topic": "Đời thường",
+      "estimatedMinutes": 4,
+      "art": "cafe",
+      "tags": ["Đời thường", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "bread-at-dawn-s0",
+            "hanzi": "清晨六点，街上的商店还没开门。",
+            "pinyin": "Qīngchén liù diǎn, jiē shàng de shāngdiàn hái méi kāi mén.",
+            "vi": "Sáu giờ sáng, các cửa hàng trên phố vẫn chưa mở.",
+            "glossaryIds": ["bread-at-dawn-v0"]
+          },
+          {
+            "id": "bread-at-dawn-s1",
+            "hanzi": "面包店的灯却已经亮了，空气中有淡淡的香味。",
+            "pinyin": "Miànbāodiàn de dēng què yǐjīng liàng le, kōngqì zhōng yǒu dàndàn de xiāngwèi.",
+            "vi": "Đèn tiệm bánh đã sáng, trong không khí có hương thơm nhẹ.",
+            "glossaryIds": ["bread-at-dawn-v1"]
+          }
+        ],
+        [
+          {
+            "id": "bread-at-dawn-s2",
+            "hanzi": "刚结束夜班的护士小何推开门，显得很疲惫。",
+            "pinyin": "Gāng jiéshù yèbān de hùshi Xiǎo Hé tuī kāi mén, xiǎnde hěn píbèi.",
+            "vi": "Y tá Tiểu Hà vừa hết ca đêm đẩy cửa bước vào, trông rất mệt.",
+            "glossaryIds": [
+              "bread-at-dawn-v2",
+              "bread-at-dawn-v3",
+              "bread-at-dawn-v4"
+            ]
+          },
+          {
+            "id": "bread-at-dawn-s3",
+            "hanzi": "店主说：“你的红豆面包在这里，我给你留了一个。”",
+            "pinyin": "Diànzhǔ shuō: “Nǐ de hóngdòu miànbāo zài zhèlǐ, wǒ gěi nǐ liú le yí ge.”",
+            "vi": "Chủ tiệm nói: “Bánh đậu đỏ của cô đây, tôi đã giữ lại một chiếc.”",
+            "glossaryIds": ["bread-at-dawn-v5"]
+          }
+        ],
+        [
+          {
+            "id": "bread-at-dawn-s4",
+            "hanzi": "小何有些惊讶，因为自己只来过两次。",
+            "pinyin": "Xiǎo Hé yǒuxiē jīngyà, yīnwèi zìjǐ zhǐ lái guo liǎng cì.",
+            "vi": "Tiểu Hà hơi ngạc nhiên vì cô mới đến hai lần.",
+            "glossaryIds": ["bread-at-dawn-v6"]
+          },
+          {
+            "id": "bread-at-dawn-s5",
+            "hanzi": "店主把面包装进纸袋，又递给她一杯温水。",
+            "pinyin": "Diànzhǔ bǎ miànbāo zhuāng jìn zhǐdài, yòu dì gěi tā yì bēi wēn shuǐ.",
+            "vi": "Chủ tiệm bỏ bánh vào túi giấy rồi đưa thêm một cốc nước ấm.",
+            "glossaryIds": ["bread-at-dawn-v7"]
+          }
+        ],
+        [
+          {
+            "id": "bread-at-dawn-s6",
+            "hanzi": "她坐在门边吃完面包，觉得今天没那么辛苦了。",
+            "pinyin": "Tā zuò zài mén biān chī wán miànbāo, juéde jīntiān méi nàme xīnkǔ le.",
+            "vi": "Cô ngồi cạnh cửa ăn hết bánh, thấy hôm nay bớt vất vả hơn.",
+            "glossaryIds": ["bread-at-dawn-v8"]
+          },
+          {
+            "id": "bread-at-dawn-s7",
+            "hanzi": "离开前，她认真说了声谢谢，店主笑着挥了挥手。",
+            "pinyin": "Líkāi qián, tā rènzhēn shuō le shēng xièxie, diànzhǔ xiào zhe huī le huī shǒu.",
+            "vi": "Trước khi đi, cô chân thành cảm ơn; chủ tiệm mỉm cười vẫy tay.",
+            "glossaryIds": ["bread-at-dawn-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "bread-at-dawn-v0",
+          "hanzi": "清晨",
+          "pinyin": "qīngchén",
+          "meaning": "sáng sớm",
+          "example": "清晨六点，街上的商店还没开门。",
+          "examplePinyin": "Qīngchén liù diǎn, jiē shàng de shāngdiàn hái méi kāi mén.",
+          "exampleVi": "Sáu giờ sáng, các cửa hàng trên phố vẫn chưa mở.",
+          "storyId": "bread-at-dawn"
+        },
+        {
+          "id": "bread-at-dawn-v1",
+          "hanzi": "香味",
+          "pinyin": "xiāngwèi",
+          "meaning": "hương thơm",
+          "example": "面包店的灯却已经亮了，空气中有淡淡的香味。",
+          "examplePinyin": "Miànbāodiàn de dēng què yǐjīng liàng le, kōngqì zhōng yǒu dàndàn de xiāngwèi.",
+          "exampleVi": "Đèn tiệm bánh đã sáng, trong không khí có hương thơm nhẹ.",
+          "storyId": "bread-at-dawn"
+        },
+        {
+          "id": "bread-at-dawn-v2",
+          "hanzi": "夜班",
+          "pinyin": "yèbān",
+          "meaning": "ca đêm",
+          "example": "刚结束夜班的护士小何推开门，显得很疲惫。",
+          "examplePinyin": "Gāng jiéshù yèbān de hùshi Xiǎo Hé tuī kāi mén, xiǎnde hěn píbèi.",
+          "exampleVi": "Y tá Tiểu Hà vừa hết ca đêm đẩy cửa bước vào, trông rất mệt.",
+          "storyId": "bread-at-dawn"
+        },
+        {
+          "id": "bread-at-dawn-v3",
+          "hanzi": "护士",
+          "pinyin": "hùshi",
+          "meaning": "y tá",
+          "example": "刚结束夜班的护士小何推开门，显得很疲惫。",
+          "examplePinyin": "Gāng jiéshù yèbān de hùshi Xiǎo Hé tuī kāi mén, xiǎnde hěn píbèi.",
+          "exampleVi": "Y tá Tiểu Hà vừa hết ca đêm đẩy cửa bước vào, trông rất mệt.",
+          "storyId": "bread-at-dawn"
+        },
+        {
+          "id": "bread-at-dawn-v4",
+          "hanzi": "疲惫",
+          "pinyin": "píbèi",
+          "meaning": "mệt mỏi",
+          "example": "刚结束夜班的护士小何推开门，显得很疲惫。",
+          "examplePinyin": "Gāng jiéshù yèbān de hùshi Xiǎo Hé tuī kāi mén, xiǎnde hěn píbèi.",
+          "exampleVi": "Y tá Tiểu Hà vừa hết ca đêm đẩy cửa bước vào, trông rất mệt.",
+          "storyId": "bread-at-dawn"
+        },
+        {
+          "id": "bread-at-dawn-v5",
+          "hanzi": "红豆",
+          "pinyin": "hóngdòu",
+          "meaning": "đậu đỏ",
+          "example": "店主说：“你的红豆面包在这里，我给你留了一个。”",
+          "examplePinyin": "Diànzhǔ shuō: “Nǐ de hóngdòu miànbāo zài zhèlǐ, wǒ gěi nǐ liú le yí ge.”",
+          "exampleVi": "Chủ tiệm nói: “Bánh đậu đỏ của cô đây, tôi đã giữ lại một chiếc.”",
+          "storyId": "bread-at-dawn"
+        },
+        {
+          "id": "bread-at-dawn-v6",
+          "hanzi": "惊讶",
+          "pinyin": "jīngyà",
+          "meaning": "ngạc nhiên",
+          "example": "小何有些惊讶，因为自己只来过两次。",
+          "examplePinyin": "Xiǎo Hé yǒuxiē jīngyà, yīnwèi zìjǐ zhǐ lái guo liǎng cì.",
+          "exampleVi": "Tiểu Hà hơi ngạc nhiên vì cô mới đến hai lần.",
+          "storyId": "bread-at-dawn"
+        },
+        {
+          "id": "bread-at-dawn-v7",
+          "hanzi": "纸袋",
+          "pinyin": "zhǐdài",
+          "meaning": "túi giấy",
+          "example": "店主把面包装进纸袋，又递给她一杯温水。",
+          "examplePinyin": "Diànzhǔ bǎ miànbāo zhuāng jìn zhǐdài, yòu dì gěi tā yì bēi wēn shuǐ.",
+          "exampleVi": "Chủ tiệm bỏ bánh vào túi giấy rồi đưa thêm một cốc nước ấm.",
+          "storyId": "bread-at-dawn"
+        },
+        {
+          "id": "bread-at-dawn-v8",
+          "hanzi": "辛苦",
+          "pinyin": "xīnkǔ",
+          "meaning": "vất vả",
+          "example": "她坐在门边吃完面包，觉得今天没那么辛苦了。",
+          "examplePinyin": "Tā zuò zài mén biān chī wán miànbāo, juéde jīntiān méi nàme xīnkǔ le.",
+          "exampleVi": "Cô ngồi cạnh cửa ăn hết bánh, thấy hôm nay bớt vất vả hơn.",
+          "storyId": "bread-at-dawn"
+        },
+        {
+          "id": "bread-at-dawn-v9",
+          "hanzi": "挥",
+          "pinyin": "huī",
+          "meaning": "vẫy",
+          "example": "离开前，她认真说了声谢谢，店主笑着挥了挥手。",
+          "examplePinyin": "Líkāi qián, tā rènzhēn shuō le shēng xièxie, diànzhǔ xiào zhe huī le huī shǒu.",
+          "exampleVi": "Trước khi đi, cô chân thành cảm ơn; chủ tiệm mỉm cười vẫy tay.",
+          "storyId": "bread-at-dawn"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "bread-at-dawn-q0",
+          "prompt": "Tiểu Hà vừa kết thúc việc gì?",
+          "options": ["Ca đêm", "Kỳ nghỉ", "Lớp nấu ăn"],
+          "answer": 0,
+          "explanation": "Cô là y tá vừa hết ca đêm."
+        },
+        {
+          "id": "bread-at-dawn-q1",
+          "prompt": "Vì sao cô ngạc nhiên?",
+          "options": [
+            "Bánh quá đắt",
+            "Chủ tiệm nhớ món cô thích dù cô mới đến hai lần",
+            "Tiệm không bán bánh"
+          ],
+          "answer": 1,
+          "explanation": "Chủ tiệm giữ lại bánh đậu đỏ dù cô chỉ đến hai lần."
+        },
+        {
+          "id": "bread-at-dawn-q2",
+          "prompt": "Chủ tiệm đưa thêm gì?",
+          "options": ["Cà phê đá", "Sữa lạnh", "Nước ấm"],
+          "answer": 2,
+          "explanation": "Chủ tiệm đưa một cốc nước ấm."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她", "吃完了", "红豆", "面包。"],
+        "pinyin": "Tā chī wán le hóngdòu miànbāo.",
+        "vi": "Cô ăn hết bánh đậu đỏ."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "mountain-path",
+      "titleZh": "山上的两条路",
+      "titleVi": "Hai con đường trên núi",
+      "subtitle": "Đích đến cũng có thể chờ chúng ta một chút.",
+      "difficulty": "HSK 5",
+      "topic": "Du lịch",
+      "estimatedMinutes": 4,
+      "art": "travel",
+      "tags": ["Du lịch", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "mountain-path-s0",
+            "hanzi": "春天，林舟和朋友一起去爬山。",
+            "pinyin": "Chūntiān, Lín Zhōu hé péngyou yìqǐ qù pá shān.",
+            "vi": "Mùa xuân, Lâm Châu cùng bạn đi leo núi.",
+            "glossaryIds": []
+          },
+          {
+            "id": "mountain-path-s1",
+            "hanzi": "走到半山腰，他们遇到两条不同的路。",
+            "pinyin": "Zǒu dào bànshānyāo, tāmen yù dào liǎng tiáo bù tóng de lù.",
+            "vi": "Đến lưng chừng núi, họ gặp hai lối đi khác nhau.",
+            "glossaryIds": ["mountain-path-v0"]
+          }
+        ],
+        [
+          {
+            "id": "mountain-path-s2",
+            "hanzi": "指示牌上写着：左边距离短，右边坡度缓。",
+            "pinyin": "Zhǐshìpái shàng xiě zhe: zuǒbian jùlí duǎn, yòubian pōdù huǎn.",
+            "vi": "Biển chỉ dẫn ghi: bên trái đường ngắn, bên phải dốc thoải.",
+            "glossaryIds": [
+              "mountain-path-v1",
+              "mountain-path-v2",
+              "mountain-path-v3"
+            ]
+          },
+          {
+            "id": "mountain-path-s3",
+            "hanzi": "林舟想早点到山顶，朋友却已经累了。",
+            "pinyin": "Lín Zhōu xiǎng zǎo diǎn dào shāndǐng, péngyou què yǐjīng lèi le.",
+            "vi": "Lâm Châu muốn đến đỉnh sớm, nhưng bạn đã mệt.",
+            "glossaryIds": []
+          }
+        ],
+        [
+          {
+            "id": "mountain-path-s4",
+            "hanzi": "他犹豫了一会儿，最后选择了右边的路。",
+            "pinyin": "Tā yóuyù le yíhuìr, zuìhòu xuǎnzé le yòubian de lù.",
+            "vi": "Anh do dự một lúc rồi chọn đường bên phải.",
+            "glossaryIds": ["mountain-path-v4"]
+          },
+          {
+            "id": "mountain-path-s5",
+            "hanzi": "沿途的野花很多，他们停下来拍照，还听到了鸟叫。",
+            "pinyin": "Yántú de yěhuā hěn duō, tāmen tíng xià lái pāi zhào, hái tīng dào le niǎo jiào.",
+            "vi": "Dọc đường có nhiều hoa dại; họ dừng chụp ảnh và nghe tiếng chim.",
+            "glossaryIds": ["mountain-path-v5", "mountain-path-v6"]
+          }
+        ],
+        [
+          {
+            "id": "mountain-path-s6",
+            "hanzi": "虽然到达山顶时已经很晚，他们并不遗憾。",
+            "pinyin": "Suīrán dàodá shāndǐng shí yǐjīng hěn wǎn, tāmen bìng bù yíhàn.",
+            "vi": "Dù lên đỉnh khá muộn, họ không tiếc nuối.",
+            "glossaryIds": ["mountain-path-v7"]
+          },
+          {
+            "id": "mountain-path-s7",
+            "hanzi": "林舟发现，照顾同行的人，比赶路更有意义。",
+            "pinyin": "Lín Zhōu fāxiàn, zhàogù tóngxíng de rén, bǐ gǎn lù gèng yǒu yìyì.",
+            "vi": "Lâm Châu nhận ra quan tâm người đi cùng có ý nghĩa hơn vội đi.",
+            "glossaryIds": ["mountain-path-v8", "mountain-path-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "mountain-path-v0",
+          "hanzi": "半山腰",
+          "pinyin": "bànshānyāo",
+          "meaning": "lưng chừng núi",
+          "example": "走到半山腰，他们遇到两条不同的路。",
+          "examplePinyin": "Zǒu dào bànshānyāo, tāmen yù dào liǎng tiáo bù tóng de lù.",
+          "exampleVi": "Đến lưng chừng núi, họ gặp hai lối đi khác nhau.",
+          "storyId": "mountain-path"
+        },
+        {
+          "id": "mountain-path-v1",
+          "hanzi": "指示牌",
+          "pinyin": "zhǐshìpái",
+          "meaning": "biển chỉ dẫn",
+          "example": "指示牌上写着：左边距离短，右边坡度缓。",
+          "examplePinyin": "Zhǐshìpái shàng xiě zhe: zuǒbian jùlí duǎn, yòubian pōdù huǎn.",
+          "exampleVi": "Biển chỉ dẫn ghi: bên trái đường ngắn, bên phải dốc thoải.",
+          "storyId": "mountain-path"
+        },
+        {
+          "id": "mountain-path-v2",
+          "hanzi": "距离",
+          "pinyin": "jùlí",
+          "meaning": "khoảng cách",
+          "example": "指示牌上写着：左边距离短，右边坡度缓。",
+          "examplePinyin": "Zhǐshìpái shàng xiě zhe: zuǒbian jùlí duǎn, yòubian pōdù huǎn.",
+          "exampleVi": "Biển chỉ dẫn ghi: bên trái đường ngắn, bên phải dốc thoải.",
+          "storyId": "mountain-path"
+        },
+        {
+          "id": "mountain-path-v3",
+          "hanzi": "坡度",
+          "pinyin": "pōdù",
+          "meaning": "độ dốc",
+          "example": "指示牌上写着：左边距离短，右边坡度缓。",
+          "examplePinyin": "Zhǐshìpái shàng xiě zhe: zuǒbian jùlí duǎn, yòubian pōdù huǎn.",
+          "exampleVi": "Biển chỉ dẫn ghi: bên trái đường ngắn, bên phải dốc thoải.",
+          "storyId": "mountain-path"
+        },
+        {
+          "id": "mountain-path-v4",
+          "hanzi": "犹豫",
+          "pinyin": "yóuyù",
+          "meaning": "do dự",
+          "example": "他犹豫了一会儿，最后选择了右边的路。",
+          "examplePinyin": "Tā yóuyù le yíhuìr, zuìhòu xuǎnzé le yòubian de lù.",
+          "exampleVi": "Anh do dự một lúc rồi chọn đường bên phải.",
+          "storyId": "mountain-path"
+        },
+        {
+          "id": "mountain-path-v5",
+          "hanzi": "沿途",
+          "pinyin": "yántú",
+          "meaning": "dọc đường",
+          "example": "沿途的野花很多，他们停下来拍照，还听到了鸟叫。",
+          "examplePinyin": "Yántú de yěhuā hěn duō, tāmen tíng xià lái pāi zhào, hái tīng dào le niǎo jiào.",
+          "exampleVi": "Dọc đường có nhiều hoa dại; họ dừng chụp ảnh và nghe tiếng chim.",
+          "storyId": "mountain-path"
+        },
+        {
+          "id": "mountain-path-v6",
+          "hanzi": "野花",
+          "pinyin": "yěhuā",
+          "meaning": "hoa dại",
+          "example": "沿途的野花很多，他们停下来拍照，还听到了鸟叫。",
+          "examplePinyin": "Yántú de yěhuā hěn duō, tāmen tíng xià lái pāi zhào, hái tīng dào le niǎo jiào.",
+          "exampleVi": "Dọc đường có nhiều hoa dại; họ dừng chụp ảnh và nghe tiếng chim.",
+          "storyId": "mountain-path"
+        },
+        {
+          "id": "mountain-path-v7",
+          "hanzi": "遗憾",
+          "pinyin": "yíhàn",
+          "meaning": "tiếc nuối",
+          "example": "虽然到达山顶时已经很晚，他们并不遗憾。",
+          "examplePinyin": "Suīrán dàodá shāndǐng shí yǐjīng hěn wǎn, tāmen bìng bù yíhàn.",
+          "exampleVi": "Dù lên đỉnh khá muộn, họ không tiếc nuối.",
+          "storyId": "mountain-path"
+        },
+        {
+          "id": "mountain-path-v8",
+          "hanzi": "同行",
+          "pinyin": "tóngxíng",
+          "meaning": "đi cùng",
+          "example": "林舟发现，照顾同行的人，比赶路更有意义。",
+          "examplePinyin": "Lín Zhōu fāxiàn, zhàogù tóngxíng de rén, bǐ gǎn lù gèng yǒu yìyì.",
+          "exampleVi": "Lâm Châu nhận ra quan tâm người đi cùng có ý nghĩa hơn vội đi.",
+          "storyId": "mountain-path"
+        },
+        {
+          "id": "mountain-path-v9",
+          "hanzi": "意义",
+          "pinyin": "yìyì",
+          "meaning": "ý nghĩa",
+          "example": "林舟发现，照顾同行的人，比赶路更有意义。",
+          "examplePinyin": "Lín Zhōu fāxiàn, zhàogù tóngxíng de rén, bǐ gǎn lù gèng yǒu yìyì.",
+          "exampleVi": "Lâm Châu nhận ra quan tâm người đi cùng có ý nghĩa hơn vội đi.",
+          "storyId": "mountain-path"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "mountain-path-q0",
+          "prompt": "Đường bên phải có đặc điểm gì?",
+          "options": ["Ngắn nhất", "Dốc thoải", "Không có cây"],
+          "answer": 1,
+          "explanation": "Biển chỉ dẫn nói đường bên phải có độ dốc thoải."
+        },
+        {
+          "id": "mountain-path-q1",
+          "prompt": "Tại sao anh chọn đường bên phải?",
+          "options": ["Bạn đã mệt", "Anh bị lạc", "Đường trái đóng cửa"],
+          "answer": 0,
+          "explanation": "Anh cân nhắc sức của người bạn đã mệt."
+        },
+        {
+          "id": "mountain-path-q2",
+          "prompt": "Họ có tiếc vì lên đỉnh muộn không?",
+          "options": ["Rất tiếc", "Không lên đỉnh", "Không tiếc nuối"],
+          "answer": 2,
+          "explanation": "Họ thưởng thức cảnh dọc đường và không tiếc nuối."
+        }
+      ],
+      "wordOrder": {
+        "words": ["他们", "选择了", "右边", "的路。"],
+        "pinyin": "Tāmen xuǎnzé le yòubian de lù.",
+        "vi": "Họ chọn con đường bên phải."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "plant-exchange",
+      "titleZh": "一盆薄荷的旅行",
+      "titleVi": "Chuyến đi của chậu bạc hà",
+      "subtitle": "Một cành cây nhỏ mang theo câu chuyện.",
+      "difficulty": "HSK 4",
+      "topic": "Thiên nhiên",
+      "estimatedMinutes": 4,
+      "art": "home",
+      "tags": ["Thiên nhiên", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "plant-exchange-s0",
+            "hanzi": "社区周末举办了一次植物交换活动。",
+            "pinyin": "Shèqū zhōumò jǔbàn le yí cì zhíwù jiāohuàn huódòng.",
+            "vi": "Cuối tuần, khu dân cư tổ chức một buổi trao đổi cây.",
+            "glossaryIds": [
+              "plant-exchange-v0",
+              "plant-exchange-v1",
+              "plant-exchange-v2"
+            ]
+          },
+          {
+            "id": "plant-exchange-s1",
+            "hanzi": "苏禾带来一盆薄荷，叶子闻起来很清新。",
+            "pinyin": "Sū Hé dài lái yì pén bòhe, yèzi wén qǐ lái hěn qīngxīn.",
+            "vi": "Tô Hòa mang một chậu bạc hà, lá tỏa mùi rất tươi mát.",
+            "glossaryIds": ["plant-exchange-v3", "plant-exchange-v4"]
+          }
+        ],
+        [
+          {
+            "id": "plant-exchange-s2",
+            "hanzi": "她想换一盆多肉，却担心没人喜欢自己的植物。",
+            "pinyin": "Tā xiǎng huàn yì pén duōròu, què dānxīn méi rén xǐhuan zìjǐ de zhíwù.",
+            "vi": "Cô muốn đổi lấy một chậu sen đá nhưng lo không ai thích cây của mình.",
+            "glossaryIds": ["plant-exchange-v5"]
+          },
+          {
+            "id": "plant-exchange-s3",
+            "hanzi": "一位爷爷走过来，说薄荷让他想起老家的院子。",
+            "pinyin": "Yí wèi yéye zǒu guò lái, shuō bòhe ràng tā xiǎng qǐ lǎojiā de yuànzi.",
+            "vi": "Một ông cụ bước đến, nói bạc hà gợi ông nhớ sân nhà ở quê.",
+            "glossaryIds": ["plant-exchange-v3", "plant-exchange-v6"]
+          }
+        ],
+        [
+          {
+            "id": "plant-exchange-s4",
+            "hanzi": "他没有带多肉，只有一小袋花种子。",
+            "pinyin": "Tā méiyǒu dài duōròu, zhǐ yǒu yì xiǎo dài huā zhǒngzi.",
+            "vi": "Ông không mang sen đá, chỉ có một túi hạt hoa nhỏ.",
+            "glossaryIds": ["plant-exchange-v5", "plant-exchange-v7"]
+          },
+          {
+            "id": "plant-exchange-s5",
+            "hanzi": "苏禾听完他的故事，愿意用薄荷交换种子。",
+            "pinyin": "Sū Hé tīng wán tā de gùshi, yuànyì yòng bòhe jiāohuàn zhǒngzi.",
+            "vi": "Nghe câu chuyện của ông, Tô Hòa sẵn lòng đổi bạc hà lấy hạt giống.",
+            "glossaryIds": [
+              "plant-exchange-v2",
+              "plant-exchange-v3",
+              "plant-exchange-v7",
+              "plant-exchange-v8"
+            ]
+          }
+        ],
+        [
+          {
+            "id": "plant-exchange-s6",
+            "hanzi": "回家后，她把种子种进花盆，写上爷爷的名字。",
+            "pinyin": "Huí jiā hòu, tā bǎ zhǒngzi zhòng jìn huāpén, xiě shàng yéye de míngzi.",
+            "vi": "Về nhà, cô gieo hạt vào chậu và viết tên ông lên đó.",
+            "glossaryIds": ["plant-exchange-v7"]
+          },
+          {
+            "id": "plant-exchange-s7",
+            "hanzi": "她没有得到计划中的植物，却收获了一段新的故事。",
+            "pinyin": "Tā méiyǒu dé dào jìhuà zhōng de zhíwù, què shōuhuò le yí duàn xīn de gùshi.",
+            "vi": "Cô không nhận được cây dự định đổi, nhưng có thêm một câu chuyện mới.",
+            "glossaryIds": ["plant-exchange-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "plant-exchange-v0",
+          "hanzi": "社区",
+          "pinyin": "shèqū",
+          "meaning": "khu dân cư",
+          "example": "社区周末举办了一次植物交换活动。",
+          "examplePinyin": "Shèqū zhōumò jǔbàn le yí cì zhíwù jiāohuàn huódòng.",
+          "exampleVi": "Cuối tuần, khu dân cư tổ chức một buổi trao đổi cây.",
+          "storyId": "plant-exchange"
+        },
+        {
+          "id": "plant-exchange-v1",
+          "hanzi": "举办",
+          "pinyin": "jǔbàn",
+          "meaning": "tổ chức",
+          "example": "社区周末举办了一次植物交换活动。",
+          "examplePinyin": "Shèqū zhōumò jǔbàn le yí cì zhíwù jiāohuàn huódòng.",
+          "exampleVi": "Cuối tuần, khu dân cư tổ chức một buổi trao đổi cây.",
+          "storyId": "plant-exchange"
+        },
+        {
+          "id": "plant-exchange-v2",
+          "hanzi": "交换",
+          "pinyin": "jiāohuàn",
+          "meaning": "trao đổi",
+          "example": "社区周末举办了一次植物交换活动。",
+          "examplePinyin": "Shèqū zhōumò jǔbàn le yí cì zhíwù jiāohuàn huódòng.",
+          "exampleVi": "Cuối tuần, khu dân cư tổ chức một buổi trao đổi cây.",
+          "storyId": "plant-exchange"
+        },
+        {
+          "id": "plant-exchange-v3",
+          "hanzi": "薄荷",
+          "pinyin": "bòhe",
+          "meaning": "bạc hà",
+          "example": "苏禾带来一盆薄荷，叶子闻起来很清新。",
+          "examplePinyin": "Sū Hé dài lái yì pén bòhe, yèzi wén qǐ lái hěn qīngxīn.",
+          "exampleVi": "Tô Hòa mang một chậu bạc hà, lá tỏa mùi rất tươi mát.",
+          "storyId": "plant-exchange"
+        },
+        {
+          "id": "plant-exchange-v4",
+          "hanzi": "清新",
+          "pinyin": "qīngxīn",
+          "meaning": "tươi mát",
+          "example": "苏禾带来一盆薄荷，叶子闻起来很清新。",
+          "examplePinyin": "Sū Hé dài lái yì pén bòhe, yèzi wén qǐ lái hěn qīngxīn.",
+          "exampleVi": "Tô Hòa mang một chậu bạc hà, lá tỏa mùi rất tươi mát.",
+          "storyId": "plant-exchange"
+        },
+        {
+          "id": "plant-exchange-v5",
+          "hanzi": "多肉",
+          "pinyin": "duōròu",
+          "meaning": "cây mọng nước, sen đá",
+          "example": "她想换一盆多肉，却担心没人喜欢自己的植物。",
+          "examplePinyin": "Tā xiǎng huàn yì pén duōròu, què dānxīn méi rén xǐhuan zìjǐ de zhíwù.",
+          "exampleVi": "Cô muốn đổi lấy một chậu sen đá nhưng lo không ai thích cây của mình.",
+          "storyId": "plant-exchange"
+        },
+        {
+          "id": "plant-exchange-v6",
+          "hanzi": "老家",
+          "pinyin": "lǎojiā",
+          "meaning": "quê nhà",
+          "example": "一位爷爷走过来，说薄荷让他想起老家的院子。",
+          "examplePinyin": "Yí wèi yéye zǒu guò lái, shuō bòhe ràng tā xiǎng qǐ lǎojiā de yuànzi.",
+          "exampleVi": "Một ông cụ bước đến, nói bạc hà gợi ông nhớ sân nhà ở quê.",
+          "storyId": "plant-exchange"
+        },
+        {
+          "id": "plant-exchange-v7",
+          "hanzi": "种子",
+          "pinyin": "zhǒngzi",
+          "meaning": "hạt giống",
+          "example": "他没有带多肉，只有一小袋花种子。",
+          "examplePinyin": "Tā méiyǒu dài duōròu, zhǐ yǒu yì xiǎo dài huā zhǒngzi.",
+          "exampleVi": "Ông không mang sen đá, chỉ có một túi hạt hoa nhỏ.",
+          "storyId": "plant-exchange"
+        },
+        {
+          "id": "plant-exchange-v8",
+          "hanzi": "愿意",
+          "pinyin": "yuànyì",
+          "meaning": "sẵn lòng",
+          "example": "苏禾听完他的故事，愿意用薄荷交换种子。",
+          "examplePinyin": "Sū Hé tīng wán tā de gùshi, yuànyì yòng bòhe jiāohuàn zhǒngzi.",
+          "exampleVi": "Nghe câu chuyện của ông, Tô Hòa sẵn lòng đổi bạc hà lấy hạt giống.",
+          "storyId": "plant-exchange"
+        },
+        {
+          "id": "plant-exchange-v9",
+          "hanzi": "收获",
+          "pinyin": "shōuhuò",
+          "meaning": "thu hoạch, nhận được",
+          "example": "她没有得到计划中的植物，却收获了一段新的故事。",
+          "examplePinyin": "Tā méiyǒu dé dào jìhuà zhōng de zhíwù, què shōuhuò le yí duàn xīn de gùshi.",
+          "exampleVi": "Cô không nhận được cây dự định đổi, nhưng có thêm một câu chuyện mới.",
+          "storyId": "plant-exchange"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "plant-exchange-q0",
+          "prompt": "Tô Hòa mang cây gì đến?",
+          "options": ["Bạc hà", "Hoa hồng", "Sen đá"],
+          "answer": 0,
+          "explanation": "Cô mang một chậu bạc hà."
+        },
+        {
+          "id": "plant-exchange-q1",
+          "prompt": "Ông cụ mang theo gì?",
+          "options": ["Một chậu sen đá", "Hạt giống hoa", "Dụng cụ làm vườn"],
+          "answer": 1,
+          "explanation": "Ông chỉ có một túi hạt hoa nhỏ."
+        },
+        {
+          "id": "plant-exchange-q2",
+          "prompt": "Kết quả cuộc trao đổi là gì?",
+          "options": [
+            "Cô không đổi được gì",
+            "Cô lấy sen đá",
+            "Cô nhận hạt giống và một câu chuyện"
+          ],
+          "answer": 2,
+          "explanation": "Cô đổi bạc hà lấy hạt giống sau khi nghe chuyện quê nhà của ông."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她", "把种子", "种进", "花盆。"],
+        "pinyin": "Tā bǎ zhǒngzi zhòng jìn huāpén.",
+        "vi": "Cô gieo hạt giống vào chậu."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "quiet-birthday",
+      "titleZh": "安静的生日",
+      "titleVi": "Sinh nhật yên tĩnh",
+      "subtitle": "Không cần thật đông mới thấy mình được nhớ.",
+      "difficulty": "HSK 4",
+      "topic": "Tình bạn",
+      "estimatedMinutes": 4,
+      "art": "friends",
+      "tags": ["Tình bạn", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "quiet-birthday-s0",
+            "hanzi": "今年生日，赵悦没有安排热闹的聚会。",
+            "pinyin": "Jīnnián shēngrì, Zhào Yuè méiyǒu ānpái rènao de jùhuì.",
+            "vi": "Sinh nhật năm nay, Triệu Duyệt không tổ chức buổi tụ họp náo nhiệt.",
+            "glossaryIds": [
+              "quiet-birthday-v0",
+              "quiet-birthday-v1",
+              "quiet-birthday-v2"
+            ]
+          },
+          {
+            "id": "quiet-birthday-s1",
+            "hanzi": "她工作很忙，只想在家安静地休息。",
+            "pinyin": "Tā gōngzuò hěn máng, zhǐ xiǎng zài jiā ānjìng de xiūxi.",
+            "vi": "Công việc bận rộn, cô chỉ muốn nghỉ yên tĩnh ở nhà.",
+            "glossaryIds": []
+          }
+        ],
+        [
+          {
+            "id": "quiet-birthday-s2",
+            "hanzi": "下午，门铃响了，快递员送来一个小盒子。",
+            "pinyin": "Xiàwǔ, ménlíng xiǎng le, kuàidìyuán sòng lái yí ge xiǎo hézi.",
+            "vi": "Buổi chiều, chuông cửa reo, người giao hàng mang đến một hộp nhỏ.",
+            "glossaryIds": ["quiet-birthday-v3", "quiet-birthday-v4"]
+          },
+          {
+            "id": "quiet-birthday-s3",
+            "hanzi": "盒子里没有蛋糕，只有六张朋友写的卡片。",
+            "pinyin": "Hézi lǐ méiyǒu dàngāo, zhǐ yǒu liù zhāng péngyou xiě de kǎpiàn.",
+            "vi": "Trong hộp không có bánh, chỉ có sáu tấm thiệp bạn bè viết.",
+            "glossaryIds": []
+          }
+        ],
+        [
+          {
+            "id": "quiet-birthday-s4",
+            "hanzi": "每张卡片都记录了一件和她有关的小事。",
+            "pinyin": "Měi zhāng kǎpiàn dōu jìlù le yí jiàn hé tā yǒuguān de xiǎoshì.",
+            "vi": "Mỗi tấm thiệp ghi một chuyện nhỏ có liên quan đến cô.",
+            "glossaryIds": ["quiet-birthday-v5"]
+          },
+          {
+            "id": "quiet-birthday-s5",
+            "hanzi": "她读着读着，才知道自己曾经给别人那么多鼓励。",
+            "pinyin": "Tā dú zhe dú zhe, cái zhīdào zìjǐ céngjīng gěi biérén nàme duō gǔlì.",
+            "vi": "Đọc một lúc, cô mới biết mình từng mang đến cho người khác nhiều động viên đến thế.",
+            "glossaryIds": ["quiet-birthday-v6", "quiet-birthday-v7"]
+          }
+        ],
+        [
+          {
+            "id": "quiet-birthday-s6",
+            "hanzi": "晚上，她给朋友们发了语音，声音有一点激动。",
+            "pinyin": "Wǎnshang, tā gěi péngyoumen fā le yǔyīn, shēngyīn yǒu yìdiǎn jīdòng.",
+            "vi": "Buổi tối, cô gửi tin nhắn thoại cho bạn bè, giọng hơi xúc động.",
+            "glossaryIds": ["quiet-birthday-v8"]
+          },
+          {
+            "id": "quiet-birthday-s7",
+            "hanzi": "这个生日很安静，却一点也不孤单。",
+            "pinyin": "Zhège shēngrì hěn ānjìng, què yìdiǎn yě bù gūdān.",
+            "vi": "Sinh nhật này yên tĩnh, nhưng chẳng cô đơn chút nào.",
+            "glossaryIds": ["quiet-birthday-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "quiet-birthday-v0",
+          "hanzi": "安排",
+          "pinyin": "ānpái",
+          "meaning": "sắp xếp",
+          "example": "今年生日，赵悦没有安排热闹的聚会。",
+          "examplePinyin": "Jīnnián shēngrì, Zhào Yuè méiyǒu ānpái rènao de jùhuì.",
+          "exampleVi": "Sinh nhật năm nay, Triệu Duyệt không tổ chức buổi tụ họp náo nhiệt.",
+          "storyId": "quiet-birthday"
+        },
+        {
+          "id": "quiet-birthday-v1",
+          "hanzi": "热闹",
+          "pinyin": "rènao",
+          "meaning": "náo nhiệt",
+          "example": "今年生日，赵悦没有安排热闹的聚会。",
+          "examplePinyin": "Jīnnián shēngrì, Zhào Yuè méiyǒu ānpái rènao de jùhuì.",
+          "exampleVi": "Sinh nhật năm nay, Triệu Duyệt không tổ chức buổi tụ họp náo nhiệt.",
+          "storyId": "quiet-birthday"
+        },
+        {
+          "id": "quiet-birthday-v2",
+          "hanzi": "聚会",
+          "pinyin": "jùhuì",
+          "meaning": "buổi tụ họp",
+          "example": "今年生日，赵悦没有安排热闹的聚会。",
+          "examplePinyin": "Jīnnián shēngrì, Zhào Yuè méiyǒu ānpái rènao de jùhuì.",
+          "exampleVi": "Sinh nhật năm nay, Triệu Duyệt không tổ chức buổi tụ họp náo nhiệt.",
+          "storyId": "quiet-birthday"
+        },
+        {
+          "id": "quiet-birthday-v3",
+          "hanzi": "门铃",
+          "pinyin": "ménlíng",
+          "meaning": "chuông cửa",
+          "example": "下午，门铃响了，快递员送来一个小盒子。",
+          "examplePinyin": "Xiàwǔ, ménlíng xiǎng le, kuàidìyuán sòng lái yí ge xiǎo hézi.",
+          "exampleVi": "Buổi chiều, chuông cửa reo, người giao hàng mang đến một hộp nhỏ.",
+          "storyId": "quiet-birthday"
+        },
+        {
+          "id": "quiet-birthday-v4",
+          "hanzi": "快递员",
+          "pinyin": "kuàidìyuán",
+          "meaning": "người giao hàng",
+          "example": "下午，门铃响了，快递员送来一个小盒子。",
+          "examplePinyin": "Xiàwǔ, ménlíng xiǎng le, kuàidìyuán sòng lái yí ge xiǎo hézi.",
+          "exampleVi": "Buổi chiều, chuông cửa reo, người giao hàng mang đến một hộp nhỏ.",
+          "storyId": "quiet-birthday"
+        },
+        {
+          "id": "quiet-birthday-v5",
+          "hanzi": "有关",
+          "pinyin": "yǒuguān",
+          "meaning": "có liên quan",
+          "example": "每张卡片都记录了一件和她有关的小事。",
+          "examplePinyin": "Měi zhāng kǎpiàn dōu jìlù le yí jiàn hé tā yǒuguān de xiǎoshì.",
+          "exampleVi": "Mỗi tấm thiệp ghi một chuyện nhỏ có liên quan đến cô.",
+          "storyId": "quiet-birthday"
+        },
+        {
+          "id": "quiet-birthday-v6",
+          "hanzi": "曾经",
+          "pinyin": "céngjīng",
+          "meaning": "đã từng",
+          "example": "她读着读着，才知道自己曾经给别人那么多鼓励。",
+          "examplePinyin": "Tā dú zhe dú zhe, cái zhīdào zìjǐ céngjīng gěi biérén nàme duō gǔlì.",
+          "exampleVi": "Đọc một lúc, cô mới biết mình từng mang đến cho người khác nhiều động viên đến thế.",
+          "storyId": "quiet-birthday"
+        },
+        {
+          "id": "quiet-birthday-v7",
+          "hanzi": "鼓励",
+          "pinyin": "gǔlì",
+          "meaning": "động viên",
+          "example": "她读着读着，才知道自己曾经给别人那么多鼓励。",
+          "examplePinyin": "Tā dú zhe dú zhe, cái zhīdào zìjǐ céngjīng gěi biérén nàme duō gǔlì.",
+          "exampleVi": "Đọc một lúc, cô mới biết mình từng mang đến cho người khác nhiều động viên đến thế.",
+          "storyId": "quiet-birthday"
+        },
+        {
+          "id": "quiet-birthday-v8",
+          "hanzi": "激动",
+          "pinyin": "jīdòng",
+          "meaning": "xúc động",
+          "example": "晚上，她给朋友们发了语音，声音有一点激动。",
+          "examplePinyin": "Wǎnshang, tā gěi péngyoumen fā le yǔyīn, shēngyīn yǒu yìdiǎn jīdòng.",
+          "exampleVi": "Buổi tối, cô gửi tin nhắn thoại cho bạn bè, giọng hơi xúc động.",
+          "storyId": "quiet-birthday"
+        },
+        {
+          "id": "quiet-birthday-v9",
+          "hanzi": "孤单",
+          "pinyin": "gūdān",
+          "meaning": "cô đơn",
+          "example": "这个生日很安静，却一点也不孤单。",
+          "examplePinyin": "Zhège shēngrì hěn ānjìng, què yìdiǎn yě bù gūdān.",
+          "exampleVi": "Sinh nhật này yên tĩnh, nhưng chẳng cô đơn chút nào.",
+          "storyId": "quiet-birthday"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "quiet-birthday-q0",
+          "prompt": "Cô muốn làm gì vào sinh nhật?",
+          "options": [
+            "Nghỉ yên tĩnh ở nhà",
+            "Đi du lịch",
+            "Tổ chức tiệc đông người"
+          ],
+          "answer": 0,
+          "explanation": "Công việc bận nên cô chỉ muốn nghỉ ở nhà."
+        },
+        {
+          "id": "quiet-birthday-q1",
+          "prompt": "Trong hộp có gì?",
+          "options": ["Một chiếc bánh", "Sáu tấm thiệp", "Một chiếc máy ảnh"],
+          "answer": 1,
+          "explanation": "Bạn bè gửi sáu tấm thiệp viết những kỷ niệm nhỏ."
+        },
+        {
+          "id": "quiet-birthday-q2",
+          "prompt": "Tại sao cô không thấy cô đơn?",
+          "options": [
+            "Hàng xóm mở tiệc",
+            "Cô phải đi làm",
+            "Cô cảm thấy được bạn bè nhớ đến"
+          ],
+          "answer": 2,
+          "explanation": "Những tấm thiệp giúp cô cảm nhận sự quan tâm của bạn bè."
+        }
+      ],
+      "wordOrder": {
+        "words": ["她", "给朋友们", "发了", "语音。"],
+        "pinyin": "Tā gěi péngyoumen fā le yǔyīn.",
+        "vi": "Cô gửi tin nhắn thoại cho bạn bè."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    },
+    {
+      "id": "night-train",
+      "titleZh": "夜车上的灯光",
+      "titleVi": "Ánh đèn trên chuyến tàu đêm",
+      "subtitle": "Một chút kiên nhẫn dành cho người xa lạ.",
+      "difficulty": "HSK 5",
+      "topic": "Du lịch",
+      "estimatedMinutes": 4,
+      "art": "travel",
+      "tags": ["Du lịch", "Truyện ngắn", "V2"],
+      "paragraphs": [
+        [
+          {
+            "id": "night-train-s0",
+            "hanzi": "夜里十一点，回家的火车仍然在山间行驶。",
+            "pinyin": "Yè lǐ shíyī diǎn, huí jiā de huǒchē réngrán zài shānjiān xíngshǐ.",
+            "vi": "Mười một giờ đêm, chuyến tàu về nhà vẫn chạy giữa núi.",
+            "glossaryIds": ["night-train-v0"]
+          },
+          {
+            "id": "night-train-s1",
+            "hanzi": "方远坐在靠窗的位置，想睡一会儿。",
+            "pinyin": "Fāng Yuǎn zuò zài kào chuāng de wèizhi, xiǎng shuì yíhuìr.",
+            "vi": "Phương Viễn ngồi cạnh cửa sổ, muốn ngủ một lát.",
+            "glossaryIds": []
+          }
+        ],
+        [
+          {
+            "id": "night-train-s2",
+            "hanzi": "对面的小男孩一直问妈妈什么时候到家。",
+            "pinyin": "Duìmiàn de xiǎo nánhái yìzhí wèn māma shénme shíhou dào jiā.",
+            "vi": "Cậu bé đối diện cứ hỏi mẹ khi nào đến nhà.",
+            "glossaryIds": ["night-train-v1"]
+          },
+          {
+            "id": "night-train-s3",
+            "hanzi": "妈妈一边解释，一边抱紧熟睡的妹妹，看起来十分为难。",
+            "pinyin": "Māma yìbiān jiěshì, yìbiān bào jǐn shúshuì de mèimei, kàn qǐ lái shífēn wéinán.",
+            "vi": "Người mẹ vừa giải thích vừa ôm chặt em gái đang ngủ say, trông rất khó xử.",
+            "glossaryIds": [
+              "night-train-v2",
+              "night-train-v3",
+              "night-train-v4"
+            ]
+          }
+        ],
+        [
+          {
+            "id": "night-train-s4",
+            "hanzi": "方远拿出随身的笔记本，画了一条长长的铁轨。",
+            "pinyin": "Fāng Yuǎn ná chū suíshēn de bǐjìběn, huà le yì tiáo chángcháng de tiěguǐ.",
+            "vi": "Phương Viễn lấy sổ mang theo, vẽ một đường ray thật dài.",
+            "glossaryIds": ["night-train-v5", "night-train-v6"]
+          },
+          {
+            "id": "night-train-s5",
+            "hanzi": "他请男孩画沿途的车站，男孩终于安静下来。",
+            "pinyin": "Tā qǐng nánhái huà yántú de chēzhàn, nánhái zhōngyú ānjìng xià lái.",
+            "vi": "Anh mời cậu bé vẽ các ga dọc đường; cuối cùng cậu cũng yên lặng.",
+            "glossaryIds": []
+          }
+        ],
+        [
+          {
+            "id": "night-train-s6",
+            "hanzi": "过了半个小时，纸上出现了森林、桥和一座小房子。",
+            "pinyin": "Guò le bàn ge xiǎoshí, zhǐ shàng chūxiàn le sēnlín, qiáo hé yí zuò xiǎo fángzi.",
+            "vi": "Nửa giờ sau, trên giấy hiện ra rừng, cây cầu và một ngôi nhà nhỏ.",
+            "glossaryIds": ["night-train-v7"]
+          },
+          {
+            "id": "night-train-s7",
+            "hanzi": "妈妈轻声道谢，方远觉得这段旅程也不算难熬。",
+            "pinyin": "Māma qīngshēng dàoxiè, Fāng Yuǎn juéde zhè duàn lǚchéng yě bú suàn nán'áo.",
+            "vi": "Người mẹ khẽ cảm ơn; Phương Viễn thấy hành trình này cũng không quá khó chịu.",
+            "glossaryIds": ["night-train-v8", "night-train-v9"]
+          }
+        ]
+      ],
+      "glossary": [
+        {
+          "id": "night-train-v0",
+          "hanzi": "行驶",
+          "pinyin": "xíngshǐ",
+          "meaning": "di chuyển (xe, tàu)",
+          "example": "夜里十一点，回家的火车仍然在山间行驶。",
+          "examplePinyin": "Yè lǐ shíyī diǎn, huí jiā de huǒchē réngrán zài shānjiān xíngshǐ.",
+          "exampleVi": "Mười một giờ đêm, chuyến tàu về nhà vẫn chạy giữa núi.",
+          "storyId": "night-train"
+        },
+        {
+          "id": "night-train-v1",
+          "hanzi": "对面",
+          "pinyin": "duìmiàn",
+          "meaning": "đối diện",
+          "example": "对面的小男孩一直问妈妈什么时候到家。",
+          "examplePinyin": "Duìmiàn de xiǎo nánhái yìzhí wèn māma shénme shíhou dào jiā.",
+          "exampleVi": "Cậu bé đối diện cứ hỏi mẹ khi nào đến nhà.",
+          "storyId": "night-train"
+        },
+        {
+          "id": "night-train-v2",
+          "hanzi": "解释",
+          "pinyin": "jiěshì",
+          "meaning": "giải thích",
+          "example": "妈妈一边解释，一边抱紧熟睡的妹妹，看起来十分为难。",
+          "examplePinyin": "Māma yìbiān jiěshì, yìbiān bào jǐn shúshuì de mèimei, kàn qǐ lái shífēn wéinán.",
+          "exampleVi": "Người mẹ vừa giải thích vừa ôm chặt em gái đang ngủ say, trông rất khó xử.",
+          "storyId": "night-train"
+        },
+        {
+          "id": "night-train-v3",
+          "hanzi": "熟睡",
+          "pinyin": "shúshuì",
+          "meaning": "ngủ say",
+          "example": "妈妈一边解释，一边抱紧熟睡的妹妹，看起来十分为难。",
+          "examplePinyin": "Māma yìbiān jiěshì, yìbiān bào jǐn shúshuì de mèimei, kàn qǐ lái shífēn wéinán.",
+          "exampleVi": "Người mẹ vừa giải thích vừa ôm chặt em gái đang ngủ say, trông rất khó xử.",
+          "storyId": "night-train"
+        },
+        {
+          "id": "night-train-v4",
+          "hanzi": "为难",
+          "pinyin": "wéinán",
+          "meaning": "khó xử",
+          "example": "妈妈一边解释，一边抱紧熟睡的妹妹，看起来十分为难。",
+          "examplePinyin": "Māma yìbiān jiěshì, yìbiān bào jǐn shúshuì de mèimei, kàn qǐ lái shífēn wéinán.",
+          "exampleVi": "Người mẹ vừa giải thích vừa ôm chặt em gái đang ngủ say, trông rất khó xử.",
+          "storyId": "night-train"
+        },
+        {
+          "id": "night-train-v5",
+          "hanzi": "随身",
+          "pinyin": "suíshēn",
+          "meaning": "mang theo người",
+          "example": "方远拿出随身的笔记本，画了一条长长的铁轨。",
+          "examplePinyin": "Fāng Yuǎn ná chū suíshēn de bǐjìběn, huà le yì tiáo chángcháng de tiěguǐ.",
+          "exampleVi": "Phương Viễn lấy sổ mang theo, vẽ một đường ray thật dài.",
+          "storyId": "night-train"
+        },
+        {
+          "id": "night-train-v6",
+          "hanzi": "铁轨",
+          "pinyin": "tiěguǐ",
+          "meaning": "đường ray",
+          "example": "方远拿出随身的笔记本，画了一条长长的铁轨。",
+          "examplePinyin": "Fāng Yuǎn ná chū suíshēn de bǐjìběn, huà le yì tiáo chángcháng de tiěguǐ.",
+          "exampleVi": "Phương Viễn lấy sổ mang theo, vẽ một đường ray thật dài.",
+          "storyId": "night-train"
+        },
+        {
+          "id": "night-train-v7",
+          "hanzi": "森林",
+          "pinyin": "sēnlín",
+          "meaning": "rừng",
+          "example": "过了半个小时，纸上出现了森林、桥和一座小房子。",
+          "examplePinyin": "Guò le bàn ge xiǎoshí, zhǐ shàng chūxiàn le sēnlín, qiáo hé yí zuò xiǎo fángzi.",
+          "exampleVi": "Nửa giờ sau, trên giấy hiện ra rừng, cây cầu và một ngôi nhà nhỏ.",
+          "storyId": "night-train"
+        },
+        {
+          "id": "night-train-v8",
+          "hanzi": "旅程",
+          "pinyin": "lǚchéng",
+          "meaning": "hành trình",
+          "example": "妈妈轻声道谢，方远觉得这段旅程也不算难熬。",
+          "examplePinyin": "Māma qīngshēng dàoxiè, Fāng Yuǎn juéde zhè duàn lǚchéng yě bú suàn nán'áo.",
+          "exampleVi": "Người mẹ khẽ cảm ơn; Phương Viễn thấy hành trình này cũng không quá khó chịu.",
+          "storyId": "night-train"
+        },
+        {
+          "id": "night-train-v9",
+          "hanzi": "难熬",
+          "pinyin": "nán'áo",
+          "meaning": "khó chịu đựng",
+          "example": "妈妈轻声道谢，方远觉得这段旅程也不算难熬。",
+          "examplePinyin": "Māma qīngshēng dàoxiè, Fāng Yuǎn juéde zhè duàn lǚchéng yě bú suàn nán'áo.",
+          "exampleVi": "Người mẹ khẽ cảm ơn; Phương Viễn thấy hành trình này cũng không quá khó chịu.",
+          "storyId": "night-train"
+        }
+      ],
+      "comprehensionQuestions": [
+        {
+          "id": "night-train-q0",
+          "prompt": "Người mẹ khó xử vì điều gì?",
+          "options": [
+            "Mất vé",
+            "Vừa trả lời con trai vừa bế bé gái ngủ",
+            "Quên hành lý"
+          ],
+          "answer": 1,
+          "explanation": "Bà vừa giải thích cho con trai vừa ôm em gái ngủ say."
+        },
+        {
+          "id": "night-train-q1",
+          "prompt": "Phương Viễn giúp bằng cách nào?",
+          "options": [
+            "Mời cậu bé cùng vẽ",
+            "Đưa cậu xuống tàu",
+            "Bật phim thật to"
+          ],
+          "answer": 0,
+          "explanation": "Anh vẽ đường ray rồi mời cậu bé vẽ các ga."
+        },
+        {
+          "id": "night-train-q2",
+          "prompt": "Trên giấy cuối cùng có những gì?",
+          "options": [
+            "Chỉ một chiếc tàu",
+            "Biển và thuyền",
+            "Rừng, cầu và ngôi nhà"
+          ],
+          "answer": 2,
+          "explanation": "Sau nửa giờ, trên giấy có rừng, cầu và một căn nhà nhỏ."
+        }
+      ],
+      "wordOrder": {
+        "words": ["他", "请男孩", "画", "车站。"],
+        "pinyin": "Tā qǐng nánhái huà chēzhàn.",
+        "vi": "Anh mời cậu bé vẽ nhà ga."
+      },
+      "attribution": {
+        "author": "HanziGo · AI tự biên soạn",
+        "license": "CC0-1.0",
+        "reviewStatus": "draft"
+      }
+    }
+  ],
+  "quotes": [
+    {
+      "id": "quote-1",
+      "hanzi": "慢慢来，你已经走了很远。",
+      "pinyin": "Mànmàn lái, nǐ yǐjīng zǒu le hěn yuǎn.",
+      "vi": "Cứ từ từ thôi, em đã đi được một quãng đường dài rồi."
+    },
+    {
+      "id": "quote-2",
+      "hanzi": "今天的一小步，也是向前的一步。",
+      "pinyin": "Jīntiān de yì xiǎo bù, yě shì xiàng qián de yí bù.",
+      "vi": "Một bước nhỏ hôm nay cũng là một bước tiến về phía trước."
+    },
+    {
+      "id": "quote-3",
+      "hanzi": "愿你的今天，有书、有茶、有笑容。",
+      "pinyin": "Yuàn nǐ de jīntiān, yǒu shū, yǒu chá, yǒu xiàoróng.",
+      "vi": "Mong ngày hôm nay của em có sách, có trà và có nụ cười."
+    },
+    {
+      "id": "quote-4",
+      "hanzi": "读一页书，给心一个小小的旅行。",
+      "pinyin": "Dú yí yè shū, gěi xīn yí ge xiǎoxiǎo de lǚxíng.",
+      "vi": "Đọc một trang sách, cho trái tim một chuyến đi nho nhỏ."
+    },
+    {
+      "id": "quote-5",
+      "hanzi": "你不必完美，也值得被爱。",
+      "pinyin": "Nǐ bú bì wánměi, yě zhíde bèi ài.",
+      "vi": "Em không cần hoàn hảo vẫn xứng đáng được yêu thương."
+    },
+    {
+      "id": "quote-6",
+      "hanzi": "累了就休息，花也需要夜晚。",
+      "pinyin": "Lèi le jiù xiūxi, huā yě xūyào yèwǎn.",
+      "vi": "Mệt thì nghỉ nhé, hoa cũng cần những đêm yên tĩnh."
+    },
+    {
+      "id": "quote-7",
+      "hanzi": "每一次尝试，都在让你成长。",
+      "pinyin": "Měi yí cì chángshì, dōu zài ràng nǐ chéngzhǎng.",
+      "vi": "Mỗi lần thử đều giúp em lớn lên một chút."
+    },
+    {
+      "id": "quote-8",
+      "hanzi": "把快乐放进口袋，带着它出门。",
+      "pinyin": "Bǎ kuàilè fàng jìn kǒudài, dài zhe tā chūmén.",
+      "vi": "Cất niềm vui vào túi rồi mang theo khi ra ngoài nhé."
+    },
+    {
+      "id": "quote-9",
+      "hanzi": "平凡的日子里，也藏着温柔。",
+      "pinyin": "Píngfán de rìzi lǐ, yě cáng zhe wēnróu.",
+      "vi": "Trong những ngày bình thường cũng có sự dịu dàng."
+    },
+    {
+      "id": "quote-10",
+      "hanzi": "你的笑容，让今天多了一点阳光。",
+      "pinyin": "Nǐ de xiàoróng, ràng jīntiān duō le yìdiǎn yángguāng.",
+      "vi": "Nụ cười của em thêm một chút nắng cho hôm nay."
+    },
+    {
+      "id": "quote-11",
+      "hanzi": "不懂的地方，正是新的开始。",
+      "pinyin": "Bù dǒng de dìfang, zhèng shì xīn de kāishǐ.",
+      "vi": "Chỗ chưa hiểu chính là nơi một khởi đầu mới bắt đầu."
+    },
+    {
+      "id": "quote-12",
+      "hanzi": "今天也请好好照顾自己。",
+      "pinyin": "Jīntiān yě qǐng hǎohāo zhàogù zìjǐ.",
+      "vi": "Hôm nay cũng nhớ chăm sóc bản thân thật tốt nhé."
+    },
+    {
+      "id": "quote-13",
+      "hanzi": "小小的花，也有自己的春天。",
+      "pinyin": "Xiǎoxiǎo de huā, yě yǒu zìjǐ de chūntiān.",
+      "vi": "Bông hoa nhỏ cũng có mùa xuân của riêng mình."
+    },
+    {
+      "id": "quote-14",
+      "hanzi": "一起走的路，总会多一点温暖。",
+      "pinyin": "Yìqǐ zǒu de lù, zǒng huì duō yìdiǎn wēnnuǎn.",
+      "vi": "Con đường đi cùng nhau luôn ấm áp hơn một chút."
+    },
+    {
+      "id": "quote-15",
+      "hanzi": "给自己一点时间，也给自己一点相信。",
+      "pinyin": "Gěi zìjǐ yìdiǎn shíjiān, yě gěi zìjǐ yìdiǎn xiāngxìn.",
+      "vi": "Cho mình chút thời gian và chút niềm tin nhé."
+    },
+    {
+      "id": "quote-16",
+      "hanzi": "一杯热茶，可以陪你慢下来。",
+      "pinyin": "Yì bēi rè chá, kěyǐ péi nǐ màn xià lái.",
+      "vi": "Một tách trà nóng có thể cùng em sống chậm lại."
+    },
+    {
+      "id": "quote-17",
+      "hanzi": "你认真生活的样子，很美。",
+      "pinyin": "Nǐ rènzhēn shēnghuó de yàngzi, hěn měi.",
+      "vi": "Dáng vẻ em chăm chút cho cuộc sống thật đẹp."
+    },
+    {
+      "id": "quote-18",
+      "hanzi": "新的词语，会打开新的窗。",
+      "pinyin": "Xīn de cíyǔ, huì dǎkāi xīn de chuāng.",
+      "vi": "Những từ mới sẽ mở ra những ô cửa mới."
+    },
+    {
+      "id": "quote-19",
+      "hanzi": "不着急，我们有很多明天。",
+      "pinyin": "Bù zháojí, wǒmen yǒu hěn duō míngtiān.",
+      "vi": "Đừng vội, chúng mình còn nhiều ngày mai."
+    },
+    {
+      "id": "quote-20",
+      "hanzi": "雨会停，心里的花会开。",
+      "pinyin": "Yǔ huì tíng, xīn lǐ de huā huì kāi.",
+      "vi": "Mưa sẽ tạnh, hoa trong lòng sẽ nở."
+    },
+    {
+      "id": "quote-21",
+      "hanzi": "喜欢的事情，值得慢慢坚持。",
+      "pinyin": "Xǐhuan de shìqing, zhíde mànmàn jiānchí.",
+      "vi": "Điều mình yêu thích xứng đáng được kiên trì từng chút."
+    },
+    {
+      "id": "quote-22",
+      "hanzi": "今天学会的一个词，就是小小的礼物。",
+      "pinyin": "Jīntiān xuéhuì de yí ge cí, jiù shì xiǎoxiǎo de lǐwù.",
+      "vi": "Một từ học được hôm nay là một món quà nhỏ."
+    },
+    {
+      "id": "quote-23",
+      "hanzi": "愿你在忙碌中，也能听见自己的心。",
+      "pinyin": "Yuàn nǐ zài mánglù zhōng, yě néng tīngjiàn zìjǐ de xīn.",
+      "vi": "Mong trong lúc bận rộn, em vẫn nghe được tiếng lòng mình."
+    },
+    {
+      "id": "quote-24",
+      "hanzi": "书里的远方，可以从这里出发。",
+      "pinyin": "Shū lǐ de yuǎnfāng, kěyǐ cóng zhèlǐ chūfā.",
+      "vi": "Miền xa trong sách có thể bắt đầu từ nơi đây."
+    },
+    {
+      "id": "quote-25",
+      "hanzi": "好好吃饭，也是爱自己的一种方式。",
+      "pinyin": "Hǎohāo chī fàn, yě shì ài zìjǐ de yì zhǒng fāngshì.",
+      "vi": "Ăn uống tử tế cũng là một cách yêu bản thân."
+    },
+    {
+      "id": "quote-26",
+      "hanzi": "你可以重新开始，多少次都可以。",
+      "pinyin": "Nǐ kěyǐ chóngxīn kāishǐ, duōshao cì dōu kěyǐ.",
+      "vi": "Em có thể bắt đầu lại, bao nhiêu lần cũng được."
+    },
+    {
+      "id": "quote-27",
+      "hanzi": "有你在，普通的一天也变得特别。",
+      "pinyin": "Yǒu nǐ zài, pǔtōng de yì tiān yě biàn de tèbié.",
+      "vi": "Có em, một ngày bình thường cũng trở nên đặc biệt."
+    },
+    {
+      "id": "quote-28",
+      "hanzi": "别忘了，为今天的自己鼓掌。",
+      "pinyin": "Bié wàng le, wèi jīntiān de zìjǐ gǔzhǎng.",
+      "vi": "Đừng quên vỗ tay cho chính mình của hôm nay nhé."
+    },
+    {
+      "id": "quote-29",
+      "hanzi": "一点点进步，会积累成惊喜。",
+      "pinyin": "Yìdiǎndiǎn jìnbù, huì jīlěi chéng jīngxǐ.",
+      "vi": "Tiến bộ từng chút sẽ tích lũy thành niềm vui bất ngờ."
+    },
+    {
+      "id": "quote-30",
+      "hanzi": "今晚，让一个好故事陪你入睡。",
+      "pinyin": "Jīnwǎn, ràng yí ge hǎo gùshi péi nǐ rùshuì.",
+      "vi": "Tối nay, để một câu chuyện hay cùng em vào giấc ngủ."
+    }
+  ]
+}

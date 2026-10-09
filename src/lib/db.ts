@@ -1,0 +1,300 @@
+import Dexie, { type EntityTable } from "dexie";
+import { z } from "zod";
+import { vocabulary, stories, quotes } from "@/content";
+import { DAY, localDay, scheduleReview, XP, type Rating } from "./learning";
+const timestamp = z.number().finite().nonnegative();
+export const cardSchema = z.object({
+  id: z.string(),
+  dueAt: timestamp,
+  interval: z.number().finite().nonnegative().max(365),
+  repetitions: z.number().int().nonnegative(),
+  addedAt: timestamp,
+  updatedAt: timestamp,
+});
+export const progressSchema = z.object({
+  id: z.string(),
+  sentence: z.number().int().nonnegative(),
+  completed: z.boolean(),
+  quizScore: z.number().int().nonnegative().optional(),
+  updatedAt: timestamp,
+});
+export const activitySchema = z.object({
+  id: z.string(),
+  kind: z.enum(["story", "quiz", "review", "game"]),
+  day: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .refine((s) => {
+      const [y, m, d] = s.split("-").map(Number);
+      const t = new Date(Date.UTC(y, m - 1, d));
+      return (
+        t.getUTCFullYear() === y &&
+        t.getUTCMonth() === m - 1 &&
+        t.getUTCDate() === d
+      );
+    }, "Invalid calendar date"),
+  xp: z.number().int().nonnegative().max(30),
+  at: timestamp,
+});
+export const reviewLogSchema = z.object({
+  id: z.string(),
+  cardId: z.string(),
+  rating: z.enum(["again", "hard", "good", "easy"]),
+  at: timestamp,
+});
+export const favoriteSchema = z.object({
+  id: z.string(),
+  active: z.boolean(),
+  updatedAt: timestamp,
+});
+export type ReviewCard = z.infer<typeof cardSchema>;
+export type ReadingProgress = z.infer<typeof progressSchema>;
+export type Activity = z.infer<typeof activitySchema>;
+export type ReviewLog = z.infer<typeof reviewLogSchema>;
+export type Favorite = z.infer<typeof favoriteSchema>;
+export interface CachedLetter {
+  id: string;
+  recipientUid: string;
+  title: string;
+  zhText: string;
+  pinyin: string;
+  viText: string;
+  theme: "rose" | "sage" | "lavender";
+  deliveryType: "instant" | "scheduled" | "milestone";
+  status: "draft" | "scheduled" | "published" | "archived";
+  visibleAt: number;
+  milestoneKind: "stories" | "streak" | "reviews";
+  milestoneCount: number;
+  createdAt: number;
+  updatedAt: number;
+}
+export interface Receipt {
+  id: string;
+  recipientUid: string;
+  seenAt?: number;
+  readAt?: number;
+  heartedAt?: number;
+  favoritedAt?: number;
+  dismissedAt?: number;
+  updatedAt: number;
+  pending?: boolean;
+}
+export interface ContentDraft {
+  id: string;
+  raw: string;
+  updatedAt: number;
+}
+export const db = new Dexie("hanzigo") as Dexie & {
+  cards: EntityTable<ReviewCard, "id">;
+  progress: EntityTable<ReadingProgress, "id">;
+  activities: EntityTable<Activity, "id">;
+  reviews: EntityTable<ReviewLog, "id">;
+  favorites: EntityTable<Favorite, "id">;
+  letters: EntityTable<CachedLetter, "id">;
+  receipts: EntityTable<Receipt, "id">;
+  contentDrafts: EntityTable<ContentDraft, "id">;
+};
+/** Claim before display, in one IndexedDB transaction, even across open tabs. */
+export async function claimLetterPopup(uid: string, messageId: string) {
+  return db.transaction("rw", db.receipts, async () => {
+    const id = `${uid}:${messageId}`;
+    const old = await db.receipts.get(id);
+    if (old?.seenAt) return false;
+    const now = Date.now();
+    await db.receipts.put({
+      ...old,
+      id,
+      recipientUid: uid,
+      seenAt: now,
+      updatedAt: now,
+      pending: true,
+    });
+    return true;
+  });
+}
+db.version(1).stores({
+  cards: "id, dueAt",
+  progress: "id, updatedAt",
+  activities: "id, day, kind",
+  reviews: "id, cardId, at",
+  favorites: "id",
+  letters: "id, recipientUid, visibleAt",
+  receipts: "id, recipientUid",
+});
+// Additive migration; all v1 learning records remain intact.
+db.version(2).stores({ letters: "id, recipientUid, visibleAt, status" });
+db.version(3).stores({ contentDrafts: "id, updatedAt" });
+export async function saveVocabulary(id: string) {
+  if (!vocabulary.some((v) => v.id === id))
+    throw new Error("Không tìm thấy từ này.");
+  await db.transaction("rw", db.cards, async () => {
+    if (!(await db.cards.get(id))) {
+      const now = Date.now();
+      await db.cards.add({
+        id,
+        dueAt: now,
+        interval: 0,
+        repetitions: 0,
+        addedAt: now,
+        updatedAt: now,
+      });
+    }
+  });
+}
+export async function awardActivity(
+  id: string,
+  kind: Activity["kind"],
+  at = Date.now(),
+) {
+  return db.transaction("rw", db.activities, async () => {
+    if (await db.activities.get(id)) return false;
+    await db.activities.add({ id, kind, day: localDay(at), xp: XP[kind], at });
+    return true;
+  });
+}
+export async function completeStory(id: string, sentence: number) {
+  await db.transaction("rw", db.progress, db.activities, async () => {
+    const prior = await db.progress.get(id);
+    await db.progress.put({
+      id,
+      sentence,
+      completed: true,
+      quizScore: prior?.quizScore,
+      updatedAt: Date.now(),
+    });
+    await awardActivity(`story:${id}`, "story");
+  });
+}
+export async function saveReadingPosition(id: string, sentence: number) {
+  await db.transaction("rw", db.progress, async () => {
+    const old = await db.progress.get(id);
+    await db.progress.put({
+      id,
+      sentence,
+      completed: old?.completed ?? false,
+      quizScore: old?.quizScore,
+      updatedAt: Date.now(),
+    });
+  });
+}
+export async function recordQuiz(id: string, score: number, total: number) {
+  await db.transaction("rw", db.progress, db.activities, async () => {
+    const prior = await db.progress.get(id);
+    await db.progress.put({
+      id,
+      sentence: prior?.sentence ?? 0,
+      completed: prior?.completed ?? false,
+      quizScore: Math.max(prior?.quizScore ?? 0, score),
+      updatedAt: Date.now(),
+    });
+    if (score === total) await awardActivity(`quiz:${id}`, "quiz");
+  });
+}
+export async function reviewVocabulary(
+  id: string,
+  rating: Rating,
+  now = Date.now(),
+) {
+  return db.transaction("rw", db.cards, db.reviews, db.activities, async () => {
+    const card = await db.cards.get(id);
+    if (!card || card.dueAt > now) return false;
+    const logId = `${id}:${card.dueAt}`;
+    if (await db.reviews.get(logId)) return false;
+    await db.cards.put({ ...card, ...scheduleReview(card, rating, now) });
+    await db.reviews.add({ id: logId, cardId: id, rating, at: now });
+    await awardActivity(`review:${logId}`, "review", now);
+    return true;
+  });
+}
+export async function toggleFavorite(type: "story" | "quote", id: string) {
+  const key = `${type}:${id}`;
+  await db.transaction("rw", db.favorites, async () => {
+    const old = await db.favorites.get(key);
+    await db.favorites.put({
+      id: key,
+      active: !old?.active,
+      updatedAt: Date.now(),
+    });
+  });
+}
+export const backupSchema = z.object({
+  app: z.literal("HanziGo"),
+  version: z.literal(1),
+  exportedAt: timestamp,
+  cards: z.array(cardSchema).max(10000),
+  progress: z.array(progressSchema).max(10000),
+  activities: z.array(activitySchema).max(100000),
+  reviews: z.array(reviewLogSchema).max(100000),
+  favorites: z.array(favoriteSchema).max(10000),
+});
+export async function exportLearning() {
+  return {
+    app: "HanziGo" as const,
+    version: 1 as const,
+    exportedAt: Date.now(),
+    cards: await db.cards.toArray(),
+    progress: await db.progress.toArray(),
+    activities: await db.activities.toArray(),
+    reviews: await db.reviews.toArray(),
+    favorites: await db.favorites.toArray(),
+  };
+}
+export async function importLearning(input: unknown) {
+  const data = backupSchema.parse(input);
+  const validCards = new Set(vocabulary.map((v) => v.id));
+  if (
+    data.cards.some((c) => !validCards.has(c.id)) ||
+    data.reviews.some((c) => !validCards.has(c.cardId))
+  )
+    throw new Error(
+      "Bản sao lưu chứa từ không có trong phiên bản nội dung này.",
+    );
+  for (const p of data.progress) {
+    const s = stories.find((s) => s.id === p.id);
+    if (
+      !s ||
+      p.sentence >= s.paragraphs.flat().length ||
+      (p.quizScore ?? 0) > s.comprehensionQuestions.length
+    )
+      throw new Error("Tiến độ truyện không hợp lệ.");
+  }
+  if (
+    data.favorites.some(
+      (f) =>
+        !stories.some((s) => f.id === `story:${s.id}`) &&
+        !quotes.some((q) => f.id === `quote:${q.id}`),
+    )
+  )
+    throw new Error("Mục yêu thích không hợp lệ.");
+  for (const a of data.activities)
+    if (a.xp !== XP[a.kind] || a.at > Date.now() + DAY)
+      throw new Error("Hoạt động không hợp lệ.");
+  await db.transaction(
+    "rw",
+    [db.cards, db.progress, db.activities, db.reviews, db.favorites],
+    async () => {
+      for (const item of data.cards) {
+        const old = await db.cards.get(item.id);
+        if (!old || item.updatedAt > old.updatedAt) await db.cards.put(item);
+      }
+      for (const item of data.progress) {
+        const old = await db.progress.get(item.id);
+        if (!old || item.updatedAt > old.updatedAt)
+          await db.progress.put({
+            ...item,
+            completed: item.completed || !!old?.completed,
+            quizScore: Math.max(item.quizScore ?? 0, old?.quizScore ?? 0),
+          });
+      }
+      for (const item of data.activities)
+        if (!(await db.activities.get(item.id))) await db.activities.add(item);
+      for (const item of data.reviews)
+        if (!(await db.reviews.get(item.id))) await db.reviews.add(item);
+      for (const item of data.favorites) {
+        const old = await db.favorites.get(item.id);
+        if (!old || item.updatedAt > old.updatedAt)
+          await db.favorites.put(item);
+      }
+    },
+  );
+}

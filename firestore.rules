@@ -1,0 +1,76 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function admin() { return signedIn() && exists(/databases/$(database)/documents/config/admins) && request.auth.uid in get(/databases/$(database)/documents/config/admins).data.uids; }
+    function own(uid) { return signedIn() && request.auth.uid == uid; }
+    function delivered(m) { return signedIn() && m.recipientUid == request.auth.uid && (m.status == 'published' || m.status == 'scheduled' && m.visibleAt <= request.time); }
+    function validMessage(m) {
+      return m.keys().hasOnly(['recipientUid','title','zhText','pinyin','viText','theme','deliveryType','scheduledAt','milestoneKind','milestoneCount','status','visibleAt','publishedAt','createdAt','updatedAt'])
+        && m.keys().hasAll(['recipientUid','title','zhText','pinyin','viText','theme','deliveryType','scheduledAt','milestoneKind','milestoneCount','status','visibleAt','publishedAt','createdAt','updatedAt'])
+        && m.recipientUid is string && m.recipientUid.size() > 0 && m.recipientUid.size() <= 128
+        && m.title is string && m.title.size() > 0 && m.title.size() <= 120
+        && m.viText is string && m.viText.size() > 0 && m.viText.size() <= 5000
+        && m.zhText is string && m.zhText.size() <= 500
+        && m.pinyin is string && m.pinyin.size() <= 1000
+        && (m.pinyin == '' || m.zhText != '')
+        && m.theme in ['rose','sage','lavender']
+        && m.deliveryType in ['instant','scheduled','milestone']
+        && m.status in ['draft','scheduled','published','archived']
+        && m.milestoneKind in ['stories','streak','reviews']
+        && m.milestoneCount is int && m.milestoneCount >= 1 && m.milestoneCount <= 1000
+        && m.visibleAt is timestamp && m.createdAt is timestamp && m.updatedAt == request.time
+        && (m.publishedAt == null || m.publishedAt is timestamp && m.publishedAt <= request.time)
+        && (m.deliveryType == 'scheduled' ? m.scheduledAt is timestamp && m.visibleAt == m.scheduledAt : m.scheduledAt == null)
+        && (m.status != 'scheduled' || m.deliveryType == 'scheduled' && m.visibleAt > request.time)
+        && (m.status != 'published' || m.deliveryType != 'scheduled' && m.visibleAt <= request.time)
+        && (m.status in ['draft','archived'] || m.publishedAt is timestamp);
+    }
+    match /config/admins {
+      // Bootstrap and modify via Firebase Console / trusted Admin SDK only.
+      allow get: if signedIn() && request.auth.uid in resource.data.uids;
+      allow list, create, update, delete: if false;
+    }
+    match /config/settings {
+      allow get: if signedIn();
+      allow create, update: if admin() && request.resource.data.keys().hasOnly(['popupsEnabled']) && request.resource.data.popupsEnabled is bool;
+      allow list, delete: if false;
+    }
+    match /messages/{id} {
+      allow get, list: if admin() || delivered(resource.data);
+      allow create: if admin() && validMessage(request.resource.data) && request.resource.data.createdAt == request.time;
+      allow update: if admin() && validMessage(request.resource.data) && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if admin();
+    }
+    match /devices/{uid} {
+      allow get: if own(uid) || admin();
+      allow list: if admin();
+      function validDevice() {
+        return request.resource.data.keys().hasOnly(['uid','label','createdAt','lastPing'])
+          && request.resource.data.keys().hasAll(['uid','label','createdAt','lastPing'])
+          && request.resource.data.uid == uid && request.resource.data.label is string && request.resource.data.label.size() <= 80
+          && request.resource.data.createdAt is timestamp && request.resource.data.lastPing == request.time;
+      }
+      allow create: if own(uid) && validDevice() && request.resource.data.createdAt == request.time;
+      allow update: if own(uid) && validDevice() && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if false;
+      match /receipts/{messageId} {
+        allow get, list: if own(uid) || admin();
+        function validTime(value) { return value == null || value is timestamp && value <= request.time; }
+        function validReceipt() {
+          let m = get(/databases/$(database)/documents/messages/$(messageId)).data;
+          let r = request.resource.data;
+          return r.keys().hasOnly(['recipientUid','messageId','seenAt','readAt','heartedAt','favoritedAt','dismissedAt','updatedAt'])
+            && r.keys().hasAll(['recipientUid','messageId','seenAt','readAt','heartedAt','favoritedAt','dismissedAt','updatedAt'])
+            && r.recipientUid == uid && r.messageId == messageId
+            && m.recipientUid == uid && m.status in ['published','scheduled','archived'] && m.visibleAt <= request.time
+            && validTime(r.seenAt) && validTime(r.readAt) && validTime(r.heartedAt) && validTime(r.favoritedAt) && validTime(r.dismissedAt)
+            && r.updatedAt == request.time;
+        }
+        allow create, update: if own(uid) && validReceipt();
+        allow delete: if false;
+      }
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
