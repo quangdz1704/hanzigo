@@ -78,6 +78,9 @@ export function LettersProvider({ children }: { children: ReactNode }) {
   const auto = usePreferences((s) => s.autoLetters);
   const [enabled, setEnabled] = useState(true);
   const [current, setCurrent] = useState<CachedLetter | null>(null);
+  useEffect(() => {
+    setCurrent(null);
+  }, [uid]);
   const opening = useRef(false);
   const latest = useRef({ path, uid });
   latest.current = { path, uid };
@@ -115,11 +118,11 @@ export function LettersProvider({ children }: { children: ReactNode }) {
     );
   }, [uid]);
   const openLetter = (letter: CachedLetter) => {
-    if (!uid) return;
+    if (!uid || letter.recipientUid !== uid) return;
     run(async () => {
       await markReceipt(uid, letter.id, "seenAt");
       await markReceipt(uid, letter.id, "readAt");
-      setCurrent(letter);
+      if (latest.current.uid === uid) setCurrent(letter);
     });
   };
   useEffect(() => {
@@ -132,6 +135,7 @@ export function LettersProvider({ children }: { children: ReactNode }) {
       path.startsWith("/admin") ||
       path.startsWith("/review") ||
       path.startsWith("/games") ||
+      /^\/(account|register|login|forgot-password)$/.test(path) ||
       /^\/stories\//.test(path)
     )
       return;
@@ -143,9 +147,10 @@ export function LettersProvider({ children }: { children: ReactNode }) {
     void claimLetterPopup(uid, next.id)
       .then((claimed) => {
         const context = latest.current;
-        const busy = /^\/(admin|review|games)(\/|$)|^\/stories\//.test(
-          context.path,
-        );
+        const busy =
+          /^\/(admin|review|games|account|register|login|forgot-password)(\/|$)|^\/stories\//.test(
+            context.path,
+          );
         if (claimed && context.uid === uid && !busy) setCurrent(next);
         void syncPendingReceipts(uid).catch(() => {});
       })
@@ -159,9 +164,9 @@ export function LettersProvider({ children }: { children: ReactNode }) {
     <Context.Provider value={{ letters, receipts, unread, openLetter, uid }}>
       {children}
       <Dialog
-        open={!!current}
+        open={!!current && current.recipientUid === uid}
         onOpenChange={(open) => {
-          if (!open && current && uid) {
+          if (!open && current && uid && current.recipientUid === uid) {
             run(() => markReceipt(uid, current.id, "dismissedAt"));
             setCurrent(null);
           }
@@ -170,7 +175,7 @@ export function LettersProvider({ children }: { children: ReactNode }) {
         <DialogContent
           className={`love-dialog theme-${current?.theme ?? "rose"}`}
         >
-          {current && (
+          {current && current.recipientUid === uid && (
             <>
               <DialogTitle className="sr-only">{current.title}</DialogTitle>
               <DialogDescription className="letter-label">

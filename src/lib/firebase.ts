@@ -53,6 +53,8 @@ export const backend =
         const admin = initializeApp(config, "hanzigo-admin");
         const auth = getAuth(learner);
         const adminAuth = getAuth(admin);
+        auth.languageCode = "vi";
+        adminAuth.languageCode = "vi";
         const store = getFirestore(learner);
         const adminStore = getFirestore(admin);
         if (import.meta.env.VITE_USE_FIREBASE_EMULATORS === "true") {

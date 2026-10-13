@@ -153,7 +153,7 @@ export function AdminLogin() {
             >
               Đăng nhập với Google
             </Button>
-            <div className="login-divider">hoặc dùng email đã được tạo</div>
+            <div className="login-divider">hoặc dùng email đã đăng ký</div>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -186,21 +186,63 @@ export function AdminLogin() {
             </form>
           </>
         )}
+        {backendMode === "cloud" && (
+          <p className="content-note">
+            Chưa có tài khoản?{" "}
+            <Link to="/register" className="text-link">
+              Đăng ký bằng email
+            </Link>
+            . Sau đó đăng nhập ở đây. Quyền quản trị cần UID được thêm vào
+            allowlist trong Firestore.
+          </p>
+        )}
         {error && (
           <p role="alert" className="form-error">
             {error}
           </p>
         )}
-        {auth.adminDenied && (
-          <div className="form-error" role="alert">
+        {(auth.adminDenied || auth.adminCheckError) && (
+          <div className="form-error admin-access-notice" role="alert">
             <p>
-              Tài khoản đã đăng nhập nhưng UID chưa được cho phép trong
-              /config/admins. Không có quyền quản lý thư.
+              {auth.adminCheckError ??
+                "Tài khoản đã đăng nhập nhưng chưa được cấp quyền quản trị trong config/admins."}
             </p>
             <code className="device-id">{auth.adminUser?.uid}</code>
-            <Button variant="ghost" onClick={() => run(auth.logout)}>
-              Đăng xuất tài khoản này
+            <Button
+              variant="secondary"
+              onClick={() => {
+                if (!auth.adminUser) return;
+                void navigator.clipboard
+                  .writeText(auth.adminUser.uid)
+                  .then(() =>
+                    useUI.getState().notify("Đã sao chép UID quản trị."),
+                  )
+                  .catch(reportError);
+              }}
+            >
+              <Copy size={16} />
+              Sao chép UID
             </Button>
+            <p className="content-note">
+              Trong Firebase Console của project{" "}
+              {import.meta.env.VITE_FIREBASE_PROJECT_ID}, mở Firestore Database
+              → Data → collection <strong>config</strong> → document{" "}
+              <strong>admins</strong>. Thêm UID này vào trường{" "}
+              <strong>uids</strong> kiểu <strong>array</strong> (mỗi phần tử là
+              string), giữ các UID hiện có. Sau đó triển khai Rules của app và
+              bấm kiểm tra lại.
+            </p>
+            <div className="button-row">
+              <Button
+                variant="outline"
+                onClick={() => window.location.reload()}
+              >
+                Kiểm tra lại quyền
+              </Button>
+              <Button variant="ghost" onClick={() => run(auth.logout)}>
+                Đăng xuất tài khoản này
+              </Button>
+            </div>
           </div>
         )}
       </section>

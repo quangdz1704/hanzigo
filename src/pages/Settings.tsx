@@ -6,6 +6,7 @@ import {
   Copy,
   Smartphone,
   Heart,
+  UserRound,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePreferences, useUI, reportError } from "@/lib/store";
@@ -18,7 +19,7 @@ import { useLearning } from "@/lib/hooks";
 import { quotes } from "@/content";
 export default function Settings() {
   const prefs = usePreferences();
-  const { uid, learnerError } = useAuth();
+  const { uid, learnerError, learnerAccount } = useAuth();
   const file = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
   const { favorites } = useLearning();
@@ -94,6 +95,44 @@ export default function Settings() {
           />
         </section>
         <div>
+          <section className="card settings-section">
+            <h2>
+              <UserRound size={20} />
+              Tài khoản của em
+            </h2>
+            {learnerAccount && !learnerAccount.isAnonymous ? (
+              <>
+                <p className="account-email">{learnerAccount.email}</p>
+                <p className="muted">
+                  {learnerAccount.emailVerified
+                    ? "Email đã được xác minh."
+                    : "Em có thể xác minh email trong trang tài khoản."}
+                </p>
+                <Button asChild variant="secondary">
+                  <Link to="/account">Quản lý tài khoản</Link>
+                </Button>
+              </>
+            ) : (
+              <>
+                <p className="muted">
+                  Gắn email vào tài khoản đang dùng để giữ mã nhận thư khi đổi
+                  thiết bị.
+                </p>
+                <div className="button-row">
+                  <Button asChild>
+                    <Link to="/register">Đăng ký</Link>
+                  </Button>
+                  <Button asChild variant="outline">
+                    <Link to="/login">Đăng nhập</Link>
+                  </Button>
+                </div>
+              </>
+            )}
+            <p className="content-note">
+              Tiến độ học vẫn lưu trên trình duyệt này. Dùng bản sao bên dưới để
+              chuyển tiến độ sang thiết bị khác.
+            </p>
+          </section>
           <section className="card settings-section">
             <h2>Giữ những gì em đã học</h2>
             <p className="muted">
@@ -221,7 +260,9 @@ export default function Settings() {
             <p className="content-note">
               {backendMode === "demo"
                 ? "Demo local: thư chỉ dùng trên trình duyệt này."
-                : "Tài khoản ẩn danh không cần đăng nhập. Xóa dữ liệu trình duyệt có thể mất mã thiết bị; cần gắn lại người nhận và nhập bản sao tiến độ."}
+                : learnerAccount && !learnerAccount.isAnonymous
+                  ? "Đăng nhập cùng email sẽ khôi phục mã nhận thư này. Tiến độ học cần chuyển bằng bản sao riêng."
+                  : "Đăng ký bằng email để giữ mã nhận thư. Xóa dữ liệu trình duyệt khi còn ẩn danh có thể làm mất mã này."}
             </p>
           </section>
           <section className="card privacy-card">

@@ -94,11 +94,13 @@ export function Shell({ children }: { children: ReactNode }) {
   const current =
     navigation.find((n) => n.to !== "/" && location.pathname.startsWith(n.to))
       ?.label ??
-    (location.pathname.startsWith("/settings")
-      ? "Tùy chọn"
-      : location.pathname.startsWith("/admin")
-        ? "Góc quản trị"
-        : "Hôm nay");
+    (/^\/(account|register|login|forgot-password)$/.test(location.pathname)
+      ? "Tài khoản"
+      : location.pathname.startsWith("/settings")
+        ? "Tùy chọn"
+        : location.pathname.startsWith("/admin")
+          ? "Góc quản trị"
+          : "Hôm nay");
   return (
     <div className="app-shell">
       <a href="#main" className="skip-link">
@@ -175,6 +177,19 @@ export function Shell({ children }: { children: ReactNode }) {
             <Download size={18} />
             Thêm vào màn hình chính
           </button>
+          <NavLink
+            to={
+              auth.learnerAccount && !auth.learnerAccount.isAnonymous
+                ? "/account"
+                : "/register"
+            }
+            className="nav-item"
+          >
+            <Mail size={19} />
+            {auth.learnerAccount && !auth.learnerAccount.isAnonymous
+              ? "Tài khoản của em"
+              : "Đăng ký / Đăng nhập"}
+          </NavLink>
           <div className="sidebar-profile">
             <div>✿</div>
             <span>

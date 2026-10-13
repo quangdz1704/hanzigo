@@ -34,6 +34,7 @@ PWA/service worker hoạt động trên **bản build**, HTTPS hoặc localhost.
 - XP và vườn hoa/đồ trang trí, streak từ hoạt động thật. Đọc và quiz không farm XP khi reload; dữ liệu lịch sử không bị xóa khi nghỉ.
 - Inbox và admin composer có preview, nháp, gửi ngay/hẹn giờ/mốc học tập, archive, read/heart/favorite, popup claim nguyên tử trên IndexedDB.
 - Dark mode, reduced motion, keyboard/focus support, navigation mobile và desktop, offline/error/empty/loading states.
+- Đăng ký/đăng nhập email, quên mật khẩu, xác minh email và quản lý tài khoản; nâng cấp tài khoản khách giữ nguyên UID nhận thư.
 - Xuất/nhập JSON có Zod validation và hợp nhất theo ID. Backup **không** chứa thư, receipts, danh tính hay ghi âm.
 
 ## Bàn biên tập V2
@@ -72,7 +73,7 @@ Demo chỉ dùng được trên cùng browser/origin. Không gửi giữa hai m�
 Người dùng thực hiện các bước console sau; source không tạo tài khoản dịch vụ hay bật billing.
 
 1. Tạo/chọn Firebase project, đăng ký Web App, tạo Firestore và chọn region phù hợp. Bắt đầu ở chế độ khóa, **không bật test mode public**.
-2. Authentication → Sign-in method: bật **Anonymous** cho learner và **Google** hoặc **Email/Password** cho admin. Nếu dùng email, tạo người dùng admin trong console.
+2. Authentication → Sign-in method: bật **Anonymous** cho phiên khách, **Email/Password** cho đăng ký bằng email và **Google** cho nút Google trên cả learner/admin. Admin có thể đăng ký ngay tại `/register`, sau đó lấy UID để thêm vào allowlist ở bước 5; đăng ký không tự cấp quyền admin.
 3. Authentication → Settings → Authorized domains: thêm domain Vercel/custom và localhost theo môi trường. Không dùng mật khẩu demo ở production.
 4. Trong workspace này, `.env.local` đã có cấu hình web của **hanzigo-eea7d**, `.firebaserc` đặt project mặc định tương ứng. Khi clone sang máy khác, sao chép `.env.example` sang `.env.local`, điền Firebase **web** config (apiKey, authDomain, projectId, appId bắt buộc). Khởi động lại Vite. Không đưa service account, private key hay Admin SDK vào frontend.
 5. Tìm UID admin ở Firebase Authentication. Dùng **Firestore Console** tạo document `config/admins`:
@@ -99,6 +100,8 @@ Người dùng thực hiện các bước console sau; source không tạo tài 
 
 Learner và admin dùng **hai Firebase app/Auth instances riêng**. Đăng nhập hoặc logout admin không thay đổi UID learner trên cùng máy. Phiên admin dùng session persistence. Thư quản trị từ cloud không được ghi vào IndexedDB hay service-worker runtime cache.
 
+Nếu đã đăng nhập nhưng không vào được quản trị: sao chép **UID quản trị** ngay trên `/admin/login` (không dùng mã learner nếu hai phiên là hai tài khoản khác nhau). Trong project `hanzigo-eea7d`, tạo/mở Firestore document `config/admins`, thêm UID vào trường `uids` kiểu **array**, mỗi phần tử kiểu **string**, giữ các UID hiện có. Xác nhận Rules của app đã được triển khai rồi bấm **Kiểm tra lại quyền**. Đăng ký thành công chưa cấp quyền admin. Lỗi `permission-denied` cũng có thể do Rules chặn đọc; lỗi kết nối không chứng minh UID bị thiếu. App hiển thị riêng lỗi kiểm tra quyền và kết quả kiểm tra không được cấp quyền.
+
 ## Mô hình bảo mật thư
 
 | Dữ liệu                              | Quyền                                                              |
@@ -120,7 +123,25 @@ Learner và admin dùng **hai Firebase app/Auth instances riêng**. Đăng nhậ
 
 **Cache:** chỉ thư đã được server cho phép nhận được ghi vào IndexedDB theo recipient UID. Không precache thư, không cache Firestore bằng service worker; SDK dùng memory cache mặc định. Archive không thu hồi bản nội dung đã nhận/cache. Có thể vẫn đọc lịch sử offline. Người có quyền mở profile trình duyệt của learner có thể đọc thư đã nhận, vì MVP không mã hóa thư tại thiết bị.
 
-**Danh tính ẩn danh:** xóa browser/site data, dùng private mode hoặc chuyển origin/thiết bị có thể mất UID và tiến độ. Mã backup không khôi phục Auth UID. Cần chọn lại thiết bị người nhận. Nên link anonymous identity với tài khoản ở giai đoạn tiếp theo nếu cần chuyển thiết bị ổn định. Learning state local không phải bằng chứng bảo mật cho unlock.
+**Danh tính ẩn danh:** xóa browser/site data, dùng private mode hoặc chuyển origin/thiết bị có thể mất UID và tiến độ. Đăng ký tại `/register` trước khi đổi thiết bị để gắn email vào UID đang dùng. Mã backup không khôi phục Auth UID. Learning state local không phải bằng chứng bảo mật cho unlock.
+
+## Đăng ký và tài khoản
+
+**Tiếp tục với Google** có trên cả `/register` và `/login`, mở cửa sổ chọn tài khoản Google. Google mới được gắn vào phiên khách bằng `linkWithPopup`, giữ UID nhận thư. Nếu Google/email đã thuộc tài khoản khác, app dùng credential Google đã xác thực để đăng nhập vào tài khoản đó khi Firebase cho phép; giữ UID của tài khoản đã có, không chuyển thư giữa hai UID. Tiến độ học local vẫn được giữ. Popup mở trực tiếp từ thao tác bấm, không đợi request nền. Đóng/chặn popup, domain chưa được cho phép và Google provider chưa bật có thông báo riêng. Nút chờ phiên khách khởi tạo và khóa khi đang đăng nhập/offline/chưa có config.
+
+Trong Firebase project **hanzigo-eea7d**, bật **Authentication → Sign-in method → Google → Enable → Save**, điền các thông tin Console yêu cầu. Thêm hostname dùng để mở app vào **Authentication → Settings → Authorized domains**, gồm `127.0.0.1` nếu thử bằng địa chỉ local đó và domain triển khai khi deploy. App chỉ yêu cầu đăng nhập Google cơ bản, không thêm scope Contacts/Drive. Không lưu Google OAuth tokens vào backup hay dữ liệu học. Quyền admin vẫn dùng `config/admins`.
+
+Vào **Tùy chọn của em → Đăng ký**, hoặc mở `/register`. Nhập email, mật khẩu (ít nhất 8 ký tự và đáp ứng chính sách Firebase), nhập lại mật khẩu. Khi còn tài khoản khách, app dùng `linkWithCredential` để giữ UID và quyền nhận những lá thư hiện tại. Email đã có tài khoản sẽ báo chuyển sang đăng nhập; phiên khách không bị mất vì đăng ký thất bại.
+
+`/login` khôi phục UID của email đó. `/account` hiển thị email, trạng thái xác minh, mã nhận thư và nút đăng xuất. **Gửi email xác minh** gửi liên kết Firebase; mở email rồi bấm **Em đã xác minh** để cập nhật trạng thái. **Quên mật khẩu?** tại `/forgot-password` gửi hướng dẫn đặt lại, dùng thông báo chung để tránh tiết lộ email có tài khoản. Mật khẩu không được ghi vào IndexedDB, backup hay logs ứng dụng. Email xác minh và khôi phục dùng ngôn ngữ Việt.
+
+Đăng xuất learner trở về một phiên khách mới, vẫn giữ tiến độ học trên trình duyệt. Thư chỉ hiển thị theo UID đang đăng nhập; hộp thoại thư cũ đóng khi đổi tài khoản. Đăng nhập trên máy khác khôi phục mã nhận thư, **chưa đồng bộ tiến độ học**: dùng Xuất/Nhập dữ liệu. Đăng ký public không cấp quyền quản trị; admin vẫn cần allowlist `config/admins` và đăng nhập riêng tại `/admin/login`.
+
+```sh
+npm run test:auth
+```
+
+Auth emulator dùng project `demo-hanzigo`, tài khoản/email giả và action codes local; không gửi email thật hoặc tạo tài khoản cloud. Firebase emulator hiện không hỗ trợ API `getPasswordPolicy`, nên ở emulator app kiểm tra schema local; production luôn kiểm tra chính sách Firebase và không bỏ qua lỗi kết nối. Unit tests kiểm tra nhánh chính sách production.
 
 ## Test Firestore Rules
 
@@ -175,6 +196,7 @@ src/pages/        Learner routes và admin flows
 scripts/          Content validation/import, dependency-free icon generation
  tests/unit/      Unit/IndexedDB integration tests
  tests/rules/     Firestore emulator tests
+ tests/auth/      Firebase Auth emulator integration tests
 firestore.rules   Deny-by-default policy
 ```
 
@@ -184,11 +206,15 @@ Firebase/Vercel có quota và điều kiện plan có thể thay đổi; **khôn
 
 V2 có 20 truyện/200 mục từ/30 quotes; 60 câu hỏi đọc hiểu. 5 truyện V1 giữ nguyên ID. Không chatbot/OCR/speech scoring/push nền. Không tự đồng bộ tiến độ học giữa thiết bị. Không bảo vệ milestone bằng local data. Không hồi phục Auth UID từ backup. Mic/TTS/installability phụ thuộc trình duyệt; cần HTTPS cho mic trên host thật. Web config đã được cập nhật. Kiểm tra cuối ngày 09/10/2026: Anonymous Auth đã cấp UID thành công (lỗi `auth/configuration-not-found` ở lần đầu đã được xử lý phía Console). Firestore REST hiện trả `403 SERVICE_DISABLED`: Cloud Firestore API chưa bật/chưa từng dùng. Vào Firebase Console → Firestore Database → Create database; sau đó cấu hình allowlist và triển khai rules/indexes trước khi dùng thư trên cloud. Kiểm thử cross-device và deep-link trên URL Vercel còn chờ cấu hình/deploy.
 
-Giai đoạn tiếp theo: duyệt ngôn ngữ và audio thu sẵn; link anonymous account; đồng bộ tiến độ; tiến độ tin cậy và milestone unlock phía server; notification sender/push khi cần. Measurement ID được giữ trong cấu hình; app chưa khởi tạo Analytics hoặc gửi sự kiện.
+Giai đoạn tiếp theo: duyệt ngôn ngữ và audio thu sẵn; đồng bộ tiến độ; tiến độ tin cậy và milestone unlock phía server; notification sender/push khi cần. Measurement ID được giữ trong cấu hình; app chưa khởi tạo Analytics hoặc gửi sự kiện.
 
 ## Tài liệu chính thức
 
 - [Firebase: Rules không phải filter, query phải chứng minh quyền](https://firebase.google.com/docs/firestore/security/rules-query).
 - [Firebase: Anonymous Authentication](https://firebase.google.com/docs/auth/web/anonymous-auth).
+- [Firebase: Email/Password Authentication](https://firebase.google.com/docs/auth/web/password-auth).
+- [Firebase: Google Sign-in](https://firebase.google.com/docs/auth/web/google-signin).
+- [Firebase: liên kết nhà cung cấp đăng nhập](https://firebase.google.com/docs/auth/web/account-linking).
+- [Firebase: xác minh email và đặt lại mật khẩu](https://firebase.google.com/docs/auth/web/manage-users).
 - [Vite PWA: service worker và manifest](https://vite-pwa-org.netlify.app/guide/).
 - [shadcn/ui: cài đặt thủ công và components](https://ui.shadcn.com/docs/installation/manual).

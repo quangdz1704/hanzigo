@@ -13,6 +13,7 @@ const Games = lazy(() => import("./pages/Games"));
 const Garden = lazy(() => import("./pages/Garden"));
 const Inbox = lazy(() => import("./pages/Inbox"));
 const Settings = lazy(() => import("./pages/Settings"));
+const Account = lazy(() => import("./pages/Account"));
 const AdminGuard = lazy(() =>
   import("./pages/Admin").then((m) => ({ default: m.AdminGuard })),
 );
@@ -50,6 +51,10 @@ export default function App() {
                     <Route path="/garden" element={<Garden />} />
                     <Route path="/letters" element={<Inbox />} />
                     <Route path="/settings" element={<Settings />} />
+                    <Route path="/account" element={<Account />} />
+                    <Route path="/register" element={<Account />} />
+                    <Route path="/login" element={<Account />} />
+                    <Route path="/forgot-password" element={<Account />} />
                     <Route path="/admin/login" element={<AdminLogin />} />
                     <Route path="/admin" element={<AdminGuard />}>
                       <Route index element={<AdminHome />} />
