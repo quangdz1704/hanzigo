@@ -307,3 +307,94 @@ describe("recipient identity and separated receipts", () => {
     await assertFails(setDoc(doc(f, "secrets", "one"), { secret: true }));
   });
 });
+
+describe("account profile metadata", () => {
+  const token = {
+    email: "wife@example.test",
+    firebase: { sign_in_provider: "password" as const },
+  };
+  const data = () => ({
+    uid: "wife",
+    label: "Mai",
+    name: "Mai",
+    email: "wife@example.test",
+    createdAt: serverTimestamp(),
+    lastPing: serverTimestamp(),
+  });
+  it("the account owner writes their name/email and the admin can identify the recipient", async () => {
+    const f = env.authenticatedContext("wife", token).firestore();
+    await assertSucceeds(setDoc(doc(f, "devices", "wife"), data()));
+    const admin = env.authenticatedContext("husband").firestore();
+    const list = await assertSucceeds(getDocs(collection(admin, "devices")));
+    expect(list.docs[0].data().name).toBe("Mai");
+    expect(list.docs[0].data().email).toBe("wife@example.test");
+    await assertSucceeds(
+      updateDoc(doc(f, "devices", "wife"), {
+        name: "Mai Anh",
+        label: "Mai Anh",
+        lastPing: serverTimestamp(),
+      }),
+    );
+    // Heartbeat updates preserve optional profile fields and legacy documents still work.
+    await assertSucceeds(
+      updateDoc(doc(f, "devices", "wife"), { lastPing: serverTimestamp() }),
+    );
+    expect((await getDoc(doc(f, "devices", "wife"))).data()?.name).toBe(
+      "Mai Anh",
+    );
+  });
+  it("rejects forged emails, extra fields, long names and foreign profile access", async () => {
+    const f = env.authenticatedContext("wife", token).firestore();
+    await assertFails(
+      setDoc(doc(f, "devices", "wife"), {
+        ...data(),
+        email: "victim@example.test",
+      }),
+    );
+    await assertFails(
+      setDoc(doc(f, "devices", "wife"), { ...data(), name: "x".repeat(41) }),
+    );
+    await assertFails(
+      setDoc(doc(f, "devices", "wife"), { ...data(), role: "admin" }),
+    );
+    await assertSucceeds(setDoc(doc(f, "devices", "wife"), data()));
+    const other = env.authenticatedContext("other-wife", token).firestore();
+    await assertFails(getDoc(doc(other, "devices", "wife")));
+    await assertFails(
+      updateDoc(doc(other, "devices", "wife"), {
+        name: "Forged",
+        lastPing: serverTimestamp(),
+      }),
+    );
+    await assertFails(
+      updateDoc(
+        doc(env.authenticatedContext("husband").firestore(), "devices", "wife"),
+        { name: "Forged", lastPing: serverTimestamp() },
+      ),
+    );
+  });
+  it("guests can keep legacy device records but cannot write an account name/email", async () => {
+    const f = env
+      .authenticatedContext("wife", {
+        firebase: { sign_in_provider: "anonymous" },
+      })
+      .firestore();
+    await assertFails(setDoc(doc(f, "devices", "wife"), data()));
+    const { name: _name, email: _email, ...legacy } = data();
+    await assertSucceeds(setDoc(doc(f, "devices", "wife"), legacy));
+    await assertFails(
+      updateDoc(doc(f, "devices", "wife"), {
+        name: "Cloud guest",
+        lastPing: serverTimestamp(),
+      }),
+    );
+    const owner = env.authenticatedContext("wife", token).firestore();
+    await assertSucceeds(
+      updateDoc(doc(owner, "devices", "wife"), {
+        name: "Mai",
+        email: token.email,
+        lastPing: serverTimestamp(),
+      }),
+    );
+  });
+});

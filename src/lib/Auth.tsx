@@ -8,6 +8,7 @@ import {
 } from "react";
 import {
   onAuthStateChanged,
+  onIdTokenChanged,
   signInWithPopup,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
@@ -25,6 +26,8 @@ import {
 } from "./firebase";
 import { reportError } from "./store";
 import { adminAccessErrorMessage } from "./admin-access";
+import { connectAccountProfile, restoreGuestName } from "./account-profile";
+import type { ProfileStatus } from "./profile-sync";
 import {
   registerLearner,
   loginLearner,
@@ -49,6 +52,8 @@ interface AuthState {
   learnerError: string | null;
   learnerAccount: LearnerAccount | null;
   learnerLoading: boolean;
+  profileStatus: ProfileStatus | "local";
+  retryProfile: () => void;
   register: (
     email: string,
     password: string,
@@ -78,6 +83,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     null,
   );
   const [learnerLoading, setLearnerLoading] = useState(!!backend);
+  const [profileStatus, setProfileStatus] = useState<ProfileStatus | "local">(
+    "local",
+  );
+  const profileRetry = useRef<() => void>(() => {});
   const [uid, setUid] = useState<string | null>(
     backendMode === "demo" ? "demo-device" : null,
   );
@@ -98,15 +107,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!backend) return;
     let stopLetters = () => {};
+    let stopProfile = () => {};
+    let profileGeneration = 0;
     let generation = 0;
     let active = true;
-    const learnerStop = onAuthStateChanged(backend.auth, (user) => {
+    const learnerStop = onIdTokenChanged(backend.auth, (user) => {
+      const profileVersion = ++profileGeneration;
       stopLetters();
+      stopProfile();
+      profileRetry.current = () => {};
       if (user) {
         setLearnerError(null);
         setUid(user.uid);
         setLearnerAccount(accountOf(user));
         setLearnerLoading(false);
+        if (user.isAnonymous) {
+          restoreGuestName();
+          setProfileStatus("local");
+        } else {
+          const profile = connectAccountProfile(
+            backend!.store,
+            user,
+            (status) => {
+              if (active && profileVersion === profileGeneration)
+                setProfileStatus(status);
+            },
+          );
+          profileRetry.current = profile.retry;
+          stopProfile = profile.stop;
+        }
         stopLetters = subscribeLearner(user.uid, (e) => {
           if (active && backend?.auth.currentUser?.uid === user.uid)
             setLearnerError(
@@ -114,6 +143,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             );
         });
       } else {
+        restoreGuestName();
+        setProfileStatus("local");
         setUid(null);
         setLearnerAccount(null);
         setLearnerLoading(true);
@@ -135,6 +166,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           });
       }
     });
+    const retryProfile = () => profileRetry.current();
+    window.addEventListener("online", retryProfile);
+    const profileTimer = setInterval(retryProfile, 60000);
     const adminStop = onAuthStateChanged(backend.adminAuth, (user) => {
       const version = ++generation;
       setLoading(true);
@@ -164,9 +198,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => {
       active = false;
       generation++;
+      profileGeneration++;
       learnerStop();
       adminStop();
       stopLetters();
+      stopProfile();
+      window.removeEventListener("online", retryProfile);
+      clearInterval(profileTimer);
     };
   }, []);
   const readyLearnerAuth = async () => {
@@ -261,6 +299,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         learnerError,
         learnerAccount,
         learnerLoading,
+        profileStatus,
+        retryProfile: () => profileRetry.current(),
         register,
         signIn,
         signInGoogle,

@@ -66,6 +66,16 @@
 - Strict TypeScript and production/PWA build passed. Chrome confirms Google button enabled after guest initialization on both account routes; no horizontal overflow at **360px** or **1728px**. Viewport reset. Screenshot: `google-registration.png`.
 - Real Google OAuth/account selection was not completed. Requires Google provider enabled, authorized hostname and actual user sign-in. Popup transport is mocked in unit tests; Firebase credential processing uses the real SDK and local Auth emulator.
 
+## Quiz language toggles · 2026-10-13
+
+- Added independent persisted **Chữ Hán / Pinyin / Tiếng Việt** display preferences for quiz prompts, options and explanations. At least one language stays enabled; Vietnamese-only legacy imports remain readable. Reader controls retain their separate preferences and stop sticking at the end of the reading area.
+- Added complete `chinese` data for all **60 questions / 180 options / 60 explanations** across 20 stories. Parsed data comparison with a pre-change snapshot confirms original IDs, Vietnamese content and answer indexes unchanged. Used temporary pypinyin 0.55 tooling to assist accented pronunciation, then adjusted selected polyphonic/contextual readings, light tones and 一/不 pronunciations; no runtime dependency or remote conversion. Editorial review status remains draft.
+- **74 unit tests passed**. New coverage: preference migration, last-language guard, all seven nonempty combinations, legacy fallback, all seeded translations, missing Pinyin/misaligned options rejection and copy/export/import preservation. `content:validate` and strict TypeScript/production/PWA build passed.
+- Chrome, isolated demo :5185: select answer → hide Pinyin and Vietnamese → selected count stays one → complete Chinese-only quiz → **3/3** → re-enable Pinyin → all three selections remain checked and all nine radios stay disabled. Explanations follow the toggles. Reload retains language settings.
+- Main UI separately verified Pinyin-only (12 Pinyin lines, zero Chinese/Vietnamese quiz lines), Vietnamese-only, and restored all three without submitting scores. Demo scoring does not change main-origin quiz scores. Light quiz at **360px** and dark quiz at **1728px** have no horizontal overflow; viewport reset.
+- Editor at 360px exposes translated prompt/options/explanation fields. Clearing question Pinyin disables preview and reports its exact path; restoring it re-enables preview. Editor preview displays the translated correct answer and explanation. No draft/message was published.
+- Screenshot: `quiz-languages.png`; main app left open at `/stories/rainy-cafe#quiz`. Mobile physical-device behavior and human language review remain outside this local check.
+
 ## Suggested regression flow
 
 1. In a fresh local browser profile, complete the reading/review steps above and reload.
@@ -74,3 +84,11 @@
 4. Publish while learner is reading/playing; ensure badge only, then return home or open inbox.
 5. Export learning JSON, import twice; counts/XP must remain unchanged. Invalid format must show an error without partial writes.
 6. On production preview, load once online, go offline and refresh each learner route. Restore network before testing new letters/TTS.
+
+## Account name synchronization · 13/10/2026
+
+- `npm test`: **79 unit tests passed**; profile cases cover server-name priority, typing during an in-flight write, offline pending edits/retry, stopped callbacks and separation of guest/account A/account B names.
+- `npm run test:rules`: **17 tests passed** with Firestore emulator. Added own profile metadata, Auth-token email matching, wrong-account/admin edit denial, name length/extra-field validation and migration from anonymous legacy device documents.
+- `npm run test:profiles`: **1 integration test passed** with both Auth and Firestore emulators. Actual guest upgrade triggered `onIdTokenChanged`; two independently authenticated SDK sessions restored the same UID/name and received a name change realtime. Device `createdAt` and UID stayed unchanged, email/label were populated.
+- Browser against `demo-hanzigo` emulators: login loaded server name; Settings edit showed pending then synced; reload restored `Mai Anh`; allowlisted admin saw the same name/email/UID. Admin page had no horizontal overflow at 360px. Screenshots: `account-profile.png`, `account-recipients.png`. No application console errors; installed wallet extensions emitted unrelated provider-injection errors.
+- Production/PWA build passed. No Firebase production records, credentials, allowlist or Rules were changed. The new `firestore.rules` must be published to `hanzigo-eea7d` before cloud metadata sync works. Learning progress and other reading preferences remain local.

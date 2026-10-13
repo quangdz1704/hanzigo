@@ -72,7 +72,7 @@ function AdminLayout() {
           </NavLink>
           <NavLink to="/admin/messages">Những lá thư</NavLink>
           <NavLink to="/admin/content">Bàn biên tập</NavLink>
-          <NavLink to="/admin/settings">Thiết bị & thông báo</NavLink>
+          <NavLink to="/admin/settings">Người nhận & thông báo</NavLink>
         </nav>
         <Button variant="ghost" size="sm" onClick={() => run(logout)}>
           <LogOut size={16} />
@@ -435,7 +435,7 @@ export function AdminMessages() {
                     {receipt.heart ? "♥" : ""}
                   </p>
                   <p className="muted recipient-label">
-                    Thiết bị: {m.recipientUid}
+                    Người nhận: {m.recipientUid}
                   </p>
                 </div>
                 <div className="button-row">
@@ -631,7 +631,7 @@ export function AdminComposer() {
               />
             </label>
             <p className="content-note">
-              Lấy mã ở Cài đặt trên thiết bị của em, hoặc chọn tại Thiết bị &
+              Lấy mã ở Cài đặt trên thiết bị của em, hoặc chọn tại Người nhận &
               thông báo.
             </p>
             <label className="field">
@@ -759,7 +759,9 @@ export function AdminComposer() {
   );
 }
 export function AdminSettings() {
-  const [devices, setDevices] = useState<{ uid: string; label: string }[]>([]);
+  const [devices, setDevices] = useState<
+    { uid: string; label: string; email: string | null }[]
+  >([]);
   const demoPopups = usePreferences((s) => s.autoLetters);
   const setPrefs = usePreferences((s) => s.set);
   const [popups, setPopups] = useState(demoPopups);
@@ -776,7 +778,10 @@ export function AdminSettings() {
         setDevices(
           s.docs.map((d) => ({
             uid: d.id,
-            label: String(d.data().label ?? "Thiết bị của em"),
+            label: String(
+              d.data().name ?? d.data().label ?? "Khách chưa đăng nhập",
+            ),
+            email: typeof d.data().email === "string" ? d.data().email : null,
           })),
         );
         setLoading(false);
@@ -799,12 +804,12 @@ export function AdminSettings() {
   return (
     <>
       <PageHeading
-        title="Thiết bị & thông báo"
+        title="Người nhận & thông báo"
         description="Chọn đúng nơi những lời thương sẽ đến."
       />
       <section className="card settings-section admin-settings">
         <label className="field">
-          Thiết bị mặc định
+          Mã người nhận mặc định
           <input
             value={recipient}
             maxLength={128}
@@ -816,10 +821,12 @@ export function AdminSettings() {
             localStorage.setItem("hanzigo-recipient", recipient.trim());
             useUI
               .getState()
-              .notify("Đã lưu mã thiết bị mặc định trên trình duyệt quản trị.");
+              .notify(
+                "Đã lưu mã người nhận mặc định trên trình duyệt quản trị.",
+              );
           }}
         >
-          Lưu thiết bị mặc định
+          Lưu người nhận mặc định
         </Button>
         <label className="toggle-row">
           <span>
@@ -852,7 +859,7 @@ export function AdminSettings() {
             }}
           />
         </label>
-        <h2>Thiết bị đã mở app</h2>
+        <h2>Danh sách người nhận</h2>
         {loading ? (
           <Loading />
         ) : backendMode === "demo" ? (
@@ -866,7 +873,13 @@ export function AdminSettings() {
         ) : devices.length ? (
           devices.map((d) => (
             <div className="device-row" key={d.uid}>
-              <span>{d.label}</span>
+              <div className="recipient-profile">
+                <strong>{d.label}</strong>
+                <span className="muted">
+                  {d.email ??
+                    "Chưa có email · tên cũ sẽ cập nhật khi đăng nhập"}
+                </span>
+              </div>
               <code>{d.uid}</code>
               <Button variant="ghost" onClick={() => setRecipient(d.uid)}>
                 Chọn
@@ -875,10 +888,14 @@ export function AdminSettings() {
           ))
         ) : (
           <p className="muted">
-            Chưa có thiết bị. Mở app trên thiết bị của em để đăng ký danh tính
+            Chưa có người nhận. Mở app trên thiết bị của em để đăng ký danh tính
             ẩn danh.
           </p>
         )}
+        <p className="content-note">
+          Cùng một tài khoản trên nhiều thiết bị dùng chung mã nhận thư. Tên và
+          email cập nhật khi người dùng đăng nhập.
+        </p>
         <p className="content-note">
           MVP không gửi thông báo hệ thống khi app đóng. Firebase web config là
           public; quyền quản trị do Firestore Rules và UID allowlist quyết định.

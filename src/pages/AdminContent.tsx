@@ -18,6 +18,7 @@ import { Badge, PageHeading } from "@/components/Common";
 import { StoryText } from "@/components/StoryText";
 import { StoryForm } from "@/components/StoryForm";
 import { VocabularySheet } from "@/components/VocabularySheet";
+import { QuizText } from "@/components/QuizText";
 import {
   Dialog,
   DialogContent,
@@ -348,9 +349,24 @@ export default function AdminContent() {
               <h3>Câu hỏi & đáp án</h3>
               {parsed.story.comprehensionQuestions.map((q) => (
                 <p key={q.id}>
-                  {q.prompt}
+                  <QuizText
+                    vi={q.prompt}
+                    chinese={q.chinese?.prompt}
+                    display={{ hanzi: true, pinyin: true, vietnamese: true }}
+                  />
                   <br />
-                  <strong>{q.options[q.answer]}</strong> · {q.explanation}
+                  <strong>
+                    <QuizText
+                      vi={q.options[q.answer]}
+                      chinese={q.chinese?.options[q.answer]}
+                      display={{ hanzi: true, pinyin: true, vietnamese: true }}
+                    />
+                  </strong>
+                  <QuizText
+                    vi={q.explanation}
+                    chinese={q.chinese?.explanation}
+                    display={{ hanzi: true, pinyin: true, vietnamese: true }}
+                  />
                 </p>
               ))}
             </div>

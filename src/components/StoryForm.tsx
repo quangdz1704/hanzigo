@@ -193,7 +193,7 @@ export function StoryForm({
             Câu hỏi {i + 1} · {q.prompt}
           </summary>
           <label className="field">
-            Câu hỏi
+            Câu hỏi · Tiếng Việt
             <input
               value={q.prompt}
               onChange={(e) =>
@@ -203,18 +203,42 @@ export function StoryForm({
               }
             />
           </label>
+          {q.chinese && (
+            <QuizTranslationFields
+              label="Câu hỏi"
+              value={q.chinese.prompt}
+              onChange={(value) =>
+                change((s) => {
+                  s.comprehensionQuestions[i].chinese!.prompt = value;
+                })
+              }
+            />
+          )}
           {q.options.map((option, oi) => (
-            <label className="field" key={oi}>
-              Lựa chọn {oi + 1}
-              <input
-                value={option}
-                onChange={(e) =>
-                  change((s) => {
-                    s.comprehensionQuestions[i].options[oi] = e.target.value;
-                  })
-                }
-              />
-            </label>
+            <div key={oi}>
+              <label className="field">
+                Lựa chọn {oi + 1} · Tiếng Việt
+                <input
+                  value={option}
+                  onChange={(e) =>
+                    change((s) => {
+                      s.comprehensionQuestions[i].options[oi] = e.target.value;
+                    })
+                  }
+                />
+              </label>
+              {q.chinese && (
+                <QuizTranslationFields
+                  label={`Lựa chọn ${oi + 1}`}
+                  value={q.chinese.options[oi]}
+                  onChange={(value) =>
+                    change((s) => {
+                      s.comprehensionQuestions[i].chinese!.options[oi] = value;
+                    })
+                  }
+                />
+              )}
+            </div>
           ))}
           <label className="field">
             Đáp án đúng
@@ -234,7 +258,7 @@ export function StoryForm({
             </select>
           </label>
           <label className="field">
-            Giải thích
+            Giải thích · Tiếng Việt
             <textarea
               value={q.explanation}
               onChange={(e) =>
@@ -244,6 +268,33 @@ export function StoryForm({
               }
             />
           </label>
+          {q.chinese ? (
+            <QuizTranslationFields
+              label="Giải thích"
+              value={q.chinese.explanation}
+              onChange={(value) =>
+                change((s) => {
+                  s.comprehensionQuestions[i].chinese!.explanation = value;
+                })
+              }
+            />
+          ) : (
+            <button
+              type="button"
+              className="button button-secondary"
+              onClick={() =>
+                change((s) => {
+                  s.comprehensionQuestions[i].chinese = {
+                    prompt: { hanzi: "", pinyin: "" },
+                    options: q.options.map(() => ({ hanzi: "", pinyin: "" })),
+                    explanation: { hanzi: "", pinyin: "" },
+                  };
+                })
+              }
+            >
+              Bổ sung Chữ Hán/Pinyin
+            </button>
+          )}
         </details>
       ))}
       <details className="editor-detail">
@@ -283,5 +334,35 @@ export function StoryForm({
         </label>
       </details>
     </fieldset>
+  );
+}
+
+function QuizTranslationFields({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: { hanzi: string; pinyin: string };
+  onChange: (value: { hanzi: string; pinyin: string }) => void;
+}) {
+  return (
+    <div className="editor-fields quiz-translation-fields">
+      <label className="field">
+        {label} · Chữ Hán
+        <input
+          lang="zh-CN"
+          value={value.hanzi}
+          onChange={(e) => onChange({ ...value, hanzi: e.target.value })}
+        />
+      </label>
+      <label className="field">
+        {label} · Pinyin
+        <input
+          value={value.pinyin}
+          onChange={(e) => onChange({ ...value, pinyin: e.target.value })}
+        />
+      </label>
+    </div>
   );
 }

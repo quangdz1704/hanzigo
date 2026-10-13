@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { normalizeQuizDisplay, type QuizDisplay } from "./quiz-display";
 interface Preferences {
   autoLetters: boolean;
   pinyin: boolean;
@@ -8,6 +9,7 @@ interface Preferences {
   fontSize: number;
   theme: "light" | "dark" | "system";
   name: string;
+  quizDisplay: QuizDisplay;
   set: (next: Partial<Omit<Preferences, "set">>) => void;
 }
 export const usePreferences = create<Preferences>()(
@@ -20,6 +22,7 @@ export const usePreferences = create<Preferences>()(
       fontSize: 26,
       theme: "light",
       name: "em",
+      quizDisplay: normalizeQuizDisplay(undefined),
       set: (next) => set(next),
     }),
     {
@@ -44,6 +47,7 @@ export const usePreferences = create<Preferences>()(
           theme:
             s?.theme === "dark" || s?.theme === "system" ? s.theme : "light",
           name: typeof s?.name === "string" ? s.name.slice(0, 40) : "em",
+          quizDisplay: normalizeQuizDisplay(s?.quizDisplay),
         };
       },
     },

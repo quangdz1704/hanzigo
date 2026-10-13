@@ -3,7 +3,9 @@ import type { Story } from "@/content/schema";
 import { Button } from "./ui/button";
 import { Check, RotateCcw, Sparkles } from "lucide-react";
 import { recordQuiz } from "@/lib/db";
-import { reportError, useUI } from "@/lib/store";
+import { reportError, useUI, usePreferences } from "@/lib/store";
+import { toggleQuizLanguage, type QuizLanguage } from "@/lib/quiz-display";
+import { QuizText } from "./QuizText";
 export function Quiz({
   story,
   onComplete,
@@ -14,11 +16,20 @@ export function Quiz({
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [submitted, setSubmitted] = useState(false);
   const [busy, setBusy] = useState(false);
+  const prefs = usePreferences();
+  const hasChinese = story.comprehensionQuestions.every((q) => !!q.chinese);
+  const display = hasChinese
+    ? prefs.quizDisplay
+    : { hanzi: false, pinyin: false, vietnamese: true };
   const score = story.comprehensionQuestions.filter(
     (q) => answers[q.id] === q.answer,
   ).length;
   return (
-    <section className="card quiz-section" aria-label="Câu hỏi hiểu truyện">
+    <section
+      id="quiz"
+      className="card quiz-section"
+      aria-label="Câu hỏi hiểu truyện"
+    >
       <div className="section-heading">
         <h2>Một chút để nhớ câu chuyện</h2>
         <BadgeScore
@@ -30,10 +41,50 @@ export function Quiz({
       <p className="muted">
         Không cần vội. Em có thể quay lại đọc bất cứ lúc nào.
       </p>
+      <div
+        className="quiz-language-controls"
+        role="group"
+        aria-label="Ngôn ngữ câu hỏi và đáp án"
+      >
+        {(
+          [
+            ["hanzi", "Chữ Hán"],
+            ["pinyin", "Pinyin"],
+            ["vietnamese", "Tiếng Việt"],
+          ] as [QuizLanguage, string][]
+        ).map(([key, label]) => (
+          <Button
+            key={key}
+            size="sm"
+            variant={display[key] ? "secondary" : "outline"}
+            aria-pressed={display[key]}
+            disabled={
+              (!hasChinese && key !== "vietnamese") ||
+              (display[key] &&
+                Object.values(display).filter(Boolean).length === 1)
+            }
+            onClick={() =>
+              prefs.set({ quizDisplay: toggleQuizLanguage(display, key) })
+            }
+          >
+            {label}
+          </Button>
+        ))}
+      </div>
+      {!hasChinese && (
+        <p className="content-note">Bài này hiện chưa có bản Chữ Hán/Pinyin.</p>
+      )}
       {story.comprehensionQuestions.map((q, i) => (
         <fieldset key={q.id} className="quiz-question">
           <legend>
-            {i + 1}. {q.prompt}
+            <span className="quiz-prompt">
+              <span>{i + 1}.</span>
+              <QuizText
+                vi={q.prompt}
+                chinese={q.chinese?.prompt}
+                display={display}
+              />
+            </span>
           </legend>
           <div className="quiz-options">
             {q.options.map((option, j) => (
@@ -46,14 +97,26 @@ export function Quiz({
                   name={q.id}
                   checked={answers[q.id] === j}
                   onChange={() => setAnswers({ ...answers, [q.id]: j })}
-                  disabled={submitted}
+                  disabled={submitted || busy}
                 />
-                <span>{option}</span>
+                <QuizText
+                  vi={option}
+                  chinese={q.chinese?.options[j]}
+                  display={display}
+                />
                 {submitted && j === q.answer && <Check size={16} />}
               </label>
             ))}
           </div>
-          {submitted && <p className="explanation">{q.explanation}</p>}
+          {submitted && (
+            <p className="explanation">
+              <QuizText
+                vi={q.explanation}
+                chinese={q.chinese?.explanation}
+                display={display}
+              />
+            </p>
+          )}
         </fieldset>
       ))}
       {submitted ? (

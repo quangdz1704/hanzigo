@@ -36,9 +36,34 @@ export const questionSchema = z
     options: z.array(z.string()).min(3).max(5),
     answer: z.number().int().nonnegative(),
     explanation: z.string().min(1),
+    chinese: z
+      .object({
+        prompt: z.object({
+          hanzi: z.string().trim().min(1).max(500),
+          pinyin: z.string().trim().min(1).max(1500),
+        }),
+        options: z
+          .array(
+            z.object({
+              hanzi: z.string().trim().min(1).max(500),
+              pinyin: z.string().trim().min(1).max(1500),
+            }),
+          )
+          .min(3)
+          .max(5),
+        explanation: z.object({
+          hanzi: z.string().trim().min(1).max(1000),
+          pinyin: z.string().trim().min(1).max(3000),
+        }),
+      })
+      .optional(),
   })
   .refine((q) => q.answer < q.options.length, {
     message: "Answer index outside options",
+  })
+  .refine((q) => !q.chinese || q.chinese.options.length === q.options.length, {
+    path: ["chinese", "options"],
+    message: "Số lựa chọn Trung/Pinyin phải khớp với lựa chọn tiếng Việt",
   });
 export const storySchema = z
   .object({

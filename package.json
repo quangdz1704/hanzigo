@@ -10,6 +10,7 @@
     "test": "vitest run",
     "test:auth": "firebase emulators:exec --only auth --project demo-hanzigo 'vitest run --config vitest.auth.config.ts'",
     "test:rules": "firebase emulators:exec --only firestore --project demo-hanzigo 'vitest run --config vitest.rules.config.ts'",
+    "test:profiles": "firebase emulators:exec --only auth,firestore --project demo-hanzigo 'vitest run --config vitest.profiles.config.ts'",
     "content:validate": "node --import tsx scripts/validate-content.ts",
     "content:import": "node --import tsx scripts/import-content.ts",
     "format": "prettier --write src scripts tests *.ts *.json *.md docs"

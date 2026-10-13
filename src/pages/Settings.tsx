@@ -19,7 +19,8 @@ import { useLearning } from "@/lib/hooks";
 import { quotes } from "@/content";
 export default function Settings() {
   const prefs = usePreferences();
-  const { uid, learnerError, learnerAccount } = useAuth();
+  const { uid, learnerError, learnerAccount, profileStatus, retryProfile } =
+    useAuth();
   const file = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
   const { favorites } = useLearning();
@@ -45,6 +46,22 @@ export default function Settings() {
               placeholder="em"
             />
           </label>
+          <p className="content-note" role="status">
+            {profileStatus === "local"
+              ? "Tên gọi được lưu trên trình duyệt này. Đăng nhập để giữ tên khi đổi thiết bị."
+              : profileStatus === "synced"
+                ? "Tên gọi đã đồng bộ theo tài khoản."
+                : profileStatus === "error"
+                  ? "Tên gọi đang lưu trên máy này, chưa đồng bộ được. App sẽ thử lại khi có mạng."
+                  : profileStatus === "saving"
+                    ? "Đang lưu tên gọi vào tài khoản…"
+                    : "Đang lấy tên gọi của tài khoản…"}
+          </p>
+          {profileStatus === "error" && (
+            <Button variant="outline" onClick={retryProfile}>
+              Thử đồng bộ lại
+            </Button>
+          )}
           <Toggle
             label="Hiện Pinyin"
             description="Pinyin có dấu dưới mỗi câu"
@@ -218,7 +235,7 @@ export default function Settings() {
           <section className="card settings-section">
             <h2>
               <Smartphone size={20} />
-              Thiết bị nhận thư
+              Danh tính nhận thư
             </h2>
             {backendMode === "cloud" && (
               <p className="muted">
@@ -239,7 +256,8 @@ export default function Settings() {
               </Button>
             )}
             <p className="muted">
-              Gửi mã này cho anh để chọn đúng thiết bị khi soạn thư.
+              Gửi mã này cho anh để chọn đúng người nhận khi soạn thư. Khi đăng
+              nhập, mã đi theo tài khoản trên các thiết bị.
             </p>
             <code className="device-id">{uid ?? "Chưa có mã thiết bị"}</code>
             <Button

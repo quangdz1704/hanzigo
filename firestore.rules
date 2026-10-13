@@ -46,10 +46,13 @@ service cloud.firestore {
       allow get: if own(uid) || admin();
       allow list: if admin();
       function validDevice() {
-        return request.resource.data.keys().hasOnly(['uid','label','createdAt','lastPing'])
+        let d = request.resource.data;
+        return d.keys().hasOnly(['uid','label','createdAt','lastPing','name','email'])
           && request.resource.data.keys().hasAll(['uid','label','createdAt','lastPing'])
           && request.resource.data.uid == uid && request.resource.data.label is string && request.resource.data.label.size() <= 80
-          && request.resource.data.createdAt is timestamp && request.resource.data.lastPing == request.time;
+          && request.resource.data.createdAt is timestamp && request.resource.data.lastPing == request.time
+          && (!('name' in d) || request.auth.token.firebase.sign_in_provider != 'anonymous' && d.name is string && d.name.size() > 0 && d.name.size() <= 40)
+          && (!('email' in d) || d.email == request.auth.token.get('email', null) && (d.email == null || d.email is string && d.email.size() <= 254));
       }
       allow create: if own(uid) && validDevice() && request.resource.data.createdAt == request.time;
       allow update: if own(uid) && validDevice() && request.resource.data.createdAt == resource.data.createdAt;

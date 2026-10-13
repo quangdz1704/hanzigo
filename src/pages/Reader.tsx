@@ -105,117 +105,125 @@ function StoryReader({ story }: { story: Story }) {
         </p>
         <p className="muted">{story.subtitle}</p>
       </header>
-      <div className="reader-toolbar">
-        <div className="button-row">
-          <Button
-            variant={pref.pinyin ? "secondary" : "ghost"}
-            size="sm"
-            aria-pressed={pref.pinyin}
-            onClick={() => pref.set({ pinyin: !pref.pinyin })}
-          >
-            Pinyin
-          </Button>
-          <Button
-            variant={pref.translation ? "secondary" : "ghost"}
-            size="sm"
-            aria-pressed={pref.translation}
-            onClick={() => pref.set({ translation: !pref.translation })}
-          >
-            Bản dịch
-          </Button>
-          <div className="font-control">
+      <div className="reading-area">
+        <div className="reader-toolbar">
+          <div className="button-row">
             <Button
-              size="icon"
-              variant="ghost"
-              aria-label="Giảm cỡ chữ"
-              disabled={pref.fontSize <= 20}
-              onClick={() => pref.set({ fontSize: pref.fontSize - 2 })}
+              variant={pref.pinyin ? "secondary" : "ghost"}
+              size="sm"
+              aria-pressed={pref.pinyin}
+              onClick={() => pref.set({ pinyin: !pref.pinyin })}
             >
-              <Minus size={16} />
+              Pinyin
             </Button>
-            <span>Aa</span>
             <Button
-              size="icon"
-              variant="ghost"
-              aria-label="Tăng cỡ chữ"
-              disabled={pref.fontSize >= 36}
-              onClick={() => pref.set({ fontSize: pref.fontSize + 2 })}
+              variant={pref.translation ? "secondary" : "ghost"}
+              size="sm"
+              aria-pressed={pref.translation}
+              onClick={() => pref.set({ translation: !pref.translation })}
             >
-              <Plus size={16} />
+              Bản dịch
+            </Button>
+            <div className="font-control">
+              <Button
+                size="icon"
+                variant="ghost"
+                aria-label="Giảm cỡ chữ"
+                disabled={pref.fontSize <= 20}
+                onClick={() => pref.set({ fontSize: pref.fontSize - 2 })}
+              >
+                <Minus size={16} />
+              </Button>
+              <span>Aa</span>
+              <Button
+                size="icon"
+                variant="ghost"
+                aria-label="Tăng cỡ chữ"
+                disabled={pref.fontSize >= 36}
+                onClick={() => pref.set({ fontSize: pref.fontSize + 2 })}
+              >
+                <Plus size={16} />
+              </Button>
+            </div>
+          </div>
+          <div className="button-row">
+            <AudioButton
+              text={sentences.map((s) => s.hanzi).join(" ")}
+              label="Nghe truyện"
+            />
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Lưu vị trí đọc hiện tại"
+              onClick={() =>
+                run(async () => {
+                  await saveReadingPosition(story.id, position.current);
+                  useUI.getState().notify("Đã đánh dấu chỗ đọc của em.");
+                })
+              }
+            >
+              <Bookmark size={18} />
             </Button>
           </div>
         </div>
-        <div className="button-row">
-          <AudioButton
-            text={sentences.map((s) => s.hanzi).join(" ")}
-            label="Nghe truyện"
-          />
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Lưu vị trí đọc hiện tại"
-            onClick={() =>
-              run(async () => {
-                await saveReadingPosition(story.id, position.current);
-                useUI.getState().notify("Đã đánh dấu chỗ đọc của em.");
-              })
-            }
-          >
-            <Bookmark size={18} />
-          </Button>
+        <div className="reader-tip">
+          <Sparkles size={16} />
+          Chạm vào cụm từ có gạch dưới để xem nghĩa và lưu từ.
         </div>
-      </div>
-      <div className="reader-tip">
-        <Sparkles size={16} />
-        Chạm vào cụm từ có gạch dưới để xem nghĩa và lưu từ.
-      </div>
-      <article
-        className="card reader-paper"
-        style={{ "--reader-font": `${pref.fontSize}px` } as React.CSSProperties}
-      >
-        <StoryText
-          story={story}
-          pinyin={pref.pinyin}
-          translation={pref.translation}
-          onWord={setWord}
-          onSentenceRef={(idx, el) => {
-            refs.current[idx] = el;
-          }}
-        />
-        <div className="reader-end">
-          <span className="floral-divider">✿</span>
-          <p>Đến đây là hết câu chuyện rồi. Cảm ơn em đã đọc cùng mình.</p>
-          <Button
-            disabled={busy || progress.value?.completed}
-            onClick={() => {
-              setBusy(true);
-              void completeStory(story.id, sentences.length - 1)
-                .then(() =>
-                  useUI
-                    .getState()
-                    .notify("Một câu chuyện đã nở hoa trong vườn! +30 XP"),
-                )
-                .catch(reportError)
-                .finally(() => setBusy(false));
+        <article
+          className="card reader-paper"
+          style={
+            { "--reader-font": `${pref.fontSize}px` } as React.CSSProperties
+          }
+        >
+          <StoryText
+            story={story}
+            pinyin={pref.pinyin}
+            translation={pref.translation}
+            onWord={setWord}
+            onSentenceRef={(idx, el) => {
+              refs.current[idx] = el;
             }}
-          >
-            {progress.value?.completed ? (
-              <Check size={18} />
-            ) : (
-              <Sparkles size={18} />
-            )}{" "}
-            {progress.value?.completed
-              ? "Em đã đọc câu chuyện này"
-              : "Đánh dấu đã đọc · +30 XP"}
-          </Button>
-        </div>
-      </article>
+          />
+          <div className="reader-end">
+            <span className="floral-divider">✿</span>
+            <p>Đến đây là hết câu chuyện rồi. Cảm ơn em đã đọc cùng mình.</p>
+            <Button
+              disabled={busy || progress.value?.completed}
+              onClick={() => {
+                setBusy(true);
+                void completeStory(story.id, sentences.length - 1)
+                  .then(() =>
+                    useUI
+                      .getState()
+                      .notify("Một câu chuyện đã nở hoa trong vườn! +30 XP"),
+                  )
+                  .catch(reportError)
+                  .finally(() => setBusy(false));
+              }}
+            >
+              {progress.value?.completed ? (
+                <Check size={18} />
+              ) : (
+                <Sparkles size={18} />
+              )}{" "}
+              {progress.value?.completed
+                ? "Em đã đọc câu chuyện này"
+                : "Đánh dấu đã đọc · +30 XP"}
+            </Button>
+          </div>
+        </article>
+      </div>
       <div className="reader-next">
         <Link className="text-link" to={`/review?story=${story.id}`}>
           Ôn bộ {story.glossary.length} từ của truyện →
         </Link>
       </div>
-      <Quiz story={story} onComplete={() => setCanReadQuiz(false)} />
+      <Quiz
+        key={story.id}
+        story={story}
+        onComplete={() => setCanReadQuiz(false)}
+      />
       {!canReadQuiz && (
         <div className="reader-next">
           <Link className="text-link" to={`/review?story=${story.id}`}>

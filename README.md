@@ -37,6 +37,14 @@ PWA/service worker hoạt động trên **bản build**, HTTPS hoặc localhost.
 - Đăng ký/đăng nhập email, quên mật khẩu, xác minh email và quản lý tài khoản; nâng cấp tài khoản khách giữ nguyên UID nhận thư.
 - Xuất/nhập JSON có Zod validation và hợp nhất theo ID. Backup **không** chứa thư, receipts, danh tính hay ghi âm.
 
+## Câu hỏi đọc hiểu nhiều ngôn ngữ
+
+Trong phần **Một chút để nhớ câu chuyện**, dùng ba nút **Chữ Hán**, **Pinyin**, **Tiếng Việt** để bật/tắt từng dòng của đề bài, lựa chọn và lời giải. Có thể dùng riêng một ngôn ngữ hoặc kết hợp; luôn giữ ít nhất một kiểu hiển thị. Tùy chọn được nhớ trên trình duyệt, độc lập với Pinyin/bản dịch của truyện. Đổi ngôn ngữ không xóa đáp án đang chọn hay thay đổi điểm. Thanh công cụ đọc chỉ bám trong vùng đọc, không phủ lên phần quiz.
+
+Seed đã có đủ bản Trung/Pinyin cho **60 câu hỏi, 180 lựa chọn và 60 lời giải**. IDs, văn bản Việt và thứ tự đáp án được giữ nguyên. Pinyin được biên soạn sẵn, có dấu; không gọi dịch vụ phiên âm khi học/offline. Công cụ hỗ trợ biên soạn là [pypinyin](https://pypi.org/project/pypinyin/0.55.0/), chạy tạm ngoài app; đã rà một số đa âm/ngữ cảnh và thanh nhẹ. Trạng thái ngôn ngữ vẫn là `draft`, cần người có chuyên môn duyệt nội dung.
+
+Question format bổ sung `chinese: { prompt: { hanzi, pinyin }, options: [{ hanzi, pinyin }], explanation: { hanzi, pinyin } }`. Trường này tùy chọn để nhập nháp cũ; nếu có thì phải đủ nội dung, Pinyin và cùng số lượng/thứ tự lựa chọn với `options` tiếng Việt. Bài cũ chưa có bản Trung/Pinyin vẫn dùng tiếng Việt và khóa các toggle chưa hỗ trợ. Bàn biên tập có trường sửa từng bản dịch; dữ liệu thiếu/mismatching không được preview/xuất. Copy/export/import giữ các bản dịch. Content format vẫn `version: 1`.
+
 ## Bàn biên tập V2
 
 Vào `/admin/content` sau khi đăng nhập admin. Form sửa tên, câu Hanzi/Pinyin/dịch, mục từ, mapping, câu hỏi/đáp án và câu xếp từ. Chế độ JSON cho phép sửa toàn bộ metadata/IDs hoặc thêm/bớt câu và mục từ. **Lưu nháp** giữ cả JSON chưa hoàn chỉnh trên IndexedDB. Khi đổi truyện, nháp đang sửa được lưu trước; hãy bấm lưu trước khi đóng tab. Nháp không nằm trong backup tiến độ, cần xuất riêng. Không dùng để lưu nội dung bí mật trên máy chung.
@@ -126,6 +134,10 @@ Nếu đã đăng nhập nhưng không vào được quản trị: sao chép **U
 **Danh tính ẩn danh:** xóa browser/site data, dùng private mode hoặc chuyển origin/thiết bị có thể mất UID và tiến độ. Đăng ký tại `/register` trước khi đổi thiết bị để gắn email vào UID đang dùng. Mã backup không khôi phục Auth UID. Learning state local không phải bằng chứng bảo mật cho unlock.
 
 ## Đăng ký và tài khoản
+
+**Tên gọi theo tài khoản:** “Mình gọi em là” đồng bộ qua `devices/{uid}` với các trường `name`, `label`, `email`. Đăng nhập trên máy khác lấy tên đã lưu; thay đổi tên cập nhật realtime khi app mở. Tên browser cũ được nhập một lần nếu tài khoản chưa có tên server; tên server có sẵn được ưu tiên. Với Google mới, dùng tên Google nếu chưa có tên tùy chọn. Tên khách vẫn lưu riêng trên browser. Đổi tài khoản không sao chép tên từ tài khoản trước. Sửa offline được giữ riêng theo UID và thử lại khi có mạng; khi hai máy cùng sửa, lần ghi thành công sau cùng được giữ. Email trong Firestore là bản hiển thị từ Firebase Auth, Rules kiểm tra khớp email trong token; không phải bằng chứng xác minh email. Admin thấy tên/email/UID tại **Người nhận & thông báo**. Tiến độ và các tùy chọn đọc khác vẫn lưu local.
+
+Sau cập nhật, cần triển khai **`firestore.rules` mới** để cho phép các trường hồ sơ; Rules cũ chỉ chấp nhận `uid/label/createdAt/lastPing` và sẽ từ chối đồng bộ tên/email. Bản ghi cũ vẫn hợp lệ, được bổ sung khi tài khoản đăng nhập. App hiển thị trạng thái chưa đồng bộ nếu bị từ chối. Chưa triển khai Rules lên project thật trong phiên này.
 
 **Tiếp tục với Google** có trên cả `/register` và `/login`, mở cửa sổ chọn tài khoản Google. Google mới được gắn vào phiên khách bằng `linkWithPopup`, giữ UID nhận thư. Nếu Google/email đã thuộc tài khoản khác, app dùng credential Google đã xác thực để đăng nhập vào tài khoản đó khi Firebase cho phép; giữ UID của tài khoản đã có, không chuyển thư giữa hai UID. Tiến độ học local vẫn được giữ. Popup mở trực tiếp từ thao tác bấm, không đợi request nền. Đóng/chặn popup, domain chưa được cho phép và Google provider chưa bật có thông báo riêng. Nút chờ phiên khách khởi tạo và khóa khi đang đăng nhập/offline/chưa có config.
 

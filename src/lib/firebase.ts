@@ -18,6 +18,7 @@ import {
   where,
   orderBy,
   onSnapshot,
+  runTransaction,
 } from "firebase/firestore";
 import type { Firestore } from "firebase/firestore";
 import { db, type CachedLetter, type Receipt } from "./db";
@@ -81,12 +82,18 @@ export const trustedNow = () =>
 export async function syncServerClock(uid: string) {
   if (!backend) return;
   const ref = doc(backend.store, "devices", uid);
-  const prior = await getDocFromServer(ref);
-  await setDoc(ref, {
-    uid,
-    label: prior.exists() ? prior.data().label : "Thiết bị của em",
-    createdAt: prior.exists() ? prior.data().createdAt : serverTimestamp(),
-    lastPing: serverTimestamp(),
+  await runTransaction(backend.store, async (transaction) => {
+    const prior = await transaction.get(ref);
+    transaction.set(
+      ref,
+      {
+        uid,
+        label: prior.exists() ? prior.data().label : "Thiết bị của em",
+        createdAt: prior.exists() ? prior.data().createdAt : serverTimestamp(),
+        lastPing: serverTimestamp(),
+      },
+      { merge: true },
+    );
   });
   const snapshot = await getDocFromServer(ref);
   const at = snapshot.data()?.lastPing;

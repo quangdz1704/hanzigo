@@ -205,14 +205,62 @@
             "Cô đi mua sách."
           ],
           "answer": 1,
-          "explanation": "Cô vừa ra khỏi nhà thì trời mưa, nên chạy vào quán."
+          "explanation": "Cô vừa ra khỏi nhà thì trời mưa, nên chạy vào quán.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "林晓为什么走进咖啡馆？",
+              "pinyin": "Lín Xiǎo wèi shén me zǒu jìn kā fēi guǎn?"
+            },
+            "options": [
+              {
+                "hanzi": "她想见朋友。",
+                "pinyin": "Tā xiǎng jiàn péng you."
+              },
+              {
+                "hanzi": "天开始下雨了。",
+                "pinyin": "Tiān kāi shǐ xià yǔ le."
+              },
+              {
+                "hanzi": "她去买书。",
+                "pinyin": "Tā qù mǎi shū."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她刚出门就下雨了，所以跑进咖啡馆。",
+              "pinyin": "Tā gāng chū mén jiù xià yǔ le, suǒ yǐ pǎo jìn kā fēi guǎn."
+            }
+          }
         },
         {
           "id": "rainy-cafe-q1",
           "prompt": "Bìa cuốn sách có hình gì?",
           "options": ["Một chú mèo.", "Một bông hoa.", "Một ngôi nhà."],
           "answer": 0,
-          "explanation": "封面画着一只猫: trên bìa có vẽ một chú mèo."
+          "explanation": "封面画着一只猫: trên bìa có vẽ một chú mèo.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "书的封面上画着什么？",
+              "pinyin": "Shū de fēng miàn shàng huà zhe shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "一只猫。",
+                "pinyin": "Yì zhī māo."
+              },
+              {
+                "hanzi": "一朵花。",
+                "pinyin": "Yì duǒ huā."
+              },
+              {
+                "hanzi": "一座房子。",
+                "pinyin": "Yí zuò fáng zi."
+              }
+            ],
+            "explanation": {
+              "hanzi": "书的封面上画着一只猫。",
+              "pinyin": "Shū de fēng miàn shàng huà zhe yì zhī māo."
+            }
+          }
         },
         {
           "id": "rainy-cafe-q2",
@@ -223,7 +271,31 @@
             "Vui vì tìm được một nơi hay."
           ],
           "answer": 2,
-          "explanation": "Dù kế hoạch thay đổi, cô tìm được một nơi mang lại niềm vui."
+          "explanation": "Dù kế hoạch thay đổi, cô tìm được một nơi mang lại niềm vui.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "故事结束时，林晓的心情怎么样？",
+              "pinyin": "Gù shì jié shù shí, Lín Xiǎo de xīn qíng zěn me yàng?"
+            },
+            "options": [
+              {
+                "hanzi": "因为没去散步而难过。",
+                "pinyin": "Yīn wèi méi qù sàn bù ér nán guò."
+              },
+              {
+                "hanzi": "急着回家。",
+                "pinyin": "Jí zhe huí jiā."
+              },
+              {
+                "hanzi": "因为发现了一个好地方而开心。",
+                "pinyin": "Yīn wèi fā xiàn le yí gè hǎo dì fang ér kāi xīn."
+              }
+            ],
+            "explanation": {
+              "hanzi": "虽然计划改变了，她还是发现了一个让自己快乐的地方。",
+              "pinyin": "Suī rán jì huà gǎi biàn le, tā hái shì fā xiàn le yí gè ràng zì jǐ kuài lè de dì fang."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -421,7 +493,31 @@
           "prompt": "Tiểu Vũ định đến đâu?",
           "options": ["Bắc Kinh.", "Vân Nam.", "Thượng Hải."],
           "answer": 1,
-          "explanation": "Cô chuẩn bị đi Vân Nam vào tháng sau."
+          "explanation": "Cô chuẩn bị đi Vân Nam vào tháng sau.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "小雨打算去哪里？",
+              "pinyin": "Xiǎo Yǔ dǎ suàn qù nǎ lǐ?"
+            },
+            "options": [
+              {
+                "hanzi": "北京。",
+                "pinyin": "Běi jīng."
+              },
+              {
+                "hanzi": "云南。",
+                "pinyin": "Yún nán."
+              },
+              {
+                "hanzi": "上海。",
+                "pinyin": "Shàng hǎi."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她准备下个月去云南。",
+              "pinyin": "Tā zhǔn bèi xià gè yuè qù yún nán."
+            }
+          }
         },
         {
           "id": "bookshop-q1",
@@ -432,7 +528,31 @@
             "Cuốn về phong cảnh."
           ],
           "answer": 0,
-          "explanation": "第二本 là cuốn thứ hai, kể về cuộc sống địa phương."
+          "explanation": "第二本 là cuốn thứ hai, kể về cuộc sống địa phương.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "她选了哪本书？",
+              "pinyin": "Tā xuǎn le nǎ běn shū?"
+            },
+            "options": [
+              {
+                "hanzi": "介绍当地生活的书。",
+                "pinyin": "Jiè shào dāng dì shēng huó de shū."
+              },
+              {
+                "hanzi": "一本词典。",
+                "pinyin": "Yì běn cí diǎn."
+              },
+              {
+                "hanzi": "介绍风景的书。",
+                "pinyin": "Jiè shào fēng jǐng de shū."
+              }
+            ],
+            "explanation": {
+              "hanzi": "第二本书介绍当地的生活。",
+              "pinyin": "Dì èr běn shū jiè shào dāng dì de shēng huó."
+            }
+          }
         },
         {
           "id": "bookshop-q2",
@@ -443,7 +563,31 @@
             "Nhân viên tiệm sách."
           ],
           "answer": 2,
-          "explanation": "店员送给她一张明信片: nhân viên tặng cô một bưu thiếp."
+          "explanation": "店员送给她一张明信片: nhân viên tặng cô một bưu thiếp.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "谁送给她一张明信片？",
+              "pinyin": "Shuí sòng gěi tā yì zhāng míng xìn piàn?"
+            },
+            "options": [
+              {
+                "hanzi": "她的朋友。",
+                "pinyin": "Tā de péng you."
+              },
+              {
+                "hanzi": "书店里的顾客。",
+                "pinyin": "Shū diàn lǐ de gù kè."
+              },
+              {
+                "hanzi": "书店的店员。",
+                "pinyin": "Shū diàn de diàn yuán."
+              }
+            ],
+            "explanation": {
+              "hanzi": "店员送给她一张明信片。",
+              "pinyin": "Diàn yuán sòng gěi tā yì zhāng míng xìn piàn."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -649,14 +793,62 @@
             "Cô lỡ tàu."
           ],
           "answer": 0,
-          "explanation": "Đây là lần đầu cô đi du lịch một mình."
+          "explanation": "Đây là lần đầu cô đi du lịch một mình.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "阿宁为什么有些紧张？",
+              "pinyin": "Ā Níng wèi shén me yǒu xiē jǐn zhāng?"
+            },
+            "options": [
+              {
+                "hanzi": "这是她第一次一个人旅行。",
+                "pinyin": "Zhè shì tā dì yí cì yí gè rén lǚ xíng."
+              },
+              {
+                "hanzi": "她的行李丢了。",
+                "pinyin": "Tā de xíng lǐ diū le."
+              },
+              {
+                "hanzi": "她没赶上火车。",
+                "pinyin": "Tā méi gǎn shàng huǒ chē."
+              }
+            ],
+            "explanation": {
+              "hanzi": "这是她第一次一个人去旅行。",
+              "pinyin": "Zhè shì tā dì yí cì yí gè rén qù lǚ xíng."
+            }
+          }
         },
         {
           "id": "slow-travel-q1",
           "prompt": "Ai chỉ đường cho cô?",
           "options": ["Tài xế.", "Cô bán trái cây.", "Một em nhỏ."],
           "answer": 1,
-          "explanation": "一位卖水果的阿姨 là một người cô bán trái cây."
+          "explanation": "一位卖水果的阿姨 là một người cô bán trái cây.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "谁给她指路？",
+              "pinyin": "Shuí gěi tā zhǐ lù?"
+            },
+            "options": [
+              {
+                "hanzi": "司机。",
+                "pinyin": "Sī jī."
+              },
+              {
+                "hanzi": "卖水果的阿姨。",
+                "pinyin": "Mài shuǐ guǒ de ā yí."
+              },
+              {
+                "hanzi": "一个小孩。",
+                "pinyin": "Yí gè xiǎo hái."
+              }
+            ],
+            "explanation": {
+              "hanzi": "一位卖水果的阿姨给她指路。",
+              "pinyin": "Yí wèi mài shuǐ guǒ de ā yí gěi tā zhǐ lù."
+            }
+          }
         },
         {
           "id": "slow-travel-q2",
@@ -667,7 +859,31 @@
             "Đi chậm cũng có nhiều kỷ niệm đẹp."
           ],
           "answer": 2,
-          "explanation": "Cô chỉ đến hai nơi nhưng nhớ nhiều nụ cười ấm áp."
+          "explanation": "Cô chỉ đến hai nơi nhưng nhớ nhiều nụ cười ấm áp.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "她从这次旅行中明白了什么？",
+              "pinyin": "Tā cóng zhè cì lǚ xíng zhōng míng bái le shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "一定要去很多地方。",
+                "pinyin": "Yí dìng yào qù hěn duō dì fang."
+              },
+              {
+                "hanzi": "不应该吃午饭。",
+                "pinyin": "Bù yīng gāi chī wǔ fàn."
+              },
+              {
+                "hanzi": "慢慢旅行也能留下美好的回忆。",
+                "pinyin": "Màn màn lǚ xíng yě néng liú xià měi hǎo de huí yì."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她只去了两个地方，却记住了很多温暖的笑容。",
+              "pinyin": "Tā zhǐ qù le liǎng gè dì fang, què jì zhù le hěn duō wēn nuǎn de xiào róng."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -865,7 +1081,31 @@
           "prompt": "Tiểu Lan là ai?",
           "options": ["Bạn cùng lớp.", "Người hàng xóm.", "Chị gái."],
           "answer": 1,
-          "explanation": "邻居 nghĩa là hàng xóm."
+          "explanation": "邻居 nghĩa là hàng xóm.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "小兰是谁？",
+              "pinyin": "Xiǎo Lán shì shuí?"
+            },
+            "options": [
+              {
+                "hanzi": "同学。",
+                "pinyin": "Tóng xué."
+              },
+              {
+                "hanzi": "邻居。",
+                "pinyin": "Lín jū."
+              },
+              {
+                "hanzi": "姐姐。",
+                "pinyin": "Jiě jie."
+              }
+            ],
+            "explanation": {
+              "hanzi": "小兰是小美的邻居。",
+              "pinyin": "Xiǎo Lán shì Xiǎo Měi de lín jū."
+            }
+          }
         },
         {
           "id": "friendship-q1",
@@ -876,14 +1116,62 @@
             "Trò chuyện và được Tiểu Lan thấu hiểu."
           ],
           "answer": 2,
-          "explanation": "Tiểu Lan từng cảm thấy cô đơn tương tự, khiến Tiểu Mỹ thấy nhẹ lòng."
+          "explanation": "Tiểu Lan từng cảm thấy cô đơn tương tự, khiến Tiểu Mỹ thấy nhẹ lòng.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "什么让小美感到轻松了一些？",
+              "pinyin": "Shén me ràng Xiǎo Měi gǎn dào qīng sōng le yì xiē?"
+            },
+            "options": [
+              {
+                "hanzi": "买了一件新东西。",
+                "pinyin": "Mǎi le yí jiàn xīn dōng xi."
+              },
+              {
+                "hanzi": "去旅行。",
+                "pinyin": "Qù lǚ xíng."
+              },
+              {
+                "hanzi": "聊天并得到小兰的理解。",
+                "pinyin": "Liáo tiān bìng dé dào Xiǎo Lán de lǐ jiě."
+              }
+            ],
+            "explanation": {
+              "hanzi": "小兰也有过同样孤单的感觉，这让小美感到轻松了一些。",
+              "pinyin": "Xiǎo Lán yě yǒu guo tóng yàng gū dān de gǎn jué, zhè ràng Xiǎo Měi gǎn dào qīng sōng le yì xiē."
+            }
+          }
         },
         {
           "id": "friendship-q2",
           "prompt": "Họ cùng nấu ăn vào ngày nào?",
           "options": ["Thứ Sáu.", "Thứ Hai.", "Chủ nhật."],
           "answer": 0,
-          "explanation": "每个星期五: thứ Sáu hằng tuần."
+          "explanation": "每个星期五: thứ Sáu hằng tuần.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "她们每周哪一天一起做饭？",
+              "pinyin": "Tā men měi zhōu nǎ yī tiān yì qǐ zuò fàn?"
+            },
+            "options": [
+              {
+                "hanzi": "星期五。",
+                "pinyin": "Xīng qī wǔ."
+              },
+              {
+                "hanzi": "星期一。",
+                "pinyin": "Xīng qī yī."
+              },
+              {
+                "hanzi": "星期天。",
+                "pinyin": "Xīng qī tiān."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她们每个星期五一起做饭。",
+              "pinyin": "Tā men měi gè xīng qī wǔ yì qǐ zuò fàn."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -1085,7 +1373,31 @@
             "Hoa đã héo."
           ],
           "answer": 0,
-          "explanation": "Hoa chưa nở sau hai tuần nên cô nghi ngờ mình chăm sai."
+          "explanation": "Hoa chưa nở sau hai tuần nên cô nghi ngờ mình chăm sai.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "苏苏为什么担心？",
+              "pinyin": "Sū Sū wèi shén me dān xīn?"
+            },
+            "options": [
+              {
+                "hanzi": "两周以后，花还没有开。",
+                "pinyin": "Liǎng zhōu yǐ hòu, huā hái méi yǒu kāi."
+              },
+              {
+                "hanzi": "她打破了花盆。",
+                "pinyin": "Tā dǎ pò le huā pén."
+              },
+              {
+                "hanzi": "花已经枯萎了。",
+                "pinyin": "Huā yǐ jīng kū wěi le."
+              }
+            ],
+            "explanation": {
+              "hanzi": "两周以后花还没有开，所以她怀疑自己没有照顾好花。",
+              "pinyin": "Liǎng zhōu yǐ hòu huā hái méi yǒu kāi, suǒ yǐ tā huái yí zì jǐ méi yǒu zhào gù hǎo huā."
+            }
+          }
         },
         {
           "id": "balcony-q1",
@@ -1096,14 +1408,62 @@
             "Nơi nhiều gió hơn."
           ],
           "answer": 1,
-          "explanation": "阳光更充足 nghĩa là ánh nắng dồi dào hơn."
+          "explanation": "阳光更充足 nghĩa là ánh nắng dồi dào hơn.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "她把花盆搬到什么样的地方？",
+              "pinyin": "Tā bǎ huā pén bān dào shén me yàng de dì fang?"
+            },
+            "options": [
+              {
+                "hanzi": "更暗的地方。",
+                "pinyin": "Gèng àn de dì fang."
+              },
+              {
+                "hanzi": "阳光更充足的地方。",
+                "pinyin": "Yáng guāng gèng chōng zú de dì fang."
+              },
+              {
+                "hanzi": "风更大的地方。",
+                "pinyin": "Fēng gèng dà de dì fang."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她把花盆搬到阳光更充足的地方。",
+              "pinyin": "Tā bǎ huā pén bān dào yáng guāng gèng chōng zú de dì fang."
+            }
+          }
         },
         {
           "id": "balcony-q2",
           "prompt": "Cô tìm thấy gì vào một buổi sáng?",
           "options": ["Một chiếc lá khô.", "Một con bướm.", "Một nụ hoa nhỏ."],
           "answer": 2,
-          "explanation": "一个小小的花苞: một nụ hoa bé nhỏ."
+          "explanation": "一个小小的花苞: một nụ hoa bé nhỏ.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "一天早上，她发现了什么？",
+              "pinyin": "Yī tiān zǎo shàng, tā fā xiàn le shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "一片干叶子。",
+                "pinyin": "Yí piàn gàn yè zi."
+              },
+              {
+                "hanzi": "一只蝴蝶。",
+                "pinyin": "Yì zhī hú dié."
+              },
+              {
+                "hanzi": "一个小小的花苞。",
+                "pinyin": "Yí gè xiǎo xiǎo de huā bāo."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她发现了一个小小的花苞。",
+              "pinyin": "Tā fā xiàn le yí gè xiǎo xiǎo de huā bāo."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -1305,7 +1665,31 @@
           "prompt": "Tiểu Vũ đến chợ khi nào?",
           "options": ["Sáng Chủ nhật", "Tối thứ Sáu", "Chiều thứ Hai"],
           "answer": 0,
-          "explanation": "Câu đầu nêu rõ sáng Chủ nhật."
+          "explanation": "Câu đầu nêu rõ sáng Chủ nhật.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "小雨什么时候去早市？",
+              "pinyin": "Xiǎo Yǔ shén me shí hou qù zǎo shì?"
+            },
+            "options": [
+              {
+                "hanzi": "星期天早上。",
+                "pinyin": "Xīng qī tiān zǎo shàng."
+              },
+              {
+                "hanzi": "星期五晚上。",
+                "pinyin": "Xīng qī wǔ wǎn shàng."
+              },
+              {
+                "hanzi": "星期一下午。",
+                "pinyin": "Xīng qī yī xià wǔ."
+              }
+            ],
+            "explanation": {
+              "hanzi": "第一句话说明她在星期天早上去早市。",
+              "pinyin": "Dì yī jù huà shuō míng tā zài xīng qī tiān zǎo shàng qù zǎo shì."
+            }
+          }
         },
         {
           "id": "morning-market-q1",
@@ -1316,14 +1700,62 @@
             "Mang ghế về nhà"
           ],
           "answer": 1,
-          "explanation": "Bà chỉ ghế; Tiểu Vũ ngồi trò chuyện mười phút."
+          "explanation": "Bà chỉ ghế; Tiểu Vũ ngồi trò chuyện mười phút.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "老奶奶希望小雨做什么？",
+              "pinyin": "Lǎo nǎi nai xī wàng Xiǎo Yǔ zuò shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "买下所有的水果。",
+                "pinyin": "Mǎi xià suǒ yǒu de shuǐ guǒ."
+              },
+              {
+                "hanzi": "坐下来陪她聊天。",
+                "pinyin": "Zuò xià lái péi tā liáo tiān."
+              },
+              {
+                "hanzi": "把椅子带回家。",
+                "pinyin": "Bǎ yǐ zi dài huí jiā."
+              }
+            ],
+            "explanation": {
+              "hanzi": "老奶奶指了指椅子，小雨坐下来陪她聊了十分钟。",
+              "pinyin": "Lǎo nǎi nai zhǐ le zhǐ yǐ zi, Xiǎo Yǔ zuò xià lái péi tā liáo le shí fēn zhōng."
+            }
+          }
         },
         {
           "id": "morning-market-q2",
           "prompt": "Cô để dành nửa quả quýt cho ai?",
           "options": ["Bà bán hàng", "Bạn cùng lớp", "Mẹ"],
           "answer": 2,
-          "explanation": "Cô để dành một nửa cho mẹ trên đường về."
+          "explanation": "Cô để dành một nửa cho mẹ trên đường về.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "她把半个橘子留给了谁？",
+              "pinyin": "Tā bǎ bàn gè jú zi liú gěi le shuí?"
+            },
+            "options": [
+              {
+                "hanzi": "卖水果的老奶奶。",
+                "pinyin": "Mài shuǐ guǒ de lǎo nǎi nai."
+              },
+              {
+                "hanzi": "同学。",
+                "pinyin": "Tóng xué."
+              },
+              {
+                "hanzi": "妈妈。",
+                "pinyin": "Mā ma."
+              }
+            ],
+            "explanation": {
+              "hanzi": "回家的路上，她把半个橘子留给了妈妈。",
+              "pinyin": "Huí jiā de lù shàng, tā bǎ bàn gè jú zi liú gěi le mā ma."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -1521,14 +1953,62 @@
           "prompt": "Tại sao Trần An lỡ xe?",
           "options": ["Anh đến nhầm trạm", "Anh dậy muộn", "Anh quên tiền"],
           "answer": 1,
-          "explanation": "Anh dậy muộn và xe vừa rời trạm."
+          "explanation": "Anh dậy muộn và xe vừa rời trạm.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "陈安为什么没赶上公交车？",
+              "pinyin": "Chén Ān wèi shén me méi gǎn shàng gōng jiāo chē?"
+            },
+            "options": [
+              {
+                "hanzi": "他去了错误的车站。",
+                "pinyin": "Tā qù le cuò wù de chē zhàn."
+              },
+              {
+                "hanzi": "他起晚了。",
+                "pinyin": "Tā qǐ wǎn le."
+              },
+              {
+                "hanzi": "他忘了带钱。",
+                "pinyin": "Tā wàng le dài qián."
+              }
+            ],
+            "explanation": {
+              "hanzi": "他起晚了，公交车刚刚离开车站。",
+              "pinyin": "Tā qǐ wǎn le, gōng jiāo chē gāng gāng lí kāi chē zhàn."
+            }
+          }
         },
         {
           "id": "missed-bus-q1",
           "prompt": "Cụ già muốn đến đâu?",
           "options": ["Bệnh viện", "Công viên", "Thư viện"],
           "answer": 0,
-          "explanation": "Cụ đang tìm bệnh viện trên bản đồ."
+          "explanation": "Cụ đang tìm bệnh viện trên bản đồ.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "老人想去哪里？",
+              "pinyin": "Lǎo rén xiǎng qù nǎ lǐ?"
+            },
+            "options": [
+              {
+                "hanzi": "医院。",
+                "pinyin": "Yī yuàn."
+              },
+              {
+                "hanzi": "公园。",
+                "pinyin": "Gōng yuán."
+              },
+              {
+                "hanzi": "图书馆。",
+                "pinyin": "Tú shū guǎn."
+              }
+            ],
+            "explanation": {
+              "hanzi": "老人正在地图上寻找医院。",
+              "pinyin": "Lǎo rén zhèng zài dì tú shàng xún zhǎo yī yuàn."
+            }
+          }
         },
         {
           "id": "missed-bus-q2",
@@ -1539,7 +2019,31 @@
             "Tra tuyến và đỡ cụ lên xe"
           ],
           "answer": 2,
-          "explanation": "Anh tra tuyến số mười hai rồi dìu cụ lên xe."
+          "explanation": "Anh tra tuyến số mười hai rồi dìu cụ lên xe.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "陈安怎样帮助老人？",
+              "pinyin": "Chén Ān zěn yàng bāng zhù lǎo rén?"
+            },
+            "options": [
+              {
+                "hanzi": "把车借给老人。",
+                "pinyin": "Bǎ chē jiè gěi lǎo rén."
+              },
+              {
+                "hanzi": "买了一张新地图。",
+                "pinyin": "Mǎi le yì zhāng xīn dì tú."
+              },
+              {
+                "hanzi": "查路线，并扶老人上车。",
+                "pinyin": "Chá lù xiàn, bìng fú lǎo rén shàng chē."
+              }
+            ],
+            "explanation": {
+              "hanzi": "他查了十二路公交车的路线，然后扶老人上车。",
+              "pinyin": "Tā chá le shí èr lù gōng jiāo chē de lù xiàn, rán hòu fú lǎo rén shàng chē."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -1745,21 +2249,93 @@
           "prompt": "Cuốn sổ thuộc về ai?",
           "options": ["Mẹ", "Bà", "Một đầu bếp"],
           "answer": 1,
-          "explanation": "Trong sổ là nét chữ của bà."
+          "explanation": "Trong sổ là nét chữ của bà.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "这本菜谱是谁的？",
+              "pinyin": "Zhè běn cài pǔ shì shéi de?"
+            },
+            "options": [
+              {
+                "hanzi": "妈妈的。",
+                "pinyin": "Mā ma de."
+              },
+              {
+                "hanzi": "奶奶的。",
+                "pinyin": "Nǎi nai de."
+              },
+              {
+                "hanzi": "一位厨师的。",
+                "pinyin": "Yí wèi chú shī de."
+              }
+            ],
+            "explanation": {
+              "hanzi": "菜谱里是奶奶写的字。",
+              "pinyin": "Cài pǔ lǐ shì nǎi nai xiě de zì."
+            }
+          }
         },
         {
           "id": "recipe-notebook-q1",
           "prompt": "Món ăn đầu tiên bị lỗi gì?",
           "options": ["Quá mặn", "Chưa chín", "Quá ngọt"],
           "answer": 0,
-          "explanation": "Cô cho nhiều muối khiến món ăn quá mặn."
+          "explanation": "Cô cho nhiều muối khiến món ăn quá mặn.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "她第一次做的菜有什么问题？",
+              "pinyin": "Tā dì yí cì zuò de cài yǒu shén me wèn tí?"
+            },
+            "options": [
+              {
+                "hanzi": "太咸了。",
+                "pinyin": "Tài xián le."
+              },
+              {
+                "hanzi": "还没熟。",
+                "pinyin": "Hái méi shú."
+              },
+              {
+                "hanzi": "太甜了。",
+                "pinyin": "Tài tián le."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她放了太多盐，所以菜太咸了。",
+              "pinyin": "Tā fàng le tài duō yán, suǒ yǐ cài tài xián le."
+            }
+          }
         },
         {
           "id": "recipe-notebook-q2",
           "prompt": "Cô sửa món ăn bằng cách nào?",
           "options": ["Bỏ hết đi", "Thêm đường", "Thêm một quả cà chua"],
           "answer": 2,
-          "explanation": "Câu bảy nói cô thêm một quả cà chua rồi nếm lại."
+          "explanation": "Câu bảy nói cô thêm một quả cà chua rồi nếm lại.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "她怎样改进这道菜？",
+              "pinyin": "Tā zěn yàng gǎi jìn zhè dào cài?"
+            },
+            "options": [
+              {
+                "hanzi": "把菜都扔掉。",
+                "pinyin": "Bǎ cài dōu rēng diào."
+              },
+              {
+                "hanzi": "加糖。",
+                "pinyin": "Jiā táng."
+              },
+              {
+                "hanzi": "加一个西红柿。",
+                "pinyin": "Jiā yí gè xī hóng shì."
+              }
+            ],
+            "explanation": {
+              "hanzi": "第七句话说，她加了一个西红柿，然后又尝了尝。",
+              "pinyin": "Dì qī jù huà shuō, tā jiā le yí gè xī hóng shì, rán hòu yòu cháng le cháng."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -1957,21 +2533,93 @@
           "prompt": "Tiểu Lâm khó tìm gì?",
           "options": ["Sách", "Chỗ ngồi", "Thẻ thư viện"],
           "answer": 1,
-          "explanation": "Thư viện gần như không còn chỗ trống."
+          "explanation": "Thư viện gần như không còn chỗ trống.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "小林很难找到什么？",
+              "pinyin": "Xiǎo Lín hěn nán zhǎo dào shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "书。",
+                "pinyin": "Shū."
+              },
+              {
+                "hanzi": "座位。",
+                "pinyin": "Zuò wèi."
+              },
+              {
+                "hanzi": "借书证。",
+                "pinyin": "Jiè shū zhèng."
+              }
+            ],
+            "explanation": {
+              "hanzi": "图书馆里几乎没有空位。",
+              "pinyin": "Tú shū guǎn lǐ jī hū méi yǒu kòng wèi."
+            }
+          }
         },
         {
           "id": "library-seat-q1",
           "prompt": "Cô gái quên mang gì?",
           "options": ["Bút", "Cặp", "Điện thoại"],
           "answer": 0,
-          "explanation": "Cô gái quên mang bút nên được cho mượn cây dự phòng."
+          "explanation": "Cô gái quên mang bút nên được cho mượn cây dự phòng.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "那个女孩忘了带什么？",
+              "pinyin": "Nà ge nǚ hái wàng le dài shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "笔。",
+                "pinyin": "Bǐ."
+              },
+              {
+                "hanzi": "书包。",
+                "pinyin": "Shū bāo."
+              },
+              {
+                "hanzi": "手机。",
+                "pinyin": "Shǒu jī."
+              }
+            ],
+            "explanation": {
+              "hanzi": "女孩忘了带笔，所以小林把备用的笔借给了她。",
+              "pinyin": "Nǚ hái wàng le dài bǐ, suǒ yǐ Xiǎo Lín bǎ bèi yòng de bǐ jiè gěi le tā."
+            }
+          }
         },
         {
           "id": "library-seat-q2",
           "prompt": "Họ hẹn làm gì hôm sau?",
           "options": ["Đi xem phim", "Mua sách", "Cùng ôn bài"],
           "answer": 2,
-          "explanation": "Họ hẹn ngày mai ôn tập cùng nhau."
+          "explanation": "Họ hẹn ngày mai ôn tập cùng nhau.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "她们约好第二天做什么？",
+              "pinyin": "Tā men yuē hǎo dì èr tiān zuò shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "看电影。",
+                "pinyin": "Kàn diàn yǐng."
+              },
+              {
+                "hanzi": "买书。",
+                "pinyin": "Mǎi shū."
+              },
+              {
+                "hanzi": "一起复习。",
+                "pinyin": "Yì qǐ fù xí."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她们约好第二天一起复习。",
+              "pinyin": "Tā men yuē hǎo dì èr tiān yì qǐ fù xí."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -2173,14 +2821,62 @@
             "Ngày đầu đi làm"
           ],
           "answer": 0,
-          "explanation": "Câu đầu nêu mùa hè sau khi tốt nghiệp."
+          "explanation": "Câu đầu nêu mùa hè sau khi tốt nghiệp.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "她什么时候来到海边？",
+              "pinyin": "Tā shén me shí hou lái dào hǎi biān?"
+            },
+            "options": [
+              {
+                "hanzi": "毕业后的夏天。",
+                "pinyin": "Bì yè hòu de xià tiān."
+              },
+              {
+                "hanzi": "考试前的冬天。",
+                "pinyin": "Kǎo shì qián de dōng tiān."
+              },
+              {
+                "hanzi": "上班的第一天。",
+                "pinyin": "Shàng bān de dì yī tiān."
+              }
+            ],
+            "explanation": {
+              "hanzi": "第一句话说明这是毕业后的夏天。",
+              "pinyin": "Dì yī jù huà shuō míng zhè shì bì yè hòu de xià tiān."
+            }
+          }
         },
         {
           "id": "seaside-letter-q1",
           "prompt": "Sau khi viết, cô làm gì với giấy?",
           "options": ["Ném xuống biển", "Kẹp trong sách", "Đốt đi"],
           "answer": 1,
-          "explanation": "Cô giữ giấy trong sách, không ném xuống biển."
+          "explanation": "Cô giữ giấy trong sách, không ném xuống biển.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "写完以后，她怎样处理那张纸？",
+              "pinyin": "Xiě wán yǐ hòu, tā zěn yàng chǔ lǐ nà zhāng zhǐ?"
+            },
+            "options": [
+              {
+                "hanzi": "扔进海里。",
+                "pinyin": "Rēng jìn hǎi lǐ."
+              },
+              {
+                "hanzi": "夹在书里。",
+                "pinyin": "Jiā zài shū lǐ."
+              },
+              {
+                "hanzi": "烧掉。",
+                "pinyin": "Shāo diào."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她把纸夹在书里，没有扔进海里。",
+              "pinyin": "Tā bǎ zhǐ jiā zài shū lǐ, méi yǒu rēng jìn hǎi lǐ."
+            }
+          }
         },
         {
           "id": "seaside-letter-q2",
@@ -2191,7 +2887,31 @@
             "Ứng tuyển việc mình thích"
           ],
           "answer": 2,
-          "explanation": "Cô quyết định ứng tuyển công việc khiến mình hứng thú."
+          "explanation": "Cô quyết định ứng tuyển công việc khiến mình hứng thú.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "她决定下一步做什么？",
+              "pinyin": "Tā jué dìng xià yī bù zuò shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "买票去远方。",
+                "pinyin": "Mǎi piào qù yuǎn fāng."
+              },
+              {
+                "hanzi": "学习开火车。",
+                "pinyin": "Xué xí kāi huǒ chē."
+              },
+              {
+                "hanzi": "申请自己感兴趣的工作。",
+                "pinyin": "Shēn qǐng zì jǐ gǎn xìng qù de gōng zuò."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她决定申请一份自己感兴趣的工作。",
+              "pinyin": "Tā jué dìng shēn qǐng yí fèn zì jǐ gǎn xìng qù de gōng zuò."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -2389,21 +3109,93 @@
           "prompt": "Mèo trốn ở đâu?",
           "options": ["Trong thư viện", "Sau xe đạp", "Trên mái nhà"],
           "answer": 1,
-          "explanation": "Mèo trốn sau một chiếc xe đạp."
+          "explanation": "Mèo trốn sau một chiếc xe đạp.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "小猫躲在哪里？",
+              "pinyin": "Xiǎo māo duǒ zài nǎ lǐ?"
+            },
+            "options": [
+              {
+                "hanzi": "图书馆里。",
+                "pinyin": "Tú shū guǎn lǐ."
+              },
+              {
+                "hanzi": "自行车后面。",
+                "pinyin": "Zì xíng chē hòu miàn."
+              },
+              {
+                "hanzi": "屋顶上。",
+                "pinyin": "Wū dǐng shàng."
+              }
+            ],
+            "explanation": {
+              "hanzi": "小猫躲在一辆自行车后面。",
+              "pinyin": "Xiǎo māo duǒ zài yí liàng zì xíng chē hòu miàn."
+            }
+          }
         },
         {
           "id": "lost-cat-q1",
           "prompt": "Anh tìm chủ mèo bằng cách nào?",
           "options": ["Gửi ảnh cho hàng xóm", "Chở mèo đến chợ", "Hỏi tài xế"],
           "answer": 0,
-          "explanation": "Anh chụp ảnh rồi gửi cho hàng xóm."
+          "explanation": "Anh chụp ảnh rồi gửi cho hàng xóm.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "他怎样寻找猫的主人？",
+              "pinyin": "Tā zěn yàng xún zhǎo māo de zhǔ rén?"
+            },
+            "options": [
+              {
+                "hanzi": "把照片发给邻居。",
+                "pinyin": "Bǎ zhào piān fā gěi lín jū."
+              },
+              {
+                "hanzi": "把猫送到市场。",
+                "pinyin": "Bǎ māo sòng dào shì chǎng."
+              },
+              {
+                "hanzi": "问司机。",
+                "pinyin": "Wèn sī jī."
+              }
+            ],
+            "explanation": {
+              "hanzi": "他给猫拍了照片，然后发给邻居。",
+              "pinyin": "Tā gěi māo pāi le zhào piān, rán hòu fā gěi lín jū."
+            }
+          }
         },
         {
           "id": "lost-cat-q2",
           "prompt": "Chủ mèo ở tầng mấy?",
           "options": ["Tầng một", "Tầng hai", "Tầng ba"],
           "answer": 2,
-          "explanation": "Chị ở tầng ba chạy xuống đón mèo."
+          "explanation": "Chị ở tầng ba chạy xuống đón mèo.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "猫的主人住在几楼？",
+              "pinyin": "Māo de zhǔ rén zhù zài jǐ lóu?"
+            },
+            "options": [
+              {
+                "hanzi": "一楼。",
+                "pinyin": "Yī lóu."
+              },
+              {
+                "hanzi": "二楼。",
+                "pinyin": "Èr lóu."
+              },
+              {
+                "hanzi": "三楼。",
+                "pinyin": "Sān lóu."
+              }
+            ],
+            "explanation": {
+              "hanzi": "住在三楼的姐姐跑下来接猫。",
+              "pinyin": "Zhù zài sān lóu de jiě jie pǎo xià lái jiē māo."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -2601,7 +3393,31 @@
           "prompt": "Hiểu Nguyệt giúp mẹ việc gì?",
           "options": ["Mua trà", "Rửa bát", "Trồng hoa"],
           "answer": 1,
-          "explanation": "Cô đặt điện thoại xuống và rửa bát thay mẹ."
+          "explanation": "Cô đặt điện thoại xuống và rửa bát thay mẹ.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "晓月帮妈妈做了什么？",
+              "pinyin": "Xiǎo Yuè bāng mā ma zuò le shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "买茶。",
+                "pinyin": "Mǎi chá."
+              },
+              {
+                "hanzi": "洗碗。",
+                "pinyin": "Xǐ wǎn."
+              },
+              {
+                "hanzi": "种花。",
+                "pinyin": "Zhòng huā."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她放下手机，替妈妈洗完了碗。",
+              "pinyin": "Tā fàng xià shǒu jī, tì mā ma xǐ wán le wǎn."
+            }
+          }
         },
         {
           "id": "tea-with-mother-q1",
@@ -2612,7 +3428,31 @@
             "Đi du lịch xa"
           ],
           "answer": 0,
-          "explanation": "Mẹ kể hoa đã nở nhưng chưa ai thấy."
+          "explanation": "Mẹ kể hoa đã nở nhưng chưa ai thấy.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "妈妈想说什么事？",
+              "pinyin": "Mā ma xiǎng shuō shén me shì?"
+            },
+            "options": [
+              {
+                "hanzi": "阳台上的花开了。",
+                "pinyin": "Yáng tái shàng de huā kāi le."
+              },
+              {
+                "hanzi": "钥匙丢了。",
+                "pinyin": "Yào shi diū le."
+              },
+              {
+                "hanzi": "要去远方旅行。",
+                "pinyin": "Yào qù yuǎn fāng lǚ xíng."
+              }
+            ],
+            "explanation": {
+              "hanzi": "妈妈说花已经开了，却还没有人看见。",
+              "pinyin": "Mā ma shuō huā yǐ jīng kāi le, què hái méi yǒu rén kàn jiàn."
+            }
+          }
         },
         {
           "id": "tea-with-mother-q2",
@@ -2623,7 +3463,31 @@
             "Họ mải trò chuyện"
           ],
           "answer": 2,
-          "explanation": "Hai mẹ con trò chuyện ấm áp đến khi trà nguội."
+          "explanation": "Hai mẹ con trò chuyện ấm áp đến khi trà nguội.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "故事里，茶凉了说明了什么？",
+              "pinyin": "Gù shì lǐ, chá liáng le shuō míng le shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "她们不喜欢茶。",
+                "pinyin": "Tā men bù xǐ huān chá."
+              },
+              {
+                "hanzi": "妈妈忘了泡茶。",
+                "pinyin": "Mā ma wàng le pào chá."
+              },
+              {
+                "hanzi": "她们聊得很投入。",
+                "pinyin": "Tā men liáo de hěn tóu rù."
+              }
+            ],
+            "explanation": {
+              "hanzi": "母女俩一直温暖地聊天，直到茶凉了。",
+              "pinyin": "Mǔ nǚ liǎ yì zhí wēn nuǎn dì liáo tiān, zhí dào chá liáng le."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -2829,14 +3693,62 @@
             "Không thích táo"
           ],
           "answer": 1,
-          "explanation": "Cô luôn nghĩ mình không có năng khiếu."
+          "explanation": "Cô luôn nghĩ mình không có năng khiếu.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "她为什么犹豫要不要学画画？",
+              "pinyin": "Tā wèi shén me yóu yù yào bú yào xué huà huà?"
+            },
+            "options": [
+              {
+                "hanzi": "教室太远。",
+                "pinyin": "Jiào shì tài yuǎn."
+              },
+              {
+                "hanzi": "她觉得自己没有天赋。",
+                "pinyin": "Tā jué de zì jǐ méi yǒu tiān fù."
+              },
+              {
+                "hanzi": "她不喜欢苹果。",
+                "pinyin": "Tā bù xǐ huān píng guǒ."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她一直觉得自己没有画画的天赋。",
+              "pinyin": "Tā yì zhí jué de zì jǐ méi yǒu huà huà de tiān fù."
+            }
+          }
         },
         {
           "id": "first-class-q1",
           "prompt": "Thầy dùng vật gì làm mẫu?",
           "options": ["Quả táo", "Bình trà", "Bông hoa"],
           "answer": 0,
-          "explanation": "Thầy đặt một quả táo trên bàn để quan sát."
+          "explanation": "Thầy đặt một quả táo trên bàn để quan sát.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "老师用什么作为绘画的对象？",
+              "pinyin": "Lǎo shī yòng shén me zuò wéi huì huà de duì xiàng?"
+            },
+            "options": [
+              {
+                "hanzi": "一个苹果。",
+                "pinyin": "Yí gè píng guǒ."
+              },
+              {
+                "hanzi": "一个茶壶。",
+                "pinyin": "Yí gè chá hú."
+              },
+              {
+                "hanzi": "一朵花。",
+                "pinyin": "Yì duǒ huā."
+              }
+            ],
+            "explanation": {
+              "hanzi": "老师把一个苹果放在桌上，让大家观察。",
+              "pinyin": "Lǎo shī bǎ yí gè píng guǒ fàng zài zhuō shàng, ràng dà jiā guān chá."
+            }
+          }
         },
         {
           "id": "first-class-q2",
@@ -2847,7 +3759,31 @@
             "Mong chờ buổi sau"
           ],
           "answer": 2,
-          "explanation": "Cô đem tranh về và mong chờ buổi học tiếp theo."
+          "explanation": "Cô đem tranh về và mong chờ buổi học tiếp theo.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "下课时，她有什么感受？",
+              "pinyin": "Xià kè shí, tā yǒu shén me gǎn shòu?"
+            },
+            "options": [
+              {
+                "hanzi": "不想再画画了。",
+                "pinyin": "Bù xiǎng zài huà huà le."
+              },
+              {
+                "hanzi": "感到害羞，把画扔掉了。",
+                "pinyin": "Gǎn dào hài xiū, bǎ huà rēng diào le."
+              },
+              {
+                "hanzi": "期待下一次课。",
+                "pinyin": "Qī dài xià yí cì kè."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她把画带回家，并期待下一次课。",
+              "pinyin": "Tā bǎ huà dài huí jiā, bìng qī dài xià yí cì kè."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -3045,21 +3981,93 @@
           "prompt": "Cuộn phim có thể chụp tối đa bao nhiêu tấm?",
           "options": ["Mười", "Hai mươi bốn", "Một trăm"],
           "answer": 1,
-          "explanation": "Bố nói cuộn phim chỉ chụp được hai mươi bốn tấm."
+          "explanation": "Bố nói cuộn phim chỉ chụp được hai mươi bốn tấm.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "这卷胶卷最多能拍多少张照片？",
+              "pinyin": "Zhè juǎn jiāo juǎn zuì duō néng pāi duō shǎo zhāng zhào piān?"
+            },
+            "options": [
+              {
+                "hanzi": "十张。",
+                "pinyin": "Shí zhāng."
+              },
+              {
+                "hanzi": "二十四张。",
+                "pinyin": "Èr shí sì zhāng."
+              },
+              {
+                "hanzi": "一百张。",
+                "pinyin": "Yì bǎi zhāng."
+              }
+            ],
+            "explanation": {
+              "hanzi": "爸爸说这卷胶卷只能拍二十四张照片。",
+              "pinyin": "Bà ba shuō zhè juǎn jiāo juǎn zhǐ néng pāi èr shí sì zhāng zhào piān."
+            }
+          }
         },
         {
           "id": "old-camera-q1",
           "prompt": "Cô chờ điều gì trước khi bấm máy?",
           "options": ["Ánh sáng dịu hơn", "Điện thoại sạc đầy", "Trời mưa"],
           "answer": 0,
-          "explanation": "Cô chờ ánh sáng trở nên dịu hơn."
+          "explanation": "Cô chờ ánh sáng trở nên dịu hơn.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "按下快门之前，她在等什么？",
+              "pinyin": "Àn xià kuài mén zhī qián, tā zài děng shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "光线变得更柔和。",
+                "pinyin": "Guāng xiàn biàn de gèng róu hé."
+              },
+              {
+                "hanzi": "手机充满电。",
+                "pinyin": "Shǒu jī chōng mǎn diàn."
+              },
+              {
+                "hanzi": "下雨。",
+                "pinyin": "Xià yǔ."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她等光线变得更柔和以后才拍照。",
+              "pinyin": "Tā děng guāng xiàn biàn de gèng róu hé yǐ hòu cái pāi zhào."
+            }
+          }
         },
         {
           "id": "old-camera-q2",
           "prompt": "Cuối tuần cô đã chụp bao nhiêu tấm?",
           "options": ["Hai mươi bốn", "Hai mươi", "Mười"],
           "answer": 2,
-          "explanation": "Cô chỉ chụp mười tấm nhưng nhớ nhiều chi tiết."
+          "explanation": "Cô chỉ chụp mười tấm nhưng nhớ nhiều chi tiết.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "这个周末她拍了多少张照片？",
+              "pinyin": "Zhè ge zhōu mò tā pāi le duō shǎo zhāng zhào piān?"
+            },
+            "options": [
+              {
+                "hanzi": "二十四张。",
+                "pinyin": "Èr shí sì zhāng."
+              },
+              {
+                "hanzi": "二十张。",
+                "pinyin": "Èr shí zhāng."
+              },
+              {
+                "hanzi": "十张。",
+                "pinyin": "Shí zhāng."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她只拍了十张照片，却记住了很多细节。",
+              "pinyin": "Tā zhǐ pāi le shí zhāng zhào piān, què jì zhù le hěn duō xì jié."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -3257,21 +4265,93 @@
           "prompt": "Ai cho Ngô Đồng mượn ô?",
           "options": ["Đồng nghiệp mới", "A Minh", "Mẹ cô"],
           "answer": 1,
-          "explanation": "A Minh cho cô mượn chiếc ô vàng."
+          "explanation": "A Minh cho cô mượn chiếc ô vàng.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "谁把伞借给了吴桐？",
+              "pinyin": "Shuí bǎ sǎn jiè gěi le Wú Tóng?"
+            },
+            "options": [
+              {
+                "hanzi": "新同事。",
+                "pinyin": "Xīn tóng shì."
+              },
+              {
+                "hanzi": "阿明。",
+                "pinyin": "Ā Míng."
+              },
+              {
+                "hanzi": "她的妈妈。",
+                "pinyin": "Tā de mā ma."
+              }
+            ],
+            "explanation": {
+              "hanzi": "阿明把黄色的伞借给了她。",
+              "pinyin": "Ā Míng bǎ huáng sè de sǎn jiè gěi le tā."
+            }
+          }
         },
         {
           "id": "rainy-umbrella-q1",
           "prompt": "Cô trả ô kèm theo gì?",
           "options": ["Thiệp cảm ơn", "Một cuốn sách", "Một vé tàu"],
           "answer": 0,
-          "explanation": "Cô đặt thiệp cảm ơn trong túi."
+          "explanation": "Cô đặt thiệp cảm ơn trong túi.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "还伞时，她附上了什么？",
+              "pinyin": "Huán sǎn shí, tā fù shàng le shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "一张感谢卡。",
+                "pinyin": "Yì zhāng gǎn xiè kǎ."
+              },
+              {
+                "hanzi": "一本书。",
+                "pinyin": "Yì běn shū."
+              },
+              {
+                "hanzi": "一张火车票。",
+                "pinyin": "Yì zhāng huǒ chē piào."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她在袋子里放了一张感谢卡。",
+              "pinyin": "Tā zài dài zi lǐ fàng le yì zhāng gǎn xiè kǎ."
+            }
+          }
         },
         {
           "id": "rainy-umbrella-q2",
           "prompt": "Lần mưa sau cô làm gì?",
           "options": ["Đợi A Minh", "Về nhà sớm", "Cho đồng nghiệp mới mượn ô"],
           "answer": 2,
-          "explanation": "Cô mang hai ô và đưa chiếc dư cho đồng nghiệp mới."
+          "explanation": "Cô mang hai ô và đưa chiếc dư cho đồng nghiệp mới.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "下一次下雨时，她做了什么？",
+              "pinyin": "Xià yí cì xià yǔ shí, tā zuò le shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "等阿明。",
+                "pinyin": "Děng Ā Míng."
+              },
+              {
+                "hanzi": "提前回家。",
+                "pinyin": "Tí qián huí jiā."
+              },
+              {
+                "hanzi": "把伞借给新同事。",
+                "pinyin": "Bǎ sǎn jiè gěi xīn tóng shì."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她带了两把伞，把多出来的一把借给了新同事。",
+              "pinyin": "Tā dài le liǎng bǎ sǎn, bǎ duō chū lái de yī bǎ jiè gěi le xīn tóng shì."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -3473,7 +4553,31 @@
           "prompt": "Tiểu Hà vừa kết thúc việc gì?",
           "options": ["Ca đêm", "Kỳ nghỉ", "Lớp nấu ăn"],
           "answer": 0,
-          "explanation": "Cô là y tá vừa hết ca đêm."
+          "explanation": "Cô là y tá vừa hết ca đêm.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "小何刚结束了什么？",
+              "pinyin": "Xiǎo Hé gāng jié shù le shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "夜班。",
+                "pinyin": "Yè bān."
+              },
+              {
+                "hanzi": "假期。",
+                "pinyin": "Jià qī."
+              },
+              {
+                "hanzi": "烹饪课。",
+                "pinyin": "Pēng rèn kè."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她是一名护士，刚刚结束夜班。",
+              "pinyin": "Tā shì yì míng hù shì, gāng gāng jié shù yè bān."
+            }
+          }
         },
         {
           "id": "bread-at-dawn-q1",
@@ -3484,14 +4588,62 @@
             "Tiệm không bán bánh"
           ],
           "answer": 1,
-          "explanation": "Chủ tiệm giữ lại bánh đậu đỏ dù cô chỉ đến hai lần."
+          "explanation": "Chủ tiệm giữ lại bánh đậu đỏ dù cô chỉ đến hai lần.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "她为什么感到惊讶？",
+              "pinyin": "Tā wèi shén me gǎn dào jīng yà?"
+            },
+            "options": [
+              {
+                "hanzi": "面包太贵。",
+                "pinyin": "Miàn bāo tài guì."
+              },
+              {
+                "hanzi": "她只来过两次，店主却记得她喜欢的面包。",
+                "pinyin": "Tā zhǐ lái guo liǎng cì, diàn zhǔ què jì de tā xǐ huān de miàn bāo."
+              },
+              {
+                "hanzi": "店里不卖面包。",
+                "pinyin": "Diàn lǐ bú mài miàn bāo."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她只来过两次，店主却为她留了红豆面包。",
+              "pinyin": "Tā zhǐ lái guo liǎng cì, diàn zhǔ què wèi tā liú le hóng dòu miàn bāo."
+            }
+          }
         },
         {
           "id": "bread-at-dawn-q2",
           "prompt": "Chủ tiệm đưa thêm gì?",
           "options": ["Cà phê đá", "Sữa lạnh", "Nước ấm"],
           "answer": 2,
-          "explanation": "Chủ tiệm đưa một cốc nước ấm."
+          "explanation": "Chủ tiệm đưa một cốc nước ấm.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "店主还给了她什么？",
+              "pinyin": "Diàn zhǔ hái gěi le tā shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "冰咖啡。",
+                "pinyin": "Bīng kā fēi."
+              },
+              {
+                "hanzi": "冷牛奶。",
+                "pinyin": "Lěng niú nǎi."
+              },
+              {
+                "hanzi": "温水。",
+                "pinyin": "Wēn shuǐ."
+              }
+            ],
+            "explanation": {
+              "hanzi": "店主给了她一杯温水。",
+              "pinyin": "Diàn zhǔ gěi le tā yì bēi wēn shuǐ."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -3693,21 +4845,93 @@
           "prompt": "Đường bên phải có đặc điểm gì?",
           "options": ["Ngắn nhất", "Dốc thoải", "Không có cây"],
           "answer": 1,
-          "explanation": "Biển chỉ dẫn nói đường bên phải có độ dốc thoải."
+          "explanation": "Biển chỉ dẫn nói đường bên phải có độ dốc thoải.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "右边的路有什么特点？",
+              "pinyin": "Yòu biān de lù yǒu shén me tè diǎn?"
+            },
+            "options": [
+              {
+                "hanzi": "路程最短。",
+                "pinyin": "Lù chéng zuì duǎn."
+              },
+              {
+                "hanzi": "坡度较缓。",
+                "pinyin": "Pō dù jiào huǎn."
+              },
+              {
+                "hanzi": "没有树。",
+                "pinyin": "Méi yǒu shù."
+              }
+            ],
+            "explanation": {
+              "hanzi": "指示牌说右边的路坡度较缓。",
+              "pinyin": "Zhǐ shì pái shuō yòu biān de lù pō dù jiào huǎn."
+            }
+          }
         },
         {
           "id": "mountain-path-q1",
           "prompt": "Tại sao anh chọn đường bên phải?",
           "options": ["Bạn đã mệt", "Anh bị lạc", "Đường trái đóng cửa"],
           "answer": 0,
-          "explanation": "Anh cân nhắc sức của người bạn đã mệt."
+          "explanation": "Anh cân nhắc sức của người bạn đã mệt.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "他为什么选择右边的路？",
+              "pinyin": "Tā wèi shén me xuǎn zé yòu biān de lù?"
+            },
+            "options": [
+              {
+                "hanzi": "朋友已经累了。",
+                "pinyin": "Péng you yǐ jīng lèi le."
+              },
+              {
+                "hanzi": "他迷路了。",
+                "pinyin": "Tā mí lù le."
+              },
+              {
+                "hanzi": "左边的路关闭了。",
+                "pinyin": "Zuǒ biān de lù guān bì le."
+              }
+            ],
+            "explanation": {
+              "hanzi": "他考虑到朋友已经累了，所以选择了较缓的路。",
+              "pinyin": "Tā kǎo lǜ dào péng you yǐ jīng lèi le, suǒ yǐ xuǎn zé le jiào huǎn de lù."
+            }
+          }
         },
         {
           "id": "mountain-path-q2",
           "prompt": "Họ có tiếc vì lên đỉnh muộn không?",
           "options": ["Rất tiếc", "Không lên đỉnh", "Không tiếc nuối"],
           "answer": 2,
-          "explanation": "Họ thưởng thức cảnh dọc đường và không tiếc nuối."
+          "explanation": "Họ thưởng thức cảnh dọc đường và không tiếc nuối.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "他们后悔晚一点到山顶吗？",
+              "pinyin": "Tā men hòu huǐ wǎn yì diǎn dào shān dǐng ma?"
+            },
+            "options": [
+              {
+                "hanzi": "很后悔。",
+                "pinyin": "Hěn hòu huǐ."
+              },
+              {
+                "hanzi": "他们没有到山顶。",
+                "pinyin": "Tā men méi yǒu dào shān dǐng."
+              },
+              {
+                "hanzi": "不后悔。",
+                "pinyin": "Bú hòu huǐ."
+              }
+            ],
+            "explanation": {
+              "hanzi": "他们欣赏了沿途的风景，所以并不后悔。",
+              "pinyin": "Tā men xīn shǎng le yán tú de fēng jǐng, suǒ yǐ bìng bú hòu huǐ."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -3914,14 +5138,62 @@
           "prompt": "Tô Hòa mang cây gì đến?",
           "options": ["Bạc hà", "Hoa hồng", "Sen đá"],
           "answer": 0,
-          "explanation": "Cô mang một chậu bạc hà."
+          "explanation": "Cô mang một chậu bạc hà.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "苏禾带来了什么植物？",
+              "pinyin": "Sū Hé dài lái le shén me zhí wù?"
+            },
+            "options": [
+              {
+                "hanzi": "薄荷。",
+                "pinyin": "Bò he."
+              },
+              {
+                "hanzi": "玫瑰。",
+                "pinyin": "Méi guī."
+              },
+              {
+                "hanzi": "多肉植物。",
+                "pinyin": "Duō ròu zhí wù."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她带来了一盆薄荷。",
+              "pinyin": "Tā dài lái le yì pén bò he."
+            }
+          }
         },
         {
           "id": "plant-exchange-q1",
           "prompt": "Ông cụ mang theo gì?",
           "options": ["Một chậu sen đá", "Hạt giống hoa", "Dụng cụ làm vườn"],
           "answer": 1,
-          "explanation": "Ông chỉ có một túi hạt hoa nhỏ."
+          "explanation": "Ông chỉ có một túi hạt hoa nhỏ.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "老人带来了什么？",
+              "pinyin": "Lǎo rén dài lái le shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "一盆多肉植物。",
+                "pinyin": "Yì pén duō ròu zhí wù."
+              },
+              {
+                "hanzi": "花的种子。",
+                "pinyin": "Huā de zhǒng zi."
+              },
+              {
+                "hanzi": "园艺工具。",
+                "pinyin": "Yuán yì gōng jù."
+              }
+            ],
+            "explanation": {
+              "hanzi": "老人只带来了一小袋花的种子。",
+              "pinyin": "Lǎo rén zhǐ dài lái le yì xiǎo dài huā de zhǒng zi."
+            }
+          }
         },
         {
           "id": "plant-exchange-q2",
@@ -3932,7 +5204,31 @@
             "Cô nhận hạt giống và một câu chuyện"
           ],
           "answer": 2,
-          "explanation": "Cô đổi bạc hà lấy hạt giống sau khi nghe chuyện quê nhà của ông."
+          "explanation": "Cô đổi bạc hà lấy hạt giống sau khi nghe chuyện quê nhà của ông.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "这次交换的结果是什么？",
+              "pinyin": "Zhè cì jiāo huàn de jié guǒ shì shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "她什么也没换到。",
+                "pinyin": "Tā shén me yě méi huàn dào."
+              },
+              {
+                "hanzi": "她换到了多肉植物。",
+                "pinyin": "Tā huàn dào le duō ròu zhí wù."
+              },
+              {
+                "hanzi": "她得到了种子，也听到了一个故事。",
+                "pinyin": "Tā dé dào le zhǒng zi, yě tīng dào le yí gè gù shì."
+              }
+            ],
+            "explanation": {
+              "hanzi": "听完老人家乡的故事后，她用薄荷换了花的种子。",
+              "pinyin": "Tīng wán lǎo rén jiā xiāng de gù shì hòu, tā yòng bò he huàn le huā de zhǒng zi."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -4138,14 +5434,62 @@
             "Tổ chức tiệc đông người"
           ],
           "answer": 0,
-          "explanation": "Công việc bận nên cô chỉ muốn nghỉ ở nhà."
+          "explanation": "Công việc bận nên cô chỉ muốn nghỉ ở nhà.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "生日那天，她想做什么？",
+              "pinyin": "Shēng rì nà tiān, tā xiǎng zuò shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "在家安静地休息。",
+                "pinyin": "Zài jiā ān jìng dì xiū xī."
+              },
+              {
+                "hanzi": "去旅行。",
+                "pinyin": "Qù lǚ xíng."
+              },
+              {
+                "hanzi": "举办很多人参加的聚会。",
+                "pinyin": "Jǔ bàn hěn duō rén shēn jiā de jù huì."
+              }
+            ],
+            "explanation": {
+              "hanzi": "工作很忙，所以她只想在家休息。",
+              "pinyin": "Gōng zuò hěn máng, suǒ yǐ tā zhǐ xiǎng zài jiā xiū xī."
+            }
+          }
         },
         {
           "id": "quiet-birthday-q1",
           "prompt": "Trong hộp có gì?",
           "options": ["Một chiếc bánh", "Sáu tấm thiệp", "Một chiếc máy ảnh"],
           "answer": 1,
-          "explanation": "Bạn bè gửi sáu tấm thiệp viết những kỷ niệm nhỏ."
+          "explanation": "Bạn bè gửi sáu tấm thiệp viết những kỷ niệm nhỏ.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "盒子里有什么？",
+              "pinyin": "Hé zi lǐ yǒu shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "一个蛋糕。",
+                "pinyin": "Yí gè dàn gāo."
+              },
+              {
+                "hanzi": "六张卡片。",
+                "pinyin": "Liù zhāng kǎ piàn."
+              },
+              {
+                "hanzi": "一台相机。",
+                "pinyin": "Yì tái xiàng jī."
+              }
+            ],
+            "explanation": {
+              "hanzi": "朋友们送来六张卡片，上面写着小小的回忆。",
+              "pinyin": "Péng you men sòng lái liù zhāng kǎ piàn, shàng miàn xiě zhe xiǎo xiǎo de huí yì."
+            }
+          }
         },
         {
           "id": "quiet-birthday-q2",
@@ -4156,7 +5500,31 @@
             "Cô cảm thấy được bạn bè nhớ đến"
           ],
           "answer": 2,
-          "explanation": "Những tấm thiệp giúp cô cảm nhận sự quan tâm của bạn bè."
+          "explanation": "Những tấm thiệp giúp cô cảm nhận sự quan tâm của bạn bè.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "她为什么不觉得孤单？",
+              "pinyin": "Tā wèi shén me bù jué de gū dān?"
+            },
+            "options": [
+              {
+                "hanzi": "邻居举办了聚会。",
+                "pinyin": "Lín jū jǔ bàn le jù huì."
+              },
+              {
+                "hanzi": "她得去上班。",
+                "pinyin": "Tā děi qù shàng bān."
+              },
+              {
+                "hanzi": "她感到朋友们都记得自己。",
+                "pinyin": "Tā gǎn dào péng you men dōu jì de zì jǐ."
+              }
+            ],
+            "explanation": {
+              "hanzi": "这些卡片让她感受到了朋友们的关心。",
+              "pinyin": "Zhè xiē kǎ piàn ràng tā gǎn shòu dào le péng you men de guān xīn."
+            }
+          }
         }
       ],
       "wordOrder": {
@@ -4362,7 +5730,31 @@
             "Quên hành lý"
           ],
           "answer": 1,
-          "explanation": "Bà vừa giải thích cho con trai vừa ôm em gái ngủ say."
+          "explanation": "Bà vừa giải thích cho con trai vừa ôm em gái ngủ say.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "那位妈妈为什么有些为难？",
+              "pinyin": "Nà wèi mā ma wèi shén me yǒu xiē wéi nán?"
+            },
+            "options": [
+              {
+                "hanzi": "车票丢了。",
+                "pinyin": "Chē piào diū le."
+              },
+              {
+                "hanzi": "一边回答儿子，一边抱着睡着的女儿。",
+                "pinyin": "Yì biān huí dá ér zi, yì biān bào zhe shuì zháo de nǚ ér."
+              },
+              {
+                "hanzi": "忘了带行李。",
+                "pinyin": "Wàng le dài xíng lǐ."
+              }
+            ],
+            "explanation": {
+              "hanzi": "她一边给儿子解释，一边抱着熟睡的小女儿。",
+              "pinyin": "Tā yì biān gěi ér zi jiě shì, yì biān bào zhe shú shuì de xiǎo nǚ ér."
+            }
+          }
         },
         {
           "id": "night-train-q1",
@@ -4373,7 +5765,31 @@
             "Bật phim thật to"
           ],
           "answer": 0,
-          "explanation": "Anh vẽ đường ray rồi mời cậu bé vẽ các ga."
+          "explanation": "Anh vẽ đường ray rồi mời cậu bé vẽ các ga.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "方远怎样帮助她？",
+              "pinyin": "Fāng Yuǎn zěn yàng bāng zhù tā?"
+            },
+            "options": [
+              {
+                "hanzi": "邀请男孩一起画画。",
+                "pinyin": "Yāo qǐng nán hái yì qǐ huà huà."
+              },
+              {
+                "hanzi": "带男孩下火车。",
+                "pinyin": "Dài nán hái xià huǒ chē."
+              },
+              {
+                "hanzi": "把电影的声音开得很大。",
+                "pinyin": "Bǎ diàn yǐng de shēng yīn kāi de hěn dà."
+              }
+            ],
+            "explanation": {
+              "hanzi": "他先画了铁轨，然后邀请男孩画车站。",
+              "pinyin": "Tā xiān huà le tiě guǐ, rán hòu yāo qǐng nán hái huà chē zhàn."
+            }
+          }
         },
         {
           "id": "night-train-q2",
@@ -4384,7 +5800,31 @@
             "Rừng, cầu và ngôi nhà"
           ],
           "answer": 2,
-          "explanation": "Sau nửa giờ, trên giấy có rừng, cầu và một căn nhà nhỏ."
+          "explanation": "Sau nửa giờ, trên giấy có rừng, cầu và một căn nhà nhỏ.",
+          "chinese": {
+            "prompt": {
+              "hanzi": "最后，纸上画了些什么？",
+              "pinyin": "Zuì hòu, zhǐ shàng huà le xiē shén me?"
+            },
+            "options": [
+              {
+                "hanzi": "只有一列火车。",
+                "pinyin": "Zhǐ yǒu yí liè huǒ chē."
+              },
+              {
+                "hanzi": "大海和船。",
+                "pinyin": "Dà hǎi hé chuán."
+              },
+              {
+                "hanzi": "森林、桥和房子。",
+                "pinyin": "Sēn lín, qiáo hé fáng zi."
+              }
+            ],
+            "explanation": {
+              "hanzi": "半小时以后，纸上有森林、桥和一座小房子。",
+              "pinyin": "Bàn xiǎo shí yǐ hòu, zhǐ shàng yǒu sēn lín, qiáo hé yí zuò xiǎo fáng zi."
+            }
+          }
         }
       ],
       "wordOrder": {

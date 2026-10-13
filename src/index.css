@@ -1281,6 +1281,43 @@ input[type="range"] {
   font-size: 0.88rem;
   font-weight: 500;
   margin-bottom: 13px;
+  width: 100%;
+  max-width: 100%;
+}
+.quiz-language-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 28px;
+}
+.quiz-language-controls .button {
+  min-height: 40px;
+}
+.quiz-prompt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.quiz-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.quiz-hanzi {
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: var(--ink);
+}
+.quiz-pinyin {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--muted);
+  font-weight: 400;
+}
+.quiz-vietnamese {
+  line-height: 1.7;
 }
 .quiz-options {
   display: grid;
@@ -1288,7 +1325,7 @@ input[type="range"] {
 }
 .quiz-option {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   padding: 12px 14px;
   border: 1px solid var(--border);
@@ -1299,6 +1336,14 @@ input[type="range"] {
 .quiz-option input {
   width: 16px;
   accent-color: var(--green);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.quiz-option .quiz-text {
+  flex: 1;
+}
+.quiz-translation-fields {
+  margin: 0 0 24px;
 }
 .quiz-option svg {
   margin-left: auto;
@@ -2355,6 +2400,13 @@ input[type="range"] {
 }
 .device-row .button {
   margin-left: auto;
+}
+.recipient-profile {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 .app-error {
   max-width: 600px;
