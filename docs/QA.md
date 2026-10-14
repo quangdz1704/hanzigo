@@ -92,3 +92,9 @@
 - `npm run test:profiles`: **1 integration test passed** with both Auth and Firestore emulators. Actual guest upgrade triggered `onIdTokenChanged`; two independently authenticated SDK sessions restored the same UID/name and received a name change realtime. Device `createdAt` and UID stayed unchanged, email/label were populated.
 - Browser against `demo-hanzigo` emulators: login loaded server name; Settings edit showed pending then synced; reload restored `Mai Anh`; allowlisted admin saw the same name/email/UID. Admin page had no horizontal overflow at 360px. Screenshots: `account-profile.png`, `account-recipients.png`. No application console errors; installed wallet extensions emitted unrelated provider-injection errors.
 - Production/PWA build passed. No Firebase production records, credentials, allowlist or Rules were changed. The new `firestore.rules` must be published to `hanzigo-eea7d` before cloud metadata sync works. Learning progress and other reading preferences remain local.
+
+## Sidebar on short screens · 14/10/2026
+
+- Fixed sidebar now uses the visible viewport height (`100dvh`, with `100vh` fallback), scrolls vertically when content is taller, and keeps child sections from shrinking together. Overscroll is contained within the sidebar.
+- Browser checks at desktop 1280×500 and mobile menu 390×480 reached the bottom account/settings links with keyboard scrolling while the main page stayed at scrollY=0. Screenshot: `sidebar-short-screen.png`. Temporary viewport override was reset after testing.
+- Production/PWA build and all 79 unit tests passed. No cloud configuration changes.
