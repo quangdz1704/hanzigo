@@ -1,0 +1,10 @@
+# Cloud data implementation · 14/10/2026
+
+Authorized scope: published library, signed-in account profiles/preferences/learning, inbox and admin drafts on Firebase; guests remain local. Account data must not leak across account changes. Auto add/commit after verified changes; no push requested.
+
+1. Library: validated, atomic `content/library` JSON publication (800 KB cap), shared realtime reads, IndexedDB offline cache and bundled fallback. Admin can initialize from seed and publish/import without rebuilding. Private unfinished drafts remain separate. Verify library transactions and read/write rules.
+2. Account data: per-UID IndexedDB caches/outbox; Firestore `users/{uid}` profile and subcollections for progress, cards, activity, review history, favorites and preferences. Registration retains guest work; old browser-only data is migrated once, never cloned from one account to another. Merge completion/quiz results monotonically, deduplicate XP, retry offline changes, isolate late callbacks. Verify two sessions, offline/reload and account switching.
+3. Admin/inbox: persist admin drafts and default recipient by admin UID; retain existing server messages/receipts and migrate guest writes to local-only. Verify drafts cannot be read by other learners and publication requires allowlisted admin.
+4. UI/docs: accurate source and sync status, retry/import controls, updated storage map. Verify browser flow, rules tests, integration tests, unit tests and production build, review then commit.
+
+Recording decision requested separately; until answered, keep the existing ephemeral local-only microphone behavior. Published content is shared and available to guests, while private account state is stored only for non-anonymous users. Implementation and verification are complete. Production library initialization succeeded; new Rules publication was rejected by automatic review and awaits explicit approval of the access map in CLOUD_STORAGE.md. Never create a paid resource automatically.

@@ -1,3 +1,4 @@
+import { useLibraryRevision } from "@/content";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -17,6 +18,7 @@ import { toggleFavorite } from "@/lib/db";
 import { run } from "@/lib/store";
 import { searchText } from "@/lib/utils";
 export default function Stories() {
+  useLibraryRevision();
   const [search, setSearch] = useState("");
   const [topic, setTopic] = useState("all");
   const [difficulty, setDifficulty] = useState("all");

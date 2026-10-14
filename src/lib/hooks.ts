@@ -1,13 +1,28 @@
 import { useEffect, useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
-import { db } from "./db";
+import { getLearningDatabase } from "./db";
+import { useAuth } from "./Auth";
 import { streakForDays } from "./learning";
 export function useLearning() {
-  const activities = useLiveQuery(() => db.activities.toArray(), [], []);
-  const progress = useLiveQuery(() => db.progress.toArray(), [], []);
-  const cards = useLiveQuery(() => db.cards.toArray(), [], []);
-  const favorites = useLiveQuery(() => db.favorites.toArray(), [], []);
-  const reviews = useLiveQuery(() => db.reviews.count(), [], 0);
+  const { learningScope } = useAuth();
+  const db = getLearningDatabase();
+  const activities = useLiveQuery(
+    () => db.activities.toArray(),
+    [learningScope],
+    [],
+  );
+  const progress = useLiveQuery(
+    () => db.progress.toArray(),
+    [learningScope],
+    [],
+  );
+  const cards = useLiveQuery(() => db.cards.toArray(), [learningScope], []);
+  const favorites = useLiveQuery(
+    () => db.favorites.toArray(),
+    [learningScope],
+    [],
+  );
+  const reviews = useLiveQuery(() => db.reviews.count(), [learningScope], 0);
   return {
     activities,
     progress,

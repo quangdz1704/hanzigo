@@ -73,14 +73,17 @@ export function deviceProfileTransport(
   user: Pick<User, "uid" | "email">,
 ): ProfileTransport {
   const ref = doc(store, "devices", user.uid);
+  const profileRef = doc(store, "users", user.uid);
   return {
     sync: (name, overwrite) =>
       runTransaction(store, async (transaction) => {
         const snapshot = await transaction.get(ref);
+        const profile = await transaction.get(profileRef);
         const old = snapshot.data();
+        const savedName = profile.data()?.name ?? old?.name;
         const chosen =
-          !overwrite && typeof old?.name === "string"
-            ? profileName(old.name)
+          !overwrite && typeof savedName === "string"
+            ? profileName(savedName)
             : profileName(name);
         transaction.set(
           ref,
@@ -94,11 +97,18 @@ export function deviceProfileTransport(
           },
           { merge: true },
         );
+        transaction.set(profileRef, {
+          uid: user.uid,
+          name: chosen,
+          email: user.email,
+          createdAt: profile.data()?.createdAt ?? serverTimestamp(),
+          updatedAt: serverTimestamp(),
+        });
         return chosen;
       }),
     watch: (next, error) =>
       onSnapshot(
-        ref,
+        profileRef,
         (snapshot) => {
           const name = snapshot.data()?.name;
           if (!snapshot.metadata.hasPendingWrites && typeof name === "string")

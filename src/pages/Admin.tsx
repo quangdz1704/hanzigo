@@ -28,6 +28,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { useAuth } from "@/lib/Auth";
+import { useAdminData } from "@/lib/admin-data";
+import { putAccountRecord } from "@/lib/db";
 import {
   backend,
   backendMode,
@@ -485,19 +487,33 @@ const initial: MessageInput = {
 };
 export function AdminComposer() {
   const { uid } = useAuth();
+  const adminData = useAdminData();
+  const defaultRecipient = useLiveQuery(
+    () => adminData.database.preferences.get("recipientUid"),
+    [adminData.uid],
+  );
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const edit = params.get("edit");
   const [form, setForm] = useState<MessageInput>({
     ...initial,
     recipientUid:
-      localStorage.getItem("hanzigo-recipient") ??
-      (backendMode === "demo" ? (uid ?? "") : ""),
+      backendMode === "demo"
+        ? (localStorage.getItem("hanzigo-recipient") ?? uid ?? "")
+        : "",
   });
   const [preview, setPreview] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [ready, setReady] = useState(!edit);
+  useEffect(() => {
+    if (!edit && typeof defaultRecipient?.value === "string")
+      setForm((current) =>
+        current.recipientUid
+          ? current
+          : { ...current, recipientUid: defaultRecipient.value as string },
+      );
+  }, [defaultRecipient?.value, edit]);
   useEffect(() => {
     if (!edit) return;
     let active = true;
@@ -759,6 +775,11 @@ export function AdminComposer() {
   );
 }
 export function AdminSettings() {
+  const adminData = useAdminData();
+  const defaultRecipient = useLiveQuery(
+    () => adminData.database.preferences.get("recipientUid"),
+    [adminData.uid],
+  );
   const [devices, setDevices] = useState<
     { uid: string; label: string; email: string | null }[]
   >([]);
@@ -766,9 +787,14 @@ export function AdminSettings() {
   const setPrefs = usePreferences((s) => s.set);
   const [popups, setPopups] = useState(demoPopups);
   const [recipient, setRecipient] = useState(
-    localStorage.getItem("hanzigo-recipient") ??
-      (backendMode === "demo" ? "demo-device" : ""),
+    backendMode === "demo"
+      ? (localStorage.getItem("hanzigo-recipient") ?? "demo-device")
+      : "",
   );
+  useEffect(() => {
+    if (typeof defaultRecipient?.value === "string")
+      setRecipient(defaultRecipient.value);
+  }, [defaultRecipient?.value]);
   const [loading, setLoading] = useState(!!backend);
   useEffect(() => {
     if (!backend) return;
@@ -818,12 +844,32 @@ export function AdminSettings() {
         </label>
         <Button
           onClick={() => {
-            localStorage.setItem("hanzigo-recipient", recipient.trim());
-            useUI
-              .getState()
-              .notify(
-                "Đã lưu mã người nhận mặc định trên trình duyệt quản trị.",
+            if (backend)
+              run(() =>
+                adminData.database
+                  .transaction(
+                    "rw",
+                    adminData.database.preferences,
+                    adminData.database.syncQueue,
+                    () =>
+                      putAccountRecord(adminData.database, "preferences", {
+                        id: "recipientUid",
+                        value: recipient.trim(),
+                        updatedAt: Date.now(),
+                      }),
+                  )
+                  .then(() =>
+                    useUI
+                      .getState()
+                      .notify(
+                        "Đã giữ người nhận mặc định; đang đồng bộ theo tài khoản.",
+                      ),
+                  ),
               );
+            else {
+              localStorage.setItem("hanzigo-recipient", recipient.trim());
+              useUI.getState().notify("Đã lưu người nhận mặc định của demo.");
+            }
           }}
         >
           Lưu người nhận mặc định

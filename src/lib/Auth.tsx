@@ -29,6 +29,18 @@ import { adminAccessErrorMessage } from "./admin-access";
 import { connectAccountProfile, restoreGuestName } from "./account-profile";
 import type { ProfileStatus } from "./profile-sync";
 import {
+  db,
+  getLearningDatabase,
+  migrateGuestLearning,
+  selectLearningDatabase,
+} from "./db";
+import { startAccountSync, type DataSyncStatus } from "./account-sync";
+import {
+  loadAccountPreferences,
+  saveGuestPreferences,
+  watchAccountPreferences,
+} from "./account-preferences";
+import {
   registerLearner,
   loginLearner,
   emailSchema,
@@ -54,6 +66,9 @@ interface AuthState {
   learnerLoading: boolean;
   profileStatus: ProfileStatus | "local";
   retryProfile: () => void;
+  dataSyncStatus: DataSyncStatus;
+  learningScope: string;
+  retryDataSync: () => void;
   register: (
     email: string,
     password: string,
@@ -87,6 +102,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     "local",
   );
   const profileRetry = useRef<() => void>(() => {});
+  const dataRetry = useRef<() => void>(() => {});
+  const [dataSyncStatus, setDataSyncStatus] = useState<DataSyncStatus>("local");
+  const [learningScope, setLearningScope] = useState("guest");
   const [uid, setUid] = useState<string | null>(
     backendMode === "demo" ? "demo-device" : null,
   );
@@ -108,6 +126,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!backend) return;
     let stopLetters = () => {};
     let stopProfile = () => {};
+    let stopData = () => {};
+    let stopPreferences = () => {};
+    let previousIdentity: { uid: string; isAnonymous: boolean } | null = null;
     let profileGeneration = 0;
     let generation = 0;
     let active = true;
@@ -115,12 +136,66 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const profileVersion = ++profileGeneration;
       stopLetters();
       stopProfile();
+      stopData();
+      stopPreferences();
       profileRetry.current = () => {};
+      dataRetry.current = () => {};
       if (user) {
         setLearnerError(null);
-        setUid(user.uid);
-        setLearnerAccount(accountOf(user));
-        setLearnerLoading(false);
+        const before = previousIdentity;
+        previousIdentity = { uid: user.uid, isAnonymous: user.isAnonymous };
+        setLearnerLoading(true);
+        void (async () => {
+          if (
+            getLearningDatabase() === db &&
+            (before?.isAnonymous || !(await db.meta.get("learningMigration")))
+          )
+            await saveGuestPreferences();
+          if (!user.isAnonymous)
+            await migrateGuestLearning(
+              user.uid,
+              !!before?.isAnonymous && before.uid === user.uid,
+            );
+          if (!active || profileVersion !== profileGeneration) return;
+          const database = selectLearningDatabase(
+            user.isAnonymous ? null : user.uid,
+          );
+          await loadAccountPreferences(
+            database,
+            () => active && profileVersion === profileGeneration,
+          );
+          if (!active || profileVersion !== profileGeneration) return;
+          stopPreferences = watchAccountPreferences(database);
+          if (!user.isAnonymous) {
+            const sync = startAccountSync(
+              backend!.store,
+              user.uid,
+              database,
+              (status) => {
+                if (active && profileVersion === profileGeneration)
+                  setDataSyncStatus(status);
+              },
+            );
+            stopData = sync.stop;
+            dataRetry.current = sync.retry;
+          } else setDataSyncStatus("local");
+          setLearningScope(user.isAnonymous ? "guest" : user.uid);
+          setUid(user.uid);
+          setLearnerAccount(accountOf(user));
+          setLearnerLoading(false);
+        })().catch(() => {
+          if (active && profileVersion === profileGeneration) {
+            selectLearningDatabase(user.isAnonymous ? null : user.uid);
+            setLearningScope(user.isAnonymous ? "guest" : user.uid);
+            setUid(user.uid);
+            setLearnerAccount(accountOf(user));
+            setDataSyncStatus("error");
+            setLearnerError(
+              "Chưa mở được dữ liệu học trên máy này. Tải lại để thử kết nối.",
+            );
+            setLearnerLoading(false);
+          }
+        });
         if (user.isAnonymous) {
           restoreGuestName();
           setProfileStatus("local");
@@ -136,13 +211,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           profileRetry.current = profile.retry;
           stopProfile = profile.stop;
         }
-        stopLetters = subscribeLearner(user.uid, (e) => {
-          if (active && backend?.auth.currentUser?.uid === user.uid)
-            setLearnerError(
-              `Hộp thư chưa kết nối được (${e.message}). Tiến độ học vẫn lưu trên thiết bị.`,
-            );
-        });
+        if (!user.isAnonymous)
+          stopLetters = subscribeLearner(user.uid, (e) => {
+            if (active && backend?.auth.currentUser?.uid === user.uid)
+              setLearnerError(
+                `Hộp thư chưa kết nối được (${e.message}). Tiến độ học vẫn lưu trên thiết bị.`,
+              );
+          });
       } else {
+        previousIdentity = null;
+        selectLearningDatabase(null);
+        setLearningScope("guest");
+        setDataSyncStatus("local");
         restoreGuestName();
         setProfileStatus("local");
         setUid(null);
@@ -203,6 +283,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       adminStop();
       stopLetters();
       stopProfile();
+      stopData();
+      stopPreferences();
       window.removeEventListener("online", retryProfile);
       clearInterval(profileTimer);
     };
@@ -220,15 +302,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     confirmation: string,
   ) => {
     const auth = await readyLearnerAuth();
-    const user = await registerLearner(auth, email, password, confirmation);
-    setLearnerAccount(accountOf(user));
-    setUid(user.uid);
+    await registerLearner(auth, email, password, confirmation);
   };
   const signIn = async (email: string, password: string) => {
     const auth = await readyLearnerAuth();
-    const user = await loginLearner(auth, email, password);
-    setLearnerAccount(accountOf(user));
-    setUid(user.uid);
+    await loginLearner(auth, email, password);
   };
   const signOutLearner = async () => {
     const auth = await readyLearnerAuth();
@@ -240,10 +318,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return Promise.reject(
         new Error("Cần cấu hình Firebase để đăng nhập Google."),
       );
-    return signInLearnerGoogle(backend.auth).then((user) => {
-      setLearnerAccount(accountOf(user));
-      setUid(user.uid);
-    });
+    return signInLearnerGoogle(backend.auth).then(() => {});
   };
   const resetPassword = async (email: string) => {
     const auth = await readyLearnerAuth();
@@ -301,6 +376,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         learnerLoading,
         profileStatus,
         retryProfile: () => profileRetry.current(),
+        dataSyncStatus,
+        learningScope,
+        retryDataSync: () => dataRetry.current(),
         register,
         signIn,
         signInGoogle,

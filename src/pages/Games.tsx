@@ -1,3 +1,4 @@
+import { useLibraryRevision } from "@/content";
 import { useState } from "react";
 import {
   Check,
@@ -50,6 +51,7 @@ async function reward(storyId: string, game: string) {
     );
 }
 export default function Games() {
+  useLibraryRevision();
   const [id, setId] = useState(stories[0].id);
   const [mode, setMode] = useState<(typeof modes)[number]["id"]>("match");
   const story = stories.find((s) => s.id === id)!;

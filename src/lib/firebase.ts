@@ -260,7 +260,7 @@ const receiptSyncs = new Map<string, Promise<void>>();
 export function syncPendingReceipts(uid: string): Promise<void> {
   const active = receiptSyncs.get(uid);
   if (active) return active;
-  if (!backend || !navigator.onLine) return Promise.resolve();
+  if (!backend || !navigator.onLine || backend.auth.currentUser?.isAnonymous || backend.auth.currentUser?.uid !== uid) return Promise.resolve();
   const task = flushReceipts(uid).finally(() => receiptSyncs.delete(uid));
   receiptSyncs.set(uid, task);
   return task;

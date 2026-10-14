@@ -4,6 +4,56 @@ service cloud.firestore {
     function signedIn() { return request.auth != null; }
     function admin() { return signedIn() && exists(/databases/$(database)/documents/config/admins) && request.auth.uid in get(/databases/$(database)/documents/config/admins).data.uids; }
     function own(uid) { return signedIn() && request.auth.uid == uid; }
+    function account(uid) { return own(uid) && request.auth.token.firebase.sign_in_provider != 'anonymous'; }
+    match /content/library {
+      allow get: if true;
+      allow create, update: if admin()
+        && request.resource.data.keys().hasOnly(['raw','updatedBy','updatedAt'])
+        && request.resource.data.raw is string && request.resource.data.raw.size() > 0 && request.resource.data.raw.size() <= 800000
+        && request.resource.data.updatedBy == request.auth.uid && request.resource.data.updatedAt == request.time;
+      allow list, delete: if false;
+    }
+    match /users/{uid} {
+      allow get: if account(uid) || admin();
+      function validProfile() {
+        let d = request.resource.data;
+        return d.keys().hasOnly(['uid','name','email','createdAt','updatedAt'])
+          && d.uid == uid && d.name is string && d.name.size() > 0 && d.name.size() <= 40
+          && d.email == request.auth.token.get('email', null)
+          && d.createdAt is timestamp && d.updatedAt == request.time;
+      }
+      allow create: if account(uid) && validProfile() && request.resource.data.createdAt == request.time;
+      allow update: if account(uid) && validProfile() && request.resource.data.createdAt == resource.data.createdAt;
+      allow list, delete: if false;
+      match /{kind}/{id} {
+        allow get, list: if account(uid) && kind in ['cards','progress','activities','reviews','favorites','preferences','drafts'] && (kind != 'drafts' || admin());
+        function fields(v, keys) { return v.keys().hasOnly(keys) && v.keys().hasAll(keys); }
+        function validPreference(v) {
+          return fields(v, ['id','value','updatedAt']) && v.updatedAt is number && v.updatedAt >= 0
+            && (v.id in ['autoLetters','pinyin','translation','sound'] && v.value is bool
+              || v.id == 'fontSize' && v.value is number && v.value >= 20 && v.value <= 36
+              || v.id == 'theme' && v.value in ['light','dark','system']
+              || v.id == 'recipientUid' && admin() && v.value is string && v.value.size() <= 128
+              || v.id == 'quizDisplay' && v.value is map && fields(v.value, ['hanzi','pinyin','vietnamese']) && v.value.hanzi is bool && v.value.pinyin is bool && v.value.vietnamese is bool && (v.value.hanzi || v.value.pinyin || v.value.vietnamese));
+        }
+        function validValue(v) {
+          return v is map && v.id is string && v.id.size() > 0 && v.id.size() <= 250
+            && (kind == 'cards' && fields(v,['id','dueAt','interval','repetitions','addedAt','updatedAt']) && v.dueAt is number && v.dueAt >= 0 && v.interval is number && v.interval >= 0 && v.interval <= 365 && v.repetitions is int && v.repetitions >= 0 && v.addedAt is number && v.addedAt >= 0 && v.updatedAt is number && v.updatedAt >= 0
+              || kind == 'progress' && v.keys().hasOnly(['id','sentence','completed','quizScore','updatedAt']) && v.keys().hasAll(['id','sentence','completed','updatedAt']) && v.sentence is int && v.sentence >= 0 && v.sentence < 900 && v.completed is bool && v.get('quizScore',0) is int && v.get('quizScore',0) >= 0 && v.get('quizScore',0) <= 10 && v.updatedAt is number && v.updatedAt >= 0
+              || kind == 'favorites' && fields(v,['id','active','updatedAt']) && v.active is bool && v.updatedAt is number && v.updatedAt >= 0
+              || kind == 'reviews' && fields(v,['id','cardId','rating','at']) && v.cardId is string && v.rating in ['again','hard','good','easy'] && v.at is number && v.at >= 0
+              || kind == 'activities' && fields(v,['id','kind','day','xp','at']) && v.day is string && v.day.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$') && v.at is number && v.at >= 0 && (v.kind == 'story' && v.xp == 30 || v.kind == 'quiz' && v.xp == 15 || v.kind == 'review' && v.xp == 5 || v.kind == 'game' && v.xp == 10)
+              || kind == 'preferences' && validPreference(v)
+              || kind == 'drafts' && admin() && fields(v,['id','raw','updatedAt']) && v.raw is string && v.raw.size() <= 500000 && v.updatedAt is number && v.updatedAt >= 0);
+        }
+        function validRecord() { return fields(request.resource.data, ['value','updatedAt']) && request.resource.data.updatedAt == request.time && validValue(request.resource.data.value); }
+        allow create: if account(uid) && validRecord();
+        allow update: if account(uid) && validRecord() && request.resource.data.value.id == resource.data.value.id
+          && (!(kind in ['activities','reviews']) || request.resource.data.value == resource.data.value)
+          && (kind != 'progress' || (!resource.data.value.completed || request.resource.data.value.completed) && request.resource.data.value.get('quizScore',0) >= resource.data.value.get('quizScore',0));
+        allow delete: if false;
+      }
+    }
     function delivered(m) { return signedIn() && m.recipientUid == request.auth.uid && (m.status == 'published' || m.status == 'scheduled' && m.visibleAt <= request.time); }
     function validMessage(m) {
       return m.keys().hasOnly(['recipientUid','title','zhText','pinyin','viText','theme','deliveryType','scheduledAt','milestoneKind','milestoneCount','status','visibleAt','publishedAt','createdAt','updatedAt'])

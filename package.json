@@ -13,7 +13,8 @@
     "test:profiles": "firebase emulators:exec --only auth,firestore --project demo-hanzigo 'vitest run --config vitest.profiles.config.ts'",
     "content:validate": "node --import tsx scripts/validate-content.ts",
     "content:import": "node --import tsx scripts/import-content.ts",
-    "format": "prettier --write src scripts tests *.ts *.json *.md docs"
+    "format": "prettier --write src scripts tests *.ts *.json *.md docs",
+    "firebase:seed": "node --import tsx scripts/seed-firebase-content.ts"
   },
   "dependencies": {
     "@fontsource/be-vietnam-pro": "^5.3.0",

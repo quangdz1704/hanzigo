@@ -10,7 +10,7 @@ import { Button } from "./ui/button";
 import { BookmarkPlus, Check } from "lucide-react";
 import { saveVocabulary } from "@/lib/db";
 import { useLiveQuery } from "dexie-react-hooks";
-import { db } from "@/lib/db";
+import { getLearningDatabase } from "@/lib/db";
 import { reportError, useUI } from "@/lib/store";
 export function VocabularySheet({
   word,
@@ -22,7 +22,7 @@ export function VocabularySheet({
   preview?: boolean;
 }) {
   const card = useLiveQuery(
-    () => (word ? db.cards.get(word.id) : undefined),
+    () => (word ? getLearningDatabase().cards.get(word.id) : undefined),
     [word?.id],
   );
   return (

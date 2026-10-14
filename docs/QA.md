@@ -98,3 +98,12 @@
 - Fixed sidebar now uses the visible viewport height (`100dvh`, with `100vh` fallback), scrolls vertically when content is taller, and keeps child sections from shrinking together. Overscroll is contained within the sidebar.
 - Browser checks at desktop 1280×500 and mobile menu 390×480 reached the bottom account/settings links with keyboard scrolling while the main page stayed at scrollY=0. Screenshot: `sidebar-short-screen.png`. Temporary viewport override was reset after testing.
 - Production/PWA build and all 79 unit tests passed. No cloud configuration changes.
+
+## Firebase library and account storage · 14/10/2026
+
+- `npm test`: **86 unit tests passed** after account/cache/library additions. Covers guest migration, persistent outbox, A/B isolation, stale hydration, monotonic completion/quiz merges, favorite removal, XP deduplication and validated library round-trip.
+- **21 Firestore Rules tests passed**; published content is public while private learning requires a non-anonymous owner; admin drafts/default recipient have separate permissions. Existing message protection tests remain green.
+- **3 Auth+Firestore integration tests and 10 Auth integration tests passed**. Actual independent SDK sessions restored progress/preferences, offline edits survived cache reopening, guest defaults did not replace existing cloud settings, and concurrent story publication preserved both edits.
+- Production/PWA build passed. Browser emulator flow: login restored server theme/name; preference changed; admin draft was saved on server; publication immediately updated the learner story title; completion persisted after reload. Independent SDK read-back confirmed server completion=true, favorite=true and one draft. A demo letter was received/read/hearted. Logout returned to separate uncompleted guest data.
+- Screenshots: `cloud-account-sync.png`, `cloud-content-editor.png`. All test data/accounts/letters remained in `demo-hanzigo`; no test accounts or letters were created on production.
+- Production `hanzigo-eea7d` database and ready message index were checked. Active Rules were backed up; Rules publish was rejected by automatic approval review and remains pending explicit user approval. Real library bootstrap succeeded: 20 stories, 200 terms, 30 quotes. Existing user data, allowlist, billing and production Rules were not changed. See `CLOUD_STORAGE.md` for the exact access proposal and rollback path.

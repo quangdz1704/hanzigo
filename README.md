@@ -47,7 +47,7 @@ Question format bổ sung `chinese: { prompt: { hanzi, pinyin }, options: [{ han
 
 ## Bàn biên tập V2
 
-Vào `/admin/content` sau khi đăng nhập admin. Form sửa tên, câu Hanzi/Pinyin/dịch, mục từ, mapping, câu hỏi/đáp án và câu xếp từ. Chế độ JSON cho phép sửa toàn bộ metadata/IDs hoặc thêm/bớt câu và mục từ. **Lưu nháp** giữ cả JSON chưa hoàn chỉnh trên IndexedDB. Khi đổi truyện, nháp đang sửa được lưu trước; hãy bấm lưu trước khi đóng tab. Nháp không nằm trong backup tiến độ, cần xuất riêng. Không dùng để lưu nội dung bí mật trên máy chung.
+Vào `/admin/content` sau khi đăng nhập admin. Form sửa tên, câu Hanzi/Pinyin/dịch, mục từ, mapping, câu hỏi/đáp án và câu xếp từ. Chế độ JSON cho phép sửa toàn bộ metadata/IDs hoặc thêm/bớt câu và mục từ. **Lưu nháp** giữ cả JSON chưa hoàn chỉnh trong cache và đồng bộ riêng theo UID admin khi có mạng (demo giữ local). Khi đổi truyện, nháp đang sửa được lưu trước; hãy bấm lưu trước khi đóng tab. Nháp không nằm trong backup tiến độ, cần xuất riêng. Không dùng để lưu nội dung bí mật trên máy chung.
 
 **Tạo bản sao** cấp IDs mới cho truyện, câu, mục từ và câu hỏi. **Xem trước** dùng cùng thành phần reader (Hanzi/Pinyin/dịch/audio/glossary) nhưng không ghi XP/tiến độ. Chỉ dữ liệu hợp lệ, IDs không trùng và glossary gắn đúng câu mới được preview/xuất. Mỗi truyện tối đa 500 KB, audio phải HTTPS. Tất cả nội dung vẫn có trạng thái ngôn ngữ `draft`.
 
@@ -62,7 +62,7 @@ npm run test
 npm run build
 ```
 
-Import một truyện thay ID đang có hoặc thêm ID mới; không xóa các truyện khác. Export toàn bộ ghép **chỉ bản đang xem** vào seed gốc; để ghép nhiều nháp, xuất rồi import từng truyện. Giữ ID câu/mục từ khi sửa lỗi để bảo toàn lịch sử. Lưu nháp không thay đổi thư viện learner và không tự phát hành lên Firebase. Bản build mới chứa thư viện đã nhập. Content format vẫn `version: 1`; phiên bản app `0.2.0`.
+Import một truyện thay ID đang có hoặc thêm ID mới; không xóa các truyện khác. Export toàn bộ ghép **chỉ bản đang xem** vào seed gốc; để ghép nhiều nháp, xuất rồi import từng truyện. Giữ ID câu/mục từ khi sửa lỗi để bảo toàn lịch sử. Lưu nháp không thay đổi thư viện learner. Bấm **Phát hành truyện lên Firebase** để cập nhật ngay, hoặc nhập/phát hành thư viện JSON. Lệnh import seed vẫn dùng để cập nhật bản fallback đóng gói. Content format vẫn `version: 1`; phiên bản app `0.2.0`.
 
 ## Demo local
 
@@ -102,7 +102,7 @@ Người dùng thực hiện các bước console sau; source không tạo tài 
 
    Chờ composite index xây xong trước khi dùng inbox. Không có Cloud Function/cron trong MVP.
 
-7. Mở app trên máy của em: anonymous Auth tự cấp UID, ghi `devices/{uid}` với timestamp server. Lấy mã trong `/settings` hoặc tìm tại `/admin/settings`; đặt mã người nhận mặc định trên browser admin.
+7. Khách học local với mã phiên anonymous. Sau đăng nhập, app đồng bộ hồ sơ tại `users/{uid}`, nhãn người nhận tại `devices/{uid}`, dữ liệu học và tùy chọn theo UID. Người nhận mặc định của admin cũng đi theo tài khoản.
 8. Đăng nhập `/admin/login`. App kiểm tra allowlist bằng request thật đến Firestore; UID không được whitelist không được mở quản trị. Rules bảo vệ dữ liệu ngay cả nếu client route guard bị sửa.
 9. Soạn và gửi thư. Có thể mở app learner và admin trên hai máy để kiểm tra realtime.
 
@@ -112,14 +112,18 @@ Nếu đã đăng nhập nhưng không vào được quản trị: sao chép **U
 
 ## Mô hình bảo mật thư
 
-| Dữ liệu                              | Quyền                                                              |
-| ------------------------------------ | ------------------------------------------------------------------ |
-| `config/admins`                      | Chỉ UID trong allowlist được get; không client nào được write/list |
-| `config/settings`                    | Authenticated được get cờ popup, admin được write schema giới hạn  |
-| `devices/{uid}`                      | Learner đọc/đăng ký đúng UID; admin đọc/list                       |
-| `messages/{id}`                      | Admin CRUD; learner chỉ đọc thư được release cho UID của mình      |
-| `devices/{uid}/receipts/{messageId}` | Chỉ learner tương ứng ghi schema receipt; admin đọc                |
-| Mọi path khác                        | Deny by default                                                    |
+| Dữ liệu                                                                   | Quyền                                                                                   |
+| ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `config/admins`                                                           | Chỉ UID trong allowlist được get; không client nào được write/list                      |
+| `config/settings`                                                         | Authenticated được get cờ popup, admin được write schema giới hạn                       |
+| `devices/{uid}`                                                           | Learner đọc/đăng ký đúng UID; admin đọc/list                                            |
+| `messages/{id}`                                                           | Admin CRUD; learner chỉ đọc thư được release cho UID của mình                           |
+| `devices/{uid}/receipts/{messageId}`                                      | Chỉ learner tương ứng ghi schema receipt; admin đọc                                     |
+| `content/library`                                                         | Public đọc bản phát hành; chỉ admin phát hành                                           |
+| `users/{uid}`                                                             | Chủ tài khoản và admin đọc hồ sơ; chủ tài khoản ghi schema hồ sơ                        |
+| `users/{uid}/{cards,progress,activities,reviews,favorites,preferences}/*` | Chủ tài khoản không anonymous đọc/ghi dữ liệu riêng; admin không đọc tiến độ người khác |
+| `users/{uid}/drafts/*`                                                    | Chỉ admin sở hữu nháp đọc/ghi                                                           |
+| Mọi path khác                                                             | Deny by default                                                                         |
 
 **Gửi ngay:** trạng thái `published` có nghĩa là admin đã phát hành nội dung. Rules chỉ cho admin ghi, và yêu cầu thời điểm phát hành không nằm trong tương lai. Listener `recipientUid == uid, status == published` nhận gần realtime khi app mở có mạng. Không có push khi app đóng.
 
@@ -133,9 +137,13 @@ Nếu đã đăng nhập nhưng không vào được quản trị: sao chép **U
 
 **Danh tính ẩn danh:** xóa browser/site data, dùng private mode hoặc chuyển origin/thiết bị có thể mất UID và tiến độ. Đăng ký tại `/register` trước khi đổi thiết bị để gắn email vào UID đang dùng. Mã backup không khôi phục Auth UID. Learning state local không phải bằng chứng bảo mật cho unlock.
 
+## Dữ liệu Firebase theo tài khoản
+
+Xem [mô hình lưu trữ, migration, kiểm thử và trạng thái production](docs/CLOUD_STORAGE.md). Thư viện phát hành đọc từ Firebase, cache để dùng offline; bản đóng gói là fallback. Bàn biên tập phát hành truyện/thư viện ngay trên Firebase. Có thể khởi tạo seed một lần bằng `npm run firebase:seed -- --project hanzigo-eea7d` sau khi đăng nhập Firebase CLI; lệnh giữ nguyên thư viện đã có.
+
 ## Đăng ký và tài khoản
 
-**Tên gọi theo tài khoản:** “Mình gọi em là” đồng bộ qua `devices/{uid}` với các trường `name`, `label`, `email`. Đăng nhập trên máy khác lấy tên đã lưu; thay đổi tên cập nhật realtime khi app mở. Tên browser cũ được nhập một lần nếu tài khoản chưa có tên server; tên server có sẵn được ưu tiên. Với Google mới, dùng tên Google nếu chưa có tên tùy chọn. Tên khách vẫn lưu riêng trên browser. Đổi tài khoản không sao chép tên từ tài khoản trước. Sửa offline được giữ riêng theo UID và thử lại khi có mạng; khi hai máy cùng sửa, lần ghi thành công sau cùng được giữ. Email trong Firestore là bản hiển thị từ Firebase Auth, Rules kiểm tra khớp email trong token; không phải bằng chứng xác minh email. Admin thấy tên/email/UID tại **Người nhận & thông báo**. Tiến độ và các tùy chọn đọc khác vẫn lưu local.
+**Tên gọi theo tài khoản:** “Mình gọi em là” đồng bộ qua `users/{uid}`; `devices/{uid}` giữ nhãn/email tương ứng để quản trị nhận biết. Đăng nhập trên máy khác lấy tên đã lưu; thay đổi tên cập nhật realtime khi app mở. Tên browser cũ được nhập một lần nếu tài khoản chưa có tên server; tên server có sẵn được ưu tiên. Với Google mới, dùng tên Google nếu chưa có tên tùy chọn. Tên khách vẫn lưu riêng trên browser. Đổi tài khoản không sao chép tên từ tài khoản trước. Sửa offline được giữ riêng theo UID và thử lại khi có mạng; khi hai máy cùng sửa, lần ghi thành công sau cùng được giữ. Email trong Firestore là bản hiển thị từ Firebase Auth, Rules kiểm tra khớp email trong token; không phải bằng chứng xác minh email. Admin thấy tên/email/UID tại **Người nhận & thông báo**. Tiến độ và các tùy chọn đọc khác được đồng bộ theo UID; IndexedDB giữ cache và hàng đợi thay đổi offline.
 
 Sau cập nhật, cần triển khai **`firestore.rules` mới** để cho phép các trường hồ sơ; Rules cũ chỉ chấp nhận `uid/label/createdAt/lastPing` và sẽ từ chối đồng bộ tên/email. Bản ghi cũ vẫn hợp lệ, được bổ sung khi tài khoản đăng nhập. App hiển thị trạng thái chưa đồng bộ nếu bị từ chối. Chưa triển khai Rules lên project thật trong phiên này.
 
@@ -147,7 +155,7 @@ Vào **Tùy chọn của em → Đăng ký**, hoặc mở `/register`. Nhập em
 
 `/login` khôi phục UID của email đó. `/account` hiển thị email, trạng thái xác minh, mã nhận thư và nút đăng xuất. **Gửi email xác minh** gửi liên kết Firebase; mở email rồi bấm **Em đã xác minh** để cập nhật trạng thái. **Quên mật khẩu?** tại `/forgot-password` gửi hướng dẫn đặt lại, dùng thông báo chung để tránh tiết lộ email có tài khoản. Mật khẩu không được ghi vào IndexedDB, backup hay logs ứng dụng. Email xác minh và khôi phục dùng ngôn ngữ Việt.
 
-Đăng xuất learner trở về một phiên khách mới, vẫn giữ tiến độ học trên trình duyệt. Thư chỉ hiển thị theo UID đang đăng nhập; hộp thoại thư cũ đóng khi đổi tài khoản. Đăng nhập trên máy khác khôi phục mã nhận thư, **chưa đồng bộ tiến độ học**: dùng Xuất/Nhập dữ liệu. Đăng ký public không cấp quyền quản trị; admin vẫn cần allowlist `config/admins` và đăng nhập riêng tại `/admin/login`.
+Đăng xuất learner trở về một phiên khách mới, vẫn giữ tiến độ học trên trình duyệt. Thư chỉ hiển thị theo UID đang đăng nhập; hộp thoại thư cũ đóng khi đổi tài khoản. Đăng nhập trên máy khác khôi phục mã nhận thư, tiến độ học, từ đã lưu, lịch ôn, yêu thích và các tùy chọn. Xuất/Nhập dữ liệu vẫn dùng làm bản sao riêng. Đăng ký public không cấp quyền quản trị; admin vẫn cần allowlist `config/admins` và đăng nhập riêng tại `/admin/login`.
 
 ```sh
 npm run test:auth
@@ -216,9 +224,9 @@ firestore.rules   Deny-by-default policy
 
 Firebase/Vercel có quota và điều kiện plan có thể thay đổi; **không khẳng định luôn miễn phí**. Không bật billing trong mã. Theo dõi Firebase Usage và plan hiện có trước khi deploy. Một app mở liên tục có thể tạo khoảng 60 lần làm mới query scheduled và 12 lần ping server mỗi giờ; ping gồm ghi timestamp và đọc lại. Realtime listener, message/receipt changes, thiết bị mới và admin queries tạo thêm reads/writes. Bật ngân sách/quota alert nếu chọn plan có billing.
 
-V2 có 20 truyện/200 mục từ/30 quotes; 60 câu hỏi đọc hiểu. 5 truyện V1 giữ nguyên ID. Không chatbot/OCR/speech scoring/push nền. Không tự đồng bộ tiến độ học giữa thiết bị. Không bảo vệ milestone bằng local data. Không hồi phục Auth UID từ backup. Mic/TTS/installability phụ thuộc trình duyệt; cần HTTPS cho mic trên host thật. Web config đã được cập nhật. Kiểm tra cuối ngày 09/10/2026: Anonymous Auth đã cấp UID thành công (lỗi `auth/configuration-not-found` ở lần đầu đã được xử lý phía Console). Firestore REST hiện trả `403 SERVICE_DISABLED`: Cloud Firestore API chưa bật/chưa từng dùng. Vào Firebase Console → Firestore Database → Create database; sau đó cấu hình allowlist và triển khai rules/indexes trước khi dùng thư trên cloud. Kiểm thử cross-device và deep-link trên URL Vercel còn chờ cấu hình/deploy.
+V2 có 20 truyện/200 mục từ/30 quotes; 60 câu hỏi đọc hiểu. 5 truyện V1 giữ nguyên ID. Không chatbot/OCR/speech scoring/push nền. Đồng bộ tiến độ theo tài khoản đã đăng nhập, khách giữ dữ liệu local. Không bảo vệ milestone bằng local data. Không hồi phục Auth UID từ backup. Mic/TTS/installability phụ thuộc trình duyệt; cần HTTPS cho mic trên host thật. Web config của hanzigo-eea7d đã có. Firestore database thật được xác nhận ngày 14/10/2026; thư viện đã có công cụ khởi tạo an toàn. Publish Rules production đang chờ xác nhận quyền truy cập cụ thể; xem docs/CLOUD_STORAGE.md.
 
-Giai đoạn tiếp theo: duyệt ngôn ngữ và audio thu sẵn; đồng bộ tiến độ; tiến độ tin cậy và milestone unlock phía server; notification sender/push khi cần. Measurement ID được giữ trong cấu hình; app chưa khởi tạo Analytics hoặc gửi sự kiện.
+Giai đoạn tiếp theo: duyệt ngôn ngữ và audio thu sẵn; tiến độ tin cậy và milestone unlock phía server; notification sender/push khi cần. Measurement ID được giữ trong cấu hình; app chưa khởi tạo Analytics hoặc gửi sự kiện.
 
 ## Tài liệu chính thức
 

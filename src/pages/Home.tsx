@@ -1,3 +1,4 @@
+import { useLibraryRevision } from "@/content";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -21,6 +22,7 @@ import { AudioButton, Badge, SectionHeading } from "@/components/Common";
 import { Button } from "@/components/ui/button";
 import { GardenArt, StoryArt, EnvelopeArt } from "@/components/Art";
 export default function Home() {
+  useLibraryRevision();
   const { progress, activities, cards, favorites, xp, streak, storiesRead } =
     useLearning();
   const name = usePreferences((s) => s.name || "em");

@@ -1,3 +1,4 @@
+import { useLibraryRevision } from "@/content";
 import { useRef, useState } from "react";
 import {
   Download,
@@ -12,15 +13,23 @@ import { Link } from "react-router-dom";
 import { usePreferences, useUI, reportError } from "@/lib/store";
 import { useAuth } from "@/lib/Auth";
 import { backendMode } from "@/lib/firebase";
-import { exportLearning, importLearning } from "@/lib/db";
+import { exportLearning, importLearning, getLearningDatabase } from "@/lib/db";
 import { PageHeading, AudioButton } from "@/components/Common";
 import { Button } from "@/components/ui/button";
 import { useLearning } from "@/lib/hooks";
 import { quotes } from "@/content";
 export default function Settings() {
+  useLibraryRevision();
   const prefs = usePreferences();
-  const { uid, learnerError, learnerAccount, profileStatus, retryProfile } =
-    useAuth();
+  const {
+    uid,
+    learnerError,
+    learnerAccount,
+    profileStatus,
+    retryProfile,
+    dataSyncStatus,
+    retryDataSync,
+  } = useAuth();
   const file = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
   const { favorites } = useLearning();
@@ -146,15 +155,34 @@ export default function Settings() {
               </>
             )}
             <p className="content-note">
-              Tiến độ học vẫn lưu trên trình duyệt này. Dùng bản sao bên dưới để
-              chuyển tiến độ sang thiết bị khác.
+              {learnerAccount && !learnerAccount.isAnonymous
+                ? "Tiến độ, từ đã lưu, yêu thích và tùy chọn đi theo tài khoản. Bản trên máy giúp em tiếp tục học offline."
+                : "Khách lưu tiến độ trên máy. Đăng ký để giữ dữ liệu học theo tài khoản."}
             </p>
+            {learnerAccount && !learnerAccount.isAnonymous && (
+              <>
+                <p role="status">
+                  {dataSyncStatus === "synced"
+                    ? "Dữ liệu học đã đồng bộ Firebase."
+                    : dataSyncStatus === "error"
+                      ? "Chưa đồng bộ được. Thay đổi vẫn giữ trên máy và sẽ gửi lại khi kết nối được."
+                      : dataSyncStatus === "saving"
+                        ? "Đang đồng bộ thay đổi…"
+                        : "Đang tải dữ liệu của tài khoản…"}
+                </p>
+                {dataSyncStatus === "error" && (
+                  <Button variant="outline" onClick={retryDataSync}>
+                    Thử đồng bộ dữ liệu
+                  </Button>
+                )}
+              </>
+            )}
           </section>
           <section className="card settings-section">
             <h2>Giữ những gì em đã học</h2>
             <p className="muted">
-              Tiến độ được lưu trên trình duyệt này. Xuất một bản sao trước khi
-              đổi thiết bị hoặc xóa dữ liệu trình duyệt.
+              Em có thể xuất bản sao riêng hoặc nhập để hợp nhất tiến độ. Khi
+              đăng nhập, dữ liệu nhập cũng đồng bộ vào tài khoản.
             </p>
             <div className="button-row">
               <Button
@@ -207,9 +235,12 @@ export default function Settings() {
                   return;
                 }
                 setBusy(true);
+                const ownerDatabase = getLearningDatabase();
                 void f
                   .text()
-                  .then((text) => importLearning(JSON.parse(text)))
+                  .then((text) =>
+                    importLearning(JSON.parse(text), ownerDatabase),
+                  )
                   .then(() =>
                     useUI
                       .getState()
@@ -279,7 +310,7 @@ export default function Settings() {
               {backendMode === "demo"
                 ? "Demo local: thư chỉ dùng trên trình duyệt này."
                 : learnerAccount && !learnerAccount.isAnonymous
-                  ? "Đăng nhập cùng email sẽ khôi phục mã nhận thư này. Tiến độ học cần chuyển bằng bản sao riêng."
+                  ? "Đăng nhập cùng tài khoản sẽ khôi phục mã nhận thư và dữ liệu học trên thiết bị khác."
                   : "Đăng ký bằng email để giữ mã nhận thư. Xóa dữ liệu trình duyệt khi còn ẩn danh có thể làm mất mã này."}
             </p>
           </section>

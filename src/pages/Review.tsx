@@ -1,3 +1,4 @@
+import { useLibraryRevision } from "@/content";
 import { useEffect, useState } from "react";
 import { BookmarkPlus, Check, RotateCcw, Sparkles } from "lucide-react";
 import { vocabulary, findStory, stories } from "@/content";
@@ -12,6 +13,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { scheduleReview } from "@/lib/learning";
 import { searchText } from "@/lib/utils";
 export default function Review() {
+  useLibraryRevision();
   const { cards } = useLearning();
   const now = useNow();
   const [flipped, setFlipped] = useState(false);

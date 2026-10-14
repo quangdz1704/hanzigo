@@ -148,9 +148,8 @@ export default function Account() {
             <p className="muted">Mã nhận thư của tài khoản</p>
             <code className="device-id">{account.uid}</code>
             <p className="content-note">
-              Đăng nhập trên máy khác sẽ dùng cùng mã nhận thư. Tiến độ học lưu
-              riêng trên từng trình duyệt; em dùng Xuất/Nhập dữ liệu để chuyển
-              tiến độ.
+              Đăng nhập trên máy khác sẽ dùng cùng mã nhận thư, tiến độ học, từ
+              đã lưu và các tùy chọn của tài khoản.
             </p>
             <div className="button-row">
               <Button asChild>
@@ -352,9 +351,8 @@ export default function Account() {
             )}
             {mode === "login" && (
               <p className="content-note">
-                Đăng nhập vào tài khoản khác sẽ đổi mã nhận thư. Dữ liệu học
-                trên trình duyệt vẫn được giữ; thư chỉ hiển thị cho tài khoản
-                đang đăng nhập.
+                Đăng nhập sẽ mở dữ liệu học và hộp thư của tài khoản đó. Dữ liệu
+                khách vẫn giữ riêng trên máy này.
               </p>
             )}
             <p>

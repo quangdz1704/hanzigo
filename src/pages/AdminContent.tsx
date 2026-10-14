@@ -1,7 +1,16 @@
+import { useLibraryRevision } from "@/content";
 import { useMemo, useRef, useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { BookOpen, Copy, Download, Eye, Save, Upload } from "lucide-react";
-import { content, stories } from "@/content";
+import { bundledContent, content, stories, useLibraryState } from "@/content";
+import { backend } from "@/lib/firebase";
+import { useAuth } from "@/lib/Auth";
+import {
+  publishLibrary,
+  publishStory,
+  unpackLibrary,
+  MAX_LIBRARY_BYTES,
+} from "@/lib/cloud-content";
 import { storySchema, type Story, type Vocabulary } from "@/content/schema";
 import {
   copyStory,
@@ -11,6 +20,8 @@ import {
   readStoryJSON,
 } from "@/lib/content-editor";
 import { db } from "@/lib/db";
+import { putAccountRecord } from "@/lib/db";
+import { useAdminData } from "@/lib/admin-data";
 import { stopAudio } from "@/lib/audio";
 import { reportError, useUI } from "@/lib/store";
 import { Button } from "@/components/ui/button";
@@ -27,9 +38,15 @@ import {
 } from "@/components/ui/dialog";
 
 export default function AdminContent() {
+  useLibraryRevision();
+  const { adminUser } = useAuth();
+  const adminData = useAdminData();
+  const draftTable = backend ? adminData.database.drafts : db.contentDrafts;
+  const library = useLibraryState();
+  const libraryFile = useRef<HTMLInputElement>(null);
   const drafts = useLiveQuery(
-    () => db.contentDrafts.orderBy("updatedAt").reverse().toArray(),
-    [],
+    () => draftTable.orderBy("updatedAt").reverse().toArray(),
+    [adminData.uid],
     [],
   );
   const [key, setKey] = useState(stories[0].id);
@@ -53,11 +70,39 @@ export default function AdminContent() {
         error: e instanceof Error ? e.message : "Không thể kiểm tra nội dung.",
       };
     }
-  }, [raw]);
+  }, [raw, library.revision]);
+  const publish = async (initialize = false) => {
+    if (!backend || !adminUser)
+      throw new Error("Cần đăng nhập quản trị Firebase để phát hành.");
+    setBusy(true);
+    try {
+      if (initialize)
+        await publishLibrary(
+          backend.adminStore,
+          adminUser.uid,
+          bundledContent,
+          true,
+        );
+      else if (parsed.story)
+        await publishStory(backend.adminStore, adminUser.uid, parsed.story);
+      else throw new Error("Truyện chưa hợp lệ để phát hành.");
+      useUI.getState().notify("Đã phát hành thư viện trên Firebase.");
+    } finally {
+      setBusy(false);
+    }
+  };
   const save = async () => {
     if (new TextEncoder().encode(raw).length > MAX_STORY_BYTES)
       throw new Error("Truyện quá lớn: tối đa 500 KB.");
-    await db.contentDrafts.put({ id: key, raw, updatedAt: Date.now() });
+    const draft = { id: key, raw, updatedAt: Date.now() };
+    if (backend)
+      await adminData.database.transaction(
+        "rw",
+        adminData.database.drafts,
+        adminData.database.syncQueue,
+        () => putAccountRecord(adminData.database, "drafts", draft),
+      );
+    else await draftTable.put(draft);
     setDirty(false);
   };
   const updateRaw = (text: string) => {
@@ -89,7 +134,11 @@ export default function AdminContent() {
       .then(() =>
         useUI
           .getState()
-          .notify("Đã lưu nháp trên thiết bị. Thư viện của em chưa thay đổi."),
+          .notify(
+            backend
+              ? "Đã giữ nháp; đang đồng bộ theo tài khoản quản trị."
+              : "Đã lưu nháp demo trên máy.",
+          ),
       )
       .catch(reportError)
       .finally(() => setBusy(false));
@@ -104,11 +153,78 @@ export default function AdminContent() {
       <div className="editor-notice">
         <BookOpen size={20} />
         <p>
-          Nháp lưu riêng trên trình duyệt này. Để cập nhật app, xuất thư viện,
-          chạy lệnh nhập nội dung trong README rồi build lại. Nội dung ngôn ngữ
-          vẫn cần người đọc tiếng Trung kiểm tra.
+          Phát hành lên Firebase để người học nhận nội dung mới. Nháp được lưu
+          riêng; nội dung ngôn ngữ vẫn cần người đọc tiếng Trung kiểm tra.
         </p>
       </div>
+      <section className="card settings-section">
+        <p role="status">
+          {backend
+            ? adminData.status === "synced"
+              ? "Nháp đã đồng bộ theo tài khoản quản trị."
+              : adminData.status === "error"
+                ? "Nháp đang giữ trên máy; chưa kết nối được Firebase."
+                : "Đang đồng bộ nháp theo tài khoản quản trị…"
+            : "Nháp demo lưu trên máy."}
+        </p>
+        <p role="status">
+          {library.source === "firebase"
+            ? "Đang dùng thư viện Firebase."
+            : library.status === "error"
+              ? "Chưa tải được thư viện Firebase. Đang dùng bản đã lưu hoặc bản mẫu."
+              : "Đang dùng bản đã lưu hoặc bản mẫu; Firebase chưa có thư viện."}
+        </p>
+        <div className="button-row">
+          <Button
+            disabled={
+              busy || !backend || !adminUser || library.source === "firebase"
+            }
+            onClick={() => void publish(true).catch(reportError)}
+          >
+            Khởi tạo thư viện mẫu lên Firebase
+          </Button>
+          <Button
+            variant="outline"
+            disabled={busy || !backend || !adminUser}
+            onClick={() => libraryFile.current?.click()}
+          >
+            Nhập và phát hành thư viện JSON
+          </Button>
+        </div>
+        <input
+          className="sr-only"
+          ref={libraryFile}
+          type="file"
+          accept=".json,application/json"
+          aria-label="Nhập thư viện Firebase"
+          onChange={(event) => {
+            const selected = event.target.files?.[0];
+            event.target.value = "";
+            if (!selected || !backend || !adminUser) return;
+            if (selected.size > MAX_LIBRARY_BYTES) {
+              reportError(new Error("Thư viện quá lớn: tối đa 800 KB."));
+              return;
+            }
+            setBusy(true);
+            void selected
+              .text()
+              .then((raw) =>
+                publishLibrary(
+                  backend!.adminStore,
+                  adminUser.uid,
+                  unpackLibrary(raw),
+                ),
+              )
+              .then(() =>
+                useUI
+                  .getState()
+                  .notify("Đã phát hành thư viện JSON lên Firebase."),
+              )
+              .catch(reportError)
+              .finally(() => setBusy(false));
+          }}
+        />
+      </section>
       <div className="content-workbench">
         <aside className="card editor-library">
           <h2>Thư viện · {stories.length} truyện</h2>
@@ -177,6 +293,12 @@ export default function AdminContent() {
             </Badge>
           </div>
           <div className="button-row">
+            <Button
+              disabled={busy || !parsed.story || !backend || !adminUser}
+              onClick={() => void publish().catch(reportError)}
+            >
+              Phát hành truyện lên Firebase
+            </Button>
             <Button disabled={busy} onClick={saveClick}>
               <Save size={16} />
               Lưu nháp
@@ -308,8 +430,8 @@ export default function AdminContent() {
           </div>
           <p className="content-note">
             Xuất thư viện thay truyện cùng ID hoặc thêm ID mới. Chỉ bản đang xem
-            được ghép vào thư viện gốc; các nháp khác cần nhập riêng. Lưu nháp
-            không phát hành lên Firebase.
+            được ghép vào thư viện; các nháp khác cần phát hành riêng. Lưu nháp
+            không thay đổi thư viện người học.
           </p>
         </section>
       </div>

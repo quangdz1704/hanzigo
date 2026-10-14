@@ -398,3 +398,142 @@ describe("account profile metadata", () => {
     );
   });
 });
+
+describe("published lessons and private account data", () => {
+  const account = (uid = "wife") =>
+    env
+      .authenticatedContext(uid, {
+        email: `${uid}@example.test`,
+        firebase: { sign_in_provider: "password" },
+      })
+      .firestore();
+  const wrapper = (value: Record<string, unknown>) => ({
+    value,
+    updatedAt: serverTimestamp(),
+  });
+  it("only an allowlisted admin publishes shared library; guests can read published content", async () => {
+    const data = {
+      raw: '{"library":"published"}',
+      updatedBy: "husband",
+      updatedAt: serverTimestamp(),
+    };
+    const admin = account("husband");
+    await assertSucceeds(setDoc(doc(admin, "content", "library"), data));
+    expect(
+      (
+        await assertSucceeds(
+          getDoc(
+            doc(env.unauthenticatedContext().firestore(), "content", "library"),
+          ),
+        )
+      ).data()?.raw,
+    ).toContain("published");
+    await assertFails(
+      setDoc(doc(account(), "content", "library"), {
+        ...data,
+        updatedBy: "wife",
+      }),
+    );
+    await assertFails(getDocs(collection(admin, "content")));
+    await assertFails(
+      setDoc(doc(admin, "content", "library"), {
+        ...data,
+        raw: "x".repeat(800001),
+      }),
+    );
+  });
+  it("anonymous users and other accounts cannot write or read learning state", async () => {
+    const value = { id: "story", sentence: 1, completed: false, updatedAt: 10 };
+    const ref = doc(account(), "users", "wife", "progress", "story");
+    await assertSucceeds(setDoc(ref, wrapper(value)));
+    await assertFails(
+      getDoc(doc(account("other"), "users", "wife", "progress", "story")),
+    );
+    await assertFails(
+      setDoc(
+        doc(account("other"), "users", "wife", "progress", "story"),
+        wrapper(value),
+      ),
+    );
+    const guest = env
+      .authenticatedContext("guest", {
+        firebase: { sign_in_provider: "anonymous" },
+      })
+      .firestore();
+    await assertFails(
+      setDoc(doc(guest, "users", "guest", "progress", "story"), wrapper(value)),
+    );
+    await assertFails(
+      getDocs(collection(account("husband"), "users", "wife", "progress")),
+    );
+  });
+  it("validates learning/settings and protects completed results and earned activities", async () => {
+    const f = account();
+    const ref = doc(f, "users", "wife", "progress", "story");
+    const value = {
+      id: "story",
+      sentence: 1,
+      completed: true,
+      quizScore: 3,
+      updatedAt: 10,
+    };
+    await assertSucceeds(setDoc(ref, wrapper(value)));
+    await assertFails(setDoc(ref, wrapper({ ...value, completed: false })));
+    await assertFails(setDoc(ref, wrapper({ ...value, quizScore: 1 })));
+    await assertFails(setDoc(ref, wrapper({ ...value, role: "admin" })));
+    await assertSucceeds(
+      setDoc(
+        doc(f, "users", "wife", "preferences", "theme"),
+        wrapper({ id: "theme", value: "dark", updatedAt: 10 }),
+      ),
+    );
+    await assertFails(
+      setDoc(
+        doc(f, "users", "wife", "preferences", "theme"),
+        wrapper({ id: "theme", value: "neon", updatedAt: 10 }),
+      ),
+    );
+    const a = {
+      id: "story:s",
+      kind: "story",
+      day: "2026-10-14",
+      xp: 30,
+      at: 10,
+    };
+    const ar = doc(f, "users", "wife", "activities", "story");
+    await assertSucceeds(setDoc(ar, wrapper(a)));
+    await assertFails(setDoc(ar, wrapper({ ...a, xp: 999 })));
+    await assertFails(setDoc(ar, wrapper({ ...a, at: 20 })));
+    await assertFails(
+      setDoc(
+        doc(f, "users", "wife", "preferences", "recipientUid"),
+        wrapper({ id: "recipientUid", value: "other", updatedAt: 10 }),
+      ),
+    );
+  });
+  it("editor drafts and default recipient belong to the authenticated admin only", async () => {
+    const admin = account("husband");
+    const ref = doc(admin, "users", "husband", "drafts", "story");
+    await assertSucceeds(
+      setDoc(
+        ref,
+        wrapper({ id: "story", raw: "unfinished JSON", updatedAt: 10 }),
+      ),
+    );
+    await assertFails(
+      getDoc(doc(account(), "users", "husband", "drafts", "story")),
+    );
+    await assertFails(
+      setDoc(
+        doc(account(), "users", "wife", "drafts", "story"),
+        wrapper({ id: "story", raw: "unfinished", updatedAt: 10 }),
+      ),
+    );
+    await assertSucceeds(
+      setDoc(
+        doc(admin, "users", "husband", "preferences", "recipientUid"),
+        wrapper({ id: "recipientUid", value: "wife", updatedAt: 10 }),
+      ),
+    );
+  });
+});

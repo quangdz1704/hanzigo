@@ -1,5 +1,6 @@
 import Dexie, { type EntityTable } from "dexie";
 import { z } from "zod";
+import type { AccountKind, AccountRecord } from "./account-data";
 import { vocabulary, stories, quotes } from "@/content";
 import { DAY, localDay, scheduleReview, XP, type Rating } from "./learning";
 const timestamp = z.number().finite().nonnegative();
@@ -84,6 +85,13 @@ export interface ContentDraft {
   raw: string;
   updatedAt: number;
 }
+export interface QueueItem {
+  id: string;
+  kind: AccountKind;
+  value: AccountRecord;
+  revision: string;
+  initializeOnly?: boolean;
+}
 export const db = new Dexie("hanzigo") as Dexie & {
   cards: EntityTable<ReviewCard, "id">;
   progress: EntityTable<ReadingProgress, "id">;
@@ -93,6 +101,14 @@ export const db = new Dexie("hanzigo") as Dexie & {
   letters: EntityTable<CachedLetter, "id">;
   receipts: EntityTable<Receipt, "id">;
   contentDrafts: EntityTable<ContentDraft, "id">;
+  preferences: EntityTable<
+    { id: string; value: unknown; updatedAt: number },
+    "id"
+  >;
+  drafts: EntityTable<ContentDraft, "id">;
+  syncQueue: EntityTable<QueueItem, "id">;
+  meta: EntityTable<{ id: string; value: string }, "id">;
+  libraryCache: EntityTable<{ id: string; raw: string }, "id">;
 };
 /** Claim before display, in one IndexedDB transaction, even across open tabs. */
 export async function claimLetterPopup(uid: string, messageId: string) {
@@ -124,13 +140,112 @@ db.version(1).stores({
 // Additive migration; all v1 learning records remain intact.
 db.version(2).stores({ letters: "id, recipientUid, visibleAt, status" });
 db.version(3).stores({ contentDrafts: "id, updatedAt" });
+db.version(4).stores({ libraryCache: "id" });
+db.version(5).stores({
+  preferences: "id",
+  drafts: "id, updatedAt",
+  syncQueue: "id",
+  meta: "id",
+});
+export type AccountDatabase = typeof db;
+const databases = new Map<string, AccountDatabase>();
+let learningDb = db;
+export const getLearningDatabase = () => learningDb;
+export function getAccountDatabase(uid: string): AccountDatabase {
+  let database = databases.get(uid);
+  if (!database) {
+    database = new Dexie(`hanzigo-account-${uid}`) as AccountDatabase;
+    database.version(1).stores({
+      cards: "id, dueAt",
+      progress: "id, updatedAt",
+      activities: "id, day, kind",
+      reviews: "id, cardId, at",
+      favorites: "id",
+      preferences: "id",
+      drafts: "id, updatedAt",
+      syncQueue: "id",
+      meta: "id",
+    });
+    databases.set(uid, database);
+  }
+  return database;
+}
+export function selectLearningDatabase(uid: string | null) {
+  learningDb = uid ? getAccountDatabase(uid) : db;
+  return learningDb;
+}
+export async function putAccountRecord<T extends { id: string }>(
+  database: AccountDatabase,
+  kind: AccountKind,
+  value: T,
+) {
+  const clean = JSON.parse(JSON.stringify(value)) as AccountRecord;
+  await database.table(kind).put(clean);
+  if (database !== db)
+    await database.syncQueue.put({
+      id: `${kind}:${value.id}`,
+      kind,
+      value: clean,
+      revision: crypto.randomUUID(),
+    });
+}
+// Claim legacy browser data once. Never copy a signed-in account's cache into another account.
+export async function migrateGuestLearning(uid: string, registration = false) {
+  const target = getAccountDatabase(uid);
+  await db.transaction(
+    "rw",
+    [
+      db.meta,
+      db.cards,
+      db.progress,
+      db.activities,
+      db.reviews,
+      db.favorites,
+      db.preferences,
+    ],
+    async () => {
+      const claimed = await db.meta.get("learningMigration");
+      if (claimed && !registration) return;
+      const data = await Promise.all(
+        [
+          "cards",
+          "progress",
+          "activities",
+          "reviews",
+          "favorites",
+          "preferences",
+        ].map(async (kind) => ({
+          kind: kind as AccountKind,
+          rows: await db.table(kind).toArray(),
+        })),
+      );
+      await Dexie.waitFor(
+        Dexie.ignoreTransaction(() =>
+          target.transaction("rw", target.tables, async () => {
+            for (const { kind, rows } of data)
+              for (const item of rows)
+                if (!(await target.table(kind).get(item.id))) {
+                  await putAccountRecord(target, kind, item);
+                  if (kind === "preferences")
+                    await target.syncQueue.update(`${kind}:${item.id}`, {
+                      initializeOnly: true,
+                    });
+                }
+          }),
+        ),
+      );
+      await db.meta.put({ id: "learningMigration", value: uid });
+    },
+  );
+}
 export async function saveVocabulary(id: string) {
+  const db = learningDb;
   if (!vocabulary.some((v) => v.id === id))
     throw new Error("Không tìm thấy từ này.");
-  await db.transaction("rw", db.cards, async () => {
+  await db.transaction("rw", db.cards, db.syncQueue, async () => {
     if (!(await db.cards.get(id))) {
       const now = Date.now();
-      await db.cards.add({
+      await putAccountRecord(db, "cards", {
         id,
         dueAt: now,
         interval: 0,
@@ -145,30 +260,46 @@ export async function awardActivity(
   id: string,
   kind: Activity["kind"],
   at = Date.now(),
+  database = learningDb,
 ) {
-  return db.transaction("rw", db.activities, async () => {
+  const db = database;
+  return db.transaction("rw", db.activities, db.syncQueue, async () => {
     if (await db.activities.get(id)) return false;
-    await db.activities.add({ id, kind, day: localDay(at), xp: XP[kind], at });
+    await putAccountRecord(db, "activities", {
+      id,
+      kind,
+      day: localDay(at),
+      xp: XP[kind],
+      at,
+    });
     return true;
   });
 }
 export async function completeStory(id: string, sentence: number) {
-  await db.transaction("rw", db.progress, db.activities, async () => {
-    const prior = await db.progress.get(id);
-    await db.progress.put({
-      id,
-      sentence,
-      completed: true,
-      quizScore: prior?.quizScore,
-      updatedAt: Date.now(),
-    });
-    await awardActivity(`story:${id}`, "story");
-  });
+  const db = learningDb;
+  await db.transaction(
+    "rw",
+    db.progress,
+    db.activities,
+    db.syncQueue,
+    async () => {
+      const prior = await db.progress.get(id);
+      await putAccountRecord(db, "progress", {
+        id,
+        sentence,
+        completed: true,
+        quizScore: prior?.quizScore,
+        updatedAt: Date.now(),
+      });
+      await awardActivity(`story:${id}`, "story", Date.now(), db);
+    },
+  );
 }
 export async function saveReadingPosition(id: string, sentence: number) {
-  await db.transaction("rw", db.progress, async () => {
+  const db = learningDb;
+  await db.transaction("rw", db.progress, db.syncQueue, async () => {
     const old = await db.progress.get(id);
-    await db.progress.put({
+    await putAccountRecord(db, "progress", {
       id,
       sentence,
       completed: old?.completed ?? false,
@@ -178,39 +309,64 @@ export async function saveReadingPosition(id: string, sentence: number) {
   });
 }
 export async function recordQuiz(id: string, score: number, total: number) {
-  await db.transaction("rw", db.progress, db.activities, async () => {
-    const prior = await db.progress.get(id);
-    await db.progress.put({
-      id,
-      sentence: prior?.sentence ?? 0,
-      completed: prior?.completed ?? false,
-      quizScore: Math.max(prior?.quizScore ?? 0, score),
-      updatedAt: Date.now(),
-    });
-    if (score === total) await awardActivity(`quiz:${id}`, "quiz");
-  });
+  const db = learningDb;
+  await db.transaction(
+    "rw",
+    db.progress,
+    db.activities,
+    db.syncQueue,
+    async () => {
+      const prior = await db.progress.get(id);
+      await putAccountRecord(db, "progress", {
+        id,
+        sentence: prior?.sentence ?? 0,
+        completed: prior?.completed ?? false,
+        quizScore: Math.max(prior?.quizScore ?? 0, score),
+        updatedAt: Date.now(),
+      });
+      if (score === total)
+        await awardActivity(`quiz:${id}`, "quiz", Date.now(), db);
+    },
+  );
 }
 export async function reviewVocabulary(
   id: string,
   rating: Rating,
   now = Date.now(),
 ) {
-  return db.transaction("rw", db.cards, db.reviews, db.activities, async () => {
-    const card = await db.cards.get(id);
-    if (!card || card.dueAt > now) return false;
-    const logId = `${id}:${card.dueAt}`;
-    if (await db.reviews.get(logId)) return false;
-    await db.cards.put({ ...card, ...scheduleReview(card, rating, now) });
-    await db.reviews.add({ id: logId, cardId: id, rating, at: now });
-    await awardActivity(`review:${logId}`, "review", now);
-    return true;
-  });
+  const db = learningDb;
+  return db.transaction(
+    "rw",
+    db.cards,
+    db.reviews,
+    db.activities,
+    db.syncQueue,
+    async () => {
+      const card = await db.cards.get(id);
+      if (!card || card.dueAt > now) return false;
+      const logId = `${id}:${card.dueAt}`;
+      if (await db.reviews.get(logId)) return false;
+      await putAccountRecord(db, "cards", {
+        ...card,
+        ...scheduleReview(card, rating, now),
+      });
+      await putAccountRecord(db, "reviews", {
+        id: logId,
+        cardId: id,
+        rating,
+        at: now,
+      });
+      await awardActivity(`review:${logId}`, "review", now, db);
+      return true;
+    },
+  );
 }
 export async function toggleFavorite(type: "story" | "quote", id: string) {
+  const db = learningDb;
   const key = `${type}:${id}`;
-  await db.transaction("rw", db.favorites, async () => {
+  await db.transaction("rw", db.favorites, db.syncQueue, async () => {
     const old = await db.favorites.get(key);
-    await db.favorites.put({
+    await putAccountRecord(db, "favorites", {
       id: key,
       active: !old?.active,
       updatedAt: Date.now(),
@@ -228,6 +384,7 @@ export const backupSchema = z.object({
   favorites: z.array(favoriteSchema).max(10000),
 });
 export async function exportLearning() {
+  const db = learningDb;
   return {
     app: "HanziGo" as const,
     version: 1 as const,
@@ -239,7 +396,8 @@ export async function exportLearning() {
     favorites: await db.favorites.toArray(),
   };
 }
-export async function importLearning(input: unknown) {
+export async function importLearning(input: unknown, database = learningDb) {
+  const db = database;
   const data = backupSchema.parse(input);
   const validCards = new Set(vocabulary.map((v) => v.id));
   if (
@@ -271,29 +429,39 @@ export async function importLearning(input: unknown) {
       throw new Error("Hoạt động không hợp lệ.");
   await db.transaction(
     "rw",
-    [db.cards, db.progress, db.activities, db.reviews, db.favorites],
+    [
+      db.cards,
+      db.progress,
+      db.activities,
+      db.reviews,
+      db.favorites,
+      db.syncQueue,
+    ],
     async () => {
       for (const item of data.cards) {
         const old = await db.cards.get(item.id);
-        if (!old || item.updatedAt > old.updatedAt) await db.cards.put(item);
+        if (!old || item.updatedAt > old.updatedAt)
+          await putAccountRecord(db, "cards", item);
       }
       for (const item of data.progress) {
         const old = await db.progress.get(item.id);
         if (!old || item.updatedAt > old.updatedAt)
-          await db.progress.put({
+          await putAccountRecord(db, "progress", {
             ...item,
             completed: item.completed || !!old?.completed,
             quizScore: Math.max(item.quizScore ?? 0, old?.quizScore ?? 0),
           });
       }
       for (const item of data.activities)
-        if (!(await db.activities.get(item.id))) await db.activities.add(item);
+        if (!(await db.activities.get(item.id)))
+          await putAccountRecord(db, "activities", item);
       for (const item of data.reviews)
-        if (!(await db.reviews.get(item.id))) await db.reviews.add(item);
+        if (!(await db.reviews.get(item.id)))
+          await putAccountRecord(db, "reviews", item);
       for (const item of data.favorites) {
         const old = await db.favorites.get(item.id);
         if (!old || item.updatedAt > old.updatedAt)
-          await db.favorites.put(item);
+          await putAccountRecord(db, "favorites", item);
       }
     },
   );

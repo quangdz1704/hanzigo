@@ -1,3 +1,4 @@
+import { useLibraryRevision } from "@/content";
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useLiveQuery } from "dexie-react-hooks";
@@ -11,7 +12,11 @@ import {
 } from "lucide-react";
 import { findStory } from "@/content";
 import type { Story, Vocabulary } from "@/content/schema";
-import { db, completeStory, saveReadingPosition } from "@/lib/db";
+import {
+  getLearningDatabase,
+  completeStory,
+  saveReadingPosition,
+} from "@/lib/db";
 import { usePreferences, useUI, reportError, run } from "@/lib/store";
 import { stopAudio } from "@/lib/audio";
 import { Button } from "@/components/ui/button";
@@ -20,10 +25,11 @@ import { VocabularySheet } from "@/components/VocabularySheet";
 import { Quiz } from "@/components/Quiz";
 import { StoryText } from "@/components/StoryText";
 export default function Reader() {
+  const libraryRevision = useLibraryRevision();
   const { id } = useParams();
   const story = findStory(id);
   return story ? (
-    <StoryReader key={story.id} story={story} />
+    <StoryReader key={`${story.id}:${libraryRevision}`} story={story} />
   ) : (
     <Empty title="Câu chuyện này chưa có">
       <Link to="/stories" className="text-link">
@@ -41,7 +47,7 @@ function StoryReader({ story }: { story: Story }) {
   const position = useRef(0);
   const initialized = useRef(false);
   const progress = useLiveQuery(
-    async () => ({ value: await db.progress.get(story.id) }),
+    async () => ({ value: await getLearningDatabase().progress.get(story.id) }),
     [story.id],
   );
   const sentences = story.paragraphs.flat();
