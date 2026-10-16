@@ -748,7 +748,11 @@ export default function Music() {
           ))}
         </div>
         {visible.length > songLimit && (
-          <Button variant="outline" onClick={() => setSongLimit((n) => n + 24)}>
+          <Button
+            variant="outline"
+            className="mt-2"
+            onClick={() => setSongLimit((n) => n + 24)}
+          >
             Xem thêm bài hát ({visible.length - songLimit} bài còn lại)
           </Button>
         )}
