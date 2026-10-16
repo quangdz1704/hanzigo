@@ -317,6 +317,105 @@ describe("Firebase cloud data flows", () => {
     expect(library.music).toEqual(music);
     expect(library.stories[0].titleVi).toBe(edited.titleVi);
   });
+  it("syncs public and private playlists atomically across users, guests and offline caches", async () => {
+    const a = client(),
+      b = client(),
+      guest = client();
+    const email = `public-music-${Date.now()}@example.test`;
+    const user = await registerLearner(a.auth, email, password, password);
+    await registerLearner(b.auth, `other-${email}`, password, password);
+    const { deviceProfileTransport } =
+      await import("../../src/lib/account-profile");
+    const { makePlaylist } = await import("../../src/lib/music");
+    const { publicMusicRef, watchPublicMusic } =
+      await import("../../src/lib/public-music");
+    await deviceProfileTransport(a.store, user).sync("Người tạo nhạc", true);
+    const playlist = makePlaylist(
+      "Public demo",
+      bundledContent.music!.tracks.slice(0, 2),
+    );
+    await pushAccountRecord(a.store, user.uid, "musicPlaylists", playlist);
+    const ref = publicMusicRef(guest.store, user.uid, playlist.id);
+    expect((await getDocFromServer(ref)).exists()).toBe(false);
+    let publicLists: { playlistId: string; authorName: string }[] = [];
+    const stop = watchPublicMusic(
+      guest.store,
+      24,
+      (rows) => {
+        publicLists = rows;
+      },
+      (e) => {
+        throw e;
+      },
+    );
+    stops.push(stop);
+    const published = {
+      ...playlist,
+      visibility: "public",
+      updatedAt: playlist.updatedAt + 10,
+    };
+    await pushAccountRecord(a.store, user.uid, "musicPlaylists", published);
+    await expect
+      .poll(
+        () => publicLists.find((p) => p.playlistId === playlist.id)?.authorName,
+      )
+      .toBe("Người tạo nhạc");
+    expect(
+      Object.keys((await getDocFromServer(ref)).data()!).sort(),
+    ).not.toContain("email");
+    await expect(
+      getDocFromServer(
+        accountRecordRef(b.store, user.uid, "musicPlaylists", playlist.id),
+      ),
+    ).rejects.toThrow();
+    await expect(
+      setDoc(publicMusicRef(b.store, user.uid, playlist.id), {
+        ...(await getDocFromServer(ref)).data(),
+        authorName: "forged",
+      }),
+    ).rejects.toThrow();
+    const privateAgain = {
+      ...published,
+      visibility: "private",
+      updatedAt: published.updatedAt + 10,
+    };
+    await pushAccountRecord(a.store, user.uid, "musicPlaylists", privateAgain);
+    await expect
+      .poll(() => publicLists.some((p) => p.playlistId === playlist.id))
+      .toBe(false);
+    await pushAccountRecord(a.store, user.uid, "musicPlaylists", published); // Older offline copy cannot republish.
+    expect((await getDocFromServer(ref)).exists()).toBe(false);
+    const cache = getAccountDatabase(`${user.uid}-public-outbox`);
+    await putAccountRecord(cache, "musicPlaylists", {
+      ...published,
+      updatedAt: privateAgain.updatedAt + 10,
+    });
+    cache.close();
+    await cache.open();
+    const sync = startAccountSync(a.store, user.uid, cache, () => {}, [
+      "musicPlaylists",
+    ]);
+    stops.push(sync.stop);
+    await expect
+      .poll(async () => (await getDocFromServer(ref)).exists())
+      .toBe(true);
+    await expect.poll(async () => cache.syncQueue.count()).toBe(0);
+    await putAccountRecord(cache, "musicPlaylists", {
+      ...published,
+      deleted: true,
+      updatedAt: privateAgain.updatedAt + 20,
+    });
+    await expect
+      .poll(async () => (await getDocFromServer(ref)).exists())
+      .toBe(false);
+    expect(
+      (
+        await getDocFromServer(
+          accountRecordRef(a.store, user.uid, "musicPlaylists", playlist.id),
+        )
+      ).data()?.value.deleted,
+    ).toBe(true);
+  });
   it("publishes and updates lessons without rebuilding, preserving another story's concurrent edit", async () => {
     await env.withSecurityRulesDisabled(async (context) =>
       deleteDoc(doc(context.firestore(), "content", "library")),

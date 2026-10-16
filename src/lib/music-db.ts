@@ -1,4 +1,4 @@
-import { getLearningDatabase, putAccountRecord } from "./db";
+import { db, getLearningDatabase, putAccountRecord } from "./db";
 import { makePlaylist, mixTracks, unpackTracks } from "./music";
 import type { MusicTrack } from "@/content/music-schema";
 
@@ -6,8 +6,11 @@ export async function saveMusicPlaylist(
   name: string,
   tracks: MusicTrack[],
   id?: string,
+  visibility?: "private" | "public",
 ) {
   const database = getLearningDatabase();
+  if (visibility === "public" && database === db)
+    throw new Error("Đăng nhập để chia sẻ playlist công khai nhé.");
   const value = makePlaylist(name, tracks, id);
   await database.transaction(
     "rw",
@@ -17,6 +20,7 @@ export async function saveMusicPlaylist(
       const old = await database.musicPlaylists.get(value.id);
       await putAccountRecord(database, "musicPlaylists", {
         ...value,
+        visibility: visibility ?? old?.visibility ?? "private",
         updatedAt: Math.max(value.updatedAt, (old?.updatedAt ?? -1) + 1),
       });
     },
@@ -43,6 +47,7 @@ export async function addPlaylistTrack(id: string, track: MusicTrack) {
           prior.id,
           false,
           Math.max(Date.now(), prior.updatedAt + 1),
+          prior.visibility ?? "private",
         ),
       );
     },

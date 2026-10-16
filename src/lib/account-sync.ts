@@ -14,6 +14,8 @@ import {
   type AccountRecord,
 } from "./account-data";
 import type { AccountDatabase } from "./db";
+import { musicPlaylistSchema } from "@/content/music-schema";
+import { publicMusicRef } from "./public-music";
 export type DataSyncStatus =
   "local" | "loading" | "saving" | "synced" | "error";
 export const learningKinds: AccountKind[] = [
@@ -51,6 +53,26 @@ export async function pushAccountRecord(
       : undefined;
     const merged =
       initializeOnly && prior ? prior : mergeAccountRecord(kind, prior, value);
+    if (kind === "musicPlaylists") {
+      const playlist = musicPlaylistSchema.parse(merged);
+      const publicRef = publicMusicRef(store, uid, playlist.id);
+      const publicSnapshot = await transaction.get(publicRef);
+      if (playlist.visibility === "public" && !playlist.deleted) {
+        const profile = await transaction.get(doc(store, "users", uid));
+        const authorName = profile.data()?.name;
+        if (typeof authorName !== "string" || !authorName.trim())
+          throw new Error("Hồ sơ chưa đồng bộ. Em thử lại sau một chút nhé.");
+        transaction.set(publicRef, {
+          playlistId: playlist.id,
+          ownerUid: uid,
+          authorName,
+          name: playlist.name,
+          raw: playlist.raw,
+          sourceUpdatedAt: playlist.updatedAt,
+          updatedAt: serverTimestamp(),
+        });
+      } else if (publicSnapshot.exists()) transaction.delete(publicRef);
+    }
     transaction.set(ref, { value: merged, updatedAt: serverTimestamp() });
     return merged;
   });

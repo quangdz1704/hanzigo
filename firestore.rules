@@ -65,7 +65,7 @@ service cloud.firestore {
         }
         function validValue(v) {
           return v is map && v.id is string && v.id.size() > 0 && v.id.size() <= 250
-            && (kind == 'musicPlaylists' && fields(v,['id','name','raw','deleted','updatedAt']) && v.id.matches('^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$') && v.name is string && v.name.size() > 0 && v.name.size() <= 80 && v.raw is string && v.raw.size() <= 50000 && v.deleted is bool && v.updatedAt is number && v.updatedAt >= 0
+            && (kind == 'musicPlaylists' && v.keys().hasOnly(['id','name','raw','deleted','updatedAt','visibility']) && v.keys().hasAll(['id','name','raw','deleted','updatedAt']) && v.get('visibility','private') in ['private','public'] && v.id == id && v.id.matches('^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$') && v.name is string && v.name.size() > 0 && v.name.size() <= 80 && v.raw is string && v.raw.size() <= 50000 && v.deleted is bool && v.updatedAt is number && v.updatedAt >= 0
               || kind == 'studyDays' && validStudyDay(v)
               || kind == 'quizAnswers' && validQuizAnswer(v)
               || kind == 'cards' && fields(v,['id','dueAt','interval','repetitions','addedAt','updatedAt']) && v.dueAt is number && v.dueAt >= 0 && v.interval is number && v.interval >= 0 && v.interval <= 365 && v.repetitions is int && v.repetitions >= 0 && v.addedAt is number && v.addedAt >= 0 && v.updatedAt is number && v.updatedAt >= 0
@@ -76,13 +76,42 @@ service cloud.firestore {
               || kind == 'preferences' && validPreference(v)
               || kind == 'drafts' && admin() && fields(v,['id','raw','updatedAt']) && v.raw is string && v.raw.size() <= 500000 && v.updatedAt is number && v.updatedAt >= 0);
         }
-        function validRecord() { return fields(request.resource.data, ['value','updatedAt']) && request.resource.data.updatedAt == request.time && validValue(request.resource.data.value); }
+        function musicPublicationMatches(v) {
+          let path = /databases/$(database)/documents/publicMusicPlaylists/$(uid + '_' + id);
+          return (v.get('visibility','private') == 'public' && !v.deleted)
+            ? existsAfter(path) && getAfter(path).data.ownerUid == uid && getAfter(path).data.playlistId == id
+              && getAfter(path).data.name == v.name && getAfter(path).data.raw == v.raw
+              && getAfter(path).data.sourceUpdatedAt == v.updatedAt
+            : !existsAfter(path);
+        }
+        function validRecord() { return fields(request.resource.data, ['value','updatedAt']) && request.resource.data.updatedAt == request.time && validValue(request.resource.data.value)
+          && (kind != 'musicPlaylists' || musicPublicationMatches(request.resource.data.value)); }
         allow create: if account(uid) && validRecord();
         allow update: if account(uid) && validRecord() && request.resource.data.value.id == resource.data.value.id
           && (!(kind in ['activities','reviews','quizAnswers']) || request.resource.data.value == resource.data.value)
           && (kind != 'progress' || (!resource.data.value.completed || request.resource.data.value.completed) && request.resource.data.value.get('quizScore',0) >= resource.data.value.get('quizScore',0));
         allow delete: if false;
       }
+    }
+    match /publicMusicPlaylists/{publicId} {
+      allow get, list: if true;
+      function validPublicMusic(d) {
+        let source = getAfter(/databases/$(database)/documents/users/$(request.auth.uid)/musicPlaylists/$(d.playlistId)).data.value;
+        return d.keys().hasOnly(['playlistId','ownerUid','authorName','name','raw','sourceUpdatedAt','updatedAt'])
+          && d.keys().hasAll(['playlistId','ownerUid','authorName','name','raw','sourceUpdatedAt','updatedAt'])
+          && d.ownerUid == request.auth.uid && publicId == d.ownerUid + '_' + d.playlistId
+          && d.authorName == getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data.name
+          && d.authorName is string && d.authorName.size() > 0 && d.authorName.size() <= 40
+          && source.get('visibility','private') == 'public' && !source.deleted
+          && source.id == d.playlistId && source.name == d.name && source.raw == d.raw
+          && source.updatedAt == d.sourceUpdatedAt && d.updatedAt == request.time;
+      }
+      allow create: if signedIn() && account(request.auth.uid) && validPublicMusic(request.resource.data);
+      allow update: if signedIn() && account(request.auth.uid) && resource.data.ownerUid == request.auth.uid
+        && validPublicMusic(request.resource.data);
+      allow delete: if signedIn() && account(request.auth.uid) && resource.data.ownerUid == request.auth.uid
+        && (getAfter(/databases/$(database)/documents/users/$(request.auth.uid)/musicPlaylists/$(resource.data.playlistId)).data.value.get('visibility','private') == 'private'
+          || getAfter(/databases/$(database)/documents/users/$(request.auth.uid)/musicPlaylists/$(resource.data.playlistId)).data.value.deleted);
     }
     function delivered(m) { return signedIn() && m.recipientUid == request.auth.uid && (m.status == 'published' || m.status == 'scheduled' && m.visibleAt <= request.time); }
     function validMessage(m) {

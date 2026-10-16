@@ -78,9 +78,20 @@ export const musicPlaylistSchema = z
         }
       }, "Danh sách bài hát không hợp lệ hoặc lớn hơn 50 KB."),
     deleted: z.boolean(),
+    visibility: z.enum(["private", "public"]).default("private"),
     updatedAt: z.number().finite().nonnegative(),
   })
   .strict();
 export type MusicTrack = z.infer<typeof musicTrackSchema>;
 export type MusicCatalog = z.infer<typeof musicCatalogSchema>;
 export type MusicPlaylist = z.infer<typeof musicPlaylistSchema>;
+export const publicMusicPlaylistSchema = musicPlaylistSchema
+  .pick({ name: true, raw: true })
+  .extend({
+    playlistId: z.string().uuid(),
+    ownerUid: z.string().min(1).max(128),
+    authorName: z.string().trim().min(1).max(40),
+    sourceUpdatedAt: z.number().finite().nonnegative(),
+  })
+  .strict();
+export type PublicMusicPlaylist = z.infer<typeof publicMusicPlaylistSchema>;

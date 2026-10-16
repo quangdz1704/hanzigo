@@ -71,12 +71,14 @@ export function makePlaylist(
   id: string = crypto.randomUUID(),
   deleted = false,
   now = Date.now(),
+  visibility: "private" | "public" = "private",
 ) {
   return musicPlaylistSchema.parse({
     id,
     name,
     raw: JSON.stringify(trackListSchema.parse(tracks)),
     deleted,
+    visibility,
     updatedAt: now,
   });
 }

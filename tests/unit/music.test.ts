@@ -102,6 +102,27 @@ describe("YouTube links and curated mixes", () => {
   });
 });
 describe("private, offline playlist persistence", () => {
+  it("defaults legacy playlists to private and preserves explicit visibility across edits", async () => {
+    const legacy = makePlaylist("Legacy", [one]);
+    const { visibility: _visibility, ...old } = legacy;
+    const { musicPlaylistSchema } =
+      await import("../../src/content/music-schema");
+    expect(musicPlaylistSchema.parse(old).visibility).toBe("private");
+    await expect(
+      saveMusicPlaylist("Public guest", [one], undefined, "public"),
+    ).rejects.toThrow("Đăng nhập");
+    const account = selectLearningDatabase(`visibility-${crypto.randomUUID()}`);
+    const id = await saveMusicPlaylist("Public", [one], undefined, "public");
+    await addPlaylistTrack(id, two);
+    await saveMusicPlaylist("Renamed", [two, one], id);
+    await deleteMusicPlaylist(id);
+    await deleteMusicPlaylist(id, false);
+    expect((await account.musicPlaylists.get(id))?.visibility).toBe("public");
+    await saveMusicPlaylist("Private", [one], id, "private");
+    expect((await account.musicPlaylists.get(id))?.visibility).toBe("private");
+    selectLearningDatabase(null);
+    await account.delete();
+  });
   it("creates, edits, deduplicates and restores a hidden playlist after database reopen", async () => {
     const id = await saveMusicPlaylist("Nhạc của em", [one]);
     await Promise.all([addPlaylistTrack(id, two), addPlaylistTrack(id, two)]);
