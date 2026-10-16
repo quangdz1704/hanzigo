@@ -59,6 +59,20 @@ export function Shell({ children }: { children: ReactNode }) {
   const pref = usePreferences();
   const online = useOnline();
   const auth = useAuth();
+  const signedIn =
+    !auth.learnerLoading &&
+    !!auth.learnerAccount &&
+    !auth.learnerAccount.isAnonymous;
+  const accountName =
+    pref.name?.trim() ||
+    auth.learnerAccount?.email?.split("@")[0] ||
+    "Tài khoản của em";
+  const accountInitials =
+    (accountName.match(/[\p{L}\p{N}]+/gu) ?? [])
+      .slice(-2)
+      .map((part) => Array.from(part)[0])
+      .join("")
+      .toLocaleUpperCase("vi") || "TK";
   const { unread } = useLetters();
   const location = useLocation();
   const { toast, clearToast } = useUI();
@@ -190,31 +204,49 @@ export function Shell({ children }: { children: ReactNode }) {
             <Download size={18} />
             Thêm vào màn hình chính
           </button>
-          <NavLink
-            to={
-              auth.learnerAccount && !auth.learnerAccount.isAnonymous
-                ? "/account"
-                : "/register"
-            }
-            className="nav-item"
-          >
-            <Mail size={19} />
-            {auth.learnerAccount && !auth.learnerAccount.isAnonymous
-              ? "Tài khoản của em"
-              : "Đăng ký / Đăng nhập"}
-          </NavLink>
-          <div className="sidebar-profile">
-            <div>✿</div>
-            <span>
-              <strong>Khu vườn của {pref.name || "em"}</strong>
-              <small>
-                {backendMode === "demo"
-                  ? "Đang dùng demo local"
-                  : "Một chút tiến bộ mỗi ngày"}
-              </small>
-            </span>
-            <HeartMark />
-          </div>
+          {auth.learnerLoading ? (
+            <p className="nav-item" role="status">
+              Đang tải tài khoản…
+            </p>
+          ) : signedIn ? (
+            <NavLink
+              to="/account"
+              className="sidebar-account"
+              aria-label="Thông tin tài khoản"
+              onClick={() => setMenu(false)}
+            >
+              <span className="account-avatar" aria-hidden="true">
+                {accountInitials}
+              </span>
+              <span className="sidebar-account-copy">
+                <small>TÀI KHOẢN CỦA EM</small>
+                <strong>{accountName}</strong>
+                {auth.learnerAccount?.email && (
+                  <span className="sidebar-account-email">
+                    {auth.learnerAccount.email}
+                  </span>
+                )}
+              </span>
+            </NavLink>
+          ) : (
+            <NavLink to="/register" className="nav-item">
+              <Mail size={19} /> Đăng ký / Đăng nhập
+            </NavLink>
+          )}
+          {!signedIn && !auth.learnerLoading && (
+            <div className="sidebar-profile">
+              <div>✿</div>
+              <span>
+                <strong>Khu vườn của {pref.name || "em"}</strong>
+                <small>
+                  {backendMode === "demo"
+                    ? "Đang dùng demo local"
+                    : "Một chút tiến bộ mỗi ngày"}
+                </small>
+              </span>
+              <HeartMark />
+            </div>
+          )}
         </div>
       </aside>
       <div className="app-content">
@@ -245,11 +277,14 @@ export function Shell({ children }: { children: ReactNode }) {
               {!!unread && <span className="unread-dot" />}
             </Link>
             <Link
-              className="profile-button"
-              to="/settings"
-              aria-label="Cài đặt của em"
+              className={`profile-button${signedIn ? " profile-button-account" : ""}`}
+              to={signedIn ? "/account" : "/settings"}
+              aria-label={
+                signedIn ? "Mở thông tin tài khoản" : "Cài đặt của em"
+              }
+              title={signedIn ? accountName : "Cài đặt của em"}
             >
-              ✿
+              {signedIn ? accountInitials : "✿"}
             </Link>
           </div>
         </header>
