@@ -411,6 +411,67 @@ describe("published lessons and private account data", () => {
     value,
     updatedAt: serverTimestamp(),
   });
+  it("keeps daily plans and immutable answer history private and validates their shape", async () => {
+    const f = account();
+    const plan = {
+      id: "2026-10-16",
+      storyId: "rainy-cafe",
+      reviewIds: ["cafe-word"],
+      startedAt: 10,
+      readAt: 0,
+      updatedAt: 10,
+    };
+    const ref = doc(f, "users", "wife", "studyDays", plan.id);
+    await assertSucceeds(setDoc(ref, wrapper(plan)));
+    await assertSucceeds(
+      setDoc(ref, wrapper({ ...plan, readAt: 20, updatedAt: 20 })),
+    );
+    await assertFails(setDoc(ref, wrapper({ ...plan, reviewIds: ["x", "x"] })));
+    await assertFails(setDoc(ref, wrapper({ ...plan, reviewIds: [1] })));
+    await assertFails(setDoc(ref, wrapper({ ...plan, role: "admin" })));
+    await assertFails(
+      getDoc(doc(account("other"), "users", "wife", "studyDays", plan.id)),
+    );
+    const answer = {
+      id: "fe8f0b4e-2d83-4e7b-bff5-f7cbce23b270:q1",
+      attemptId: "fe8f0b4e-2d83-4e7b-bff5-f7cbce23b270",
+      storyId: "rainy-cafe",
+      questionId: "q1",
+      version: "v1",
+      choice: 0,
+      answer: 1,
+      source: "story",
+      at: 10,
+    };
+    const ar = doc(f, "users", "wife", "quizAnswers", "answer");
+    await assertSucceeds(setDoc(ar, wrapper(answer)));
+    await assertSucceeds(setDoc(ar, wrapper(answer)));
+    await assertFails(setDoc(ar, wrapper({ ...answer, choice: 1 })));
+    await assertFails(
+      setDoc(
+        doc(f, "users", "wife", "quizAnswers", "invalid"),
+        wrapper({ ...answer, choice: 9 }),
+      ),
+    );
+    await assertFails(
+      getDocs(collection(account("other"), "users", "wife", "quizAnswers")),
+    );
+    await assertFails(
+      getDocs(collection(account("husband"), "users", "wife", "quizAnswers")),
+    );
+    const anon = env
+      .authenticatedContext("wife", {
+        firebase: { sign_in_provider: "anonymous" },
+      })
+      .firestore();
+    await assertFails(getDoc(doc(anon, "users", "wife", "studyDays", plan.id)));
+    await assertFails(
+      setDoc(
+        doc(anon, "users", "wife", "quizAnswers", "guest"),
+        wrapper(answer),
+      ),
+    );
+  });
   it("only an allowlisted admin publishes shared library; guests can read published content", async () => {
     const data = {
       raw: '{"library":"published"}',

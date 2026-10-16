@@ -17,6 +17,8 @@ import type { AccountDatabase } from "./db";
 export type DataSyncStatus =
   "local" | "loading" | "saving" | "synced" | "error";
 export const learningKinds: AccountKind[] = [
+  "studyDays",
+  "quizAnswers",
   "cards",
   "progress",
   "activities",

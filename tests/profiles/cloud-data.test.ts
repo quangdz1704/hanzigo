@@ -174,6 +174,95 @@ describe("Firebase cloud data flows", () => {
       .toBe("dark");
     await expect.poll(async () => await cacheA.syncQueue.count()).toBe(0);
   });
+  it("syncs a daily plan and spaced mistake history across independent account caches", async () => {
+    const a = client(),
+      email = `study-${Date.now()}@example.test`;
+    const user = await registerLearner(a.auth, email, password, password);
+    const b = client();
+    await loginLearner(b.auth, email, password);
+    const cacheA = getAccountDatabase(`${user.uid}-studyA`),
+      cacheB = getAccountDatabase(`${user.uid}-studyB`);
+    const syncA = startAccountSync(a.store, user.uid, cacheA, () => {}),
+      syncB = startAccountSync(b.store, user.uid, cacheB, () => {});
+    stops.push(syncA.stop, syncB.stop);
+    const at = new Date(2026, 9, 16, 10).getTime();
+    const plan = {
+      id: "2026-10-16",
+      storyId: bundledContent.stories[0].id,
+      reviewIds: [],
+      startedAt: at,
+      readAt: 0,
+      updatedAt: at,
+    };
+    await cacheA.transaction("rw", cacheA.studyDays, cacheA.syncQueue, () =>
+      putAccountRecord(cacheA, "studyDays", plan),
+    );
+    await expect
+      .poll(async () => (await cacheB.studyDays.get(plan.id))?.storyId)
+      .toBe(plan.storyId);
+    await pushAccountRecord(b.store, user.uid, "studyDays", {
+      ...plan,
+      readAt: at + 100,
+      updatedAt: at + 100,
+    });
+    await pushAccountRecord(a.store, user.uid, "studyDays", {
+      ...plan,
+      storyId: bundledContent.stories[1].id,
+      startedAt: at + 200,
+      updatedAt: at + 200,
+    });
+    await expect
+      .poll(async () => (await cacheA.studyDays.get(plan.id))?.readAt)
+      .toBe(at + 100);
+    const { questionVersion, collectMistakes } =
+      await import("../../src/lib/study");
+    const q = bundledContent.stories[0].comprehensionQuestions[0];
+    const answer = {
+      id: "fe8f0b4e-2d83-4e7b-bff5-f7cbce23b270:" + q.id,
+      attemptId: "fe8f0b4e-2d83-4e7b-bff5-f7cbce23b270",
+      storyId: plan.storyId,
+      questionId: q.id,
+      version: questionVersion(q),
+      choice: (q.answer + 1) % q.options.length,
+      answer: q.answer,
+      source: "story",
+      at,
+    };
+    await cacheA.transaction("rw", cacheA.quizAnswers, cacheA.syncQueue, () =>
+      putAccountRecord(cacheA, "quizAnswers", answer),
+    );
+    await expect.poll(async () => await cacheB.quizAnswers.count()).toBe(1);
+    expect(
+      collectMistakes(
+        bundledContent.stories,
+        await cacheB.quizAnswers.toArray(),
+      )[0].corrections,
+    ).toBe(0);
+    await pushAccountRecord(b.store, user.uid, "quizAnswers", {
+      ...answer,
+      attemptId: "db6f7b62-9eea-4e47-b7b6-e70dbe84ce58",
+      id: "db6f7b62-9eea-4e47-b7b6-e70dbe84ce58:" + q.id,
+      choice: q.answer,
+      source: "mistake",
+      at: at + 86400000,
+    });
+    await expect
+      .poll(
+        async () =>
+          collectMistakes(
+            bundledContent.stories,
+            await cacheA.quizAnswers.toArray(),
+          )[0]?.corrections,
+      )
+      .toBe(1);
+    expect(
+      (
+        await getDocFromServer(
+          accountRecordRef(a.store, user.uid, "studyDays", plan.id),
+        )
+      ).data()?.value.storyId,
+    ).toBe(plan.storyId);
+  });
   it("publishes and updates lessons without rebuilding, preserving another story's concurrent edit", async () => {
     const admin = client();
     const user = await registerLearner(

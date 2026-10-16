@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { studyDaySchema, quizAnswerSchema, mergeStudyDay } from "./study";
 import {
   cardSchema,
   progressSchema,
@@ -37,6 +38,8 @@ export const draftSchema = z
   })
   .strict();
 export const accountSchemas = {
+  studyDays: studyDaySchema,
+  quizAnswers: quizAnswerSchema,
   cards: cardSchema.strict(),
   progress: progressSchema.strict(),
   activities: activitySchema.strict(),
@@ -65,7 +68,10 @@ export function mergeAccountRecord(
   const old = parseAccountRecord(kind, prior);
   if (old.id !== next.id)
     throw new Error("Không thể ghép hai mã dữ liệu khác nhau.");
-  if (kind === "activities" || kind === "reviews") return old;
+  if (kind === "studyDays")
+    return mergeStudyDay(studyDaySchema.parse(old), studyDaySchema.parse(next));
+  if (kind === "activities" || kind === "reviews" || kind === "quizAnswers")
+    return old;
   const chosen =
     Number(next.updatedAt) > Number(old.updatedAt) ||
     (Number(next.updatedAt) === Number(old.updatedAt) &&

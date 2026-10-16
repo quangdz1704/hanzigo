@@ -2,6 +2,13 @@ import Dexie, { type EntityTable } from "dexie";
 import { z } from "zod";
 import type { AccountKind, AccountRecord } from "./account-data";
 import { vocabulary, stories, quotes } from "@/content";
+import {
+  studyDaySchema,
+  quizAnswerSchema,
+  type StudyDay,
+  type QuizAnswer,
+  mergeStudyDay,
+} from "./study";
 import { DAY, localDay, scheduleReview, XP, type Rating } from "./learning";
 const timestamp = z.number().finite().nonnegative();
 export const cardSchema = z.object({
@@ -93,6 +100,8 @@ export interface QueueItem {
   initializeOnly?: boolean;
 }
 export const db = new Dexie("hanzigo") as Dexie & {
+  studyDays: EntityTable<StudyDay, "id">;
+  quizAnswers: EntityTable<QuizAnswer, "id">;
   cards: EntityTable<ReviewCard, "id">;
   progress: EntityTable<ReadingProgress, "id">;
   activities: EntityTable<Activity, "id">;
@@ -147,6 +156,7 @@ db.version(5).stores({
   syncQueue: "id",
   meta: "id",
 });
+db.version(6).stores({ studyDays: "id", quizAnswers: "id, storyId, at" });
 export type AccountDatabase = typeof db;
 const databases = new Map<string, AccountDatabase>();
 let learningDb = db;
@@ -166,6 +176,9 @@ export function getAccountDatabase(uid: string): AccountDatabase {
       syncQueue: "id",
       meta: "id",
     });
+    database
+      .version(2)
+      .stores({ studyDays: "id", quizAnswers: "id, storyId, at" });
     databases.set(uid, database);
   }
   return database;
@@ -202,6 +215,8 @@ export async function migrateGuestLearning(uid: string, registration = false) {
       db.reviews,
       db.favorites,
       db.preferences,
+      db.studyDays,
+      db.quizAnswers,
     ],
     async () => {
       const claimed = await db.meta.get("learningMigration");
@@ -214,6 +229,8 @@ export async function migrateGuestLearning(uid: string, registration = false) {
           "reviews",
           "favorites",
           "preferences",
+          "studyDays",
+          "quizAnswers",
         ].map(async (kind) => ({
           kind: kind as AccountKind,
           rows: await db.table(kind).toArray(),
@@ -281,6 +298,7 @@ export async function completeStory(id: string, sentence: number) {
     "rw",
     db.progress,
     db.activities,
+    db.studyDays,
     db.syncQueue,
     async () => {
       const prior = await db.progress.get(id);
@@ -291,7 +309,15 @@ export async function completeStory(id: string, sentence: number) {
         quizScore: prior?.quizScore,
         updatedAt: Date.now(),
       });
-      await awardActivity(`story:${id}`, "story", Date.now(), db);
+      const now = Date.now();
+      const plan = await db.studyDays.get(localDay(now));
+      if (plan?.storyId === id)
+        await putAccountRecord(db, "studyDays", {
+          ...plan,
+          readAt: now,
+          updatedAt: now,
+        });
+      await awardActivity(`story:${id}`, "story", now, db);
     },
   );
 }
@@ -308,8 +334,13 @@ export async function saveReadingPosition(id: string, sentence: number) {
     });
   });
 }
-export async function recordQuiz(id: string, score: number, total: number) {
-  const db = learningDb;
+export async function recordQuiz(
+  id: string,
+  score: number,
+  total: number,
+  database = learningDb,
+) {
+  const db = database;
   await db.transaction(
     "rw",
     db.progress,
@@ -382,6 +413,8 @@ export const backupSchema = z.object({
   activities: z.array(activitySchema).max(100000),
   reviews: z.array(reviewLogSchema).max(100000),
   favorites: z.array(favoriteSchema).max(10000),
+  studyDays: z.array(studyDaySchema).max(10000).default([]),
+  quizAnswers: z.array(quizAnswerSchema).max(100000).default([]),
 });
 export async function exportLearning() {
   const db = learningDb;
@@ -394,6 +427,8 @@ export async function exportLearning() {
     activities: await db.activities.toArray(),
     reviews: await db.reviews.toArray(),
     favorites: await db.favorites.toArray(),
+    studyDays: await db.studyDays.toArray(),
+    quizAnswers: await db.quizAnswers.toArray(),
   };
 }
 export async function importLearning(input: unknown, database = learningDb) {
@@ -435,9 +470,22 @@ export async function importLearning(input: unknown, database = learningDb) {
       db.activities,
       db.reviews,
       db.favorites,
+      db.studyDays,
+      db.quizAnswers,
       db.syncQueue,
     ],
     async () => {
+      for (const item of data.studyDays) {
+        const old = await db.studyDays.get(item.id);
+        await putAccountRecord(
+          db,
+          "studyDays",
+          old ? mergeStudyDay(old, item) : item,
+        );
+      }
+      for (const item of data.quizAnswers)
+        if (!(await db.quizAnswers.get(item.id)))
+          await putAccountRecord(db, "quizAnswers", item);
       for (const item of data.cards) {
         const old = await db.cards.get(item.id);
         if (!old || item.updatedAt > old.updatedAt)

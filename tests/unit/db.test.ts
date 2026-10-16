@@ -145,6 +145,8 @@ describe("validated, atomic backup merge", () => {
         "activities",
         "reviews",
         "favorites",
+        "studyDays",
+        "quizAnswers",
       ].sort(),
     );
   });
