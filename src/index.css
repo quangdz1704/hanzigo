@@ -3956,6 +3956,16 @@ input[type="range"] {
 .music-filters .field {
   min-width: 0;
 }
+.music-discover {
+  scroll-margin-top: 24px;
+}
+.music-search-empty {
+  overflow-wrap: anywhere;
+}
+.music-search-empty .button-row {
+  justify-content: center;
+  margin: 20px 0 12px;
+}
 .music-song {
   overflow: hidden;
   min-width: 0;

@@ -6,6 +6,7 @@ import {
   mixTracks,
   parseYouTubeVideo,
   unpackTracks,
+  youtubeSearchUrl,
 } from "../../src/lib/music";
 import {
   saveMusicPlaylist,
@@ -30,6 +31,18 @@ beforeEach(async () => {
   await Promise.all(db.tables.map((t) => t.clear()));
 });
 describe("YouTube links and curated mixes", () => {
+  it("opens YouTube search with the original query safely encoded", () => {
+    const query = "  周杰伦 晴天 & Pinyin #1?  ";
+    const url = new URL(youtubeSearchUrl(query));
+    expect(url.origin + url.pathname).toBe("https://www.youtube.com/results");
+    expect([...url.searchParams.entries()]).toEqual([
+      ["search_query", query.trim()],
+    ]);
+    expect(url.hash).toBe("");
+    expect(
+      new URL(youtubeSearchUrl("   ")).searchParams.get("search_query"),
+    ).toBe("nhạc tiếng Trung");
+  });
   it("accepts video/watch/short/embed/mobile links without trusting arbitrary embed HTML", () => {
     for (const link of [
       one.videoId,

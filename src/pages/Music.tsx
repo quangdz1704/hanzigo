@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import {
+  ExternalLink,
   Headphones,
   ListMusic,
   Play,
@@ -18,7 +19,7 @@ import { useOnline } from "@/lib/hooks";
 import { backend } from "@/lib/firebase";
 import { publishMusicCatalog } from "@/lib/cloud-content";
 import { addPlaylistTrack, deleteMusicPlaylist } from "@/lib/music-db";
-import { mixTracks, unpackTracks } from "@/lib/music";
+import { mixTracks, unpackTracks, youtubeSearchUrl } from "@/lib/music";
 import { reportError, run, useUI } from "@/lib/store";
 import { searchText } from "@/lib/utils";
 import { PageHeading, Badge } from "@/components/Common";
@@ -92,12 +93,23 @@ export default function Music() {
         .getElementById("music-player")
         ?.scrollIntoView({ block: "start", behavior: "instant" });
   }, [request]);
-  const visible = catalog.tracks.filter(
+  // Keep curated metadata when a saved copy references the same video.
+  const searchableTracks = [
+    ...new Map(
+      [...personal.flatMap((p) => unpackTracks(p.raw)), ...catalog.tracks].map(
+        (t) => [t.videoId, t],
+      ),
+    ).values(),
+  ];
+  const searchTerms = searchText(search).split(/\s+/).filter(Boolean);
+  const visible = searchableTracks.filter(
     (t) =>
       (pace === "all" || t.pace === pace) &&
       (mood === "all" || t.mood === mood) &&
-      searchText([t.title, t.titleVi, t.pinyin, t.artist].join(" ")).includes(
-        searchText(search),
+      searchTerms.every((term) =>
+        searchText([t.title, t.titleVi, t.pinyin, t.artist].join(" ")).includes(
+          term,
+        ),
       ),
   );
   const start = (tracks: MusicTrack[], at = 0) => {
@@ -151,6 +163,9 @@ export default function Music() {
             em.
           </p>
           <div className="button-row">
+            <Button asChild variant="outline">
+              <a href="#music-discover">Tìm bài hát</a>
+            </Button>
             <Button
               disabled={!online || !catalog.tracks.length}
               onClick={() => start(mixTracks([catalog.tracks], true))}
@@ -409,7 +424,7 @@ export default function Music() {
           </details>
         )}
       </section>
-      <section className="music-discover">
+      <section id="music-discover" className="music-discover">
         <div className="section-heading">
           <h2>Khám phá từng giai điệu</h2>
         </div>
@@ -417,6 +432,8 @@ export default function Music() {
           <label className="field">
             Tìm bài hát
             <input
+              type="search"
+              aria-describedby="music-search-help"
               placeholder="Tên bài, ca sĩ, Pinyin…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -426,26 +443,22 @@ export default function Music() {
             Độ dễ theo
             <select value={pace} onChange={(e) => setPace(e.target.value)}>
               <option value="all">Tất cả</option>
-              {Object.entries(paceLabels)
-                .filter(([key]) => key !== "unknown")
-                .map(([key, label]) => (
-                  <option key={key} value={key}>
-                    {label}
-                  </option>
-                ))}
+              {Object.entries(paceLabels).map(([key, label]) => (
+                <option key={key} value={key}>
+                  {label}
+                </option>
+              ))}
             </select>
           </label>
           <label className="field">
             Tâm trạng
             <select value={mood} onChange={(e) => setMood(e.target.value)}>
               <option value="all">Tất cả</option>
-              {Object.entries(moodLabels)
-                .filter(([key]) => key !== "personal")
-                .map(([key, label]) => (
-                  <option key={key} value={key}>
-                    {label}
-                  </option>
-                ))}
+              {Object.entries(moodLabels).map(([key, label]) => (
+                <option key={key} value={key}>
+                  {label}
+                </option>
+              ))}
             </select>
           </label>
           <label className="field">
@@ -463,6 +476,13 @@ export default function Music() {
             </select>
           </label>
         </div>
+        <p id="music-search-help" className="muted">
+          Tìm trong bài gợi ý và playlist của em, bằng tiếng Trung, tiếng Việt
+          hoặc Pinyin, có dấu hay không dấu.
+        </p>
+        <p role="status" className="muted">
+          {visible.length} bài phù hợp
+        </p>
         <div className="music-song-grid">
           {visible.map((t) => (
             <article className="card music-song" key={t.videoId}>
@@ -516,9 +536,36 @@ export default function Music() {
           ))}
         </div>
         {!visible.length && (
-          <p className="empty-state">
-            Chưa có bài phù hợp. Em thử đổi bộ lọc nhé.
-          </p>
+          <div className="empty-state music-search-empty">
+            <h3>Không tìm thấy bài hát phù hợp</h3>
+            <p>
+              {search.trim()
+                ? `Chưa tìm thấy bài phù hợp với “${search.trim()}” và bộ lọc hiện tại trong HanziGo.`
+                : "Chưa có bài phù hợp với bộ lọc hiện tại trong HanziGo."}
+            </p>
+            <div className="button-row">
+              <Button asChild>
+                <a
+                  href={youtubeSearchUrl(search)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink size={17} /> Tìm trên YouTube
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSearch("");
+                  setPace("all");
+                  setMood("all");
+                }}
+              >
+                Xóa tìm kiếm và bộ lọc
+              </Button>
+            </div>
+            <small className="muted">Mở kết quả YouTube trong tab mới.</small>
+          </div>
         )}
       </section>
       <p className="content-note">

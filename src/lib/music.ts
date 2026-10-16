@@ -41,6 +41,11 @@ export function parseYouTubeVideo(input: string) {
 }
 export const youtubeWatchUrl = (videoId: string) =>
   `https://www.youtube.com/watch?v=${videoIdSchema.parse(videoId)}`;
+export function youtubeSearchUrl(query: string) {
+  const url = new URL("https://www.youtube.com/results");
+  url.searchParams.set("search_query", query.trim() || "nhạc tiếng Trung");
+  return url.href;
+}
 export const unpackTracks = (raw: string) =>
   trackListSchema.parse(JSON.parse(raw));
 export function mixTracks(
