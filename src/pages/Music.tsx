@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useLiveQuery } from "dexie-react-hooks";
 import {
   ExternalLink,
@@ -12,7 +13,11 @@ import {
   SkipForward,
 } from "lucide-react";
 import { content, bundledContent, useLibraryRevision } from "@/content";
-import { musicCatalogSchema, type MusicTrack } from "@/content/music-schema";
+import {
+  musicCatalogSchema,
+  type MusicTrack,
+  type PublicMusicPlaylist,
+} from "@/content/music-schema";
 import { getLearningDatabase } from "@/lib/db";
 import { useAuth } from "@/lib/Auth";
 import { useOnline } from "@/lib/hooks";
@@ -20,7 +25,8 @@ import { backend } from "@/lib/firebase";
 import { publishMusicCatalog } from "@/lib/cloud-content";
 import { addPlaylistTrack, deleteMusicPlaylist } from "@/lib/music-db";
 import { mixTracks, unpackTracks, youtubeSearchUrl } from "@/lib/music";
-import { reportError, run, useUI } from "@/lib/store";
+import { reportError, run, useUI, usePreferences } from "@/lib/store";
+import { watchPublicMusic } from "@/lib/public-music";
 import { searchText } from "@/lib/utils";
 import { PageHeading, Badge } from "@/components/Common";
 import { Button } from "@/components/ui/button";
@@ -40,13 +46,50 @@ const moodLabels = {
   calm: "Êm dịu",
   bright: "Tươi sáng",
   nostalgic: "Hoài niệm",
-  personal: "Em chọn",
+  personal: "Tự chọn",
 };
+interface DisplayPlaylist {
+  id: string;
+  name: string;
+  description: string;
+  tracks: MusicTrack[];
+  authorName: string;
+  visibility: "private" | "public";
+  source: "suggested" | "personal" | "community";
+  personalId?: string;
+  youtubePlaylistId?: string;
+}
 export default function Music() {
   useLibraryRevision();
   const auth = useAuth(),
     online = useOnline();
   const database = getLearningDatabase();
+  const registered = !!auth.learnerAccount && !auth.learnerAccount.isAnonymous;
+  const authorName = usePreferences((s) => s.name);
+  const [community, setCommunity] = useState<PublicMusicPlaylist[]>([]);
+  const [publicLimit, setPublicLimit] = useState(24);
+  const [publicRetry, setPublicRetry] = useState(0);
+  const [publicStatus, setPublicStatus] = useState<
+    "loading" | "ready" | "cache" | "error"
+  >("loading");
+  const [hasMore, setHasMore] = useState(false);
+  useEffect(() => {
+    if (!backend) {
+      setPublicStatus("ready");
+      return;
+    }
+    setPublicStatus("loading");
+    return watchPublicMusic(
+      backend.store,
+      publicLimit,
+      (rows, cached, more) => {
+        setCommunity(rows);
+        setHasMore(more);
+        setPublicStatus(cached ? "cache" : "ready");
+      },
+      () => setPublicStatus("error"),
+    );
+  }, [publicLimit, publicRetry]);
   const saved = useLiveQuery(
     () => database.musicPlaylists.toArray(),
     [auth.learningScope],
@@ -57,22 +100,45 @@ export default function Music() {
     .sort((a, b) => b.updatedAt - a.updatedAt);
   const catalog =
     content.music ?? musicCatalogSchema.parse(bundledContent.music);
-  const lists = [
-    ...catalog.playlists.map((p) => ({
+  const lists: DisplayPlaylist[] = [
+    ...catalog.playlists.map<DisplayPlaylist>((p) => ({
       ...p,
       id: `suggested:${p.id}`,
       tracks: p.videoIds.map((id) =>
         catalog.tracks.find((t) => t.videoId === id)!,
       ),
       personalId: undefined as string | undefined,
+      authorName: p.author ?? "HanziGo",
+      visibility: "public",
+      source: "suggested",
     })),
-    ...personal.map((p) => ({
+    ...personal.map<DisplayPlaylist>((p) => ({
       id: `personal:${p.id}`,
       name: p.name,
       description: "Playlist của em",
       tracks: unpackTracks(p.raw),
       personalId: p.id,
+      authorName,
+      visibility: p.visibility ?? "private",
+      source: "personal",
     })),
+    ...community
+      .filter(
+        (p) =>
+          !(
+            p.ownerUid === auth.learnerAccount?.uid &&
+            saved.some((own) => own.id === p.playlistId)
+          ),
+      )
+      .map((p) => ({
+        id: `community:${p.ownerUid}:${p.playlistId}`,
+        name: p.name,
+        description: "Được chia sẻ từ cộng đồng HanziGo",
+        tracks: unpackTracks(p.raw),
+        authorName: p.authorName,
+        visibility: "public" as const,
+        source: "community" as const,
+      })),
   ];
   const [selected, setSelected] = useState<string[]>([]);
   const [queue, setQueue] = useState<MusicTrack[]>([]);
@@ -84,6 +150,8 @@ export default function Music() {
   const [search, setSearch] = useState("");
   const [pace, setPace] = useState("all");
   const [mood, setMood] = useState("all");
+  const [source, setSource] = useState("all");
+  const [songLimit, setSongLimit] = useState(24);
   const [publishing, setPublishing] = useState(false);
   const selectedLists = lists.filter((p) => selected.includes(p.id));
   const current = queue[index];
@@ -93,25 +161,33 @@ export default function Music() {
         .getElementById("music-player")
         ?.scrollIntoView({ block: "start", behavior: "instant" });
   }, [request]);
-  // Keep curated metadata when a saved copy references the same video.
+  const tracksBySource = {
+    suggested: catalog.tracks,
+    personal: personal.flatMap((p) => unpackTracks(p.raw)),
+    community: community.flatMap((p) => unpackTracks(p.raw)),
+  };
+  const candidates =
+    source === "all"
+      ? [
+          ...tracksBySource.community,
+          ...tracksBySource.personal,
+          ...catalog.tracks,
+        ]
+      : tracksBySource[source as keyof typeof tracksBySource];
+  // Deduplicate video IDs; curated metadata wins in the combined view.
   const searchableTracks = [
-    ...new Map(
-      [...personal.flatMap((p) => unpackTracks(p.raw)), ...catalog.tracks].map(
-        (t) => [t.videoId, t],
-      ),
-    ).values(),
+    ...new Map(candidates.map((t) => [t.videoId, t])).values(),
   ];
   const searchTerms = searchText(search).split(/\s+/).filter(Boolean);
-  const visible = searchableTracks.filter(
-    (t) =>
-      (pace === "all" || t.pace === pace) &&
-      (mood === "all" || t.mood === mood) &&
-      searchTerms.every((term) =>
-        searchText([t.title, t.titleVi, t.pinyin, t.artist].join(" ")).includes(
-          term,
-        ),
-      ),
-  );
+  const visible = searchableTracks.filter((t) => {
+    if (
+      (pace !== "all" && t.pace !== pace) ||
+      (mood !== "all" && t.mood !== mood)
+    )
+      return false;
+    const text = searchText([t.title, t.titleVi, t.pinyin, t.artist].join(" "));
+    return searchTerms.every((term) => text.includes(term));
+  });
   const start = (tracks: MusicTrack[], at = 0) => {
     if (!tracks.length) {
       useUI
@@ -119,8 +195,9 @@ export default function Music() {
         .notify("Playlist này còn trống. Em thêm vài bài trước nhé.");
       return;
     }
-    setQueue(tracks);
-    setIndex(at);
+    const offset = Math.floor(at / 100) * 100;
+    setQueue(tracks.slice(offset, offset + 100));
+    setIndex(at - offset);
     setRequest((n) => n + 1);
   };
   const mix = (shuffle: boolean) => {
@@ -186,6 +263,40 @@ export default function Music() {
           <span>花</span>
         </div>
       </section>
+      <div className="music-sync-note" role="status">
+        <p>
+          {registered ? (
+            auth.dataSyncStatus === "synced" ? (
+              "Playlist và dữ liệu học đã đồng bộ Firebase."
+            ) : auth.dataSyncStatus === "error" ? (
+              "Chưa lưu được lên Firebase. Bản trên máy vẫn được giữ; em thử đồng bộ lại nhé."
+            ) : !online ? (
+              "Đang offline. Playlist sẽ đồng bộ Firebase khi có mạng."
+            ) : (
+              "Đang tải / đồng bộ playlist và dữ liệu tài khoản lên Firebase…"
+            )
+          ) : (
+            <>
+              Khách lưu playlist trên thiết bị này.{" "}
+              <Link to="/register">Đăng ký / đăng nhập</Link> để lưu theo tài
+              khoản Firebase và chia sẻ công khai.
+            </>
+          )}
+        </p>
+        {registered && auth.profileStatus === "error" && (
+          <p>
+            Hồ sơ tài khoản chưa đồng bộ Firebase.{" "}
+            <Button variant="ghost" size="sm" onClick={auth.retryProfile}>
+              Thử lưu hồ sơ
+            </Button>
+          </p>
+        )}
+        {registered && auth.dataSyncStatus === "error" && (
+          <Button variant="outline" size="sm" onClick={auth.retryDataSync}>
+            Thử đồng bộ Firebase
+          </Button>
+        )}
+      </div>
       {!online && (
         <p className="music-notice" role="status">
           Playlist vẫn được lưu khi offline. Video YouTube cần kết nối mạng để
@@ -343,8 +454,22 @@ export default function Music() {
                 <span>
                   <strong>{p.name}</strong>
                   <small>{p.description}</small>
+                  <small>
+                    Người tạo: {p.authorName} ·{" "}
+                    {p.visibility === "public" ? "Công khai" : "Cá nhân"}
+                  </small>
                 </span>
               </label>
+              {p.youtubePlaylistId && (
+                <a
+                  className="music-source-link"
+                  href={`https://www.youtube.com/playlist?list=${p.youtubePlaylistId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Playlist gốc trên YouTube ↗
+                </a>
+              )}
               <div className="study-card-heading">
                 <span className="muted">{p.tracks.length} bài</span>
                 <div className="button-row">
@@ -366,6 +491,7 @@ export default function Music() {
                             id: p.personalId,
                             name: p.name,
                             tracks: p.tracks,
+                            visibility: p.visibility,
                           })
                         }
                       >
@@ -379,7 +505,7 @@ export default function Music() {
                           run(() => deleteMusicPlaylist(p.personalId!))
                         }
                       >
-                        Ẩn
+                        {p.visibility === "public" ? "Ẩn / gỡ công khai" : "Ẩn"}
                       </Button>
                     </>
                   )}
@@ -387,6 +513,33 @@ export default function Music() {
               </div>
             </article>
           ))}
+        </div>
+        <p className="content-note" role="status">
+          {publicStatus === "error"
+            ? "Chưa tải được playlist cộng đồng từ Firebase. Em có thể thử lại."
+            : publicStatus === "cache"
+              ? "Playlist cộng đồng đang hiển thị từ bản nhớ trên máy."
+              : publicStatus === "loading"
+                ? "Đang tải playlist cộng đồng…"
+                : `Có ${community.length} playlist cộng đồng đã tải. Ai vào HanziGo cũng có thể nghe playlist công khai.`}
+        </p>
+        <div className="button-row">
+          {publicStatus === "error" && (
+            <Button
+              variant="outline"
+              onClick={() => setPublicRetry((n) => n + 1)}
+            >
+              Thử tải playlist cộng đồng
+            </Button>
+          )}
+          {hasMore && (
+            <Button
+              variant="outline"
+              onClick={() => setPublicLimit((n) => n + 24)}
+            >
+              Xem thêm playlist công khai
+            </Button>
+          )}
         </div>
         <div className="button-row music-mix-actions">
           <Button
@@ -417,7 +570,9 @@ export default function Music() {
                     size="sm"
                     onClick={() => run(() => deleteMusicPlaylist(p.id, false))}
                   >
-                    Khôi phục
+                    {p.visibility === "public"
+                      ? "Khôi phục công khai"
+                      : "Khôi phục"}
                   </Button>
                 </div>
               ))}
@@ -436,12 +591,21 @@ export default function Music() {
               aria-describedby="music-search-help"
               placeholder="Tên bài, ca sĩ, Pinyin…"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setSongLimit(24);
+              }}
             />
           </label>
           <label className="field">
             Độ dễ theo
-            <select value={pace} onChange={(e) => setPace(e.target.value)}>
+            <select
+              value={pace}
+              onChange={(e) => {
+                setPace(e.target.value);
+                setSongLimit(24);
+              }}
+            >
               <option value="all">Tất cả</option>
               {Object.entries(paceLabels).map(([key, label]) => (
                 <option key={key} value={key}>
@@ -452,13 +616,34 @@ export default function Music() {
           </label>
           <label className="field">
             Tâm trạng
-            <select value={mood} onChange={(e) => setMood(e.target.value)}>
+            <select
+              value={mood}
+              onChange={(e) => {
+                setMood(e.target.value);
+                setSongLimit(24);
+              }}
+            >
               <option value="all">Tất cả</option>
               {Object.entries(moodLabels).map(([key, label]) => (
                 <option key={key} value={key}>
                   {label}
                 </option>
               ))}
+            </select>
+          </label>
+          <label className="field">
+            Nguồn bài hát
+            <select
+              value={source}
+              onChange={(e) => {
+                setSource(e.target.value);
+                setSongLimit(24);
+              }}
+            >
+              <option value="all">Tất cả</option>
+              <option value="suggested">Bài gợi ý</option>
+              <option value="personal">Playlist của em</option>
+              <option value="community">Cộng đồng</option>
             </select>
           </label>
           <label className="field">
@@ -477,14 +662,14 @@ export default function Music() {
           </label>
         </div>
         <p id="music-search-help" className="muted">
-          Tìm trong bài gợi ý và playlist của em, bằng tiếng Trung, tiếng Việt
-          hoặc Pinyin, có dấu hay không dấu.
+          Tìm trong bài gợi ý, playlist của em và cộng đồng đã tải, bằng tiếng
+          Trung, tiếng Việt hoặc Pinyin, có dấu hay không dấu.
         </p>
         <p role="status" className="muted">
           {visible.length} bài phù hợp
         </p>
         <div className="music-song-grid">
-          {visible.map((t) => (
+          {visible.slice(0, songLimit).map((t) => (
             <article className="card music-song" key={t.videoId}>
               <img
                 src={`https://i.ytimg.com/vi/${t.videoId}/mqdefault.jpg`}
@@ -499,8 +684,8 @@ export default function Music() {
                   <span className="muted">{moodLabels[t.mood]}</span>
                 </div>
                 <h3 lang="zh-CN">{t.title}</h3>
-                <p className="pinyin">{t.pinyin}</p>
-                <p>{t.titleVi}</p>
+                {t.pinyin && <p className="pinyin">{t.pinyin}</p>}
+                {t.titleVi && <p>{t.titleVi}</p>}
                 <p className="muted">{t.artist}</p>
                 <div className="button-row">
                   <Button
@@ -535,6 +720,11 @@ export default function Music() {
             </article>
           ))}
         </div>
+        {visible.length > songLimit && (
+          <Button variant="outline" onClick={() => setSongLimit((n) => n + 24)}>
+            Xem thêm bài hát ({visible.length - songLimit} bài còn lại)
+          </Button>
+        )}
         {!visible.length && (
           <div className="empty-state music-search-empty">
             <h3>Không tìm thấy bài hát phù hợp</h3>
@@ -559,6 +749,7 @@ export default function Music() {
                   setSearch("");
                   setPace("all");
                   setMood("all");
+                  setSource("all");
                 }}
               >
                 Xóa tìm kiếm và bộ lọc

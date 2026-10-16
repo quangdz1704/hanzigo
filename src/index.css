@@ -3948,7 +3948,7 @@ input[type="range"] {
 }
 .music-filters {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.5fr) repeat(4, minmax(0, 1fr));
   gap: 16px;
   margin-bottom: 24px;
   align-items: end;
@@ -3958,6 +3958,22 @@ input[type="range"] {
 }
 .music-discover {
   scroll-margin-top: 24px;
+}
+.music-sync-note {
+  margin: 20px 0 28px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.music-sync-note a,
+.music-source-link {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.music-source-link {
+  display: inline-block;
+  margin: 8px 0 16px;
+  font-size: 0.85rem;
 }
 .music-search-empty {
   overflow-wrap: anywhere;

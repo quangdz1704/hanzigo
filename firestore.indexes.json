@@ -29,6 +29,16 @@
       "collectionGroup": "drafts",
       "fieldPath": "value.raw",
       "indexes": []
+    },
+    {
+      "collectionGroup": "musicPlaylists",
+      "fieldPath": "value.raw",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "publicMusicPlaylists",
+      "fieldPath": "raw",
+      "indexes": []
     }
   ]
 }

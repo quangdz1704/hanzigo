@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { ArrowDown, ArrowUp, X } from "lucide-react";
 import type { MusicTrack } from "@/content/music-schema";
+import { Link } from "react-router-dom";
+import { useAuth } from "@/lib/Auth";
 import { mixTracks, parseYouTubeVideo } from "@/lib/music";
 import { saveMusicPlaylist } from "@/lib/music-db";
-import { reportError, useUI } from "@/lib/store";
+import { reportError, useUI, usePreferences } from "@/lib/store";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -16,6 +18,7 @@ export interface PlaylistEdit {
   id?: string;
   name: string;
   tracks: MusicTrack[];
+  visibility?: "private" | "public";
 }
 export function MusicPlaylistEditor({
   initial,
@@ -24,10 +27,17 @@ export function MusicPlaylistEditor({
   initial: PlaylistEdit;
   onClose: () => void;
 }) {
+  const auth = useAuth();
+  const registered = !!auth.learnerAccount && !auth.learnerAccount.isAnonymous;
+  const authorName = usePreferences((s) => s.name);
   const [name, setName] = useState(initial.name);
+  const [visibility, setVisibility] = useState<"private" | "public">(
+    initial.visibility ?? "private",
+  );
   const [tracks, setTracks] = useState(initial.tracks);
   const [url, setUrl] = useState("");
   const [title, setTitle] = useState("");
+  const [artist, setArtist] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const move = (index: number, offset: number) =>
@@ -59,6 +69,34 @@ export function MusicPlaylistEditor({
             disabled={busy}
           />
         </label>
+        <label className="field">
+          Ai có thể xem?
+          <select
+            value={visibility}
+            disabled={busy}
+            onChange={(e) =>
+              setVisibility(e.target.value as "private" | "public")
+            }
+          >
+            <option value="private">Cá nhân · chỉ mình em</option>
+            <option value="public" disabled={!registered}>
+              Công khai · mọi người trong HanziGo
+            </option>
+          </select>
+        </label>
+        <p className="content-note">
+          {visibility === "public" ? (
+            `Mọi người sẽ thấy playlist và tên người tạo: ${authorName}. Email của em được giữ riêng. Chuyển về cá nhân để dừng chia sẻ.`
+          ) : registered ? (
+            "Playlist được lưu riêng trong tài khoản Firebase của em."
+          ) : (
+            <>
+              Khách lưu playlist trên thiết bị này.{" "}
+              <Link to="/register">Đăng ký / đăng nhập</Link> để lưu theo tài
+              khoản và chia sẻ công khai.
+            </>
+          )}
+        </p>
         <fieldset className="music-add-link" disabled={busy}>
           <legend>Thêm bài từ YouTube</legend>
           <label className="field">
@@ -68,6 +106,15 @@ export function MusicPlaylistEditor({
               placeholder="https://www.youtube.com/watch?v=…"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
+            />
+          </label>
+          <label className="field">
+            Ca sĩ / kênh YouTube (tùy chọn)
+            <input
+              maxLength={100}
+              placeholder="Tên ca sĩ hoặc kênh đăng video"
+              value={artist}
+              onChange={(e) => setArtist(e.target.value)}
             />
           </label>
           <label className="field">
@@ -96,7 +143,7 @@ export function MusicPlaylistEditor({
                         title: title.trim() || `Video ${videoId}`,
                         titleVi: "Bài em thêm",
                         pinyin: "",
-                        artist: "YouTube",
+                        artist: artist.trim() || "YouTube · chưa rõ ca sĩ",
                         pace: "unknown",
                         mood: "personal",
                         tip: "Em có thể bật phụ đề hoặc giảm tốc độ ngay trong video nếu được hỗ trợ.",
@@ -106,6 +153,7 @@ export function MusicPlaylistEditor({
                 );
                 setUrl("");
                 setTitle("");
+                setArtist("");
                 setError("");
               } catch (e) {
                 setError(
@@ -174,9 +222,15 @@ export function MusicPlaylistEditor({
             disabled={busy || !name.trim()}
             onClick={() => {
               setBusy(true);
-              void saveMusicPlaylist(name, tracks, initial.id)
+              void saveMusicPlaylist(name, tracks, initial.id, visibility)
                 .then(() => {
-                  useUI.getState().notify("Đã lưu playlist của em.");
+                  useUI
+                    .getState()
+                    .notify(
+                      registered
+                        ? "Đã lưu trên máy. Đang đồng bộ playlist lên Firebase…"
+                        : "Đã lưu playlist trên thiết bị này.",
+                    );
                   onClose();
                 })
                 .catch(reportError)
