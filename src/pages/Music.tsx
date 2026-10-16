@@ -225,7 +225,7 @@ export default function Music() {
         description="Một chút tiếng Trung để học, một chút giai điệu để thảnh thơi."
         action={
           <Badge className="badge-sage">
-            <Headphones size={15} /> {catalog.tracks.length} bài gợi ý
+            <Headphones size={15} /> &nbsp; {catalog.tracks.length} bài gợi ý
           </Badge>
         }
       />
