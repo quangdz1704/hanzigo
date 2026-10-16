@@ -40,6 +40,8 @@ PWA/service worker hoạt động trên **bản build**, HTTPS hoặc localhost.
 - Đăng ký/đăng nhập email, quên mật khẩu, xác minh email và quản lý tài khoản; nâng cấp tài khoản khách giữ nguyên UID nhận thư.
 - Xuất/nhập JSON có Zod validation và hợp nhất theo ID. Backup **không** chứa thư, receipts, danh tính hay ghi âm.
 
+Nhạc dùng collection Firestore riêng `musicTracks`, `musicPlaylists`, `musicCatalog`; hồ sơ ở `users/{uid}`. Catalog nhạc chỉ tải khi mở trang, không giữ bản IndexedDB. Cache truyện tối đa 512 KiB; cache tài khoản đã đồng bộ được dọn khi đăng xuất, giữ mọi thay đổi chưa gửi. Xem [bản đồ dữ liệu và chính sách cache](docs/CLOUD_STORAGE.md).
+
 ## Câu hỏi đọc hiểu nhiều ngôn ngữ
 
 Trong phần **Một chút để nhớ câu chuyện**, dùng ba nút **Chữ Hán**, **Pinyin**, **Tiếng Việt** để bật/tắt từng dòng của đề bài, lựa chọn và lời giải. Có thể dùng riêng một ngôn ngữ hoặc kết hợp; luôn giữ ít nhất một kiểu hiển thị. Tùy chọn được nhớ trên trình duyệt, độc lập với Pinyin/bản dịch của truyện. Đổi ngôn ngữ không xóa đáp án đang chọn hay thay đổi điểm. Thanh công cụ đọc chỉ bám trong vùng đọc, không phủ lên phần quiz.

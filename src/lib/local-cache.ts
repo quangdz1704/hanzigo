@@ -15,9 +15,13 @@ export function offlineLibrarySnapshot(raw: unknown) {
     ? compact
     : null;
 }
-export async function compactAccountCache(database: AccountDatabase) {
+export async function compactAccountCache(
+  database: AccountDatabase,
+  inactiveOnly = false,
+) {
   if (database === db || !(await database.meta.get("cloudHydrated"))) return 0;
   return database.transaction("rw", database.tables, async () => {
+    if (inactiveOnly && database === getLearningDatabase()) return 0;
     const pending = await database.syncQueue.toArray();
     let removed = 0;
     for (const kind of learningKinds) {
@@ -33,14 +37,23 @@ export async function compactAccountCache(database: AccountDatabase) {
     return removed;
   });
 }
-export async function compactInactiveAccountCaches() {
+let cleanup: Promise<number> | null = null;
+export function compactInactiveAccountCaches(): Promise<number> {
+  if (cleanup) return cleanup;
+  cleanup = cleanInactiveAccounts().finally(() => {
+    cleanup = null;
+  });
+  return cleanup;
+}
+async function cleanInactiveAccounts() {
   let removed = 0;
   for (const name of await Dexie.getDatabaseNames()) {
     if (!name.startsWith("hanzigo-account-")) continue;
     const database = getAccountDatabase(name.slice("hanzigo-account-".length));
     if (database === getLearningDatabase()) continue;
-    removed += await compactAccountCache(database);
-    if (database !== getLearningDatabase()) database.close();
+    removed += await compactAccountCache(database, true);
+    if (database !== getLearningDatabase())
+      database.close({ disableAutoOpen: false });
   }
   return removed;
 }

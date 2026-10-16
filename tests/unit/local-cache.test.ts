@@ -67,4 +67,20 @@ describe("small, recoverable device cache", () => {
     selectLearningDatabase(null);
     await account.delete();
   });
+  it("can clean repeatedly and concurrently, then reopen the account on login", async () => {
+    const uid = `repeat-${crypto.randomUUID()}`,
+      account = getAccountDatabase(uid);
+    await account.meta.put({ id: "cloudHydrated", value: "confirmed" });
+    await account.musicPlaylists.put(makePlaylist("Synced", []));
+    const first = compactInactiveAccountCaches();
+    expect(compactInactiveAccountCaches()).toBe(first);
+    expect(await first).toBe(1);
+    expect(await compactInactiveAccountCaches()).toBe(0);
+    expect(selectLearningDatabase(uid)).toBe(account);
+    expect(await account.meta.get("cloudHydrated")).toBeDefined();
+    await putAccountRecord(account, "musicPlaylists", makePlaylist("New", []));
+    expect(await account.syncQueue.count()).toBe(1);
+    selectLearningDatabase(null);
+    await account.delete();
+  });
 });
