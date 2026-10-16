@@ -150,3 +150,9 @@ Final cache regression: repeated/concurrent inactive cleanup shares a single ope
 ### Compact music cards — 16 October 2026
 
 Song cards now use a small 16:9 thumbnail beside the title, Pinyin, Vietnamese name and artist. Metadata and 40px action buttons fit below the copy; long labels wrap to two lines with full text retained in the DOM/title. The responsive grid chooses columns independently from playlist cards. At the existing desktop viewport the first-row height fell from 519px to 202px; at 389 CSS pixels it is 198px with no horizontal page overflow. Opening Save still selects the correct song; the test dialog was cancelled without saving. Production build/typecheck passed. Evidence: `music-cards-compact-desktop.png`, `music-cards-compact-mobile.png`.
+
+### Full-bleed music covers — 16 October 2026
+
+Replaces the compact horizontal song cards after visual feedback. The Spotify Web home was inspected directly as a reference for prominent artwork and restrained secondary metadata (https://open.spotify.com/); HanziGo uses its own requested full-card cover treatment. Existing YouTube 16:9 thumbnails fill 4:3 desktop cards with a dark lower gradient, white title/translation/Pinyin/artist, and small upper metadata chips. No new asset library or dependency.
+
+On fine-pointer desktop, only the hovered or keyboard-focused card reveals Play/Save. Browser verification confirmed the first card revealed on Tab while adjacent cards stayed hidden. At 389 CSS pixels all controls remain visible, measure 44×44px, and the page has no horizontal overflow. Save opened the correct one-song playlist dialog and was cancelled without writing. Coarse/no-hover pointers also keep controls visible; reduced-motion users get no transitions. Production build/typecheck passed. Evidence: `music-cover-desktop.png`, `music-cover-mobile.png`.

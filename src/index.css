@@ -3962,8 +3962,8 @@ input[type="range"] {
 }
 .music-song-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 16px;
 }
 .music-playlist-card {
   padding: 20px;
@@ -4041,40 +4041,62 @@ input[type="range"] {
   margin: 20px 0 12px;
 }
 .music-song {
-  display: grid;
-  grid-template-columns: 104px minmax(0, 1fr);
-  align-items: start;
-  gap: 12px;
-  padding: 14px;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 4 / 3;
+  min-height: 240px;
   overflow: hidden;
   min-width: 0;
-  border-radius: 14px;
+  padding: 18px;
+  border: 0;
+  border-radius: 16px;
+  background: #232323;
+  color: #fff;
   box-shadow: none;
 }
+.music-song::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 35%),
+    transparent 35%,
+    rgb(0 0 0 / 75%) 66%,
+    rgb(0 0 0 / 95%)
+  );
+  pointer-events: none;
+}
 .music-song img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: cover;
-  background: var(--soft);
-  border-radius: 8px;
+  transition: transform 240ms ease;
 }
 .music-song-copy {
   min-width: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  height: 100%;
+  gap: 3px;
+  text-shadow: 0 1px 8px rgb(0 0 0 / 45%);
 }
 .music-song h3 {
   margin: 0;
-  font-size: 1rem;
+  color: #fff;
+  font-size: 1.1rem;
   line-height: 1.4;
 }
 .music-song p {
   margin: 0;
+  color: #eee;
   font-size: 0.78rem;
   line-height: 1.5;
 }
@@ -4086,31 +4108,86 @@ input[type="range"] {
   overflow: hidden;
   overflow-wrap: anywhere;
 }
-.music-song-copy > .music-song-artist {
+.music-song-copy > .music-song-artist,
+.music-song-copy > .pinyin {
   -webkit-line-clamp: 1;
+  color: #d3d3d3;
 }
 .music-song-meta {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 118px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 6px;
-  color: var(--muted);
-  font-size: 0.7rem;
-  margin-top: 4px;
+  color: #fff;
+  font-size: 0.68rem;
 }
-.music-song-meta .badge {
-  padding: 3px 7px;
+.music-song-meta .badge,
+.music-song-meta > span {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgb(0 0 0 / 65%);
+  color: #fff;
   font-size: inherit;
+  line-height: 1.4;
 }
 .music-song-actions {
-  padding-top: 6px;
-  margin-top: auto;
-  gap: 4px;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  gap: 8px;
+  text-shadow: none;
 }
 .music-song-actions .button {
-  min-height: 40px;
-  padding: 7px 10px;
-  font-size: 0.78rem;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgb(255 255 255 / 40%);
+  background: rgb(20 20 20 / 80%);
+  color: #fff;
+}
+.music-song-actions .button-secondary {
+  background: #fff;
+  color: #202720;
+  border-color: #fff;
+}
+.music-song-actions .button:hover {
+  background: #e3ebdf;
+  color: #202720;
+}
+.music-song-actions .button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 761px) {
+  .music-song-actions {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(6px);
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+  .music-song:hover .music-song-actions,
+  .music-song:focus-within .music-song-actions {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+  .music-song:hover img {
+    transform: scale(1.04);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .music-song img,
+  .music-song-actions {
+    transition: none;
+  }
 }
 .music-archived {
   margin-top: 24px;
@@ -4216,9 +4293,9 @@ input[type="range"] {
     align-items: stretch;
   }
   .music-song {
-    grid-template-columns: 80px minmax(0, 1fr);
-    padding: 12px;
-    gap: 10px;
+    aspect-ratio: 16 / 10;
+    min-height: 230px;
+    padding: 16px;
   }
   .music-editor-tracks li {
     flex-wrap: wrap;

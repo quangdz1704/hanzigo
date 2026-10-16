@@ -712,7 +712,9 @@ export default function Music() {
                 <div className="button-row music-song-actions">
                   <Button
                     variant="secondary"
-                    size="sm"
+                    size="icon"
+                    aria-label={`Nghe ${t.title}`}
+                    title="Nghe bài hát"
                     disabled={!online}
                     onClick={() =>
                       start(
@@ -721,12 +723,13 @@ export default function Music() {
                       )
                     }
                   >
-                    <Play size={16} /> Nghe
+                    <Play size={19} fill="currentColor" />
                   </Button>
                   <Button
                     variant="ghost"
-                    size="sm"
+                    size="icon"
                     aria-label={`Thêm ${t.title} vào playlist`}
+                    title="Lưu bài vào playlist"
                     onClick={() => {
                       if (personal.some((p) => p.id === target))
                         run(async () => {
@@ -737,7 +740,7 @@ export default function Music() {
                         setEditor({ name: "Những bài em thích", tracks: [t] });
                     }}
                   >
-                    <Plus size={16} /> Lưu bài
+                    <Plus size={21} />
                   </Button>
                 </div>
               </div>
