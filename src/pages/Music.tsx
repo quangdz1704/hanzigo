@@ -293,7 +293,7 @@ export default function Music() {
             <>
               Khách lưu playlist trên thiết bị này.{" "}
               <Link to="/register">Đăng ký / đăng nhập</Link> để lưu theo tài
-              khoản Firebase và chia sẻ công khai.
+              khoản và chia sẻ công khai.
             </>
           )}
         </p>
