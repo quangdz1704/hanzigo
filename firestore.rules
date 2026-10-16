@@ -26,7 +26,7 @@ service cloud.firestore {
       allow update: if account(uid) && validProfile() && request.resource.data.createdAt == resource.data.createdAt;
       allow list, delete: if false;
       match /{kind}/{id} {
-        allow get, list: if account(uid) && kind in ['cards','progress','activities','reviews','favorites','preferences','drafts','studyDays','quizAnswers'] && (kind != 'drafts' || admin());
+        allow get, list: if account(uid) && kind in ['cards','progress','activities','reviews','favorites','preferences','drafts','studyDays','quizAnswers','musicPlaylists'] && (kind != 'drafts' || admin());
         function fields(v, keys) { return v.keys().hasOnly(keys) && v.keys().hasAll(keys); }
         function validPreference(v) {
           return fields(v, ['id','value','updatedAt']) && v.updatedAt is number && v.updatedAt >= 0
@@ -65,7 +65,8 @@ service cloud.firestore {
         }
         function validValue(v) {
           return v is map && v.id is string && v.id.size() > 0 && v.id.size() <= 250
-            && (kind == 'studyDays' && validStudyDay(v)
+            && (kind == 'musicPlaylists' && fields(v,['id','name','raw','deleted','updatedAt']) && v.id.matches('^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$') && v.name is string && v.name.size() > 0 && v.name.size() <= 80 && v.raw is string && v.raw.size() <= 50000 && v.deleted is bool && v.updatedAt is number && v.updatedAt >= 0
+              || kind == 'studyDays' && validStudyDay(v)
               || kind == 'quizAnswers' && validQuizAnswer(v)
               || kind == 'cards' && fields(v,['id','dueAt','interval','repetitions','addedAt','updatedAt']) && v.dueAt is number && v.dueAt >= 0 && v.interval is number && v.interval >= 0 && v.interval <= 365 && v.repetitions is int && v.repetitions >= 0 && v.addedAt is number && v.addedAt >= 0 && v.updatedAt is number && v.updatedAt >= 0
               || kind == 'progress' && v.keys().hasOnly(['id','sentence','completed','quizScore','updatedAt']) && v.keys().hasAll(['id','sentence','completed','updatedAt']) && v.sentence is int && v.sentence >= 0 && v.sentence < 900 && v.completed is bool && v.get('quizScore',0) is int && v.get('quizScore',0) >= 0 && v.get('quizScore',0) <= 10 && v.updatedAt is number && v.updatedAt >= 0

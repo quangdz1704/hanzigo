@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "tracks": [
+    {
+      "videoId": "eOtATMfvfg8",
+      "title": "月亮代表我的心",
+      "titleVi": "Ánh trăng nói hộ lòng tôi",
+      "pinyin": "Yuèliang dàibiǎo wǒ de xīn",
+      "artist": "邓丽君 · Teresa Teng",
+      "pace": "easy",
+      "mood": "calm",
+      "tip": "Nghe một lượt để làm quen giai điệu, rồi thử nhận ra các đại từ và từ chỉ cảm xúc."
+    },
+    {
+      "videoId": "bBcp_ljCBGU",
+      "title": "童话",
+      "titleVi": "Cổ tích",
+      "pinyin": "Tónghuà",
+      "artist": "光良 · Michael Wong",
+      "pace": "easy",
+      "mood": "nostalgic",
+      "tip": "Chọn một đoạn ngắn trong video để nghe lại. Thử kể bằng tiếng Việt điều em hiểu từ đoạn đó."
+    },
+    {
+      "videoId": "dUgw9i7xWlE",
+      "title": "朋友",
+      "titleVi": "Bạn bè",
+      "pinyin": "Péngyou",
+      "artist": "周华健 · Wakin Chau",
+      "pace": "medium",
+      "mood": "bright",
+      "tip": "Lắng nghe những từ về tình bạn và thời gian. Sau đó thử tự đặt một câu với từ em nhận ra."
+    },
+    {
+      "videoId": "CFTZSSJyy7A",
+      "title": "小幸运 · Live",
+      "titleVi": "May mắn nhỏ bé · Live",
+      "pinyin": "Xiǎo xìngyùn",
+      "artist": "田馥甄 · Hebe Tien",
+      "pace": "medium",
+      "mood": "nostalgic",
+      "tip": "Nghe bản live để làm quen với cách kéo dài âm trong bài hát. Có thể bật phụ đề nếu video hỗ trợ."
+    },
+    {
+      "videoId": "bu7nU9Mhpyo",
+      "title": "告白气球",
+      "titleVi": "Bong bóng tỏ tình",
+      "pinyin": "Gàobái qìqiú",
+      "artist": "周杰伦 · Jay Chou",
+      "pace": "challenge",
+      "mood": "bright",
+      "tip": "Thử nghe từng cụm ngắn rồi nghỉ một chút để nhắc lại. Em có thể giảm tốc độ ngay trong trình phát YouTube."
+    },
+    {
+      "videoId": "_o0oeyCtoFA",
+      "title": "知足",
+      "titleVi": "Biết đủ",
+      "pinyin": "Zhīzú",
+      "artist": "五月天 · Mayday",
+      "pace": "medium",
+      "mood": "calm",
+      "tip": "Nghe thư giãn trước, rồi chọn một từ mới để tra trong nguồn học của em. Không cần hiểu hết ngay lần đầu."
+    }
+  ],
+  "playlists": [
+    {
+      "id": "slow-start",
+      "name": "Nghe chậm một chút",
+      "description": "Hai giai điệu để bắt đầu, nghe lại và làm quen với tiếng Trung.",
+      "videoIds": ["eOtATMfvfg8", "bBcp_ljCBGU"]
+    },
+    {
+      "id": "gentle-evening",
+      "name": "Một buổi tối dịu dàng",
+      "description": "Thả lỏng sau một ngày dài, cùng những giai điệu nhẹ nhàng.",
+      "videoIds": ["eOtATMfvfg8", "CFTZSSJyy7A", "_o0oeyCtoFA"]
+    },
+    {
+      "id": "little-sunshine",
+      "name": "Thêm một chút nắng",
+      "description": "Một chút tình bạn, một chút rung động, một chút niềm vui.",
+      "videoIds": ["dUgw9i7xWlE", "bu7nU9Mhpyo", "bBcp_ljCBGU"]
+    }
+  ]
+}

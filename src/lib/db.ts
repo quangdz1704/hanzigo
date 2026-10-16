@@ -1,5 +1,9 @@
 import Dexie, { type EntityTable } from "dexie";
 import { z } from "zod";
+import {
+  musicPlaylistSchema,
+  type MusicPlaylist,
+} from "@/content/music-schema";
 import type { AccountKind, AccountRecord } from "./account-data";
 import { vocabulary, stories, quotes } from "@/content";
 import {
@@ -100,6 +104,7 @@ export interface QueueItem {
   initializeOnly?: boolean;
 }
 export const db = new Dexie("hanzigo") as Dexie & {
+  musicPlaylists: EntityTable<MusicPlaylist, "id">;
   studyDays: EntityTable<StudyDay, "id">;
   quizAnswers: EntityTable<QuizAnswer, "id">;
   cards: EntityTable<ReviewCard, "id">;
@@ -157,6 +162,7 @@ db.version(5).stores({
   meta: "id",
 });
 db.version(6).stores({ studyDays: "id", quizAnswers: "id, storyId, at" });
+db.version(7).stores({ musicPlaylists: "id, updatedAt" });
 export type AccountDatabase = typeof db;
 const databases = new Map<string, AccountDatabase>();
 let learningDb = db;
@@ -179,6 +185,7 @@ export function getAccountDatabase(uid: string): AccountDatabase {
     database
       .version(2)
       .stores({ studyDays: "id", quizAnswers: "id, storyId, at" });
+    database.version(3).stores({ musicPlaylists: "id, updatedAt" });
     databases.set(uid, database);
   }
   return database;
@@ -217,6 +224,7 @@ export async function migrateGuestLearning(uid: string, registration = false) {
       db.preferences,
       db.studyDays,
       db.quizAnswers,
+      db.musicPlaylists,
     ],
     async () => {
       const claimed = await db.meta.get("learningMigration");
@@ -231,6 +239,7 @@ export async function migrateGuestLearning(uid: string, registration = false) {
           "preferences",
           "studyDays",
           "quizAnswers",
+          "musicPlaylists",
         ].map(async (kind) => ({
           kind: kind as AccountKind,
           rows: await db.table(kind).toArray(),
@@ -415,6 +424,7 @@ export const backupSchema = z.object({
   favorites: z.array(favoriteSchema).max(10000),
   studyDays: z.array(studyDaySchema).max(10000).default([]),
   quizAnswers: z.array(quizAnswerSchema).max(100000).default([]),
+  musicPlaylists: z.array(musicPlaylistSchema).max(1000).default([]),
 });
 export async function exportLearning() {
   const db = learningDb;
@@ -429,6 +439,7 @@ export async function exportLearning() {
     favorites: await db.favorites.toArray(),
     studyDays: await db.studyDays.toArray(),
     quizAnswers: await db.quizAnswers.toArray(),
+    musicPlaylists: await db.musicPlaylists.toArray(),
   };
 }
 export async function importLearning(input: unknown, database = learningDb) {
@@ -472,9 +483,15 @@ export async function importLearning(input: unknown, database = learningDb) {
       db.favorites,
       db.studyDays,
       db.quizAnswers,
+      db.musicPlaylists,
       db.syncQueue,
     ],
     async () => {
+      for (const item of data.musicPlaylists) {
+        const old = await db.musicPlaylists.get(item.id);
+        if (!old || item.updatedAt > old.updatedAt)
+          await putAccountRecord(db, "musicPlaylists", item);
+      }
       for (const item of data.studyDays) {
         const old = await db.studyDays.get(item.id);
         await putAccountRecord(

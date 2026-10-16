@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { musicPlaylistSchema } from "@/content/music-schema";
 import { studyDaySchema, quizAnswerSchema, mergeStudyDay } from "./study";
 import {
   cardSchema,
@@ -38,6 +39,7 @@ export const draftSchema = z
   })
   .strict();
 export const accountSchemas = {
+  musicPlaylists: musicPlaylistSchema,
   studyDays: studyDaySchema,
   quizAnswers: quizAnswerSchema,
   cards: cardSchema.strict(),

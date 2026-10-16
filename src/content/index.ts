@@ -1,7 +1,11 @@
 import seed from "./seed.json";
+import musicSeed from "./music-seed.json";
 import { contentSchema } from "./schema";
 import { create } from "zustand";
-export const bundledContent = contentSchema.parse(seed);
+export const bundledContent = contentSchema.parse({
+  ...seed,
+  music: musicSeed,
+});
 export let content = bundledContent;
 export let stories = content.stories;
 export let quotes = content.quotes;

@@ -411,6 +411,45 @@ describe("published lessons and private account data", () => {
     value,
     updatedAt: serverTimestamp(),
   });
+  it("allows only the registered owner to sync private music playlists", async () => {
+    const id = "fe8f0b4e-2d83-4e7b-bff5-f7cbce23b270";
+    const value = {
+      id,
+      name: "My music",
+      raw: "[]",
+      deleted: false,
+      updatedAt: 10,
+    };
+    const ref = doc(account(), "users", "wife", "musicPlaylists", id);
+    await assertSucceeds(setDoc(ref, wrapper(value)));
+    await assertSucceeds(
+      setDoc(ref, wrapper({ ...value, deleted: true, updatedAt: 20 })),
+    );
+    await assertSucceeds(
+      setDoc(ref, wrapper({ ...value, deleted: false, updatedAt: 30 })),
+    );
+    await assertFails(setDoc(ref, wrapper({ ...value, name: "" })));
+    await assertFails(
+      setDoc(ref, wrapper({ ...value, raw: "x".repeat(50001) })),
+    );
+    await assertFails(setDoc(ref, wrapper({ ...value, role: "admin" })));
+    await assertFails(
+      getDoc(doc(account("other"), "users", "wife", "musicPlaylists", id)),
+    );
+    await assertFails(
+      getDocs(
+        collection(account("husband"), "users", "wife", "musicPlaylists"),
+      ),
+    );
+    const anon = env
+      .authenticatedContext("wife", {
+        firebase: { sign_in_provider: "anonymous" },
+      })
+      .firestore();
+    await assertFails(
+      setDoc(doc(anon, "users", "wife", "musicPlaylists", id), wrapper(value)),
+    );
+  });
   it("keeps daily plans and immutable answer history private and validates their shape", async () => {
     const f = account();
     const plan = {

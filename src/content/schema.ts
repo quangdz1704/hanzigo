@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { musicCatalogSchema } from "./music-schema";
 const identifier = z
   .string()
   .min(1)
@@ -136,6 +137,7 @@ export const quoteSchema = z.object({
 export const contentSchema = z
   .object({
     version: z.literal(1),
+    music: musicCatalogSchema.optional(),
     stories: z.array(storySchema).min(5),
     quotes: z.array(quoteSchema).min(30),
   })

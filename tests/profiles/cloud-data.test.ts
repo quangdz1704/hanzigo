@@ -16,6 +16,7 @@ import {
   connectFirestoreEmulator,
   doc,
   setDoc,
+  deleteDoc,
   getDocFromServer,
   getDoc,
   terminate,
@@ -263,7 +264,63 @@ describe("Firebase cloud data flows", () => {
       ).data()?.value.storyId,
     ).toBe(plan.storyId);
   });
+  it("restores private music playlists across devices and publishes a catalog without overwriting a story", async () => {
+    const a = client(),
+      b = client(),
+      email = `music-${Date.now()}@example.test`;
+    const user = await registerLearner(a.auth, email, password, password);
+    await loginLearner(b.auth, email, password);
+    const cacheB = getAccountDatabase(`${user.uid}-musicB`);
+    const syncB = startAccountSync(b.store, user.uid, cacheB, () => {});
+    stops.push(syncB.stop);
+    const { makePlaylist, unpackTracks } = await import("../../src/lib/music");
+    const { publishMusicCatalog } = await import("../../src/lib/cloud-content");
+    const music = bundledContent.music!;
+    const playlist = makePlaylist("My mix", music.tracks.slice(0, 2));
+    await pushAccountRecord(a.store, user.uid, "musicPlaylists", playlist);
+    await expect
+      .poll(async () => (await cacheB.musicPlaylists.get(playlist.id))?.name)
+      .toBe("My mix");
+    expect(
+      unpackTracks((await cacheB.musicPlaylists.get(playlist.id))!.raw),
+    ).toHaveLength(2);
+    await pushAccountRecord(b.store, user.uid, "musicPlaylists", {
+      ...playlist,
+      deleted: true,
+      updatedAt: playlist.updatedAt + 100,
+    });
+    expect(
+      (
+        await getDocFromServer(
+          accountRecordRef(a.store, user.uid, "musicPlaylists", playlist.id),
+        )
+      ).data()?.value.deleted,
+    ).toBe(true);
+    await env.withSecurityRulesDisabled(async (context) =>
+      setDoc(doc(context.firestore(), "config", "admins"), {
+        uids: [user.uid],
+      }),
+    );
+    const { music: _music, ...legacy } = bundledContent;
+    await publishLibrary(a.store, user.uid, legacy);
+    const edited = {
+      ...bundledContent.stories[0],
+      titleVi: "A concurrent story edit",
+    };
+    await Promise.all([
+      publishStory(a.store, user.uid, edited),
+      publishMusicCatalog(a.store, user.uid, music),
+    ]);
+    const library = unpackLibrary(
+      (await getDocFromServer(doc(a.store, "content", "library"))).data()?.raw,
+    );
+    expect(library.music).toEqual(music);
+    expect(library.stories[0].titleVi).toBe(edited.titleVi);
+  });
   it("publishes and updates lessons without rebuilding, preserving another story's concurrent edit", async () => {
+    await env.withSecurityRulesDisabled(async (context) =>
+      deleteDoc(doc(context.firestore(), "content", "library")),
+    );
     const admin = client();
     const user = await registerLearner(
       admin.auth,

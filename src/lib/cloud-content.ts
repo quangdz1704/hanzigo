@@ -6,6 +6,7 @@ import {
 } from "firebase/firestore";
 import { contentSchema, type Story } from "../content/schema";
 import { bundledContent } from "../content";
+import { musicCatalogSchema } from "@/content/music-schema";
 import { mergeStory } from "./content-editor";
 export const MAX_LIBRARY_BYTES = 800_000;
 export function packLibrary(input: unknown) {
@@ -51,6 +52,26 @@ export async function publishStory(
     const base = old.exists() ? unpackLibrary(old.data().raw) : bundledContent;
     transaction.set(ref, {
       raw: packLibrary(mergeStory(base, story)),
+      updatedBy: uid,
+      updatedAt: serverTimestamp(),
+    });
+  });
+}
+
+export async function publishMusicCatalog(
+  store: Firestore,
+  uid: string,
+  input: unknown,
+) {
+  const music = musicCatalogSchema.parse(input);
+  await runTransaction(store, async (transaction) => {
+    const ref = doc(store, "content", "library");
+    const old = await transaction.get(ref);
+    const library = old.exists()
+      ? unpackLibrary(old.data().raw)
+      : bundledContent;
+    transaction.set(ref, {
+      raw: packLibrary({ ...library, music }),
       updatedBy: uid,
       updatedAt: serverTimestamp(),
     });

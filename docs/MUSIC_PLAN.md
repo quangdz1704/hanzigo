@@ -1,0 +1,11 @@
+# Góc nghe nhạc
+
+Build a Vietnamese music page for relaxed Mandarin listening. Default mix behavior: select multiple curated/personal playlists, deduplicate videos and shuffle the combined queue. Ordered playback stays available. This implements the user's music-page proposal using the app's existing account/cache infrastructure.
+
+1. **Catalog and personal playlists:** add validated song metadata and six sourced YouTube suggestions, curated mood playlists, strict URL parsing, shuffle/deduplication helpers. Store private playlists in account-specific IndexedDB/outbox and Firebase `users/{uid}/musicPlaylists`; include them in guest upgrade and backups. Verify malformed URLs, duplicates, reload, migrations and account isolation.
+2. **Player and page:** lazy route `/music`, sidebar and Home entry, responsive visible YouTube iframe with queue/previous/next/repeat, playlist creation and YouTube link addition. Load the official IFrame API only after a listening action; handle autoplay blocking and unavailable/embedding-disabled videos without bypassing YouTube. Verify actual iframe playback, queue transitions and mobile/light/dark layouts.
+3. **Shared content and review:** keep the catalog in the existing optional `content/library.raw.music` field, preserving legacy libraries and concurrent story edits. Let an existing allowlisted admin initialize the catalog through a transaction. Add owner-only playlist Rules and emulator integration checks; run unit tests/build, document evidence and commit verified increments.
+
+No copied song lyrics, external API key, downloaded audio, background playback or production deployment. Learning pace labels are editorial suggestions, not HSK certification; custom videos have unspecified pace. Legacy cloud libraries use the clearly identified bundled music fallback until an admin publishes the catalog. Existing production Rules publication remains pending separately.
+
+Acceptance: mix two lists without duplicate songs, play/advance in a visible iframe, save a personal list and restore it after reload/account sync, add a validated YouTube video link, and show a working YouTube fallback when embedding fails. No unrelated learning or mailbox behavior changes.
