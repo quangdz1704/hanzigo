@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
+import musicSeed from "../../src/content/music-seed.json";
 import { bundledContent, stories } from "../../src/content";
 import { musicCatalogSchema } from "../../src/content/music-schema";
 import {
@@ -24,7 +25,7 @@ import {
 import { packLibrary, unpackLibrary } from "../../src/lib/cloud-content";
 import { mergeAccountRecord } from "../../src/lib/account-data";
 
-const catalog = musicCatalogSchema.parse(bundledContent.music);
+const catalog = musicCatalogSchema.parse(musicSeed);
 const [one, two, three] = catalog.tracks;
 beforeEach(async () => {
   selectLearningDatabase(null);
@@ -95,9 +96,11 @@ describe("YouTube links and curated mixes", () => {
         playlists: [{ ...catalog.playlists[0], videoIds: ["abcdefghijk"] }],
       }),
     ).toThrow();
-    const { music: _music, ...legacy } = bundledContent;
+    const { music: _music, ...legacy } = { ...bundledContent, music: catalog };
     expect(unpackLibrary(packLibrary(legacy)).music).toBeUndefined();
-    expect(unpackLibrary(packLibrary(bundledContent)).music).toEqual(catalog);
+    expect(
+      unpackLibrary(packLibrary({ ...bundledContent, music: catalog })).music,
+    ).toEqual(catalog);
     expect(bundledContent.stories[0]).toEqual(stories[0]);
   });
 });

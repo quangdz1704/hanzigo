@@ -6,7 +6,8 @@ import {
   browserSessionPersistence,
 } from "firebase/auth";
 import {
-  getFirestore,
+  initializeFirestore,
+  memoryLocalCache,
   connectFirestoreEmulator,
   Timestamp,
   doc,
@@ -56,8 +57,12 @@ export const backend =
         const adminAuth = getAuth(admin);
         auth.languageCode = "vi";
         adminAuth.languageCode = "vi";
-        const store = getFirestore(learner);
-        const adminStore = getFirestore(admin);
+        const store = initializeFirestore(learner, {
+          localCache: memoryLocalCache(),
+        });
+        const adminStore = initializeFirestore(admin, {
+          localCache: memoryLocalCache(),
+        });
         if (import.meta.env.VITE_USE_FIREBASE_EMULATORS === "true") {
           connectAuthEmulator(auth, "http://127.0.0.1:9099", {
             disableWarnings: true,
@@ -260,7 +265,13 @@ const receiptSyncs = new Map<string, Promise<void>>();
 export function syncPendingReceipts(uid: string): Promise<void> {
   const active = receiptSyncs.get(uid);
   if (active) return active;
-  if (!backend || !navigator.onLine || backend.auth.currentUser?.isAnonymous || backend.auth.currentUser?.uid !== uid) return Promise.resolve();
+  if (
+    !backend ||
+    !navigator.onLine ||
+    backend.auth.currentUser?.isAnonymous ||
+    backend.auth.currentUser?.uid !== uid
+  )
+    return Promise.resolve();
   const task = flushReceipts(uid).finally(() => receiptSyncs.delete(uid));
   receiptSyncs.set(uid, task);
   return task;

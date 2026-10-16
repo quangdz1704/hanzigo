@@ -18,6 +18,7 @@ import {
   orderBy,
   Timestamp,
   serverTimestamp,
+  writeBatch,
 } from "firebase/firestore";
 import { beforeAll, afterAll, beforeEach, describe, it, expect } from "vitest";
 let env: RulesTestEnvironment;
@@ -636,4 +637,82 @@ describe("published lessons and private account data", () => {
       ),
     );
   });
+});
+
+it("only allowlisted publishers can write normalized public music with a matching manifest", async () => {
+  const f = env
+    .authenticatedContext("husband", {
+      firebase: { sign_in_provider: "password" },
+    })
+    .firestore();
+  const revision = "d87bbd38-23af-42da-a723-72144b669a1f";
+  const stamp = {
+    revision,
+    updatedBy: "husband",
+    updatedAt: serverTimestamp(),
+  };
+  const track = {
+    videoId: "abcdefghijk",
+    title: "Song",
+    titleVi: "",
+    pinyin: "",
+    artist: "Artist",
+    pace: "unknown",
+    mood: "personal",
+    tip: "",
+    ...stamp,
+  };
+  const playlist = {
+    id: "public-list",
+    name: "List",
+    description: "",
+    videoIds: [track.videoId],
+    ...stamp,
+  };
+  const batch = writeBatch(f);
+  batch.set(doc(f, "musicCatalog", "current"), {
+    version: 1,
+    trackIds: [track.videoId],
+    playlistIds: [playlist.id],
+    ...stamp,
+  });
+  batch.set(doc(f, "musicTracks", track.videoId), track);
+  batch.set(doc(f, "musicPlaylists", playlist.id), playlist);
+  await assertSucceeds(batch.commit());
+  const guest = env.unauthenticatedContext().firestore();
+  await assertSucceeds(getDoc(doc(guest, "musicTracks", track.videoId)));
+  await assertSucceeds(getDocs(collection(guest, "musicPlaylists")));
+  await assertFails(setDoc(doc(guest, "musicTracks", track.videoId), track));
+  const other = env
+    .authenticatedContext("other", {
+      firebase: { sign_in_provider: "password" },
+    })
+    .firestore();
+  await assertFails(
+    setDoc(doc(other, "musicCatalog", "current"), {
+      version: 1,
+      trackIds: [],
+      playlistIds: [],
+      ...stamp,
+      updatedBy: "other",
+    }),
+  );
+  await assertFails(
+    setDoc(doc(f, "musicTracks", track.videoId), {
+      ...track,
+      revision: "b87bbd38-23af-42da-a723-72144b669a1f",
+    }),
+  );
+  await assertFails(
+    setDoc(doc(f, "musicTracks", track.videoId), {
+      ...track,
+      email: "not-public@example.test",
+    }),
+  );
+  await assertFails(
+    setDoc(doc(f, "musicPlaylists", playlist.id), {
+      ...playlist,
+      videoIds: ["not-in-manifest"],
+    }),
+  );
 });

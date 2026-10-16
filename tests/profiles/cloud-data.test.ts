@@ -33,6 +33,10 @@ import {
   publishStory,
   unpackLibrary,
 } from "../../src/lib/cloud-content";
+import musicSeedRaw from "../../src/content/music-seed.json";
+import { musicCatalogSchema } from "../../src/content/music-schema";
+const musicSeed = musicCatalogSchema.parse(musicSeedRaw);
+import { readMusicCatalog } from "../../src/lib/music-catalog";
 import { bundledContent } from "../../src/content";
 if (
   !process.env.FIREBASE_AUTH_EMULATOR_HOST?.endsWith(":9099") ||
@@ -275,7 +279,7 @@ describe("Firebase cloud data flows", () => {
     stops.push(syncB.stop);
     const { makePlaylist, unpackTracks } = await import("../../src/lib/music");
     const { publishMusicCatalog } = await import("../../src/lib/cloud-content");
-    const music = bundledContent.music!;
+    const music = musicSeed;
     const playlist = makePlaylist("My mix", music.tracks.slice(0, 2));
     await pushAccountRecord(a.store, user.uid, "musicPlaylists", playlist);
     await expect
@@ -314,7 +318,10 @@ describe("Firebase cloud data flows", () => {
     const library = unpackLibrary(
       (await getDocFromServer(doc(a.store, "content", "library"))).data()?.raw,
     );
-    expect(library.music).toEqual(music);
+    expect(library.music).toBeUndefined();
+    expect(await readMusicCatalog(a.store)).toEqual(music);
+    const musicGuest = client();
+    expect(await readMusicCatalog(musicGuest.store)).toEqual(music);
     expect(library.stories[0].titleVi).toBe(edited.titleVi);
   });
   it("syncs public and private playlists atomically across users, guests and offline caches", async () => {
@@ -330,10 +337,7 @@ describe("Firebase cloud data flows", () => {
     const { publicMusicRef, watchPublicMusic } =
       await import("../../src/lib/public-music");
     await deviceProfileTransport(a.store, user).sync("Người tạo nhạc", true);
-    const playlist = makePlaylist(
-      "Public demo",
-      bundledContent.music!.tracks.slice(0, 2),
-    );
+    const playlist = makePlaylist("Public demo", musicSeed.tracks.slice(0, 2));
     await pushAccountRecord(a.store, user.uid, "musicPlaylists", playlist);
     const ref = publicMusicRef(guest.store, user.uid, playlist.id);
     expect((await getDocFromServer(ref)).exists()).toBe(false);
@@ -415,6 +419,56 @@ describe("Firebase cloud data flows", () => {
         )
       ).data()?.value.deleted,
     ).toBe(true);
+  });
+  it("recovers compacted account data from Firebase and preserves unsent changes", async () => {
+    const a = client();
+    const user = await registerLearner(
+      a.auth,
+      `compact-${Date.now()}@example.test`,
+      password,
+      password,
+    );
+    const { makePlaylist } = await import("../../src/lib/music");
+    const { compactAccountCache } = await import("../../src/lib/local-cache");
+    const cache = getAccountDatabase(`${user.uid}-compact-recovery`);
+    const playlist = makePlaylist("Server playlist", []);
+    await pushAccountRecord(a.store, user.uid, "musicPlaylists", playlist);
+    let sync = startAccountSync(a.store, user.uid, cache, () => {});
+    stops.push(() => sync.stop());
+    await expect
+      .poll(async () => (await cache.musicPlaylists.get(playlist.id))?.name)
+      .toBe("Server playlist");
+    await expect
+      .poll(async () => !!(await cache.meta.get("cloudHydrated")))
+      .toBe(true);
+    sync.stop();
+    await compactAccountCache(cache);
+    expect(await cache.musicPlaylists.get(playlist.id)).toBeUndefined();
+    sync = startAccountSync(a.store, user.uid, cache, () => {});
+    await expect
+      .poll(async () => (await cache.musicPlaylists.get(playlist.id))?.name)
+      .toBe("Server playlist");
+    sync.stop();
+    await putAccountRecord(cache, "musicPlaylists", {
+      ...playlist,
+      name: "Offline change",
+      updatedAt: playlist.updatedAt + 1,
+    });
+    await compactAccountCache(cache);
+    expect((await cache.musicPlaylists.get(playlist.id))?.name).toBe(
+      "Offline change",
+    );
+    expect(await cache.syncQueue.count()).toBe(1);
+    sync = startAccountSync(a.store, user.uid, cache, () => {});
+    await expect.poll(async () => cache.syncQueue.count()).toBe(0);
+    expect(
+      (
+        await getDocFromServer(
+          accountRecordRef(a.store, user.uid, "musicPlaylists", playlist.id),
+        )
+      ).data()?.value.name,
+    ).toBe("Offline change");
+    sync.stop();
   });
   it("publishes and updates lessons without rebuilding, preserving another story's concurrent edit", async () => {
     await env.withSecurityRulesDisabled(async (context) =>

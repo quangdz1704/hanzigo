@@ -44,7 +44,12 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,svg,png,json,woff,woff2}"],
-        globIgnores: ["**/Admin-*.js", "**/AdminContent-*.js"],
+        globIgnores: [
+          "**/Admin-*.js",
+          "**/AdminContent-*.js",
+          "**/music-seed-*.js",
+          "**/Music-*.js",
+        ],
         navigateFallback: "/index.html",
         navigateFallbackDenylist: [/^\/__/],
         maximumFileSizeToCacheInBytes: 3000000,

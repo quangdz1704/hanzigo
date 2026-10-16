@@ -12,9 +12,8 @@ import {
   SkipBack,
   SkipForward,
 } from "lucide-react";
-import { content, bundledContent, useLibraryRevision } from "@/content";
+import { useMusicCatalog } from "@/lib/useMusicCatalog";
 import {
-  musicCatalogSchema,
   type MusicTrack,
   type PublicMusicPlaylist,
 } from "@/content/music-schema";
@@ -60,7 +59,7 @@ interface DisplayPlaylist {
   youtubePlaylistId?: string;
 }
 export default function Music() {
-  useLibraryRevision();
+  const music = useMusicCatalog();
   const auth = useAuth(),
     online = useOnline();
   const database = getLearningDatabase();
@@ -98,8 +97,7 @@ export default function Music() {
   const personal = saved
     .filter((p) => !p.deleted)
     .sort((a, b) => b.updatedAt - a.updatedAt);
-  const catalog =
-    content.music ?? musicCatalogSchema.parse(bundledContent.music);
+  const catalog = music.catalog;
   const lists: DisplayPlaylist[] = [
     ...catalog.playlists.map<DisplayPlaylist>((p) => ({
       ...p,
@@ -231,6 +229,22 @@ export default function Music() {
           </Badge>
         }
       />
+      <div className="music-sync-note" role="status">
+        <p>
+          {music.status === "firebase"
+            ? `Thư viện trực tuyến: ${catalog.tracks.length} bài · ${catalog.playlists.length} playlist gợi ý. Đã tải từ Firebase.`
+            : music.status === "demo"
+              ? "Đang dùng bộ nhạc demo."
+              : music.status === "loading"
+                ? "Đang tải thư viện nhạc trực tuyến…"
+                : `Chưa tải được thư viện nhạc. ${music.message}`}
+        </p>
+        {music.status === "error" && (
+          <Button variant="outline" onClick={music.retry}>
+            Tải lại thư viện nhạc
+          </Button>
+        )}
+      </div>
       <section className="music-hero card">
         <div>
           <p className="eyebrow">HÔM NAY EM MUỐN NGHE GÌ?</p>
@@ -521,7 +535,7 @@ export default function Music() {
               ? "Playlist cộng đồng đang hiển thị từ bản nhớ trên máy."
               : publicStatus === "loading"
                 ? "Đang tải playlist cộng đồng…"
-                : `Có ${community.length} playlist cộng đồng đã tải. Ai vào HanziGo cũng có thể nghe playlist công khai.`}
+                : `${catalog.playlists.length} playlist gợi ý · ${community.length} playlist do cộng đồng chia sẻ đã tải.`}
         </p>
         <div className="button-row">
           {publicStatus === "error" && (
@@ -763,9 +777,7 @@ export default function Music() {
         Độ dễ theo là gợi ý biên tập. Phụ đề, tốc độ và khả năng phát nhúng tùy
         từng video; có thể mở trực tiếp trên YouTube.
       </p>
-      {!content.music && (
-        <p className="content-note">Đang dùng bộ nhạc gợi ý đi kèm app.</p>
-      )}
+
       {auth.isAdmin && backend && auth.adminUser && (
         <Button
           variant="outline"

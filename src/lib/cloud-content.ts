@@ -6,7 +6,8 @@ import {
 } from "firebase/firestore";
 import { contentSchema, type Story } from "../content/schema";
 import { bundledContent } from "../content";
-import { musicCatalogSchema } from "@/content/music-schema";
+import { writeMusicCatalog } from "./music-catalog";
+export { publishNormalizedMusicCatalog as publishMusicCatalog } from "./music-catalog";
 import { mergeStory } from "./content-editor";
 export const MAX_LIBRARY_BYTES = 800_000;
 export function packLibrary(input: unknown) {
@@ -32,12 +33,15 @@ export async function publishLibrary(
   input: unknown,
   initializeOnly = false,
 ) {
-  const raw = packLibrary(input);
+  const parsed = contentSchema.parse(input);
+  const { music, ...library } = parsed;
+  const raw = packLibrary(library);
   await runTransaction(store, async (transaction) => {
     const ref = doc(store, "content", "library");
     const old = await transaction.get(ref);
     if (initializeOnly && old.exists())
       throw new Error("Firebase đã có thư viện. Không ghi đè bằng bản mẫu.");
+    if (music) writeMusicCatalog(transaction, store, uid, music);
     transaction.set(ref, { raw, updatedBy: uid, updatedAt: serverTimestamp() });
   });
 }
@@ -52,26 +56,6 @@ export async function publishStory(
     const base = old.exists() ? unpackLibrary(old.data().raw) : bundledContent;
     transaction.set(ref, {
       raw: packLibrary(mergeStory(base, story)),
-      updatedBy: uid,
-      updatedAt: serverTimestamp(),
-    });
-  });
-}
-
-export async function publishMusicCatalog(
-  store: Firestore,
-  uid: string,
-  input: unknown,
-) {
-  const music = musicCatalogSchema.parse(input);
-  await runTransaction(store, async (transaction) => {
-    const ref = doc(store, "content", "library");
-    const old = await transaction.get(ref);
-    const library = old.exists()
-      ? unpackLibrary(old.data().raw)
-      : bundledContent;
-    transaction.set(ref, {
-      raw: packLibrary({ ...library, music }),
       updatedBy: uid,
       updatedAt: serverTimestamp(),
     });

@@ -5,6 +5,56 @@ service cloud.firestore {
     function admin() { return signedIn() && exists(/databases/$(database)/documents/config/admins) && request.auth.uid in get(/databases/$(database)/documents/config/admins).data.uids; }
     function own(uid) { return signedIn() && request.auth.uid == uid; }
     function account(uid) { return own(uid) && request.auth.token.firebase.sign_in_provider != 'anonymous'; }
+    function musicStamp(d) {
+      return d.updatedBy == request.auth.uid && d.updatedAt == request.time
+        && d.revision is string && d.revision.size() == 36;
+    }
+    match /musicCatalog/current {
+      allow get: if true;
+      allow create, update: if admin() && musicStamp(request.resource.data)
+        && request.resource.data.keys().hasOnly(['version','revision','trackIds','playlistIds','updatedAt','updatedBy'])
+        && request.resource.data.version == 1
+        && request.resource.data.trackIds is list && request.resource.data.trackIds.size() <= 100
+        && request.resource.data.trackIds.toSet().size() == request.resource.data.trackIds.size()
+        && request.resource.data.playlistIds is list && request.resource.data.playlistIds.size() <= 20
+        && request.resource.data.playlistIds.toSet().size() == request.resource.data.playlistIds.size();
+      allow list, delete: if false;
+    }
+    match /musicTracks/{id} {
+      allow get, list: if true;
+      function validTrack(d) {
+        return d.keys().hasOnly(['videoId','title','titleVi','pinyin','artist','pace','mood','tip','revision','updatedBy','updatedAt'])
+          && d.videoId == id && id.matches('^[a-zA-Z0-9_-]{11}$')
+          && d.title is string && d.title.size() > 0 && d.title.size() <= 150
+          && d.titleVi is string && d.titleVi.size() <= 150
+          && d.pinyin is string && d.pinyin.size() <= 300
+          && d.artist is string && d.artist.size() > 0 && d.artist.size() <= 100
+          && d.tip is string && d.tip.size() <= 300
+          && d.pace in ['easy','medium','challenge','unknown'] && d.mood in ['calm','bright','nostalgic','personal'];
+      }
+      allow create, update: if admin() && musicStamp(request.resource.data) && validTrack(request.resource.data)
+        && getAfter(/databases/$(database)/documents/musicCatalog/current).data.revision == request.resource.data.revision
+        && id in getAfter(/databases/$(database)/documents/musicCatalog/current).data.trackIds;
+      allow delete: if false;
+    }
+    match /musicPlaylists/{id} {
+      allow get, list: if true;
+      function validPlaylist(d) {
+        return d.keys().hasOnly(['id','name','description','author','youtubePlaylistId','videoIds','revision','updatedBy','updatedAt'])
+          && d.id == id && id.matches('^[a-z0-9-]{1,60}$')
+          && d.name is string && d.name.size() > 0 && d.name.size() <= 80
+          && d.description is string && d.description.size() <= 300
+          && d.get('author','') is string && d.get('author','').size() <= 80
+          && d.get('youtubePlaylistId','') is string && d.get('youtubePlaylistId','').size() <= 100
+          && d.videoIds is list && d.videoIds.size() > 0 && d.videoIds.size() <= 100
+          && d.videoIds.toSet().size() == d.videoIds.size()
+          && d.videoIds.hasOnly(getAfter(/databases/$(database)/documents/musicCatalog/current).data.trackIds);
+      }
+      allow create, update: if admin() && musicStamp(request.resource.data) && validPlaylist(request.resource.data)
+        && getAfter(/databases/$(database)/documents/musicCatalog/current).data.revision == request.resource.data.revision
+        && id in getAfter(/databases/$(database)/documents/musicCatalog/current).data.playlistIds;
+      allow delete: if false;
+    }
     match /content/library {
       allow get: if true;
       allow create, update: if admin()

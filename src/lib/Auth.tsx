@@ -26,7 +26,12 @@ import {
 } from "./firebase";
 import { reportError } from "./store";
 import { adminAccessErrorMessage } from "./admin-access";
-import { connectAccountProfile, restoreGuestName } from "./account-profile";
+import {
+  connectAccountProfile,
+  restoreGuestName,
+  deviceProfileTransport,
+} from "./account-profile";
+import { compactInactiveAccountCaches } from "./local-cache";
 import type { ProfileStatus } from "./profile-sync";
 import {
   db,
@@ -160,6 +165,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           const database = selectLearningDatabase(
             user.isAnonymous ? null : user.uid,
           );
+          void compactInactiveAccountCaches().catch(() => {});
           await loadAccountPreferences(
             database,
             () => active && profileVersion === profileGeneration,
@@ -221,6 +227,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } else {
         previousIdentity = null;
         selectLearningDatabase(null);
+        void compactInactiveAccountCaches().catch(() => {});
         setLearningScope("guest");
         setDataSyncStatus("local");
         restoreGuestName();
@@ -260,6 +267,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setLoading(false);
         return;
       }
+      if (!user.isAnonymous)
+        void deviceProfileTransport(backend!.adminStore, user)
+          .sync(user.displayName || user.email?.split("@")[0] || "em", false)
+          .catch(reportError);
       void adminAllowed(user.uid, backend!.adminStore)
         .then((allowed) => {
           if (active && version === generation) {

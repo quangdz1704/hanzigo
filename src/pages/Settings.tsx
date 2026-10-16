@@ -1,5 +1,6 @@
 import { useLibraryRevision } from "@/content";
 import { useRef, useState } from "react";
+import { useLiveQuery } from "dexie-react-hooks";
 import {
   Download,
   Upload,
@@ -12,8 +13,14 @@ import {
 import { Link } from "react-router-dom";
 import { usePreferences, useUI, reportError } from "@/lib/store";
 import { useAuth } from "@/lib/Auth";
+import { compactInactiveAccountCaches } from "@/lib/local-cache";
 import { backendMode } from "@/lib/firebase";
-import { exportLearning, importLearning, getLearningDatabase } from "@/lib/db";
+import {
+  db,
+  exportLearning,
+  importLearning,
+  getLearningDatabase,
+} from "@/lib/db";
 import { PageHeading, AudioButton } from "@/components/Common";
 import { Button } from "@/components/ui/button";
 import { useLearning } from "@/lib/hooks";
@@ -29,7 +36,19 @@ export default function Settings() {
     retryProfile,
     dataSyncStatus,
     retryDataSync,
+    learningScope,
   } = useAuth();
+  const database = getLearningDatabase();
+  const deviceStorage = useLiveQuery(
+    async () => ({
+      storyBytes: new TextEncoder().encode(
+        (await db.libraryCache.get("published"))?.raw ?? "",
+      ).length,
+      pending: await database.syncQueue.count(),
+    }),
+    [learningScope],
+    { storyBytes: 0, pending: 0 },
+  );
   const file = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
   const { favorites } = useLearning();
@@ -177,6 +196,38 @@ export default function Settings() {
                 )}
               </>
             )}
+          </section>
+          <section className="card settings-section">
+            <h2>Dữ liệu trên thiết bị</h2>
+            <p>
+              Cache truyện: {Math.ceil(deviceStorage.storyBytes / 1024)} KB /
+              512 KB. Thay đổi chờ đồng bộ: {deviceStorage.pending}.
+            </p>
+            <p className="muted">
+              Nhạc tải từ thư viện trực tuyến khi em mở Góc nghe nhạc. App không
+              lưu file nhạc hay video trên thiết bị.
+            </p>
+            <p className="content-note">
+              Cache truyện tối đa 512 KB. Cache dữ liệu học của tài khoản đã
+              đăng xuất sẽ được dọn sau khi đồng bộ; thay đổi chưa gửi và bản
+              nháp vẫn được giữ.
+            </p>
+            <Button
+              variant="outline"
+              onClick={() => {
+                void compactInactiveAccountCaches()
+                  .then((removed) =>
+                    useUI
+                      .getState()
+                      .notify(
+                        `Đã dọn ${removed} bản ghi cache có thể tải lại từ tài khoản.`,
+                      ),
+                  )
+                  .catch(reportError);
+              }}
+            >
+              Dọn cache tài khoản đã đăng xuất
+            </Button>
           </section>
           <section className="card settings-section">
             <h2>Giữ những gì em đã học</h2>

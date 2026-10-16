@@ -4,6 +4,7 @@ import { applyLibrary, useLibraryState } from "@/content";
 import { backend } from "@/lib/firebase";
 import { db } from "@/lib/db";
 import { unpackLibrary } from "@/lib/cloud-content";
+import { offlineLibrarySnapshot } from "@/lib/local-cache";
 export function ContentProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let active = true;
@@ -11,8 +12,16 @@ export function ContentProvider({ children }: { children: ReactNode }) {
     void db.libraryCache
       .get("published")
       .then((cached) => {
-        if (cached && active && !remoteSeen)
-          applyLibrary(unpackLibrary(cached.raw), "cache");
+        if (cached && active && !remoteSeen) {
+          const raw = offlineLibrarySnapshot(cached.raw);
+          if (raw) {
+            applyLibrary(unpackLibrary(raw), "cache");
+            if (raw !== cached.raw)
+              void db.libraryCache
+                .put({ id: "published", raw })
+                .catch(() => {});
+          } else void db.libraryCache.delete("published").catch(() => {});
+        }
       })
       .catch(() => {});
     if (!backend) {
@@ -33,7 +42,12 @@ export function ContentProvider({ children }: { children: ReactNode }) {
         try {
           const raw = snapshot.data().raw;
           applyLibrary(unpackLibrary(raw), "firebase");
-          void db.libraryCache.put({ id: "published", raw }).catch(() => {});
+          const compact = offlineLibrarySnapshot(raw);
+          if (compact)
+            void db.libraryCache
+              .put({ id: "published", raw: compact })
+              .catch(() => {});
+          else void db.libraryCache.delete("published").catch(() => {});
         } catch {
           useLibraryState.setState({ status: "error" });
         }

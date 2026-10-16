@@ -126,6 +126,11 @@ export function startAccountSync(
               .then(async () => {
                 if (stopped) return;
                 if (!snapshot.metadata.fromCache) hydrated.add(kind);
+                if (hydrated.size === kinds.length && kinds === learningKinds)
+                  await database.meta.put({
+                    id: "cloudHydrated",
+                    value: String(Date.now()),
+                  });
                 const pending = (await database.syncQueue.toArray()).some(
                   (item) => kinds.includes(item.kind),
                 );
