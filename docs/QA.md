@@ -116,3 +116,10 @@
 - Registering a local emulator account carried the guest plan/history into the account. Independent SDK server read-back confirmed one daily plan, reading completion, four answer events and highest quiz score=2. Settings reported learning data synchronized. No production test account was created.
 - Desktop light and mobile dark layouts were inspected; the document had no horizontal overflow at 360px and 390px. The quiz deep link scrolled to the quiz at 135px below the viewport top. Mobile screenshot: `mistake-notebook-mobile.png`; desktop plan: `daily-study.png`. Installed wallet browser extensions emitted unrelated injection errors. A fresh emulator without inbox configuration also displayed the existing mailbox connection warning; learning synchronization passed independently.
 - Production/PWA build passed with the existing large-chunk warning. No production deployment, Rules publication, billing or allowlist changes were made.
+
+## Music catalog and personal mixes · 16/10/2026
+
+- 102 unit tests, 23 Rules tests and 5 Auth+Firestore integration tests passed. New tests cover strict YouTube URL parsing, deduplicated shuffle, guest migration, account isolation, persistent playlist edits/backups, private access and catalog publication that preserves concurrent story edits.
+- Browser mixed two overlapping lists into four tracks, saved the queue and added a video link to make five. Reload and reorder worked. Guest registration preserved the playlist; an independent authenticated SDK read confirmed two playlist records and five tracks in the saved mix. Hiding is reversible.
+- Official YouTube API sample playback worked in the visible iframe. Tested music MVs returned embedding-denied responses locally; fallback links and queue navigation worked. Automatic transitions for blocked music were not claimed as verified. See `MUSIC.md`.
+- Light/dark layouts, 360/390 px document widths, menu navigation and a scrolling 360×640 editor were checked. Screenshots: `music-desktop.png`, `music-mobile.png`. All account/catalog test changes stayed in `demo-hanzigo`. Production/PWA build passed; no production deployment or Rules release.

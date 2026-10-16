@@ -14,6 +14,7 @@ import {
   Download,
   RefreshCw,
   NotebookPen,
+  Headphones,
 } from "lucide-react";
 import { motion } from "motion/react";
 import { useRegisterSW } from "virtual:pwa-register/react";
@@ -37,6 +38,11 @@ const mistakeNavigation = {
   to: "/mistakes",
   label: "Sổ lỗi sai",
   icon: NotebookPen,
+};
+const musicNavigation = {
+  to: "/music",
+  label: "Góc nghe nhạc",
+  icon: Headphones,
 };
 const navigation = [
   { to: "/", label: "Hôm nay", icon: Home },
@@ -98,7 +104,7 @@ export function Shell({ children }: { children: ReactNode }) {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [location.pathname]);
   const current =
-    [...navigation, mistakeNavigation].find(
+    [...navigation, mistakeNavigation, musicNavigation].find(
       (n) => n.to !== "/" && location.pathname.startsWith(n.to),
     )?.label ??
     (/^\/(account|register|login|forgot-password)$/.test(location.pathname)
@@ -136,7 +142,7 @@ export function Shell({ children }: { children: ReactNode }) {
         </Link>
         <div className="sidebar-label">GÓC NHỎ CỦA EM</div>
         <nav aria-label="Điều hướng chính">
-          {[...navigation, mistakeNavigation].map((n) => (
+          {[...navigation, mistakeNavigation, musicNavigation].map((n) => (
             <NavLink
               key={n.to}
               end={n.to === "/"}

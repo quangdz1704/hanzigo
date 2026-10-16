@@ -9,6 +9,7 @@ import {
   Flower2,
   Heart,
   Mail,
+  Headphones,
   Sparkles,
 } from "lucide-react";
 import { stories, quotes } from "@/content";
@@ -160,6 +161,14 @@ export default function Home() {
           </section>
         </div>
         <aside className="dashboard-aside">
+          <Link to="/music" className="card music-home-link">
+            <Headphones size={23} />
+            <div>
+              <h2>Góc nghe nhạc</h2>
+              <p className="muted">Một bài tiếng Trung, một chút thảnh thơi.</p>
+              <span className="text-link">Ghé nghe một bài →</span>
+            </div>
+          </Link>
           <section className="card mini-garden">
             <div className="section-heading">
               <h2>Vườn nhỏ của em</h2>

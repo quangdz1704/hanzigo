@@ -30,6 +30,8 @@ Guests keep progress and preferences on the device. Anonymous Auth still supplie
 
 ## Offline, migration and conflict behavior
 
+Music uses optional catalog metadata in `content/library.raw.music` and private `users/{uid}/musicPlaylists/{playlistId}` records. Guests retain local lists; registered owners use the account cache/outbox. Hiding is reversible and synchronized as a tombstone. The proposed Rules validate bounded playlist metadata and deny other-account/admin access to personal lists. These Rules were tested locally and were not published to production. See `MUSIC.md` for source availability and player limitations.
+
 Daily learning adds two private owner-only collections: `users/{uid}/studyDays/{localDay}` freezes the chosen story and up to five due vocabulary IDs and stores reading completion; `users/{uid}/quizAnswers/{encodedAnswerId}` stores immutable per-question evidence, grouped by attempt UUID. No extra XP is awarded for notebook practice. Additive IndexedDB migrations and backups include both collections; old backups remain readable. Earlier daily plans win across devices, preserving reading completion for the chosen story. Question content changes start a fresh mistake history; old events remain available in the account backup. These permissions are included in the proposed Rules and have only been tested on the emulator; this feature does not publish production Rules.
 
 - Legacy `hanzigo` IndexedDB remains the guest cache. Registered users have separate `hanzigo-account-{uid}` caches and persistent outboxes. A signed-in account's cache is never copied into another account.
