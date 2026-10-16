@@ -146,3 +146,7 @@
 - Cloud Music seed is lazy and not loaded in cloud mode or precached by PWA. Firestore uses memory cache; only the bounded music-free story snapshot and necessary active-account/outbox data remain on device. Screenshots: firebase-music-collections.png, cloud-storage-cache.png. No production test accounts or letters were created; the two production profiles mirror pre-existing registered Auth users.
 
 Final cache regression: repeated/concurrent inactive cleanup shares a single operation; closing a cache permits automatic reopening. A unit test covers two cleanup passes followed by login and a new pending write. Two consecutive Settings cleanup clicks show success, with no DatabaseClosedError. Updated proof: `cloud-storage-cache.png`.
+
+### Compact music cards — 16 October 2026
+
+Song cards now use a small 16:9 thumbnail beside the title, Pinyin, Vietnamese name and artist. Metadata and 40px action buttons fit below the copy; long labels wrap to two lines with full text retained in the DOM/title. The responsive grid chooses columns independently from playlist cards. At the existing desktop viewport the first-row height fell from 519px to 202px; at 389 CSS pixels it is 198px with no horizontal page overflow. Opening Save still selects the correct song; the test dialog was cancelled without saving. Production build/typecheck passed. Evidence: `music-cards-compact-desktop.png`, `music-cards-compact-mobile.png`.

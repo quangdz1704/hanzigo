@@ -693,17 +693,26 @@ export default function Music() {
                 height={180}
               />
               <div className="music-song-copy">
-                <div className="button-row">
+                <h3 lang="zh-CN" title={t.title}>
+                  {t.title}
+                </h3>
+                {t.pinyin && (
+                  <p className="pinyin" title={t.pinyin}>
+                    {t.pinyin}
+                  </p>
+                )}
+                {t.titleVi && <p title={t.titleVi}>{t.titleVi}</p>}
+                <p className="muted music-song-artist" title={t.artist}>
+                  {t.artist}
+                </p>
+                <div className="music-song-meta">
                   <Badge>{paceLabels[t.pace]}</Badge>
-                  <span className="muted">{moodLabels[t.mood]}</span>
+                  <span>{moodLabels[t.mood]}</span>
                 </div>
-                <h3 lang="zh-CN">{t.title}</h3>
-                {t.pinyin && <p className="pinyin">{t.pinyin}</p>}
-                {t.titleVi && <p>{t.titleVi}</p>}
-                <p className="muted">{t.artist}</p>
-                <div className="button-row">
+                <div className="button-row music-song-actions">
                   <Button
                     variant="secondary"
+                    size="sm"
                     disabled={!online}
                     onClick={() =>
                       start(
@@ -716,6 +725,7 @@ export default function Music() {
                   </Button>
                   <Button
                     variant="ghost"
+                    size="sm"
                     aria-label={`Thêm ${t.title} vào playlist`}
                     onClick={() => {
                       if (personal.some((p) => p.id === target))

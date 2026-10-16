@@ -3955,11 +3955,15 @@ input[type="range"] {
   margin-top: 4px;
   color: var(--muted);
 }
-.music-playlists,
-.music-song-grid {
+.music-playlists {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
+}
+.music-song-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 12px;
 }
 .music-playlist-card {
   padding: 20px;
@@ -4037,8 +4041,15 @@ input[type="range"] {
   margin: 20px 0 12px;
 }
 .music-song {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  padding: 14px;
   overflow: hidden;
   min-width: 0;
+  border-radius: 14px;
+  box-shadow: none;
 }
 .music-song img {
   display: block;
@@ -4047,19 +4058,59 @@ input[type="range"] {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   background: var(--soft);
+  border-radius: 8px;
 }
 .music-song-copy {
-  padding: 20px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  height: 100%;
 }
 .music-song h3 {
-  margin: 16px 0 6px;
-  font-size: 1.35rem;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
 }
 .music-song p {
-  margin: 6px 0;
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
 }
-.music-song-copy > .button-row:last-child {
-  margin-top: 20px;
+.music-song h3,
+.music-song-copy > p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+.music-song-copy > .music-song-artist {
+  -webkit-line-clamp: 1;
+}
+.music-song-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  margin-top: 4px;
+}
+.music-song-meta .badge {
+  padding: 3px 7px;
+  font-size: inherit;
+}
+.music-song-actions {
+  padding-top: 6px;
+  margin-top: auto;
+  gap: 4px;
+}
+.music-song-actions .button {
+  min-height: 40px;
+  padding: 7px 10px;
+  font-size: 0.78rem;
 }
 .music-archived {
   margin-top: 24px;
@@ -4130,8 +4181,7 @@ input[type="range"] {
   margin: 10px 0 16px;
 }
 @media (max-width: 1150px) {
-  .music-playlists,
-  .music-song-grid {
+  .music-playlists {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .music-filters {
@@ -4159,12 +4209,16 @@ input[type="range"] {
     padding: 16px;
   }
   .music-playlists,
-  .music-song-grid,
   .music-filters {
     grid-template-columns: minmax(0, 1fr);
   }
   .music-mix-actions {
     align-items: stretch;
+  }
+  .music-song {
+    grid-template-columns: 80px minmax(0, 1fr);
+    padding: 12px;
+    gap: 10px;
   }
   .music-editor-tracks li {
     flex-wrap: wrap;
