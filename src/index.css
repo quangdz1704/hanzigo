@@ -3612,3 +3612,123 @@ input[type="range"] {
     grid-template-columns: 1fr;
   }
 }
+
+/* Daily learning and notebook share the existing light/dark theme tokens. */
+.daily-study {
+  padding: clamp(20px, 3vw, 28px);
+}
+.study-card-heading,
+.daily-review-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.study-card-heading > div {
+  min-width: 0;
+}
+.daily-study h2,
+.mistake-card h2 {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.study-card-heading .eyebrow {
+  margin: 0 0 8px;
+}
+.study-progress {
+  height: 6px;
+  background: var(--soft);
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 20px 0 12px;
+}
+.study-progress > span {
+  height: 100%;
+  display: block;
+  background: var(--green);
+  transition: width 0.2s;
+}
+.study-steps {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+.study-steps .daily-path-item {
+  border-radius: 12px;
+  padding: 16px 8px;
+  gap: 14px;
+}
+.study-step-status {
+  color: var(--green);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+.study-complete {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--green);
+  margin: 0;
+}
+.study-note {
+  max-width: 70ch;
+  margin-bottom: 24px;
+}
+.study-tabs {
+  flex-wrap: wrap;
+}
+.mistake-list {
+  display: grid;
+  gap: 20px;
+}
+.mistake-card {
+  padding: clamp(20px, 3vw, 28px);
+  display: grid;
+  justify-items: start;
+  gap: 18px;
+}
+.mistake-card > .study-card-heading {
+  width: 100%;
+}
+.mistake-card h2 {
+  font-family: var(--sans);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+.mistake-card p {
+  margin: 0;
+}
+.mistake-practice {
+  margin-bottom: 28px;
+}
+.mistake-practice > .study-card-heading {
+  margin-bottom: 16px;
+}
+.daily-review-banner {
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.daily-review-banner p {
+  margin: 6px 0 0;
+}
+.mistake-explanation {
+  width: 100%;
+  padding: 16px;
+  background: var(--soft);
+  border-radius: 12px;
+}
+.mistake-explanation summary {
+  cursor: pointer;
+  color: var(--green);
+}
+.mistake-explanation p {
+  margin: 16px 0 8px;
+}
+.study-steps {
+  display: grid;
+  gap: 10px;
+}
+.daily-study > .muted {
+  margin: 10px 0 0;
+}

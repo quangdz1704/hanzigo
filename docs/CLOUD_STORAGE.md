@@ -30,6 +30,8 @@ Guests keep progress and preferences on the device. Anonymous Auth still supplie
 
 ## Offline, migration and conflict behavior
 
+Daily learning adds two private owner-only collections: `users/{uid}/studyDays/{localDay}` freezes the chosen story and up to five due vocabulary IDs and stores reading completion; `users/{uid}/quizAnswers/{encodedAnswerId}` stores immutable per-question evidence, grouped by attempt UUID. No extra XP is awarded for notebook practice. Additive IndexedDB migrations and backups include both collections; old backups remain readable. Earlier daily plans win across devices, preserving reading completion for the chosen story. Question content changes start a fresh mistake history; old events remain available in the account backup. These permissions are included in the proposed Rules and have only been tested on the emulator; this feature does not publish production Rules.
+
 - Legacy `hanzigo` IndexedDB remains the guest cache. Registered users have separate `hanzigo-account-{uid}` caches and persistent outboxes. A signed-in account's cache is never copied into another account.
 - Old browser learning data is claimed once by the first account after this migration. Linking a current guest into a new registered account carries its learning forward. Guest data is retained. Historical browser-only data had no owner UID, so this one-time claim represents the current browser's migration, not proof of past ownership.
 - Migration only initializes missing cloud preferences; it does not replace settings already saved by an existing account with guest defaults. Explicit edits remain queued by account UID, including through reload.

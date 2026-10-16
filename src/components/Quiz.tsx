@@ -2,28 +2,31 @@ import { useState } from "react";
 import type { Story } from "@/content/schema";
 import { Button } from "./ui/button";
 import { Check, RotateCcw, Sparkles } from "lucide-react";
-import { recordQuiz } from "@/lib/db";
+import { submitQuizAnswers } from "@/lib/study-db";
+import type { Question } from "@/lib/study";
+import { Link } from "react-router-dom";
 import { reportError, useUI, usePreferences } from "@/lib/store";
 import { toggleQuizLanguage, type QuizLanguage } from "@/lib/quiz-display";
 import { QuizText } from "./QuizText";
 export function Quiz({
   story,
   onComplete,
+  practice,
 }: {
   story: Story;
   onComplete?: () => void;
+  practice?: Question;
 }) {
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [submitted, setSubmitted] = useState(false);
   const [busy, setBusy] = useState(false);
   const prefs = usePreferences();
-  const hasChinese = story.comprehensionQuestions.every((q) => !!q.chinese);
+  const questions = practice ? [practice] : story.comprehensionQuestions;
+  const hasChinese = questions.every((q) => !!q.chinese);
   const display = hasChinese
     ? prefs.quizDisplay
     : { hanzi: false, pinyin: false, vietnamese: true };
-  const score = story.comprehensionQuestions.filter(
-    (q) => answers[q.id] === q.answer,
-  ).length;
+  const score = questions.filter((q) => answers[q.id] === q.answer).length;
   return (
     <section
       id="quiz"
@@ -31,15 +34,19 @@ export function Quiz({
       aria-label="Câu hỏi hiểu truyện"
     >
       <div className="section-heading">
-        <h2>Một chút để nhớ câu chuyện</h2>
+        <h2>
+          {practice ? "Ôn lại câu từng nhầm" : "Một chút để nhớ câu chuyện"}
+        </h2>
         <BadgeScore
           submitted={submitted}
           score={score}
-          total={story.comprehensionQuestions.length}
+          total={questions.length}
         />
       </div>
       <p className="muted">
-        Không cần vội. Em có thể quay lại đọc bất cứ lúc nào.
+        {practice
+          ? "Chọn lại đáp án, rồi mình xem phần giải thích nhé. Hai ngày trả lời đúng sẽ đưa câu này vào mục Đã nhớ."
+          : "Không cần vội. Em có thể quay lại đọc bất cứ lúc nào."}
       </p>
       <div
         className="quiz-language-controls"
@@ -74,7 +81,7 @@ export function Quiz({
       {!hasChinese && (
         <p className="content-note">Bài này hiện chưa có bản Chữ Hán/Pinyin.</p>
       )}
-      {story.comprehensionQuestions.map((q, i) => (
+      {questions.map((q, i) => (
         <fieldset key={q.id} className="quiz-question">
           <legend>
             <span className="quiz-prompt">
@@ -123,10 +130,19 @@ export function Quiz({
         <>
           <p className="quiz-result">
             <Sparkles size={20} />
-            {score === story.comprehensionQuestions.length
-              ? "Em hiểu câu chuyện rồi! +15 XP cho lần đầu trả lời đúng tất cả."
+            {score === questions.length
+              ? practice
+                ? "Đã ghi nhận lần trả lời đúng. Lịch ôn trong sổ đã được cập nhật."
+                : "Em hiểu câu chuyện rồi! +15 XP cho lần đầu trả lời đúng tất cả."
               : "Em đã đọc rất chăm chú. Mình xem lại những câu còn nhầm nhé."}
           </p>
+          {!practice && score < questions.length && (
+            <p>
+              <Link className="text-link" to="/mistakes">
+                Mở sổ lỗi sai để ôn những câu này →
+              </Link>
+            </p>
+          )}
           <Button
             variant="secondary"
             onClick={() => {
@@ -139,16 +155,13 @@ export function Quiz({
         </>
       ) : (
         <Button
-          disabled={
-            busy ||
-            Object.keys(answers).length !== story.comprehensionQuestions.length
-          }
+          disabled={busy || Object.keys(answers).length !== questions.length}
           onClick={() => {
             setBusy(true);
-            void recordQuiz(
-              story.id,
-              score,
-              story.comprehensionQuestions.length,
+            void submitQuizAnswers(
+              story,
+              answers,
+              practice ? "mistake" : "story",
             )
               .then(() => {
                 setSubmitted(true);

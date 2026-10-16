@@ -34,6 +34,26 @@ export function useLearning() {
     storiesRead: progress.filter((p) => p.completed).length,
   };
 }
+export function useStudyData() {
+  const { learningScope } = useAuth();
+  const database = getLearningDatabase();
+  const studyDays = useLiveQuery(
+    () => database.studyDays.toArray(),
+    [learningScope],
+    [],
+  );
+  const quizAnswers = useLiveQuery(
+    () => database.quizAnswers.toArray(),
+    [learningScope],
+    [],
+  );
+  const reviewLogs = useLiveQuery(
+    () => database.reviews.toArray(),
+    [learningScope],
+    [],
+  );
+  return { studyDays, quizAnswers, reviewLogs };
+}
 export function useOnline() {
   const [online, setOnline] = useState(navigator.onLine);
   useEffect(() => {

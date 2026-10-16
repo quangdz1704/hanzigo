@@ -1,6 +1,6 @@
 import { useLibraryRevision } from "@/content";
 import { useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { useLiveQuery } from "dexie-react-hooks";
 import {
   ArrowLeft,
@@ -18,6 +18,8 @@ import {
   saveReadingPosition,
 } from "@/lib/db";
 import { usePreferences, useUI, reportError, run } from "@/lib/store";
+import { localDay } from "@/lib/learning";
+import { useNow } from "@/lib/hooks";
 import { stopAudio } from "@/lib/audio";
 import { Button } from "@/components/ui/button";
 import { Badge, AudioButton, Empty, Loading } from "@/components/Common";
@@ -40,6 +42,14 @@ export default function Reader() {
 }
 function StoryReader({ story }: { story: Story }) {
   const pref = usePreferences();
+  const { hash } = useLocation();
+  const now = useNow(),
+    day = localDay(now);
+  const plan = useLiveQuery(
+    () => getLearningDatabase().studyDays.get(day),
+    [day],
+  );
+  const dailyReading = plan?.storyId === story.id && !plan.readAt;
   const [word, setWord] = useState<Vocabulary | null>(null);
   const [busy, setBusy] = useState(false);
   const [canReadQuiz, setCanReadQuiz] = useState(true);
@@ -55,7 +65,7 @@ function StoryReader({ story }: { story: Story }) {
     if (!progress || initialized.current) return;
     initialized.current = true;
     position.current = progress.value?.sentence ?? 0;
-    if (position.current > 0 && !progress.value?.completed) {
+    if (!hash && position.current > 0 && !progress.value?.completed) {
       requestAnimationFrame(() =>
         refs.current[position.current]?.scrollIntoView({
           block: "center",
@@ -64,7 +74,17 @@ function StoryReader({ story }: { story: Story }) {
       );
       useUI.getState().notify("Mình đọc tiếp từ chỗ em dừng nhé.");
     }
-  }, [progress]);
+  }, [progress, hash]);
+  const ready = !!progress;
+  useEffect(() => {
+    if (!ready || hash !== "#quiz") return;
+    const frame = requestAnimationFrame(() =>
+      document
+        .getElementById("quiz")
+        ?.scrollIntoView({ block: "start", behavior: "instant" }),
+    );
+    return () => cancelAnimationFrame(frame);
+  }, [ready, hash]);
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
     const save = () => {
@@ -195,14 +215,18 @@ function StoryReader({ story }: { story: Story }) {
             <span className="floral-divider">✿</span>
             <p>Đến đây là hết câu chuyện rồi. Cảm ơn em đã đọc cùng mình.</p>
             <Button
-              disabled={busy || progress.value?.completed}
+              disabled={busy || (!!progress.value?.completed && !dailyReading)}
               onClick={() => {
                 setBusy(true);
                 void completeStory(story.id, sentences.length - 1)
                   .then(() =>
                     useUI
                       .getState()
-                      .notify("Một câu chuyện đã nở hoa trong vườn! +30 XP"),
+                      .notify(
+                        progress.value?.completed
+                          ? "Đã ghi nhận lượt đọc hôm nay."
+                          : "Một câu chuyện đã nở hoa trong vườn! +30 XP",
+                      ),
                   )
                   .catch(reportError)
                   .finally(() => setBusy(false));
@@ -213,14 +237,19 @@ function StoryReader({ story }: { story: Story }) {
               ) : (
                 <Sparkles size={18} />
               )}{" "}
-              {progress.value?.completed
-                ? "Em đã đọc câu chuyện này"
-                : "Đánh dấu đã đọc · +30 XP"}
+              {dailyReading && progress.value?.completed
+                ? "Đánh dấu đã đọc hôm nay"
+                : progress.value?.completed
+                  ? "Em đã đọc câu chuyện này"
+                  : "Đánh dấu đã đọc · +30 XP"}
             </Button>
           </div>
         </article>
       </div>
       <div className="reader-next">
+        <Link className="text-link" to="/">
+          Xem lộ trình hôm nay →
+        </Link>
         <Link className="text-link" to={`/review?story=${story.id}`}>
           Ôn bộ {story.glossary.length} từ của truyện →
         </Link>

@@ -9,6 +9,7 @@ import { Empty, Loading } from "./components/Common";
 import Home from "./pages/Home";
 import Stories from "./pages/Stories";
 import Reader from "./pages/Reader";
+const Mistakes = lazy(() => import("./pages/Mistakes"));
 const Review = lazy(() => import("./pages/Review"));
 const Games = lazy(() => import("./pages/Games"));
 const Garden = lazy(() => import("./pages/Garden"));
@@ -50,6 +51,7 @@ export default function App() {
                         <Route path="/stories" element={<Stories />} />
                         <Route path="/stories/:id" element={<Reader />} />
                         <Route path="/review" element={<Review />} />
+                        <Route path="/mistakes" element={<Mistakes />} />
                         <Route path="/games" element={<Games />} />
                         <Route path="/garden" element={<Garden />} />
                         <Route path="/letters" element={<Inbox />} />

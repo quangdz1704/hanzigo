@@ -4,7 +4,6 @@ import {
   ArrowRight,
   Bookmark,
   BookOpen,
-  Check,
   Clock3,
   Copy,
   Flower2,
@@ -13,13 +12,14 @@ import {
   Sparkles,
 } from "lucide-react";
 import { stories, quotes } from "@/content";
-import { dailyIndex, localDay } from "@/lib/learning";
+import { dailyIndex } from "@/lib/learning";
 import { useLearning, useNow } from "@/lib/hooks";
 import { usePreferences, useUI, run } from "@/lib/store";
 import { toggleFavorite } from "@/lib/db";
 import { useLetters } from "@/components/Letters";
 import { AudioButton, Badge, SectionHeading } from "@/components/Common";
 import { Button } from "@/components/ui/button";
+import { DailyStudy } from "@/components/DailyStudy";
 import { GardenArt, StoryArt, EnvelopeArt } from "@/components/Art";
 export default function Home() {
   useLibraryRevision();
@@ -36,8 +36,6 @@ export default function Home() {
     stories.find((s) => s.id === last?.id) ??
     stories.find((s) => !progress.some((p) => p.id === s.id && p.completed)) ??
     stories[0];
-  const due = cards.filter((c) => c.dueAt <= now).length;
-  const today = activities.filter((a) => a.day === localDay(now));
   const favorite = favorites.some(
     (f) => f.id === `quote:${quote.id}` && f.active,
   );
@@ -70,6 +68,7 @@ export default function Home() {
       </div>
       <div className="dashboard-grid">
         <div className="dashboard-main">
+          <DailyStudy />
           <section className="daily-quote card">
             <div className="quote-top">
               <span className="eyebrow">
@@ -158,58 +157,6 @@ export default function Home() {
                 </span>
               </div>
             </article>
-          </section>
-          <section>
-            <SectionHeading title="Những bước nhỏ hôm nay" />
-            <div className="daily-path">
-              {[
-                {
-                  to: "/stories",
-                  icon: BookOpen,
-                  title: "Đọc một câu chuyện",
-                  text: "Khoảng 5 phút để đi một nơi mới",
-                  done: today.some((a) => a.kind === "story"),
-                  color: "sage",
-                },
-                {
-                  to: "/review",
-                  icon: Bookmark,
-                  title: "Gặp lại những từ quen",
-                  text: due
-                    ? `${due} từ đến giờ ôn · không cần ôn hết`
-                    : "Một chút để nhớ lâu hơn",
-                  done: today.some((a) => a.kind === "review"),
-                  color: "lavender",
-                },
-                {
-                  to: "/games",
-                  icon: Sparkles,
-                  title: "Chơi một chút cũng là học",
-                  text: "Ghép từ, xếp câu hoặc lắng nghe",
-                  done: today.some(
-                    (a) => a.kind === "game" || a.kind === "quiz",
-                  ),
-                  color: "peach",
-                },
-              ].map((item) => (
-                <Link to={item.to} key={item.to} className="daily-path-item">
-                  <span className={`path-icon theme-${item.color}`}>
-                    <item.icon size={21} />
-                  </span>
-                  <div>
-                    <strong>{item.title}</strong>
-                    <p className="muted">{item.text}</p>
-                  </div>
-                  {item.done ? (
-                    <span className="path-done" aria-label="Đã hoàn thành">
-                      <Check size={17} />
-                    </span>
-                  ) : (
-                    <ArrowRight size={18} />
-                  )}
-                </Link>
-              ))}
-            </div>
           </section>
         </div>
         <aside className="dashboard-aside">

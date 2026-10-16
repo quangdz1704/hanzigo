@@ -13,6 +13,7 @@ import {
   X,
   Download,
   RefreshCw,
+  NotebookPen,
 } from "lucide-react";
 import { motion } from "motion/react";
 import { useRegisterSW } from "virtual:pwa-register/react";
@@ -32,6 +33,11 @@ interface InstallPrompt extends Event {
   prompt: () => Promise<void>;
   userChoice: Promise<{ outcome: string }>;
 }
+const mistakeNavigation = {
+  to: "/mistakes",
+  label: "Sổ lỗi sai",
+  icon: NotebookPen,
+};
 const navigation = [
   { to: "/", label: "Hôm nay", icon: Home },
   { to: "/stories", label: "Thư viện truyện", short: "Truyện", icon: BookOpen },
@@ -92,8 +98,9 @@ export function Shell({ children }: { children: ReactNode }) {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [location.pathname]);
   const current =
-    navigation.find((n) => n.to !== "/" && location.pathname.startsWith(n.to))
-      ?.label ??
+    [...navigation, mistakeNavigation].find(
+      (n) => n.to !== "/" && location.pathname.startsWith(n.to),
+    )?.label ??
     (/^\/(account|register|login|forgot-password)$/.test(location.pathname)
       ? "Tài khoản"
       : location.pathname.startsWith("/settings")
@@ -129,7 +136,7 @@ export function Shell({ children }: { children: ReactNode }) {
         </Link>
         <div className="sidebar-label">GÓC NHỎ CỦA EM</div>
         <nav aria-label="Điều hướng chính">
-          {navigation.map((n) => (
+          {[...navigation, mistakeNavigation].map((n) => (
             <NavLink
               key={n.to}
               end={n.to === "/"}

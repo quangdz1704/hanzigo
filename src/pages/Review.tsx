@@ -2,7 +2,7 @@ import { useLibraryRevision } from "@/content";
 import { useEffect, useState } from "react";
 import { BookmarkPlus, Check, RotateCcw, Sparkles } from "lucide-react";
 import { vocabulary, findStory, stories } from "@/content";
-import { useLearning, useNow } from "@/lib/hooks";
+import { useLearning, useStudyData, useNow } from "@/lib/hooks";
 import { reviewVocabulary, saveVocabulary } from "@/lib/db";
 import { PageHeading, AudioButton, Badge, Empty } from "@/components/Common";
 import { Button } from "@/components/ui/button";
@@ -10,11 +10,12 @@ import { VocabularySheet } from "@/components/VocabularySheet";
 import type { Vocabulary } from "@/content/schema";
 import { reportError, useUI } from "@/lib/store";
 import { Link, useSearchParams } from "react-router-dom";
-import { scheduleReview } from "@/lib/learning";
+import { localDay, scheduleReview } from "@/lib/learning";
 import { searchText } from "@/lib/utils";
 export default function Review() {
   useLibraryRevision();
   const { cards } = useLearning();
+  const { studyDays, reviewLogs } = useStudyData();
   const now = useNow();
   const [flipped, setFlipped] = useState(false);
   const [reviewed, setReviewed] = useState(0);
@@ -22,6 +23,20 @@ export default function Review() {
   const [word, setWord] = useState<Vocabulary | null>(null);
   const [tab, setTab] = useState("due");
   const [params, setParams] = useSearchParams();
+  const dailyPlan =
+    params.get("daily") === localDay(now)
+      ? studyDays.find((p) => p.id === params.get("daily"))
+      : undefined;
+  const reviewedToday = new Set(
+    reviewLogs
+      .filter(
+        (r) =>
+          dailyPlan &&
+          r.at >= dailyPlan.startedAt &&
+          localDay(r.at) === dailyPlan.id,
+      )
+      .map((r) => r.cardId),
+  );
   const selectedStory = findStory(params.get("story") ?? undefined);
   const storyFilter = selectedStory?.id ?? "all";
   const [deckId, setDeckId] = useState(selectedStory?.id ?? stories[0].id);
@@ -32,7 +47,13 @@ export default function Review() {
       selectedStory?.glossary.some((v) => v.id === c.id),
   );
   const due = cards
-    .filter((c) => c.dueAt <= now && filteredCards.some((f) => f.id === c.id))
+    .filter(
+      (c) =>
+        c.dueAt <= now &&
+        (dailyPlan
+          ? dailyPlan.reviewIds.includes(c.id) && !reviewedToday.has(c.id)
+          : filteredCards.some((f) => f.id === c.id)),
+    )
     .sort((a, b) => a.dueAt - b.dueAt);
   const current = due[0];
   const entry = vocabulary.find((v) => v.id === current?.id);
@@ -60,13 +81,30 @@ export default function Review() {
         description="Những từ em đã gặp, đang lớn lên cùng em."
         action={<Badge className="badge-sage">{cards.length} từ đã lưu</Badge>}
       />
+      {dailyPlan && (
+        <section className="card daily-review-banner">
+          <div>
+            <strong>Ôn từ trong lộ trình hôm nay</strong>
+            <p className="muted">
+              {dailyPlan.reviewIds.filter((id) => reviewedToday.has(id)).length}
+              /{dailyPlan.reviewIds.length} từ đã ôn
+            </p>
+          </div>
+          <Link
+            className="text-link"
+            to={due.length ? "/" : `/stories/${dailyPlan.storyId}`}
+          >
+            {due.length ? "Xem lộ trình" : "Tiếp tục đọc truyện"} →
+          </Link>
+        </section>
+      )}
       <div className="review-filters filters">
         <label className="field">
           Ôn theo truyện
           <select
             aria-label="Ôn theo truyện"
             value={storyFilter}
-            disabled={busy}
+            disabled={busy || !!dailyPlan}
             onChange={(e) => {
               setParams(
                 e.target.value === "all" ? {} : { story: e.target.value },
