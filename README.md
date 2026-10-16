@@ -27,7 +27,7 @@ PWA/service worker hoạt động trên **bản build**, HTTPS hoặc localhost.
 - Dashboard có câu tiếng Trung theo **ngày địa phương**, nghe/copy/yêu thích và truyện đang đọc.
 - Lộ trình hằng ngày giữ một truyện và tối đa 5 từ đến hạn, ghi nhận ôn từ → đọc → quiz; mở lại trang vẫn giữ tiến độ trong ngày.
 - **Sổ lỗi sai** (`/mistakes`) lưu từng đáp án nhầm, lời giải và bài ôn bằng Chữ Hán/Pinyin/Việt. Hẹn sau 1 ngày khi sai, sau 3 ngày khi sửa đúng; hai ngày khác nhau sửa đúng đưa câu vào Đã nhớ. Kết quả quiz cũ chỉ có điểm tổng nên lịch sử lỗi bắt đầu từ các lần làm mới.
-- **Góc nghe nhạc** (`/music`): 6 bài gợi ý, iframe YouTube, bộ lọc và mix nhiều playlist. Tự tạo playlist, thêm link video, đổi thứ tự và lưu theo tài khoản. Video chặn nhúng có nút mở YouTube; xem [nguồn và giới hạn phát](docs/MUSIC.md).
+- **Góc nghe nhạc** (`/music`): 8 bài gợi ý, iframe YouTube, bộ lọc và mix nhiều playlist. Tự tạo playlist, thêm link video, đổi thứ tự và lưu theo tài khoản. Video chặn nhúng có nút mở YouTube; xem [nguồn và giới hạn phát](docs/MUSIC.md).
 - Thư viện 20 truyện hoàn chỉnh; tìm kiếm không dấu và lọc chủ đề, HSK, trạng thái đọc/yêu thích.
 - Reader: bật/tắt Pinyin/dịch, cỡ chữ, đọc tiếp vị trí đã lưu, glossary được biên soạn, lưu từ, nghe từng câu/toàn truyện và 3 câu hỏi mỗi truyện.
 - 200 mục từ có nghĩa, Pinyin, ví dụ và nguồn truyện. Thêm bộ 10 từ từng truyện, ôn theo truyện, tìm từ đã lưu bằng Hanzi/Pinyin/nghĩa tiếng Việt không dấu. Nút đánh giá hiển thị interval thực tế.

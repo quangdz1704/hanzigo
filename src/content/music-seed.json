@@ -2,6 +2,26 @@
   "version": 1,
   "tracks": [
     {
+      "videoId": "m_rDIzj6DRE",
+      "title": "你好歌",
+      "titleVi": "Bài hát xin chào",
+      "pinyin": "Nǐ hǎo gē",
+      "artist": "Little Fox Chinese",
+      "pace": "easy",
+      "mood": "bright",
+      "tip": "Nghe và nhắc lại lời chào. Sau đó thử tự giới thiệu tên em bằng tiếng Trung."
+    },
+    {
+      "videoId": "0fm11XFw8uY",
+      "title": "Greetings · 中文问候",
+      "titleVi": "Chào hỏi bằng tiếng Trung",
+      "pinyin": "Zhōngwén wènhòu",
+      "artist": "Chinese Buddy",
+      "pace": "easy",
+      "mood": "bright",
+      "tip": "Thử nhận ra những lời chào quen thuộc và đáp lại bằng tiếng Trung. Có thể mở phụ đề nếu video hỗ trợ."
+    },
+    {
       "videoId": "eOtATMfvfg8",
       "title": "月亮代表我的心",
       "titleVi": "Ánh trăng nói hộ lòng tôi",
@@ -63,6 +83,12 @@
     }
   ],
   "playlists": [
+    {
+      "id": "hello-songs",
+      "name": "Chào bằng một bài hát",
+      "description": "Hai bài học chào hỏi để nghe, nhắc lại và bắt đầu thật nhẹ nhàng.",
+      "videoIds": ["m_rDIzj6DRE", "0fm11XFw8uY"]
+    },
     {
       "id": "slow-start",
       "name": "Nghe chậm một chút",

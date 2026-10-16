@@ -65,7 +65,7 @@ describe("YouTube links and curated mixes", () => {
     expect(lists[0]).toEqual([one, two]);
   });
   it("keeps catalog metadata valid and rejects dangling playlist entries", () => {
-    expect(catalog.tracks).toHaveLength(6);
+    expect(catalog.tracks).toHaveLength(8);
     expect(() =>
       musicCatalogSchema.parse({
         ...catalog,
