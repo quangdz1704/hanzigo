@@ -54,8 +54,10 @@ export function mixTracks(
   random = Math.random,
 ) {
   const tracks = [...new Map(lists.flat().map((t) => [t.videoId, t])).values()];
-  if (tracks.length > 50)
-    throw new Error("Mỗi lượt mix tối đa 50 bài. Em chọn ít playlist hơn nhé.");
+  if (tracks.length > 100)
+    throw new Error(
+      "Mỗi lượt mix tối đa 100 bài. Em chọn ít playlist hơn nhé.",
+    );
   if (shuffle)
     for (let i = tracks.length - 1; i > 0; i--) {
       const j = Math.floor(random() * (i + 1));

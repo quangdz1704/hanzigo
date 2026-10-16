@@ -78,7 +78,17 @@ describe("YouTube links and curated mixes", () => {
     expect(lists[0]).toEqual([one, two]);
   });
   it("keeps catalog metadata valid and rejects dangling playlist entries", () => {
-    expect(catalog.tracks).toHaveLength(8);
+    expect(catalog.tracks).toHaveLength(60);
+    const imported = catalog.playlists.find(
+      (p) => p.id === "nhac-hoa-the-quang",
+    )!;
+    expect(imported.author).toBe("Thế Quang Nguyễn");
+    expect(imported.videoIds).toHaveLength(52);
+    expect(imported.videoIds[0]).toBe("rma93iCBkwA");
+    expect(imported.videoIds.at(-1)).toBe("xGZrFALYJ2g");
+    expect(
+      unpackTracks(makePlaylist("NHẠC HOA", catalog.tracks.slice(8)).raw),
+    ).toHaveLength(52);
     expect(() =>
       musicCatalogSchema.parse({
         ...catalog,

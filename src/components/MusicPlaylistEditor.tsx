@@ -48,7 +48,7 @@ export function MusicPlaylistEditor({
           {initial.id ? "Chỉnh playlist của em" : "Một playlist mới"}
         </DialogTitle>
         <DialogDescription>
-          Giữ những bài em thích ở cùng một chỗ. Mỗi playlist tối đa 50 bài.
+          Giữ những bài em thích ở cùng một chỗ. Mỗi playlist tối đa 100 bài.
         </DialogDescription>
         <label className="field">
           Tên playlist
@@ -81,7 +81,7 @@ export function MusicPlaylistEditor({
           </label>
           <Button
             variant="secondary"
-            disabled={!url.trim() || tracks.length >= 50}
+            disabled={!url.trim() || tracks.length >= 100}
             onClick={() => {
               try {
                 const videoId = parseYouTubeVideo(url);

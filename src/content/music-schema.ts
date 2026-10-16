@@ -15,7 +15,7 @@ export const musicTrackSchema = z
   .strict();
 export const trackListSchema = z
   .array(musicTrackSchema)
-  .max(50)
+  .max(100)
   .refine(
     (tracks) => new Set(tracks.map((t) => t.videoId)).size === tracks.length,
     "Danh sách có video trùng.",
@@ -31,7 +31,12 @@ export const musicCatalogSchema = z
             id: z.string().regex(/^[a-z0-9-]{1,60}$/),
             name: z.string().trim().min(1).max(80),
             description: z.string().trim().max(300),
-            videoIds: z.array(videoIdSchema).min(1).max(50),
+            author: z.string().trim().min(1).max(80).optional(),
+            youtubePlaylistId: z
+              .string()
+              .regex(/^PL[a-zA-Z0-9_-]{10,98}$/)
+              .optional(),
+            videoIds: z.array(videoIdSchema).min(1).max(100),
           })
           .strict(),
       )
